@@ -3,7 +3,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import legacy from '@vitejs/plugin-legacy';
 
 export default defineConfig({
-  base: '/p.a.t.r.i.c.i.a/',
+  base: process.env.BASE_URL || '/p.a.t.r.i.c.i.a/',
   plugins: [
     legacy({
       targets: ['defaults', 'not IE 11']
