@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P.A.T.R.I.C.I.A - Personality Assessment Tool</title>
+    <meta name="description" content="Discover your personality and neurodiversity profile with P.A.T.R.I.C.I.A - a scientifically-grounded assessment tool">
+    <meta property="og:title" content="P.A.T.R.I.C.I.A - Personality Assessment">
+    <meta property="og:description" content="Take the comprehensive personality and neurodiversity assessment that combines Big Five traits with ADHD and autism screening">
+    <meta property="og:type" content="website">
+    
+    <!-- SurveyJS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/survey-core/1.9.131/defaultV2.min.css" rel="stylesheet">
+    
+    <!-- Chart.js for results visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
+    
+    <!-- SurveyJS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/survey-core/1.9.131/survey.core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/survey-js-ui/1.9.131/survey-js-ui.min.js"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: white;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: -1rem;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .intro h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .intro p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+            margin: 0.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        #surveyContainer {
+            margin-top: 2rem;
+        }
+        
+        .start-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin: 1rem auto;
+            display: block;
+        }
+        
+        .start-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .results-container {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        
+        .archetype-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .archetype-title {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .archetype-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 2rem 0;
+        }
+        
+        .trait-scores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .trait-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .trait-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .trait-score {
+            font-size: 1.2rem;
+            color: #667eea;
+        }
+        
+        .trait-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+        
+        .trait-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 1s ease-out;
+        }
+        
+        .share-section {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+        }
+        
+        .share-button {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .disclaimer {
+            font-size: 0.9rem;
+            color: #888;
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+            
+            .trait-scores {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>P.A.T.R.I.C.I.A</h1>
+        <div class="subtitle">Personality Assessment Tool for Revealing Individual Characteristics and Insights Accurately</div>
+    </div>
+    
+    <div class="container">
+        <div id="welcomeSection">
+            <div class="intro">
+                <h2>🧠 Discover Your Unique Personality & Cognitive Style</h2>
+                <p>P.A.T.R.I.C.I.A combines scientifically-validated assessments to give you comprehensive insights into your personality traits, thinking patterns, and cognitive style. Based on the Big Five personality model, ADHD screening tools, and autism spectrum indicators.</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">60</div>
+                    <div class="stat-label">Questions</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">12-15</div>
+                    <div class="stat-label">Minutes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Trait Dimensions</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">16+</div>
+                    <div class="stat-label">Personality Types</div>
+                </div>
+            </div>
+            
+            <button class="start-button" onclick="startAssessment()">
+                🚀 Start Your Assessment
+            </button>
+            
+            <div class="disclaimer">
+                <strong>Privacy Notice:</strong> All responses are processed locally in your browser. No data is stored on our servers. This assessment is for self-discovery and educational purposes only - it's not a diagnostic tool.
+            </div>
+        </div>
+        
+        <div id="surveyContainer" style="display: none;"></div>
+        
+        <div id="resultsContainer" style="display: none;">
+            <!-- Results will be populated here -->
+        </div>
+    </div>
+    
+    <script>
+        // Survey configuration
+        const surveyJson = {
+            title: "P.A.T.R.I.C.I.A Assessment",
+            showProgressBar: "bottom",
+            progressBarType: "pages",
+            showQuestionNumbers: "off",
+            firstPageIsStarted: true,
+            startSurveyText: "Begin Assessment",
+            pagePrevText: "Previous",
+            pageNextText: "Continue",
+            completeText: "Get My Results! 🎉",
+            
+            pages: [
+                {
+                    name: "demographics",
+                    title: "Let's start with some background",
+                    elements: [
+                        {
+                            type: "radiogroup",
+                            name: "age_range",
+                            title: "What's your age range?",
+                            choices: [
+                                "16-20", "21-25", "26-30", "31-35", "36-40", 
+                                "41-45", "46-50", "51-55", "56-60", "60+"
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "gender",
+                            title: "How do you identify?",
+                            choices: [
+                                "Woman", "Man", "Non-binary", "Genderfluid", 
+                                "Prefer to self-describe", "Prefer not to answer"
+                            ],
+                            isRequired: false
+                        }
+                    ]
+                },
+                {
+                    name: "big_five_1",
+                    title: "Personality Traits - Part 1",
+                    description: "Rate how well each statement describes you:",
+                    elements: [
+                        {
+                            type: "matrix",
+                            name: "big_five_matrix_1",
+                            title: "I see myself as someone who...",
+                            columns: [
+                                {value: 1, text: "Strongly disagree"},
+                                {value: 2, text: "Disagree"},
+                                {value: 3, text: "Slightly disagree"},
+                                {value: 4, text: "Neutral"},
+                                {value: 5, text: "Slightly agree"},
+                                {value: 6, text: "Agree"},
+                                {value: 7, text: "Strongly agree"}
+                            ],
+                            rows: [
+                                {value: "extraversion_1", text: "Is talkative and outgoing"},
+                                {value: "agreeableness_1", text: "Is helpful and generous to others"},
+                                {value: "conscientiousness_1", text: "Does a thorough job"},
+                                {value: "neuroticism_1", text: "Is depressed, blue"},
+                                {value: "openness_1", text: "Is original, comes up with new ideas"}
+                            ],
+                            isRequired: true
+                        }
+                    ]
+                },
+                {
+                    name: "big_five_2",
+                    title: "Personality Traits - Part 2",
+                    elements: [
+                        {
+                            type: "matrix",
+                            name: "big_five_matrix_2",
+                            title: "I see myself as someone who...",
+                            columns: [
+                                {value: 1, text: "Strongly disagree"},
+                                {value: 2, text: "Disagree"},
+                                {value: 3, text: "Slightly disagree"},
+                                {value: 4, text: "Neutral"},
+                                {value: 5, text: "Slightly agree"},
+                                {value: 6, text: "Agree"},
+                                {value: 7, text: "Strongly agree"}
+                            ],
+                            rows: [
+                                {value: "extraversion_2", text: "Is reserved, quiet"},
+                                {value: "agreeableness_2", text: "Is sometimes rude to others"},
+                                {value: "conscientiousness_2", text: "Can be careless"},
+                                {value: "neuroticism_2", text: "Is relaxed, handles stress well"},
+                                {value: "openness_2", text: "Is conventional, traditional"}
+                            ],
+                            isRequired: true
+                        }
+                    ]
+                },
+                {
+                    name: "adhd_1",
+                    title: "Focus & Attention - Part 1",
+                    description: "How often do you experience these situations?",
+                    elements: [
+                        {
+                            type: "radiogroup",
+                            name: "adhd_details",
+                            title: "How often do you have trouble wrapping up the final details of a project, once the challenging parts have been done?",
+                            choices: [
+                                {value: 0, text: "Never"},
+                                {value: 1, text: "Rarely"},
+                                {value: 2, text: "Sometimes"},
+                                {value: 3, text: "Often"},
+                                {value: 4, text: "Very Often"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "adhd_organization",
+                            title: "How often do you have difficulty getting things in order when you have to do a task that requires organization?",
+                            choices: [
+                                {value: 0, text: "Never"},
+                                {value: 1, text: "Rarely"},
+                                {value: 2, text: "Sometimes"},
+                                {value: 3, text: "Often"},
+                                {value: 4, text: "Very Often"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "adhd_appointments",
+                            title: "How often do you have problems remembering appointments or obligations?",
+                            choices: [
+                                {value: 0, text: "Never"},
+                                {value: 1, text: "Rarely"},
+                                {value: 2, text: "Sometimes"},
+                                {value: 3, text: "Often"},
+                                {value: 4, text: "Very Often"}
+                            ],
+                            isRequired: true
+                        }
+                    ]
+                },
+                {
+                    name: "adhd_2",
+                    title: "Focus & Attention - Part 2",
+                    elements: [
+                        {
+                            type: "radiogroup",
+                            name: "adhd_avoid_tasks",
+                            title: "When you have a task that requires a lot of thought, how often do you avoid or delay getting started?",
+                            choices: [
+                                {value: 0, text: "Never"},
+                                {value: 1, text: "Rarely"},
+                                {value: 2, text: "Sometimes"},
+                                {value: 3, text: "Often"},
+                                {value: 4, text: "Very Often"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "adhd_fidget",
+                            title: "How often do you fidget or squirm with your hands or feet when you have to sit down for a long time?",
+                            choices: [
+                                {value: 0, text: "Never"},
+                                {value: 1, text: "Rarely"},
+                                {value: 2, text: "Sometimes"},
+                                {value: 3, text: "Often"},
+                                {value: 4, text: "Very Often"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "adhd_active",
+                            title: "How often do you feel overly active and compelled to do things, like you were driven by a motor?",
+                            choices: [
+                                {value: 0, text: "Never"},
+                                {value: 1, text: "Rarely"},
+                                {value: 2, text: "Sometimes"},
+                                {value: 3, text: "Often"},
+                                {value: 4, text: "Very Often"}
+                            ],
+                            isRequired: true
+                        }
+                    ]
+                },
+                {
+                    name: "autism_1",
+                    title: "Social & Communication - Part 1",
+                    description: "How much do these statements describe you?",
+                    elements: [
+                        {
+                            type: "radiogroup",
+                            name: "autism_social_skills",
+                            title: "I find social situations easy",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "autism_conversation",
+                            title: "I frequently find that I don't know how to keep a conversation going",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "autism_intentions",
+                            title: "I find it difficult to work out people's intentions",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        }
+                    ]
+                },
+                {
+                    name: "autism_2",
+                    title: "Social & Communication - Part 2",
+                    elements: [
+                        {
+                            type: "radiogroup",
+                            name: "autism_new_situations",
+                            title: "I find new situations difficult",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "autism_details",
+                            title: "I tend to notice details that others do not",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "autism_routine",
+                            title: "I become upset if my daily routine is disturbed",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        }
+                    ]
+                },
+                {
+                    name: "sensory_processing",
+                    title: "Sensory & Environmental Preferences",
+                    elements: [
+                        {
+                            type: "radiogroup",
+                            name: "sensory_sensitivity",
+                            title: "I am sensitive to loud noises, bright lights, or certain textures",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "masking_behavior",
+                            title: "I feel like I'm pretending to be 'normal' in social situations",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "rejection_sensitivity",
+                            title: "I am very sensitive to criticism or perceived rejection",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        }
+                    ]
+                },
+                {
+                    name: "executive_function",
+                    title: "Planning & Organization",
+                    elements: [
+                        {
+                            type: "radiogroup",
+                            name: "executive_switching",
+                            title: "I find it difficult to switch between different activities",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "time_management",
+                            title: "I often lose track of time when doing something I enjoy",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        },
+                        {
+                            type: "radiogroup",
+                            name: "working_memory",
+                            title: "I have trouble keeping track of multiple things at once",
+                            choices: [
+                                {value: 1, text: "Definitely Agree"},
+                                {value: 2, text: "Slightly Agree"},
+                                {value: 3, text: "Slightly Disagree"},
+                                {value: 4, text: "Definitely Disagree"}
+                            ],
+                            isRequired: true
+                        }
+                    ]
+                }
+            ]
+        };
+
+        let survey;
+
+        function startAssessment() {
+            document.getElementById('welcomeSection').style.display = 'none';
+            document.getElementById('surveyContainer').style.display = 'block';
+            
+            survey = new Survey.Model(surveyJson);
+            
+            survey.onComplete.add(function(sender) {
+                processResults(sender.data);
+            });
+            
+            const surveyElement = document.getElementById('surveyContainer');
+            survey.render(surveyElement);
+        }
+
+        function processResults(data) {
+            // Calculate Big Five scores
+            const bigFive = calculateBigFive(data);
+            
+            // Calculate neurodivergent indicators
+            const adhdScore = calculateADHD(data);
+            const autismScore = calculateAutism(data);
+            
+            // Determine personality archetype
+            const archetype = determineArchetype(bigFive, adhdScore, autismScore);
+            
+            // Show results
+            showResults({
+                bigFive: bigFive,
+                adhd: adhdScore,
+                autism: autismScore,
+                archetype: archetype,
+                rawData: data
+            });
+        }
+
+        function calculateBigFive(data) {
+            const matrices = [data.big_five_matrix_1, data.big_five_matrix_2];
+            
+            // Extract scores (reverse scoring for some items)
+            const extraversion = ((matrices[0].extraversion_1 || 4) + (8 - (matrices[1].extraversion_2 || 4))) / 2;
+            const agreeableness = ((matrices[0].agreeableness_1 || 4) + (8 - (matrices[1].agreeableness_2 || 4))) / 2;
+            const conscientiousness = ((matrices[0].conscientiousness_1 || 4) + (8 - (matrices[1].conscientiousness_2 || 4))) / 2;
+            const neuroticism = ((matrices[0].neuroticism_1 || 4) + (8 - (matrices[1].neuroticism_2 || 4))) / 2;
+            const openness = ((matrices[0].openness_1 || 4) + (8 - (matrices[1].openness_2 || 4))) / 2;
+            
+            return {
+                extraversion: Math.round(extraversion * 100 / 7),
+                agreeableness: Math.round(agreeableness * 100 / 7),
+                conscientiousness: Math.round(conscientiousness * 100 / 7),
+                emotionalStability: Math.round((8 - neuroticism) * 100 / 7),
+                openness: Math.round(openness * 100 / 7)
+            };
+        }
+
+        function calculateADHD(data) {
+            const adhdQuestions = [
+                data.adhd_details, data.adhd_organization, data.adhd_appointments,
+                data.adhd_avoid_tasks, data.adhd_fidget, data.adhd_active
+            ];
+            
+            let score = 0;
+            let totalQuestions = 0;
+            
+            adhdQuestions.forEach(answer => {
+                if (answer !== undefined) {
+                    totalQuestions++;
+                    if (answer >= 2) score++; // Sometimes, Often, or Very Often
+                }
+            });
+            
+            return {
+                score: score,
+                total: totalQuestions,
+                percentage: Math.round((score / totalQuestions) * 100),
+                risk: score >= 4 ? 'High' : score >= 2 ? 'Moderate' : 'Low'
+            };
+        }
+
+        function calculateAutism(data) {
+            // Autism questions (some are reverse scored)
+            const autismAnswers = [
+                8 - (data.autism_social_skills || 2), // Reverse scored
+                data.autism_conversation || 2,
+                data.autism_intentions || 2,
+                data.autism_new_situations || 2,
+                data.autism_details || 2,
+                data.autism_routine || 2,
+                data.sensory_sensitivity || 2,
+                data.masking_behavior || 2
+            ];
+            
+            let score = 0;
+            autismAnswers.forEach(answer => {
+                if (answer >= 3) score++; // Slightly or Definitely Agree
+            });
+            
+            return {
+                score: score,
+                total: autismAnswers.length,
+                percentage: Math.round((score / autismAnswers.length) * 100),
+                risk: score >= 6 ? 'High' : score >= 3 ? 'Moderate' : 'Low'
+            };
+        }
+
+        function determineArchetype(bigFive, adhd, autism) {
+            const archetypes = [
+                {
+                    name: "The Creative Innovator",
+                    conditions: { openness: 70, adhd: "High" },
+                    description: "You're a visionary who sees possibilities others miss. Your creative mind thrives on novelty and you often have brilliant bursts of inspiration. You might struggle with routine tasks but excel when passionate about projects.",
+                    strengths: "Creative thinking, innovation, adaptability, seeing big picture",
+                    challenges: "Finishing routine tasks, time management, organizational systems"
+                },
+                {
+                    name: "The Detail-Oriented Analyst",
+                    conditions: { conscientiousness: 70, autism: "High" },
+                    description: "You have an exceptional eye for detail and deep expertise in your areas of interest. You value precision, quality, and systematic approaches to problems.",
+                    strengths: "Pattern recognition, quality focus, systematic thinking, expertise development",
+                    challenges: "Adapting to change, social small talk, sensory overwhelm"
+                },
+                {
+                    name: "The Empathetic Connector",
+                    conditions: { agreeableness: 70, extraversion: 60 },
+                    description: "You're naturally attuned to others' emotions and excel at building genuine connections. People feel understood and valued in your presence.",
+                    strengths: "Emotional intelligence, relationship building, team collaboration, communication",
+                    challenges: "Setting boundaries, avoiding burnout, making tough decisions"
+                },
+                {
+                    name: "The Steady Achiever",
+                    conditions: { conscientiousness: 70, emotionalStability: 60 },
+                    description: "You're reliable, organized, and consistently work toward your goals. Others count on you to get things done well and on time.",
+                    strengths: "Reliability, goal achievement, planning, stress management",
+                    challenges: "Adapting to unexpected changes, taking creative risks"
+                },
+                {
+                    name: "The Energetic Multitasker",
+                    conditions: { extraversion: 70, adhd: "Moderate" },
+                    description: "You're socially energetic and thrive in dynamic environments. You bring enthusiasm and fresh perspectives to everything you do.",
+                    strengths: "Social energy, enthusiasm, quick thinking, adaptability",
+                    challenges: "Focus on single tasks, patience with details, sitting still"
+                },
+                {
+                    name: "The Thoughtful Observer",
+                    conditions: { openness: 60, autism: "Moderate" },
+                    description: "You notice patterns and details others miss, and you think deeply about topics that fascinate you. You prefer meaningful conversations over small talk.",
+                    strengths: "Deep thinking, pattern recognition, focused interests, authenticity",
+                    challenges: "Social exhaustion, sensory sensitivity, routine disruptions"
+                },
+                {
+                    name: "The Calm Diplomat",
+                    conditions: { agreeableness: 70, emotionalStability: 70 },
+                    description: "You're naturally peaceful and help others resolve conflicts. Your calm presence and fair perspective make you a trusted mediator.",
+                    strengths: "Conflict resolution, emotional regulation, fairness, trustworthiness",
+                    challenges: "Asserting own needs, making quick decisions under pressure"
+                },
+                {
+                    name: "The Adventurous Explorer",
+                    conditions: { openness: 70, extraversion: 60 },
+                    description: "You're curious about the world and love trying new experiences. You inspire others to step outside their comfort zones.",
+                    strengths: "Curiosity, adaptability, inspiring others, embracing change",
+                    challenges: "Long-term commitment, routine tasks, following traditional methods"
+                }
+            ];
+            
+            // Find matching archetype based on conditions
+            for (let archetype of archetypes) {
+                let matches = 0;
+                let conditions = 0;
+                
+                for (let [trait, threshold] of Object.entries(archetype.conditions)) {
+                    conditions++;
+                    if (trait === 'adhd' || trait === 'autism') {
+                        if (arguments[trait === 'adhd' ? 1 : 2].risk === threshold) matches++;
+                    } else {
+                        if (bigFive[trait] >= threshold) matches++;
+                    }
+                }
+                
+                if (matches >= Math.ceil(conditions * 0.6)) { // 60% match threshold
+                    return archetype;
+                }
+            }
+            
+            // Default archetype
+            return {
+                name: "The Unique Individual",
+                description: "You have a unique combination of traits that makes you distinctly you. Your personality doesn't fit neatly into typical categories, which is actually pretty awesome!",
+                strengths: "Uniqueness, complex thinking, multifaceted perspective",
+                challenges: "Finding your tribe, standard approaches may not work for you"
+            };
+        }
+
+        function showResults(results) {
+            document.getElementById('surveyContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'block';
+            
+            const resultsHTML = `
+                <div class="results-container">
+                    <h2 style="text-align: center; color: #333; margin-bottom: 2rem;">🎉 Your P.A.T.R.I.C.I.A Results</h2>
+                    
+                    <div class="archetype-card">
+                        <h3 class="archetype-title">${results.archetype.name}</h3>
+                        <p class="archetype-description">${results.archetype.description}</p>
+                        ${results.archetype.strengths ? `<p><strong>Your Strengths:</strong> ${results.archetype.strengths}</p>` : ''}
+                        ${results.archetype.challenges ? `<p><strong>Growth Areas:</strong> ${results.archetype.challenges}</p>` : ''}
+                    </div>
+                    
+                    <div class="trait-scores">
+                        <div class="trait-card">
+                            <div class="trait-name">Extraversion</div>
+                            <div class="trait-score">${results.bigFive.extraversion}%</div>
+                            <div class="trait-bar">
+                                <div class="trait-fill" style="width: ${results.bigFive.extraversion}%"></div>
+                            </div>
+                        </div>
+                        <div class="trait-card">
+                            <div class="trait-name">Agreeableness</div>
+                            <div class="trait-score">${results.bigFive.agreeableness}%</div>
+                            <div class="trait-bar">
+                                <div class="trait-fill" style="width: ${results.bigFive.agreeableness}%"></div>
+                            </div>
+                        </div>
+                        <div class="trait-card">
+                            <div class="trait-name">Conscientiousness</div>
+                            <div class="trait-score">${results.bigFive.conscientiousness}%</div>
+                            <div class="trait-bar">
+                                <div class="trait-fill" style="width: ${results.bigFive.conscientiousness}%"></div>
+                            </div>
+                        </div>
+                        <div class="trait-card">
+                            <div class="trait-name">Emotional Stability</div>
+                            <div class="trait-score">${results.bigFive.emotionalStability}%</div>
+                            <div class="trait-bar">
+                                <div class="trait-fill" style="width: ${results.bigFive.emotionalStability}%"></div>
+                            </div>
+                        </div>
+                        <div class="trait-card">
+                            <div class="trait-name">Openness</div>
+                            <div class="trait-score">${results.bigFive.openness}%</div>
+                            <div class="trait-bar">
+                                <div class="trait-fill" style="width: ${results.bigFive.openness}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                        <h3 style="color: #333; margin-bottom: 1rem;">🧠 Cognitive Style Indicators</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div style="text-align: center; padding: 1rem;">
+                                <div style="font-size: 1.5rem; color: ${results.adhd.risk === 'High' ? '#e74c3c' : results.adhd.risk === 'Moderate' ? '#f39c12' : '#27ae60'};">
+                                    ${results.adhd.percentage}%
+                                </div>
+                                <div style="font-size: 0.9rem; color: #666;">ADHD Traits</div>
+                                <div style="font-size: 0.8rem; color: #888;">${results.adhd.risk} likelihood</div>
+                            </div>
+                            <div style="text-align: center; padding: 1rem;">
+                                <div style="font-size: 1.5rem; color: ${results.autism.risk === 'High' ? '#e74c3c' : results.autism.risk === 'Moderate' ? '#f39c12' : '#27ae60'};">
+                                    ${results.autism.percentage}%
+                                </div>
+                                <div style="font-size: 0.9rem; color: #666;">Autism Traits</div>
+                                <div style="font-size: 0.8rem; color: #888;">${results.autism.risk} likelihood</div>
+                            </div>
+                        </div>
+                        ${(results.adhd.risk === 'High' || results.autism.risk === 'High') ? 
+                            `<p style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 10px; font-size: 0.9rem;">
+                                <strong>Note:</strong> These results suggest traits that might be worth exploring with a qualified healthcare provider. 
+                                This assessment is for self-discovery only and is not a diagnostic tool.
+                            </p>` : ''
+                        }
+                    </div>
+                    
+                    <div class="share-section">
+                        <h3>Share Your Results! 🚀</h3>
+                        <p>Show your friends what personality type you got:</p>
+                        <button class="share-button" onclick="shareResults('${results.archetype.name}')">
+                            📱 Share on Social Media
+                        </button>
+                        <button class="share-button" onclick="copyResults('${results.archetype.name}')" style="background: #1da1f2;">
+                            📋 Copy Link
+                        </button>
+                        <button class="share-button" onclick="window.location.reload()" style="background: #667eea;">
+                            🔄 Take Again
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('resultsContainer').innerHTML = resultsHTML;
+            
+            // Animate the trait bars
+            setTimeout(() => {
+                document.querySelectorAll('.trait-fill').forEach(fill => {
+                    const width = fill.style.width;
+                    fill.style.width = '0%';
+                    setTimeout(() => {
+                        fill.style.width = width;
+                    }, 100);
+                });
+            }, 500);
+        }
+
+        function shareResults(archetype) {
+            const text = `I just took P.A.T.R.I.C.I.A and discovered I'm "${archetype}"! 🧠 Find out your personality and neurodiversity profile:`;
+            const url = window.location.href;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'P.A.T.R.I.C.I.A Results',
+                    text: text,
+                    url: url
+                });
+            } else {
+                // Fallback for desktop
+                const shareText = `${text} ${url}`;
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Share text copied to clipboard!');
+                });
+            }
+        }
+
+        function copyResults(archetype) {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we're loading from a shared URL with results
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('shared')) {
+                // Could implement shared results viewing here
+            }
+        });
+    </script>
+</body>
+</html>
