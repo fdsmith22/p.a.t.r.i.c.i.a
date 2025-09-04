@@ -3,37 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P.A.T.R.I.C.I.A - Advanced Personality Assessment</title>
-    <meta name="description" content="Discover your unique personality archetype from 21+ profiles with gamification and AI insights">
+    <title>P.A.T.R.I.C.I.A - Advanced Psychometric Assessment</title>
+    <meta name="description" content="Comprehensive personality assessment integrating Big Five, HEXACO, neurodiversity screening, and cognitive profiling">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- jQuery -->
+    <!-- Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-    
-    <!-- SurveyJS -->
-    <link href="https://unpkg.com/survey-jquery@1.9.131/defaultV2.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/survey-jquery@1.9.131/survey.jquery.min.js"></script>
-    
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Additional Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <style>
         :root {
-            --primary-gradient-start: #667eea;
-            --primary-gradient-end: #764ba2;
-            --secondary-gradient-start: #f093fb;
-            --secondary-gradient-end: #f5576c;
-            --accent-gradient-start: #4facfe;
-            --accent-gradient-end: #00f2fe;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --error: #ef4444;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
+            --neural-blue: #6B9BD1;
+            --neural-purple: #A584B7;
+            --neural-teal: #5EBAA0;
+            --neural-coral: #F09090;
+            --neural-gold: #E5B055;
+            --neural-green: #6FAE8D;
+            
+            --bg-primary: #1A1F2E;
+            --bg-secondary: #242937;
+            --bg-tertiary: #2D3344;
+            --bg-card: #363D52;
+            
+            --text-primary: #E0E4EA;
+            --text-secondary: #B8C0D0;
+            --text-tertiary: #8B95A8;
+            
+            --border-color: #3D4556;
+            --border-active: #7BA7D7;
+            
+            --success: #6FAE8D;
+            --warning: #E5B055;
+            --error: #D68585;
+            --info: #7BA7D7;
+        }
+
+        [data-theme="light"] {
+            --neural-blue: #8BADD3;
+            --neural-purple: #B199C4;
+            --neural-teal: #7DC5B3;
+            --neural-coral: #F5A8A8;
+            --neural-gold: #E8C078;
+            --neural-green: #8BBAA5;
+            
+            --bg-primary: #FDF9F5;
+            --bg-secondary: #FAF6F2;
+            --bg-tertiary: #F5F0EA;
+            --bg-card: #FFFFFF;
+            
+            --text-primary: #3D3D3D;
+            --text-secondary: #5D5D5D;
+            --text-tertiary: #7D7D7D;
+            
+            --border-color: #E8E2DA;
+            --border-active: #9BBDDA;
+            
+            --success: #8BBAA5;
+            --warning: #E8C078;
+            --error: #E5A0A0;
+            --info: #9BBDDA;
         }
 
         * {
@@ -43,482 +73,214 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
             color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* Animated background particles */
-        body::before {
-            content: '';
+        /* Neural Network Background Animation */
+        .neural-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="2"/></svg>');
-            background-size: 100px 100px;
-            pointer-events: none;
-            animation: float 20s infinite linear;
             z-index: 0;
-        }
-
-        @keyframes float {
-            from { transform: translate(0, 0) rotate(0deg); }
-            to { transform: translate(-100px, -100px) rotate(360deg); }
+            opacity: 0.03;
+            pointer-events: none;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
             position: relative;
             z-index: 1;
         }
 
+        /* Header */
         .header {
-            text-align: center;
-            color: white;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-radius: 20px;
+            padding: 3rem;
             margin-bottom: 3rem;
-            animation: fadeIn 1s ease-out;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--neural-purple) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.1); opacity: 0.15; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
         }
 
         .header h1 {
             font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            background: linear-gradient(90deg, #fff, #e0e7ff);
+            background: linear-gradient(135deg, var(--neural-blue) 0%, var(--neural-purple) 50%, var(--neural-teal) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
 
         .header .subtitle {
             font-size: 1.25rem;
-            opacity: 0.9;
+            color: var(--text-secondary);
             max-width: 600px;
-            margin: 0 auto;
         }
 
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
+        /* Progress System */
+        .progress-container {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            position: relative;
+            transition: all 0.3s ease;
         }
-
-        .stat-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
+        
+        .progress-container.minimized {
+            padding: 0.5rem 1rem;
+        }
+        
+        .progress-container.minimized .progress-stats,
+        .progress-container.minimized .progress-bar {
+            display: none;
+        }
+        
+        .progress-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        .stat-icon {
-            font-size: 1.5rem;
+        
+        .progress-toggle:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-color: var(--border-active);
         }
-
-        .stat-value {
-            font-weight: 700;
-            font-size: 1.25rem;
+        
+        .progress-toggle-icon {
+            transition: transform 0.3s ease;
         }
-
-        .stat-label {
-            opacity: 0.9;
-            font-size: 0.9rem;
+        
+        .progress-container.minimized .progress-toggle-icon {
+            transform: rotate(180deg);
         }
-
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            margin-bottom: 2rem;
-            animation: slideUp 0.6s ease-out;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .feature {
-            text-align: center;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature h3 {
-            color: #4a5568;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .feature p {
-            color: #718096;
-            font-size: 0.9rem;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
-            margin: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid #667eea;
-            color: #667eea;
-        }
-
-        .btn-secondary:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        .screen {
+        
+        .progress-minimized-text {
             display: none;
-            animation: fadeIn 0.5s ease-out;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .progress-container.minimized .progress-minimized-text {
+            display: inline;
         }
 
-        .screen.active {
-            display: block;
+        .progress-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
-        .progress-header {
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        .progress-stat {
+            text-align: center;
         }
 
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            color: #4a5568;
+        .progress-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neural-blue);
+        }
+
+        .progress-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
         }
 
         .progress-bar {
             height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
             overflow: hidden;
+            position: relative;
         }
 
-        .progress-fill {
+        .progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-gradient-start), var(--primary-gradient-end));
-            border-radius: 4px;
-            transition: width 0.3s ease;
-            width: 0%;
-        }
-
-        .results-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
-            border-radius: 20px;
-            color: white;
-        }
-
-        .archetype-reveal {
-            animation: revealScale 0.6s ease-out;
-        }
-
-        @keyframes revealScale {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .archetype-card {
-            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
-            color: white;
-            padding: 3rem;
-            border-radius: 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        .archetype-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .archetype-emoji {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .archetype-name {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .archetype-description {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .trait-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            margin: 0.25rem;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            position: relative;
-            z-index: 1;
-        }
-
-        .power-stats {
-            display: grid;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .power-stat {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .stat-name {
-            min-width: 120px;
-            font-weight: 600;
-            color: #4a5568;
-        }
-
-        .stat-bar {
-            flex: 1;
-            height: 24px;
-            background: #e2e8f0;
-            border-radius: 12px;
-            overflow: hidden;
+            background: linear-gradient(90deg, var(--neural-blue) 0%, var(--neural-purple) 50%, var(--neural-teal) 100%);
+            border-radius: 10px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
         }
 
-        .stat-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-gradient-start), var(--primary-gradient-end));
-            border-radius: 12px;
-            transition: width 1s ease-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-fill::after {
+        .progress-bar-fill::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
             animation: shimmer 2s infinite;
         }
 
         @keyframes shimmer {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(100%); }
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
-        .stat-value {
-            min-width: 40px;
-            text-align: right;
-            font-weight: 700;
-            color: var(--primary-gradient-start);
-        }
-
-        .chart-container {
-            background: white;
+        /* Assessment Container */
+        .assessment-card {
+            background: var(--bg-card);
+            border-radius: 20px;
             padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 1.5rem;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .info-card {
-            background: linear-gradient(135deg, #f6f9fc, #ffffff);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .info-card h3 {
-            color: var(--primary-gradient-start);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .info-card ul {
-            list-style: none;
-        }
-
-        .info-card li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .info-card li::before {
-            content: '✨';
-            position: absolute;
-            left: 0;
-        }
-
-        .achievement-notification {
-            position: fixed;
-            top: 20px;
-            right: -400px;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: right 0.5s ease-out;
-            z-index: 1000;
-            max-width: 350px;
-        }
-
-        .achievement-notification.show {
-            right: 20px;
-        }
-
-        .achievement-content {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .achievement-icon {
-            font-size: 2.5rem;
-        }
-
-        .achievement-text h4 {
-            color: var(--primary-gradient-start);
-            margin-bottom: 0.25rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            animation: slideUp 0.5s ease;
         }
 
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -526,1447 +288,2205 @@
             }
         }
 
-        .mythical-info {
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            font-weight: 600;
+            color: var(--neural-blue);
+        }
+
+        .question-category {
+            padding: 0.25rem 0.75rem;
+            background: var(--neural-purple);
+            background: linear-gradient(135deg, var(--neural-purple) 0%, var(--neural-blue) 100%);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: white;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        /* Question Types */
+        
+        /* Visual Grid */
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .visual-option {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-option::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, var(--neural-blue) 0%, transparent 70%);
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .visual-option:hover {
+            transform: translateY(-2px);
+            border-color: var(--neural-blue);
+        }
+
+        .visual-option.selected {
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%);
+            border-color: var(--neural-blue);
+        }
+
+        .visual-option.selected::before {
+            width: 200%;
+            height: 200%;
+            opacity: 0.1;
+        }
+
+        .visual-emoji {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .visual-text {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* Slider */
+        .slider-container {
+            padding: 2rem 0;
+        }
+
+        .slider-track {
+            height: 6px;
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .slider-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neural-blue) 0%, var(--neural-purple) 100%);
+            border-radius: 3px;
+            width: 50%;
+            transition: width 0.3s ease;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background: white;
+            border: 3px solid var(--neural-blue);
+            border-radius: 50%;
+            cursor: grab;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .slider-handle:active {
+            cursor: grabbing;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-tertiary);
+        }
+
+        .slider-value {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--neural-blue);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Frequency Grid */
+        .frequency-grid {
+            overflow-x: auto;
+        }
+
+        .frequency-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .frequency-table th,
+        .frequency-table td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .frequency-table th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .frequency-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .frequency-option {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .frequency-option:hover {
+            transform: scale(1.1);
+            background: var(--neural-blue);
+        }
+
+        .frequency-option.selected {
+            background: var(--neural-blue);
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
+        }
+
+        .frequency-option.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Time Preference */
+        .time-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .time-option {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .time-option:hover {
+            border-color: var(--neural-teal);
+            transform: translateY(-2px);
+        }
+
+        .time-option.selected {
+            background: linear-gradient(135deg, rgba(26, 188, 156, 0.1) 0%, rgba(74, 144, 226, 0.1) 100%);
+            border-color: var(--neural-teal);
+        }
+
+        .time-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Task Ranking */
+        .ranking-container {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 1rem;
+        }
+
+        .ranking-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            cursor: move;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .ranking-item:hover {
+            transform: translateX(5px);
+            border-color: var(--neural-purple);
+        }
+
+        .ranking-item.dragging {
+            opacity: 0.5;
+            transform: rotate(2deg);
+        }
+
+        .ranking-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--neural-blue) 0%, var(--neural-purple) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .ranking-text {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .ranking-handle {
+            color: var(--text-tertiary);
+            font-size: 1.25rem;
+        }
+
+        /* Body Mapping */
+        .body-map {
             display: flex;
             justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .body-svg {
+            width: 300px;
+            height: 400px;
+        }
+
+        .body-part {
+            fill: var(--bg-tertiary);
+            stroke: var(--border-color);
+            stroke-width: 2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .body-part:hover {
+            fill: rgba(74, 144, 226, 0.2);
+            stroke: var(--neural-blue);
+        }
+
+        .body-part.selected {
+            fill: rgba(255, 107, 107, 0.3);
+            stroke: var(--neural-coral);
+            animation: throb 1.5s ease-in-out infinite;
+        }
+
+        @keyframes throb {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Results Section */
+        .results-container {
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .results-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neural-blue) 0%, var(--neural-purple) 50%, var(--neural-teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .profile-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neural-blue) 0%, var(--neural-purple) 50%, var(--neural-teal) 100%);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
             gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
+            margin-bottom: 2rem;
         }
 
-        .mythical-item {
-            background: rgba(255, 255, 255, 0.1);
+        .profile-emoji {
+            font-size: 4rem;
+            background: var(--bg-secondary);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neural-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Trait Visualization */
+        .traits-visualization {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .trait-bars {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .trait-bar {
+            display: grid;
+            grid-template-columns: 150px 1fr 60px;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .trait-name {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .trait-progress {
+            height: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .trait-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trait-fill.high {
+            background: linear-gradient(90deg, var(--neural-green) 0%, var(--neural-teal) 100%);
+        }
+
+        .trait-fill.medium {
+            background: linear-gradient(90deg, var(--neural-blue) 0%, var(--neural-purple) 100%);
+        }
+
+        .trait-fill.low {
+            background: linear-gradient(90deg, var(--neural-gold) 0%, var(--neural-coral) 100%);
+        }
+
+        .trait-score {
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: right;
+        }
+
+        /* Neurodiversity Indicators */
+        .neuro-indicators {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .neuro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .neuro-indicator {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .neuro-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .neuro-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .neuro-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .neuro-value.high {
+            color: var(--neural-coral);
+        }
+
+        .neuro-value.medium {
+            color: var(--neural-gold);
+        }
+
+        .neuro-value.low {
+            color: var(--neural-green);
+        }
+
+        /* Detailed Analysis Tabs */
+        .analysis-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-button:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, var(--neural-blue) 0%, var(--neural-purple) 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .tab-content {
+            display: none;
+            animation: slideUp 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .analysis-section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .analysis-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--neural-blue);
+            margin-bottom: 1rem;
+        }
+
+        .analysis-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .insight-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .insight-item {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--neural-blue);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .insight-item:hover {
+            transform: translateX(5px);
+            background: var(--bg-tertiary);
+        }
+
+        /* Achievement System */
+        .achievements {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .achievement {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement.unlocked {
+            border-color: var(--neural-gold);
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.1) 0%, rgba(241, 196, 15, 0.1) 100%);
+        }
+
+        .achievement.unlocked::before {
+            content: '✨';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1rem;
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            filter: grayscale(1);
+            opacity: 0.3;
+        }
+
+        .achievement.unlocked .achievement-icon {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+
+        .achievement-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+        }
+
+        .achievement.unlocked .achievement-name {
+            color: var(--neural-gold);
+        }
+
+        /* Buttons */
+        .btn {
             padding: 1rem 2rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
         }
 
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neural-blue) 0%, var(--neural-purple) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--neural-blue);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Loading State */
+        .loading-container {
+            display: none;
+            text-align: center;
+            padding: 4rem;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            border: 4px solid var(--bg-tertiary);
+            border-top: 4px solid var(--neural-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .loading-subtext {
+            color: var(--text-tertiary);
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .header h1 { font-size: 2.5rem; }
-            .container { padding: 1rem; }
-            .card { padding: 1.5rem; }
-            .features { grid-template-columns: 1fr; }
-            .results-grid { grid-template-columns: 1fr; }
-            .stats-bar { gap: 1rem; }
-            .mythical-info { gap: 1rem; }
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .visual-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .trait-bar {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--neural-blue);
+        }
+
+        .theme-icon {
+            font-size: 1.5rem;
         }
     </style>
 </head>
 <body>
+    <!-- Neural Network Background -->
+    <canvas class="neural-bg" id="neuralCanvas"></canvas>
+    
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <span class="theme-icon">🌙</span>
+    </div>
+
     <div class="container">
+        <!-- Header -->
         <header class="header">
-            <h1>P.A.T.R.I.C.I.A</h1>
-            <p class="subtitle">Personality Assessment Tool for Revealing Individual Characteristics and Insights Accurately</p>
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <span class="stat-icon">🏆</span>
-                    <span class="stat-value" id="level">1</span>
-                    <span class="stat-label">Level</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-icon">⚡</span>
-                    <span class="stat-value" id="xp">0</span>
-                    <span class="stat-label">XP</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-icon">🔥</span>
-                    <span class="stat-value" id="streak">0</span>
-                    <span class="stat-label">Streak</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-icon">🎯</span>
-                    <span class="stat-value" id="achievements">0</span>
-                    <span class="stat-label">Achievements</span>
-                </div>
+            <div class="header-content">
+                <h1>P.A.T.R.I.C.I.A</h1>
+                <p class="subtitle">
+                    Psychometric Assessment Tool for Research-based Individual Character & Insight Analysis
+                    <br><small>Integrating Big Five, HEXACO, neurodiversity screening, and cognitive profiling</small>
+                </p>
             </div>
         </header>
 
-        <div id="intro-screen" class="screen active">
-            <div class="card">
-                <h2 style="text-align: center; margin-bottom: 1rem; font-size: 2rem; color: var(--primary-gradient-start);">
-                    Discover Your Unique Personality Archetype
+        <!-- Progress Container -->
+        <div class="progress-container" id="progressContainer" style="display: none;">
+            <button class="progress-toggle" id="progressToggle" onclick="toggleProgress()" title="Toggle progress display">
+                <span class="progress-toggle-icon">▼</span>
+                <span id="toggleText">Hide</span>
+            </button>
+            <span class="progress-minimized-text" id="minimizedText">Progress tracking minimized • Click to expand</span>
+            <div class="progress-stats">
+                <div class="progress-stat">
+                    <div class="progress-stat-value" id="questionNumber">0</div>
+                    <div class="progress-stat-label">Current Question</div>
+                </div>
+                <div class="progress-stat">
+                    <div class="progress-stat-value" id="totalQuestions">0</div>
+                    <div class="progress-stat-label">Total Questions</div>
+                </div>
+                <div class="progress-stat">
+                    <div class="progress-stat-value" id="timeElapsed">0:00</div>
+                    <div class="progress-stat-label">Time Elapsed</div>
+                </div>
+                <div class="progress-stat">
+                    <div class="progress-stat-value" id="completionRate">0%</div>
+                    <div class="progress-stat-label">Completion</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <main id="mainContent">
+            <!-- Welcome Screen -->
+            <div id="welcomeScreen" class="assessment-card">
+                <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--neural-blue) 0%, var(--neural-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    Welcome to Your Comprehensive Personality Assessment
                 </h2>
-                <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
-                    Complete a comprehensive assessment based on the Big Five personality traits combined with 
-                    neurodiversity screening to reveal one of 21+ unique personality archetypes.
+                
+                <p style="font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem;">
+                    This advanced assessment combines validated psychological measures including the Big Five personality model, 
+                    HEXACO framework, neurodiversity indicators, and cognitive profiling to provide you with deep, 
+                    personalized insights about your unique psychological profile.
                 </p>
 
-                <div class="features">
-                    <div class="feature">
-                        <div class="feature-icon">🧬</div>
-                        <h3>Scientific Foundation</h3>
-                        <p>Based on Big Five personality model + ADHD/autism screening</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 15px; border-left: 4px solid var(--neural-blue);">
+                        <h3 style="color: var(--neural-blue); margin-bottom: 0.5rem;">🧠 What We Measure</h3>
+                        <ul style="list-style: none; padding: 0; color: var(--text-secondary);">
+                            <li>✓ Personality dimensions & facets</li>
+                            <li>✓ Neurodivergent traits & patterns</li>
+                            <li>✓ Cognitive processing styles</li>
+                            <li>✓ Emotional regulation patterns</li>
+                            <li>✓ Social & sensory profiles</li>
+                        </ul>
                     </div>
-                    <div class="feature">
-                        <div class="feature-icon">🎭</div>
-                        <h3>21+ Archetypes</h3>
-                        <p>From The Quantum Architect to The Phoenix Soul</p>
+                    
+                    <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 15px; border-left: 4px solid var(--neural-purple);">
+                        <h3 style="color: var(--neural-purple); margin-bottom: 0.5rem;">🎮 Interactive Experience</h3>
+                        <ul style="list-style: none; padding: 0; color: var(--text-secondary);">
+                            <li>✓ Diverse question formats</li>
+                            <li>✓ Visual & interactive elements</li>
+                            <li>✓ Gamified progress tracking</li>
+                            <li>✓ Achievement system</li>
+                            <li>✓ Adaptive questioning</li>
+                        </ul>
                     </div>
-                    <div class="feature">
-                        <div class="feature-icon">🎮</div>
-                        <h3>Gamification</h3>
-                        <p>Earn XP, unlock achievements, track your journey</p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">📊</div>
-                        <h3>Rich Insights</h3>
-                        <p>Detailed analysis with visualizations and compatibility</p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">🦄</div>
-                        <h3>Mythical Creatures</h3>
-                        <p>Each archetype has a spirit animal and element</p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">💼</div>
-                        <h3>Career Guidance</h3>
-                        <p>Discover careers that align with your archetype</p>
+                    
+                    <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 15px; border-left: 4px solid var(--neural-teal);">
+                        <h3 style="color: var(--neural-teal); margin-bottom: 0.5rem;">📊 Your Results</h3>
+                        <ul style="list-style: none; padding: 0; color: var(--text-secondary);">
+                            <li>✓ Detailed personality profile</li>
+                            <li>✓ Neurodiversity indicators</li>
+                            <li>✓ Strengths & growth areas</li>
+                            <li>✓ Career & relationship insights</li>
+                            <li>✓ Personalized recommendations</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-top: 2rem;">
-                    <button class="btn" onclick="startFullAssessment()">
-                        Start Full Assessment
-                        <br><small style="opacity: 0.9; font-size: 0.8rem;">60 questions • 10-15 minutes</small>
+                <div style="background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%); padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem;">
+                    <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 0.5rem;">
+                        ⏱️ Estimated time: 15-20 minutes
+                    </p>
+                    <p style="color: var(--text-secondary); margin: 0;">
+                        This assessment is designed to be engaging and insightful. Take your time and answer honestly - 
+                        there are no right or wrong answers, only your unique patterns and preferences.
+                    </p>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="startAssessment()">
+                        <span>Begin Your Journey</span>
+                        <span>→</span>
                     </button>
-                    <button class="btn btn-secondary" onclick="startQuickAssessment()">
-                        Quick Assessment
-                        <br><small style="opacity: 0.9; font-size: 0.8rem;">20 questions • 5 minutes</small>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="survey-screen" class="screen">
-            <div class="card">
-                <div class="progress-header">
-                    <div class="progress-info">
-                        <span>Question <span id="current-q">1</span> of <span id="total-q">60</span></span>
-                        <span id="time-elapsed">00:00</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progress-fill"></div>
-                    </div>
-                </div>
-                <div id="surveyElement"></div>
-            </div>
-        </div>
-
-        <div id="results-screen" class="screen">
-            <div class="results-header">
-                <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Your Personality Profile</h2>
-                <p style="opacity: 0.9;">Scroll down to explore your complete analysis</p>
-            </div>
-
-            <div class="archetype-card archetype-reveal">
-                <div id="archetype-emoji" class="archetype-emoji"></div>
-                <h3 id="archetype-name" class="archetype-name"></h3>
-                <p id="archetype-description" class="archetype-description"></p>
-                <div id="archetype-traits"></div>
-                <div class="mythical-info">
-                    <div class="mythical-item">
-                        <strong>Mythical Creature:</strong> <span id="mythical-creature"></span>
-                    </div>
-                    <div class="mythical-item">
-                        <strong>Element:</strong> <span id="element"></span>
-                    </div>
-                </div>
-                <blockquote id="archetype-quote" style="font-style: italic; margin-top: 2rem; opacity: 0.9;"></blockquote>
-            </div>
-
-            <div class="card">
-                <h3 style="text-align: center; color: var(--primary-gradient-start); margin-bottom: 2rem;">
-                    Big Five Personality Traits
-                </h3>
-                <div class="power-stats" id="big-five-stats"></div>
-            </div>
-
-            <div class="results-grid">
-                <div class="chart-container">
-                    <h4 style="text-align: center; margin-bottom: 1rem;">Personality Radar</h4>
-                    <canvas id="radar-chart"></canvas>
-                </div>
-                <div class="chart-container">
-                    <h4 style="text-align: center; margin-bottom: 1rem;">Trait Distribution</h4>
-                    <canvas id="bar-chart"></canvas>
                 </div>
             </div>
 
-            <div class="card">
-                <h3 style="text-align: center; color: var(--primary-gradient-start); margin-bottom: 2rem;">
-                    Power Stats
-                </h3>
-                <div class="power-stats" id="power-stats"></div>
+            <!-- Assessment Questions -->
+            <div id="assessmentContainer" style="display: none;">
+                <!-- Questions will be dynamically inserted here -->
             </div>
 
-            <div class="results-grid">
-                <div class="info-card">
-                    <h3>💪 Your Strengths</h3>
-                    <ul id="strengths-list"></ul>
-                </div>
-                <div class="info-card">
-                    <h3>🎯 Growth Areas</h3>
-                    <ul id="challenges-list"></ul>
-                </div>
+            <!-- Loading Screen -->
+            <div id="loadingScreen" class="loading-container">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Analyzing your responses...</div>
+                <div class="loading-subtext">Creating your personalized profile</div>
             </div>
 
-            <div class="card">
-                <h3 style="text-align: center; color: var(--primary-gradient-start); margin-bottom: 1.5rem;">
-                    💼 Ideal Career Paths
-                </h3>
-                <div id="careers-list" style="text-align: center;"></div>
+            <!-- Results -->
+            <div id="resultsContainer" class="results-container">
+                <!-- Results will be dynamically inserted here -->
             </div>
-
-            <div class="card glass-card" style="text-align: center; margin-top: 2rem;">
-                <h3 style="margin-bottom: 1rem;">Share Your Archetype</h3>
-                <p style="margin-bottom: 1.5rem; opacity: 0.9;">Let others discover their personality too!</p>
-                <button class="btn" onclick="shareResults()">Share Results</button>
-                <button class="btn btn-secondary" onclick="retakeAssessment()">Take Again</button>
-                <button class="btn btn-secondary" onclick="downloadResults()">Download Report</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="achievement-notification" id="achievement-notification">
-        <div class="achievement-content">
-            <span class="achievement-icon" id="achievement-icon">🏆</span>
-            <div class="achievement-text">
-                <h4>Achievement Unlocked!</h4>
-                <p id="achievement-name">First Steps</p>
-                <small id="achievement-desc">Complete your first assessment</small>
-            </div>
-        </div>
+        </main>
     </div>
 
     <script>
-// All 21+ personality archetypes
-const archetypes = [
-    {
-        name: 'The Cosmic Explorer',
-        emoji: '🌌',
-        description: 'You navigate life with boundless curiosity and wonder, always seeking to understand the deeper mysteries of existence.',
-        traits: ['Visionary', 'Philosophical', 'Intuitive', 'Open-minded', 'Adventurous'],
-        strengths: [
-            'Exceptional at seeing the big picture',
-            'Natural innovator and forward-thinker',
-            'Connects abstract concepts effortlessly',
-            'Inspires others with grand visions'
-        ],
-        challenges: [
-            'May overlook practical details',
-            'Can get lost in abstract thinking',
-            'Difficulty with routine tasks'
-        ],
-        careers: ['Astrophysicist', 'Philosopher', 'Innovation Strategist', 'Futurist', 'Creative Director'],
-        quote: 'The universe is not only queerer than we suppose, but queerer than we can suppose.',
-        mythicalCreature: 'Phoenix',
-        element: 'Aether',
-        powerStats: { creativity: 95, logic: 70, empathy: 75, leadership: 80, resilience: 85 }
-    },
-    {
-        name: 'The Quantum Architect',
-        emoji: '⚛️',
-        description: 'You design complex systems with precision and elegance, bridging the gap between possibility and reality.',
-        traits: ['Systematic', 'Innovative', 'Analytical', 'Precise', 'Visionary'],
-        strengths: [
-            'Masters complex problem-solving',
-            'Creates elegant solutions',
-            'Balances innovation with practicality',
-            'Exceptional strategic thinking'
-        ],
-        challenges: [
-            'Perfectionism can cause delays',
-            'May struggle with ambiguity',
-            'Can be overly critical'
-        ],
-        careers: ['Systems Architect', 'Quantum Physicist', 'Algorithm Designer', 'Strategic Planner', 'UX Architect'],
-        quote: 'In the quantum realm, all possibilities exist simultaneously until observed.',
-        mythicalCreature: 'Dragon',
-        element: 'Crystal',
-        powerStats: { creativity: 85, logic: 95, empathy: 60, leadership: 75, resilience: 80 }
-    },
-    {
-        name: 'The Neural Navigator',
-        emoji: '🧠',
-        description: 'You traverse the landscapes of human consciousness with remarkable insight and emotional intelligence.',
-        traits: ['Empathetic', 'Perceptive', 'Adaptive', 'Insightful', 'Collaborative'],
-        strengths: [
-            'Exceptional emotional intelligence',
-            'Natural mediator and counselor',
-            'Reads social dynamics effortlessly',
-            'Builds deep, meaningful connections'
-        ],
-        challenges: [
-            'Can absorb others emotions',
-            'May neglect self-care',
-            'Difficulty with conflict'
-        ],
-        careers: ['Neuroscientist', 'Therapist', 'UX Researcher', 'Team Leader', 'Behavioral Analyst'],
-        quote: 'The mind is not a vessel to be filled, but a fire to be kindled.',
-        mythicalCreature: 'Sphinx',
-        element: 'Water',
-        powerStats: { creativity: 80, logic: 75, empathy: 95, leadership: 85, resilience: 70 }
-    },
-    {
-        name: 'The Digital Alchemist',
-        emoji: '💫',
-        description: 'You transform raw data and ideas into digital gold, creating magic at the intersection of art and technology.',
-        traits: ['Creative', 'Technical', 'Transformative', 'Resourceful', 'Experimental'],
-        strengths: [
-            'Blends creativity with technology',
-            'Transforms problems into opportunities',
-            'Masters multiple disciplines',
-            'Creates innovative solutions'
-        ],
-        challenges: [
-            'Can be scattered across interests',
-            'Impatience with slow progress',
-            'May start more than finish'
-        ],
-        careers: ['Creative Technologist', 'Game Designer', 'Digital Artist', 'Product Designer', 'Innovation Lab Director'],
-        quote: 'Technology is magic made real through human creativity.',
-        mythicalCreature: 'Shapeshifter',
-        element: 'Lightning',
-        powerStats: { creativity: 90, logic: 80, empathy: 70, leadership: 75, resilience: 85 }
-    },
-    {
-        name: 'The Chaos Dancer',
-        emoji: '🌪️',
-        description: 'You thrive in uncertainty and change, finding rhythm and opportunity where others see only disorder.',
-        traits: ['Adaptable', 'Spontaneous', 'Resilient', 'Dynamic', 'Fearless'],
-        strengths: [
-            'Thrives under pressure',
-            'Exceptional improvisation skills',
-            'Turns chaos into opportunity',
-            'Incredibly resilient'
-        ],
-        challenges: [
-            'Struggles with routine',
-            'Can create unnecessary drama',
-            'Difficulty with long-term planning'
-        ],
-        careers: ['Emergency Response', 'Startup Founder', 'Crisis Manager', 'Performance Artist', 'War Correspondent'],
-        quote: 'In chaos, there is fertility.',
-        mythicalCreature: 'Kitsune',
-        element: 'Fire',
-        powerStats: { creativity: 85, logic: 60, empathy: 70, leadership: 80, resilience: 100 }
-    },
-    {
-        name: 'The Empathy Sage',
-        emoji: '💝',
-        description: 'Your emotional depth and understanding create healing spaces wherever you go, transforming pain into wisdom.',
-        traits: ['Compassionate', 'Healing', 'Intuitive', 'Nurturing', 'Wise'],
-        strengths: [
-            'Profound emotional understanding',
-            'Natural healer and counselor',
-            'Creates safe spaces for others',
-            'Transforms emotional energy'
-        ],
-        challenges: [
-            'Emotional overwhelm',
-            'Difficulty with boundaries',
-            'Can neglect own needs'
-        ],
-        careers: ['Therapist', 'Social Worker', 'Hospice Worker', 'Meditation Teacher', 'Conflict Resolution Specialist'],
-        quote: 'The wound is the place where the Light enters you.',
-        mythicalCreature: 'Unicorn',
-        element: 'Spirit',
-        powerStats: { creativity: 75, logic: 65, empathy: 100, leadership: 70, resilience: 80 }
-    },
-    {
-        name: 'The Pattern Weaver',
-        emoji: '🕸️',
-        description: 'You see the invisible threads connecting all things, weaving understanding from complexity.',
-        traits: ['Analytical', 'Holistic', 'Observant', 'Connecting', 'Methodical'],
-        strengths: [
-            'Identifies hidden patterns',
-            'Connects disparate information',
-            'Systematic problem-solving',
-            'Creates comprehensive solutions'
-        ],
-        challenges: [
-            'Can overthink situations',
-            'May miss emotional nuances',
-            'Paralysis by analysis'
-        ],
-        careers: ['Data Scientist', 'Systems Analyst', 'Detective', 'Epidemiologist', 'Market Researcher'],
-        quote: 'Everything is connected; nothing exists in isolation.',
-        mythicalCreature: 'Spider',
-        element: 'Web',
-        powerStats: { creativity: 80, logic: 90, empathy: 65, leadership: 70, resilience: 75 }
-    },
-    {
-        name: 'The Storm Rider',
-        emoji: '⚡',
-        description: 'You harness the power of change and transformation, riding the waves of disruption with grace and purpose.',
-        traits: ['Bold', 'Transformative', 'Courageous', 'Dynamic', 'Pioneering'],
-        strengths: [
-            'Fearless in face of change',
-            'Natural change agent',
-            'Inspires transformation in others',
-            'Thrives in transition'
-        ],
-        challenges: [
-            'Can be disruptive',
-            'Impatience with status quo',
-            'May struggle with stability'
-        ],
-        careers: ['Change Management', 'Revolutionary', 'Venture Capitalist', 'Extreme Sports Athlete', 'Disaster Relief Coordinator'],
-        quote: 'The storm is not something to weather, but to dance with.',
-        mythicalCreature: 'Thunderbird',
-        element: 'Storm',
-        powerStats: { creativity: 80, logic: 70, empathy: 65, leadership: 90, resilience: 95 }
-    },
-    {
-        name: 'The Harmony Weaver',
-        emoji: '🎵',
-        description: 'You create balance and beauty in all things, orchestrating life like a symphony of interconnected melodies.',
-        traits: ['Balanced', 'Aesthetic', 'Diplomatic', 'Peaceful', 'Integrative'],
-        strengths: [
-            'Creates harmony from discord',
-            'Natural mediator',
-            'Aesthetic sensibility',
-            'Brings people together'
-        ],
-        challenges: [
-            'Avoids necessary conflicts',
-            'Can be indecisive',
-            'May suppress own needs'
-        ],
-        careers: ['Mediator', 'Interior Designer', 'Music Therapist', 'Diplomat', 'Community Organizer'],
-        quote: 'In harmony, small things grow; in discord, great things decay.',
-        mythicalCreature: 'Siren',
-        element: 'Sound',
-        powerStats: { creativity: 85, logic: 70, empathy: 90, leadership: 75, resilience: 70 }
-    },
-    {
-        name: 'The Phoenix Soul',
-        emoji: '🔥',
-        description: 'You embody transformation and rebirth, rising stronger from every challenge with renewed purpose and passion.',
-        traits: ['Resilient', 'Transformative', 'Passionate', 'Renewed', 'Inspiring'],
-        strengths: [
-            'Incredible resilience',
-            'Transforms adversity into strength',
-            'Inspires others through example',
-            'Constant self-renewal'
-        ],
-        challenges: [
-            'Can burn too bright',
-            'Difficulty with consistency',
-            'May create unnecessary crises'
-        ],
-        careers: ['Life Coach', 'Motivational Speaker', 'Trauma Counselor', 'Entrepreneur', 'Recovery Specialist'],
-        quote: 'What doesnt kill you makes you stronger, and what does kill you makes you reborn.',
-        mythicalCreature: 'Phoenix',
-        element: 'Rebirth',
-        powerStats: { creativity: 85, logic: 70, empathy: 80, leadership: 85, resilience: 100 }
-    },
-    {
-        name: 'The Crystalline Mind',
-        emoji: '💎',
-        description: 'Your thoughts are precise and multifaceted, refracting ideas into brilliant insights with clarity and precision.',
-        traits: ['Precise', 'Clear', 'Multifaceted', 'Logical', 'Brilliant'],
-        strengths: [
-            'Crystal-clear thinking',
-            'Exceptional problem decomposition',
-            'Creates elegant solutions',
-            'Maintains objectivity'
-        ],
-        challenges: [
-            'Can seem cold or distant',
-            'Difficulty with ambiguity',
-            'May lack emotional awareness'
-        ],
-        careers: ['Mathematician', 'Jeweler', 'Precision Engineer', 'Chess Grandmaster', 'Theoretical Physicist'],
-        quote: 'Clarity is power; precision is perfection.',
-        mythicalCreature: 'Crystal Golem',
-        element: 'Ice',
-        powerStats: { creativity: 70, logic: 100, empathy: 50, leadership: 65, resilience: 75 }
-    },
-    {
-        name: 'The Shadow Dancer',
-        emoji: '🌙',
-        description: 'You navigate the hidden realms of the psyche, comfortable with darkness and skilled at transformation.',
-        traits: ['Mysterious', 'Deep', 'Transformative', 'Intuitive', 'Complex'],
-        strengths: [
-            'Comfortable with darkness',
-            'Deep psychological insight',
-            'Transforms shadow into light',
-            'Understands hidden motivations'
-        ],
-        challenges: [
-            'Can be too introspective',
-            'May struggle with lightness',
-            'Tendency toward isolation'
-        ],
-        careers: ['Depth Psychologist', 'Detective', 'Horror Writer', 'Shadow Work Facilitator', 'Forensic Analyst'],
-        quote: 'One does not become enlightened by imagining figures of light, but by making the darkness conscious.',
-        mythicalCreature: 'Shadow Wolf',
-        element: 'Shadow',
-        powerStats: { creativity: 85, logic: 75, empathy: 80, leadership: 60, resilience: 85 }
-    },
-    {
-        name: 'The Light Bearer',
-        emoji: '☀️',
-        description: 'You illuminate the path for others, bringing hope, clarity, and inspiration wherever you go.',
-        traits: ['Inspiring', 'Optimistic', 'Radiant', 'Uplifting', 'Generous'],
-        strengths: [
-            'Natural inspirator',
-            'Brings out the best in others',
-            'Maintains positivity',
-            'Creates hope from despair'
-        ],
-        challenges: [
-            'May ignore negative realities',
-            'Can burn out from giving',
-            'Difficulty acknowledging darkness'
-        ],
-        careers: ['Teacher', 'Humanitarian', 'Inspirational Speaker', 'Charity Director', 'Youth Mentor'],
-        quote: 'Be the light you wish to see in the world.',
-        mythicalCreature: 'Angel',
-        element: 'Light',
-        powerStats: { creativity: 80, logic: 70, empathy: 95, leadership: 90, resilience: 75 }
-    },
-    {
-        name: 'The Memory Keeper',
-        emoji: '📚',
-        description: 'You are the guardian of stories and wisdom, preserving the past to illuminate the future.',
-        traits: ['Nostalgic', 'Wise', 'Preserving', 'Storytelling', 'Traditional'],
-        strengths: [
-            'Exceptional memory',
-            'Preserves important knowledge',
-            'Connects past to present',
-            'Natural storyteller'
-        ],
-        challenges: [
-            'Can live in the past',
-            'Resistance to change',
-            'May idealize history'
-        ],
-        careers: ['Librarian', 'Historian', 'Museum Curator', 'Genealogist', 'Documentary Filmmaker'],
-        quote: 'Those who cannot remember the past are condemned to repeat it.',
-        mythicalCreature: 'Owl',
-        element: 'Memory',
-        powerStats: { creativity: 75, logic: 80, empathy: 85, leadership: 70, resilience: 80 }
-    },
-    {
-        name: 'The Dream Architect',
-        emoji: '💭',
-        description: 'You build bridges between imagination and reality, crafting visions that inspire and transform.',
-        traits: ['Imaginative', 'Visionary', 'Creative', 'Inspiring', 'Otherworldly'],
-        strengths: [
-            'Limitless imagination',
-            'Creates compelling visions',
-            'Inspires others to dream',
-            'Manifests ideas into reality'
-        ],
-        challenges: [
-            'Can lose touch with reality',
-            'Difficulty with practical matters',
-            'May disappoint with execution'
-        ],
-        careers: ['Film Director', 'Concept Artist', 'Fiction Writer', 'Theme Park Designer', 'Virtual Reality Developer'],
-        quote: 'Dreams are the seeds of reality waiting to bloom.',
-        mythicalCreature: 'Pegasus',
-        element: 'Dreams',
-        powerStats: { creativity: 100, logic: 60, empathy: 75, leadership: 80, resilience: 70 }
-    },
-    {
-        name: 'The Truth Seeker',
-        emoji: '🔍',
-        description: 'You pursue truth with relentless determination, uncovering reality beneath layers of illusion.',
-        traits: ['Investigative', 'Honest', 'Persistent', 'Analytical', 'Courageous'],
-        strengths: [
-            'Uncovers hidden truths',
-            'Exceptional critical thinking',
-            'Cannot be deceived easily',
-            'Stands for justice'
-        ],
-        challenges: [
-            'Can be too blunt',
-            'May struggle with white lies',
-            'Difficulty with ambiguity'
-        ],
-        careers: ['Investigative Journalist', 'Research Scientist', 'Auditor', 'Private Investigator', 'Fact Checker'],
-        quote: 'The truth will set you free, but first it will make you uncomfortable.',
-        mythicalCreature: 'Basilisk',
-        element: 'Truth',
-        powerStats: { creativity: 70, logic: 95, empathy: 60, leadership: 75, resilience: 85 }
-    },
-    {
-        name: 'The Nature Whisperer',
-        emoji: '🌿',
-        description: 'You speak the ancient language of the earth, understanding the wisdom of natural cycles and connections.',
-        traits: ['Grounded', 'Intuitive', 'Patient', 'Nurturing', 'Connected'],
-        strengths: [
-            'Deep connection to nature',
-            'Understands natural cycles',
-            'Grounding presence',
-            'Ecological wisdom'
-        ],
-        challenges: [
-            'Difficulty with technology',
-            'Can be too passive',
-            'Struggles in urban environments'
-        ],
-        careers: ['Ecologist', 'Park Ranger', 'Herbalist', 'Environmental Activist', 'Permaculture Designer'],
-        quote: 'In every walk with nature, one receives far more than they seek.',
-        mythicalCreature: 'Dryad',
-        element: 'Earth',
-        powerStats: { creativity: 75, logic: 70, empathy: 90, leadership: 65, resilience: 85 }
-    },
-    {
-        name: 'The Code Shaman',
-        emoji: '🔮',
-        description: 'You bridge the digital and spiritual realms, seeing code as a form of modern magic and creation.',
-        traits: ['Technical', 'Spiritual', 'Creative', 'Intuitive', 'Bridging'],
-        strengths: [
-            'Merges technology with wisdom',
-            'Creates elegant code solutions',
-            'Sees patterns in complexity',
-            'Digital problem solver'
-        ],
-        challenges: [
-            'Can overcomplicate solutions',
-            'Struggles with documentation',
-            'May seem eccentric'
-        ],
-        careers: ['Software Architect', 'AI Researcher', 'Blockchain Developer', 'Digital Artist', 'Tech Philosopher'],
-        quote: 'Code is poetry written for machines to perform and humans to understand.',
-        mythicalCreature: 'Cyber Dragon',
-        element: 'Data',
-        powerStats: { creativity: 90, logic: 85, empathy: 65, leadership: 70, resilience: 80 }
-    },
-    {
-        name: 'The Temporal Sage',
-        emoji: '⏳',
-        description: 'You perceive time as a fluid dimension, understanding patterns across past, present, and future with uncanny wisdom.',
-        traits: ['Wise', 'Patient', 'Strategic', 'Reflective', 'Far-sighted'],
-        strengths: [
-            'Exceptional long-term thinking',
-            'Learns from history to predict future',
-            'Patient and methodical approach',
-            'Deep understanding of cycles'
-        ],
-        challenges: [
-            'May seem detached from present',
-            'Can be overly cautious',
-            'Difficulty with urgent decisions'
-        ],
-        careers: ['Historian', 'Strategic Advisor', 'Risk Analyst', 'Philosopher', 'Archivist'],
-        quote: 'Time is an illusion; wisdom is seeing through it.',
-        mythicalCreature: 'Ancient Tree',
-        element: 'Time',
-        powerStats: { creativity: 75, logic: 85, empathy: 80, leadership: 90, resilience: 95 }
-    },
-    {
-        name: 'The Creative Innovator',
-        emoji: '🎨',
-        description: 'You blend artistic vision with innovative thinking to create groundbreaking solutions.',
-        traits: ['Creative', 'Innovative', 'Artistic', 'Original', 'Expressive'],
-        strengths: [
-            'Exceptional creative thinking',
-            'Innovative problem-solving',
-            'Artistic expression',
-            'Original perspectives'
-        ],
-        challenges: [
-            'Can be scattered',
-            'Difficulty with routine',
-            'May lack follow-through'
-        ],
-        careers: ['Artist', 'Designer', 'Inventor', 'Creative Director', 'Innovation Consultant'],
-        quote: 'Creativity is intelligence having fun.',
-        mythicalCreature: 'Muse',
-        element: 'Color',
-        powerStats: { creativity: 100, logic: 65, empathy: 75, leadership: 70, resilience: 75 }
-    },
-    {
-        name: 'The Detail-Oriented Analyst',
-        emoji: '🔬',
-        description: 'Your meticulous attention to detail and analytical prowess uncover insights others miss.',
-        traits: ['Meticulous', 'Analytical', 'Thorough', 'Precise', 'Methodical'],
-        strengths: [
-            'Exceptional attention to detail',
-            'Thorough analysis',
-            'Quality assurance',
-            'Pattern recognition'
-        ],
-        challenges: [
-            'Can be perfectionistic',
-            'May miss big picture',
-            'Analysis paralysis'
-        ],
-        careers: ['Quality Analyst', 'Researcher', 'Accountant', 'Editor', 'Forensic Scientist'],
-        quote: 'The devil is in the details, but so is salvation.',
-        mythicalCreature: 'Hawk',
-        element: 'Focus',
-        powerStats: { creativity: 60, logic: 95, empathy: 65, leadership: 60, resilience: 75 }
-    }
-];
+        // Embedded personality profiles data
+        const personalityProfiles = [
+            {
+                id: 'analytical_architect',
+                name: 'The Analytical Architect',
+                emoji: '🏗️',
+                description: 'Systematic thinkers who build understanding through careful analysis and structured approaches.',
+                detailedAnalysis: {
+                    core: 'Your mind operates like a sophisticated blueprint system, constructing understanding through methodical analysis and logical frameworks.',
+                    strengths: [
+                        'Exceptional pattern recognition in data and systems',
+                        'Strong analytical and critical thinking abilities',
+                        'Natural talent for optimization and efficiency',
+                        'Detail-oriented approach catches what others miss',
+                        'Excellent at creating and following systematic processes'
+                    ],
+                    growth: 'Balance your analytical strengths with intuitive exploration. Practice making "good enough" decisions when perfection isn\'t necessary.',
+                    relationships: 'You value intellectual connection and clear communication. Partners who appreciate your thoughtful approach will be most compatible.',
+                    career: ['Data Scientist', 'Software Architect', 'Research Analyst', 'Financial Analyst', 'Systems Engineer'],
+                    communication: 'Direct, precise, and fact-based. You prefer written communication for complex topics.'
+                },
+                traits: {
+                    openness: { score: 75 },
+                    conscientiousness: { score: 88 },
+                    extraversion: { score: 32 },
+                    agreeableness: { score: 58 },
+                    neuroticism: { score: 42 },
+                    honestyHumility: 78
+                },
+                neurodivergent: {
+                    autismTraits: 65,
+                    adhdTraits: 25,
+                    sensitivity: 55,
+                    executiveFunction: 85
+                }
+            },
+            {
+                id: 'creative_visionary',
+                name: 'The Creative Visionary',
+                emoji: '🎨',
+                description: 'Imaginative innovators who see possibilities others miss and bring creative solutions to life.',
+                detailedAnalysis: {
+                    core: 'Your mind is a kaleidoscope of possibilities, constantly generating novel connections and creative solutions.',
+                    strengths: [
+                        'Exceptional creative and divergent thinking',
+                        'Natural ability to see unconventional solutions',
+                        'Strong aesthetic sense and artistic appreciation',
+                        'Excellent at brainstorming and ideation',
+                        'Adaptable and comfortable with ambiguity'
+                    ],
+                    growth: 'Channel your creativity through structured projects. Develop systems to capture and implement your ideas effectively.',
+                    relationships: 'You need partners who appreciate your creativity and give you freedom to explore.',
+                    career: ['Creative Director', 'UX Designer', 'Innovation Consultant', 'Artist', 'Writer', 'Entrepreneur'],
+                    communication: 'Metaphorical, enthusiastic, and idea-focused. You excel at visual and storytelling communication.'
+                },
+                traits: {
+                    openness: { score: 92 },
+                    conscientiousness: { score: 52 },
+                    extraversion: { score: 68 },
+                    agreeableness: { score: 72 },
+                    neuroticism: { score: 58 },
+                    honestyHumility: 70
+                },
+                neurodivergent: {
+                    autismTraits: 45,
+                    adhdTraits: 70,
+                    sensitivity: 80,
+                    executiveFunction: 45
+                }
+            },
+            {
+                id: 'social_orchestrator',
+                name: 'The Social Orchestrator',
+                emoji: '🎭',
+                description: 'Natural connectors who bring people together and create harmonious social environments.',
+                detailedAnalysis: {
+                    core: 'You possess an intuitive understanding of social dynamics and excel at creating connections between people.',
+                    strengths: [
+                        'Exceptional interpersonal and communication skills',
+                        'Natural empathy and emotional attunement',
+                        'Strong leadership through collaboration',
+                        'Excellent at building and maintaining networks',
+                        'Skilled at conflict resolution and mediation'
+                    ],
+                    growth: 'Set boundaries to protect your energy. Practice assertiveness and prioritize self-care.',
+                    relationships: 'You thrive in emotionally connected, communicative relationships.',
+                    career: ['HR Director', 'Community Manager', 'Therapist', 'Event Coordinator', 'Public Relations'],
+                    communication: 'Warm, inclusive, and emotionally expressive. You excel at verbal communication.'
+                },
+                traits: {
+                    openness: { score: 68 },
+                    conscientiousness: { score: 72 },
+                    extraversion: { score: 88 },
+                    agreeableness: { score: 85 },
+                    neuroticism: { score: 48 },
+                    honestyHumility: 82
+                },
+                neurodivergent: {
+                    autismTraits: 20,
+                    adhdTraits: 35,
+                    sensitivity: 75,
+                    executiveFunction: 65
+                }
+            },
+            {
+                id: 'strategic_commander',
+                name: 'The Strategic Commander',
+                emoji: '⚔️',
+                description: 'Decisive leaders who combine vision with execution to achieve ambitious goals.',
+                detailedAnalysis: {
+                    core: 'You are a natural leader with a strategic mind and unwavering determination.',
+                    strengths: [
+                        'Strong leadership and decision-making abilities',
+                        'Excellent strategic planning and execution',
+                        'High achievement drive and goal orientation',
+                        'Natural confidence and assertiveness',
+                        'Skilled at resource optimization'
+                    ],
+                    growth: 'Develop emotional intelligence alongside strategic thinking. Practice patience.',
+                    relationships: 'You need partners who are independent and share your ambition.',
+                    career: ['CEO', 'Military Officer', 'Strategic Consultant', 'Entrepreneur', 'Investment Banker'],
+                    communication: 'Direct, confident, and goal-focused. You prefer efficient communication.'
+                },
+                traits: {
+                    openness: { score: 72 },
+                    conscientiousness: { score: 90 },
+                    extraversion: { score: 78 },
+                    agreeableness: { score: 52 },
+                    neuroticism: { score: 28 },
+                    honestyHumility: 62
+                },
+                neurodivergent: {
+                    autismTraits: 35,
+                    adhdTraits: 45,
+                    sensitivity: 30,
+                    executiveFunction: 90
+                }
+            },
+            {
+                id: 'empathic_healer',
+                name: 'The Empathic Healer',
+                emoji: '💚',
+                description: 'Deeply compassionate souls who intuitively understand and support others\' emotional journeys.',
+                detailedAnalysis: {
+                    core: 'You possess profound emotional depth and an intuitive understanding of others\' inner worlds.',
+                    strengths: [
+                        'Exceptional empathy and emotional intelligence',
+                        'Natural counseling and healing abilities',
+                        'Strong intuition about people\'s needs',
+                        'Deep capacity for compassion',
+                        'Excellent at creating safe spaces'
+                    ],
+                    growth: 'Learn to differentiate between your emotions and others\'. Develop protective boundaries.',
+                    relationships: 'You need emotionally available, authentic partners who value depth.',
+                    career: ['Therapist', 'Counselor', 'Nurse', 'Social Worker', 'Life Coach'],
+                    communication: 'Gentle, validating, and emotionally attuned.'
+                },
+                traits: {
+                    openness: { score: 78 },
+                    conscientiousness: { score: 75 },
+                    extraversion: { score: 58 },
+                    agreeableness: { score: 92 },
+                    neuroticism: { score: 55 },
+                    honestyHumility: 88
+                },
+                neurodivergent: {
+                    autismTraits: 30,
+                    adhdTraits: 25,
+                    sensitivity: 92,
+                    executiveFunction: 60
+                }
+            },
+            {
+                id: 'pattern_weaver',
+                name: 'The Pattern Weaver',
+                emoji: '🕸️',
+                description: 'System thinkers who see hidden connections and create order from complexity.',
+                detailedAnalysis: {
+                    core: 'Your mind excels at detecting patterns and connections that others miss.',
+                    strengths: [
+                        'Exceptional pattern recognition',
+                        'Deep focus in areas of interest',
+                        'Strong logical capabilities',
+                        'Excellent specialized memory',
+                        'Unique perspective'
+                    ],
+                    growth: 'Honor your need for structure while building flexibility.',
+                    relationships: 'You thrive with partners who appreciate your unique perspective.',
+                    career: ['Systems Analyst', 'Data Architect', 'Research Scientist', 'Software Developer'],
+                    communication: 'Precise, detailed, and information-rich.'
+                },
+                traits: {
+                    openness: { score: 82 },
+                    conscientiousness: { score: 78 },
+                    extraversion: { score: 28 },
+                    agreeableness: { score: 62 },
+                    neuroticism: { score: 65 },
+                    honestyHumility: 85
+                },
+                neurodivergent: {
+                    autismTraits: 85,
+                    adhdTraits: 30,
+                    sensitivity: 78,
+                    executiveFunction: 55
+                }
+            },
+            {
+                id: 'dynamic_explorer',
+                name: 'The Dynamic Explorer',
+                emoji: '🚀',
+                description: 'High-energy innovators who thrive on novelty and bring passionate intensity.',
+                detailedAnalysis: {
+                    core: 'Your mind craves stimulation and novelty, jumping between interests with enthusiasm.',
+                    strengths: [
+                        'High energy and enthusiasm',
+                        'Creative problem-solving',
+                        'Hyperfocus abilities',
+                        'Excellent in crisis',
+                        'Outside-the-box thinking'
+                    ],
+                    growth: 'Build external structures to support your internal variability.',
+                    relationships: 'You need partners who can match your energy.',
+                    career: ['Emergency Responder', 'Entrepreneur', 'Creative Director', 'Journalist'],
+                    communication: 'Enthusiastic, fast-paced, and idea-jumping.'
+                },
+                traits: {
+                    openness: { score: 85 },
+                    conscientiousness: { score: 45 },
+                    extraversion: { score: 82 },
+                    agreeableness: { score: 65 },
+                    neuroticism: { score: 62 },
+                    honestyHumility: 65
+                },
+                neurodivergent: {
+                    autismTraits: 25,
+                    adhdTraits: 90,
+                    sensitivity: 70,
+                    executiveFunction: 35
+                }
+            },
+            {
+                id: 'sensory_sage',
+                name: 'The Sensory Sage',
+                emoji: '🌺',
+                description: 'Highly sensitive perceivers who experience the world with extraordinary depth.',
+                detailedAnalysis: {
+                    core: 'You experience the world through a heightened sensory and emotional lens.',
+                    strengths: [
+                        'Extraordinary perception',
+                        'Deep aesthetic appreciation',
+                        'Strong intuition',
+                        'Profound empathy',
+                        'Subtle change detection'
+                    ],
+                    growth: 'Create environments that honor your sensitivity.',
+                    relationships: 'You need gentle, understanding partners.',
+                    career: ['Artist', 'Therapist', 'Writer', 'Designer', 'Musician'],
+                    communication: 'Nuanced, thoughtful, and emotionally rich.'
+                },
+                traits: {
+                    openness: { score: 88 },
+                    conscientiousness: { score: 70 },
+                    extraversion: { score: 35 },
+                    agreeableness: { score: 82 },
+                    neuroticism: { score: 68 },
+                    honestyHumility: 82
+                },
+                neurodivergent: {
+                    autismTraits: 40,
+                    adhdTraits: 20,
+                    sensitivity: 95,
+                    executiveFunction: 60
+                }
+            },
+            {
+                id: 'resilient_phoenix',
+                name: 'The Resilient Phoenix',
+                emoji: '🔥',
+                description: 'Transformation catalysts who turn challenges into growth.',
+                detailedAnalysis: {
+                    core: 'You have extraordinary capacity for transformation and renewal.',
+                    strengths: [
+                        'Exceptional resilience',
+                        'Deep wisdom',
+                        'Growth capacity',
+                        'Inspirational presence',
+                        'Crisis management'
+                    ],
+                    growth: 'Allow yourself to be vulnerable and receive support.',
+                    relationships: 'You need partners who appreciate both strength and vulnerability.',
+                    career: ['Life Coach', 'Trauma Therapist', 'Motivational Speaker', 'Social Entrepreneur'],
+                    communication: 'Authentic, inspiring, and wisdom-filled.'
+                },
+                traits: {
+                    openness: { score: 78 },
+                    conscientiousness: { score: 75 },
+                    extraversion: { score: 68 },
+                    agreeableness: { score: 75 },
+                    neuroticism: { score: 38 },
+                    honestyHumility: 78
+                },
+                neurodivergent: {
+                    autismTraits: 35,
+                    adhdTraits: 45,
+                    sensitivity: 70,
+                    executiveFunction: 75
+                }
+            }
+        ];
 
-// Gamification system
-const gamification = {
-    level: parseInt(localStorage.getItem('level') || '1'),
-    xp: parseInt(localStorage.getItem('xp') || '0'),
-    streak: parseInt(localStorage.getItem('streak') || '0'),
-    achievements: JSON.parse(localStorage.getItem('achievements') || '[]'),
-    
-    addXP: function(amount) {
-        this.xp += amount;
-        const newLevel = Math.floor(this.xp / 1000) + 1;
-        if (newLevel > this.level) {
-            this.level = newLevel;
-            this.showAchievement('🎉', 'Level Up!', `You reached level ${this.level}!`);
-        }
-        this.save();
-        this.updateDisplay();
-    },
-    
-    unlockAchievement: function(id, name, description) {
-        if (!this.achievements.includes(id)) {
-            this.achievements.push(id);
-            this.showAchievement('🏆', name, description);
-            this.addXP(100);
-            this.save();
-        }
-    },
-    
-    showAchievement: function(icon, name, desc) {
-        const notification = document.getElementById('achievement-notification');
-        document.getElementById('achievement-icon').textContent = icon;
-        document.getElementById('achievement-name').textContent = name;
-        document.getElementById('achievement-desc').textContent = desc;
+        // Simplified question set for demo
+        const assessmentQuestions = [
+            {
+                id: 'intro_1',
+                type: 'visual_grid',
+                category: 'engagement',
+                text: 'How are you feeling right now? Select all that apply:',
+                options: [
+                    { emoji: '😊', text: 'Content', value: 'positive_calm' },
+                    { emoji: '🎯', text: 'Focused', value: 'engaged_alert' },
+                    { emoji: '😰', text: 'Anxious', value: 'stressed' },
+                    { emoji: '😴', text: 'Tired', value: 'low_energy' },
+                    { emoji: '🤗', text: 'Excited', value: 'positive_energy' },
+                    { emoji: '😔', text: 'Down', value: 'low_mood' },
+                    { emoji: '🤔', text: 'Thoughtful', value: 'reflective' },
+                    { emoji: '😤', text: 'Frustrated', value: 'agitated' }
+                ],
+                multiSelect: true
+            },
+            {
+                id: 'ocean_1',
+                type: 'slider',
+                category: 'extraversion',
+                text: 'At a party, you typically find yourself...',
+                min: 1,
+                max: 7,
+                labels: ['In a quiet corner', 'Moving between groups', 'Center of attention']
+            },
+            {
+                id: 'ocean_2',
+                type: 'scenario',
+                category: 'openness',
+                text: 'You discover a hidden door in your home. Your first instinct is to:',
+                options: [
+                    { text: 'Immediately explore every corner', value: 7 },
+                    { text: 'Cautiously investigate', value: 5 },
+                    { text: 'Research the house history first', value: 4 },
+                    { text: 'Call someone else to check', value: 2 }
+                ]
+            },
+            {
+                id: 'ocean_3',
+                type: 'time_preference',
+                category: 'conscientiousness',
+                text: 'When do you typically arrive for appointments?',
+                options: [
+                    { text: '15+ min early', value: 7, icon: '⏰' },
+                    { text: '5-10 min early', value: 6, icon: '✅' },
+                    { text: 'Exactly on time', value: 5, icon: '🎯' },
+                    { text: '5 min late', value: 3, icon: '😅' },
+                    { text: 'Time is fluid', value: 1, icon: '🌊' }
+                ]
+            },
+            {
+                id: 'adhd_1',
+                type: 'frequency_grid',
+                category: 'adhd_attention',
+                text: 'How often do these happen to you?',
+                items: [
+                    'Start projects without finishing',
+                    'Lose track of time when engaged',
+                    'Forget appointments',
+                    'Difficulty sitting still',
+                    'Interrupt others'
+                ],
+                scale: ['Never', 'Rarely', 'Sometimes', 'Often', 'Always']
+            },
+            {
+                id: 'asd_1',
+                type: 'scenario',
+                category: 'asd_social',
+                text: 'At a work gathering, a colleague makes a joke everyone laughs at. You:',
+                options: [
+                    { text: 'Laugh naturally', value: 1 },
+                    { text: 'Smile because others are', value: 3 },
+                    { text: 'Analyze why it\'s funny', value: 5 },
+                    { text: 'Feel confused but pretend', value: 7 }
+                ]
+            },
+            {
+                id: 'hsp_1',
+                type: 'slider',
+                category: 'sensitivity',
+                text: 'How intensely do you experience emotions compared to others?',
+                min: 1,
+                max: 10,
+                labels: ['Much less', 'Similar', 'Much more']
+            },
+            {
+                id: 'ef_1',
+                type: 'task_ranking',
+                category: 'executive_function',
+                text: 'Rank these from easiest to hardest:',
+                items: [
+                    'Starting projects',
+                    'Finishing projects',
+                    'Task switching',
+                    'Organizing workspace',
+                    'Following schedule'
+                ]
+            },
+            {
+                id: 'stress_1',
+                type: 'body_mapping',
+                category: 'stress_response',
+                text: 'Where do you typically feel stress in your body?',
+                areas: ['head', 'neck', 'shoulders', 'chest', 'stomach', 'back', 'limbs']
+            },
+            {
+                id: 'values_1',
+                type: 'scenario',
+                category: 'values',
+                text: 'Which would you choose?',
+                options: [
+                    { text: 'High-paying job you dislike', value: 'security' },
+                    { text: 'Lower-paying job you love', value: 'passion' }
+                ]
+            }
+        ];
+
+        // Initialize assessment system
+        let currentQuestionIndex = 0;
+        let responses = {};
+        let startTime = null;
+        let questionStartTime = null;
+        let timeElapsedInterval = null;
+        let progressMinimized = false;
         
-        notification.classList.add('show');
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 }
-        });
-        
-        setTimeout(() => {
-            notification.classList.remove('show');
-        }, 4000);
-    },
-    
-    updateStreak: function() {
-        const today = new Date().toDateString();
-        const lastAssessment = localStorage.getItem('lastAssessmentDate');
-        
-        if (lastAssessment !== today) {
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
+        // Toggle progress panel
+        function toggleProgress() {
+            const container = document.getElementById('progressContainer');
+            const toggleText = document.getElementById('toggleText');
             
-            if (lastAssessment === yesterday.toDateString()) {
-                this.streak++;
+            progressMinimized = !progressMinimized;
+            
+            if (progressMinimized) {
+                container.classList.add('minimized');
+                toggleText.textContent = 'Show';
             } else {
-                this.streak = 1;
+                container.classList.remove('minimized');
+                toggleText.textContent = 'Hide';
             }
             
-            localStorage.setItem('lastAssessmentDate', today);
-            this.save();
+            // Save preference to localStorage
+            localStorage.setItem('progressMinimized', progressMinimized);
         }
         
-        if (this.streak === 7) {
-            this.unlockAchievement('week_warrior', 'Week Warrior', '7 day streak achieved!');
+        // Restore progress panel state on load
+        function restoreProgressState() {
+            const saved = localStorage.getItem('progressMinimized');
+            if (saved === 'true') {
+                progressMinimized = true;
+                const container = document.getElementById('progressContainer');
+                const toggleText = document.getElementById('toggleText');
+                container.classList.add('minimized');
+                toggleText.textContent = 'Show';
+            }
         }
-    },
-    
-    save: function() {
-        localStorage.setItem('level', this.level);
-        localStorage.setItem('xp', this.xp);
-        localStorage.setItem('streak', this.streak);
-        localStorage.setItem('achievements', JSON.stringify(this.achievements));
-    },
-    
-    updateDisplay: function() {
-        document.getElementById('level').textContent = this.level;
-        document.getElementById('xp').textContent = this.xp;
-        document.getElementById('streak').textContent = this.streak;
-        document.getElementById('achievements').textContent = this.achievements.length;
-    }
-};
+        let userProfile = null;
 
-// Global variables
-let currentResults = null;
-let startTime = null;
-let totalQuestions = 60;
+        // Initialize neural network background
+        function initNeuralBackground() {
+            const canvas = document.getElementById('neuralCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const nodes = [];
+            const nodeCount = 50;
+            
+            for (let i = 0; i < nodeCount; i++) {
+                nodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    radius: Math.random() * 2 + 1
+                });
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                nodes.forEach(node => {
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                });
+                
+                ctx.strokeStyle = 'rgba(74, 144, 226, 0.1)';
+                ctx.lineWidth = 1;
+                
+                nodes.forEach((node1, i) => {
+                    nodes.slice(i + 1).forEach(node2 => {
+                        const distance = Math.hypot(node1.x - node2.x, node1.y - node2.y);
+                        if (distance < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(node1.x, node1.y);
+                            ctx.lineTo(node2.x, node2.y);
+                            ctx.stroke();
+                        }
+                    });
+                });
+                
+                ctx.fillStyle = 'rgba(74, 144, 226, 0.3)';
+                nodes.forEach(node => {
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
 
-// Initialize on load
-document.addEventListener('DOMContentLoaded', function() {
-    gamification.updateDisplay();
-});
+        // Theme toggle
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', newTheme);
+            this.querySelector('.theme-icon').textContent = newTheme === 'light' ? '☀️' : '🌙';
+            localStorage.setItem('theme', newTheme);
+        });
 
-function showScreen(screenId) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(screenId).classList.add('active');
-}
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.body.setAttribute('data-theme', savedTheme);
+        document.querySelector('.theme-icon').textContent = savedTheme === 'light' ? '☀️' : '🌙';
 
-function startFullAssessment() {
-    totalQuestions = 60;
-    startAssessment(false);
-}
+        // Start assessment
+        function startAssessment() {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('assessmentContainer').style.display = 'block';
+            document.getElementById('progressContainer').style.display = 'block';
+            restoreProgressState();
+            
+            startTime = Date.now();
+            questionStartTime = Date.now();
+            
+            document.getElementById('totalQuestions').textContent = assessmentQuestions.length;
+            
+            timeElapsedInterval = setInterval(updateTimeElapsed, 1000);
+            
+            showQuestion(0);
+        }
 
-function startQuickAssessment() {
-    totalQuestions = 20;
-    startAssessment(true);
-}
-
-function startAssessment(isQuick) {
-    showScreen('survey-screen');
-    startTime = Date.now();
-    document.getElementById('total-q').textContent = totalQuestions;
-    initSurvey(isQuick);
-    startTimer();
-    gamification.updateStreak();
-}
-
-function startTimer() {
-    setInterval(() => {
-        if (startTime) {
+        // Update time elapsed
+        function updateTimeElapsed() {
             const elapsed = Math.floor((Date.now() - startTime) / 1000);
             const minutes = Math.floor(elapsed / 60);
             const seconds = elapsed % 60;
-            document.getElementById('time-elapsed').textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('timeElapsed').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
         }
-    }, 1000);
-}
 
-function initSurvey(isQuick) {
-    const questions = isQuick ? getQuickQuestions() : getFullQuestions();
-    const survey = new Survey.Model(questions);
-    
-    survey.onValueChanged.add((sender, options) => {
-        const progress = (survey.currentPageNo + 1) / survey.visiblePageCount * 100;
-        document.getElementById('progress-fill').style.width = progress + '%';
-        document.getElementById('current-q').textContent = 
-            Math.min(survey.getAllQuestions().filter(q => q.value !== undefined).length + 1, totalQuestions);
-    });
-    
-    survey.onComplete.add((sender) => {
-        processResults(sender.data);
-    });
-    
-    survey.render("surveyElement");
-}
-
-function getFullQuestions() {
-    return {
-        title: "Personality Assessment",
-        showProgressBar: "bottom",
-        pages: [
-            // Big Five - Openness (12 questions)
-            {
-                questions: [
-                    {
-                        type: "rating",
-                        name: "o1",
-                        title: "I have a vivid imagination",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "o2",
-                        title: "I am interested in abstract ideas",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "o3",
-                        title: "I enjoy trying new foods and experiences",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    }
-                ]
-            },
-            // Big Five - Conscientiousness (12 questions)
-            {
-                questions: [
-                    {
-                        type: "rating",
-                        name: "c1",
-                        title: "I am always prepared",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "c2",
-                        title: "I pay attention to details",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "c3",
-                        title: "I follow through on my commitments",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    }
-                ]
-            },
-            // Big Five - Extraversion (12 questions)
-            {
-                questions: [
-                    {
-                        type: "rating",
-                        name: "e1",
-                        title: "I feel comfortable around people",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "e2",
-                        title: "I enjoy being the center of attention",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "e3",
-                        title: "I start conversations easily",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    }
-                ]
-            },
-            // Big Five - Agreeableness (12 questions)
-            {
-                questions: [
-                    {
-                        type: "rating",
-                        name: "a1",
-                        title: "I sympathize with others' feelings",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "a2",
-                        title: "I take time to help others",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "a3",
-                        title: "I make people feel at ease",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    }
-                ]
-            },
-            // Big Five - Neuroticism (12 questions)
-            {
-                questions: [
-                    {
-                        type: "rating",
-                        name: "n1",
-                        title: "I get stressed out easily",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "n2",
-                        title: "I worry about things",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "n3",
-                        title: "I get upset easily",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    }
-                ]
-            },
-            // ADHD Screening (ASRS-v1.1 based)
-            {
-                questions: [
-                    {
-                        type: "rating",
-                        name: "adhd1",
-                        title: "How often do you have difficulty concentrating on what people say to you?",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Never",
-                        maxRateDescription: "Very Often"
-                    },
-                    {
-                        type: "rating",
-                        name: "adhd2",
-                        title: "How often do you fidget or squirm when you have to sit down for a long time?",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Never",
-                        maxRateDescription: "Very Often"
-                    }
-                ]
-            },
-            // Autism Screening (AQ-10 based)
-            {
-                questions: [
-                    {
-                        type: "rating",
-                        name: "asd1",
-                        title: "I find social situations easy",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "asd2",
-                        title: "I find it easy to work out what someone is thinking or feeling",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    }
-                ]
+        // Show question
+        function showQuestion(index) {
+            if (index >= assessmentQuestions.length) {
+                completeAssessment();
+                return;
             }
-        ]
-    };
-}
+            
+            currentQuestionIndex = index;
+            const question = assessmentQuestions[index];
+            
+            updateProgress();
+            
+            const container = document.getElementById('assessmentContainer');
+            container.innerHTML = renderQuestion(question);
+            
+            initializeQuestionInteractions(question);
+        }
 
-function getQuickQuestions() {
-    return {
-        title: "Quick Personality Assessment",
-        showProgressBar: "bottom",
-        pages: [
-            {
-                questions: [
-                    {
-                        type: "rating",
-                        name: "o1",
-                        title: "I have a vivid imagination",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "c1",
-                        title: "I am always prepared",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "e1",
-                        title: "I feel comfortable around people",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "a1",
-                        title: "I sympathize with others' feelings",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    },
-                    {
-                        type: "rating",
-                        name: "n1",
-                        title: "I get stressed out easily",
-                        rateMin: 1,
-                        rateMax: 5,
-                        minRateDescription: "Strongly Disagree",
-                        maxRateDescription: "Strongly Agree"
-                    }
-                ]
+        // Update progress
+        function updateProgress() {
+            const progress = ((currentQuestionIndex + 1) / assessmentQuestions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('questionNumber').textContent = currentQuestionIndex + 1;
+            document.getElementById('completionRate').textContent = `${Math.round(progress)}%`;
+        }
+
+        // Render question based on type
+        function renderQuestion(question) {
+            let html = `
+                <div class="assessment-card">
+                    <div class="question-header">
+                        <div class="question-number">
+                            <span>Question ${currentQuestionIndex + 1}</span>
+                            <span>of ${assessmentQuestions.length}</span>
+                        </div>
+                        <div class="question-category">${question.category.replace(/_/g, ' ')}</div>
+                    </div>
+                    <div class="question-text">${question.text}</div>
+                    <div class="question-content">
+            `;
+            
+            switch(question.type) {
+                case 'visual_grid':
+                    html += renderVisualGrid(question);
+                    break;
+                case 'slider':
+                    html += renderSlider(question);
+                    break;
+                case 'scenario':
+                    html += renderScenario(question);
+                    break;
+                case 'frequency_grid':
+                    html += renderFrequencyGrid(question);
+                    break;
+                case 'time_preference':
+                    html += renderTimePreference(question);
+                    break;
+                case 'task_ranking':
+                    html += renderTaskRanking(question);
+                    break;
+                case 'body_mapping':
+                    html += renderBodyMapping(question);
+                    break;
+                default:
+                    html += renderScenario(question);
             }
-        ]
-    };
-}
-
-function processResults(data) {
-    const scores = calculateScores(data);
-    const archetype = selectArchetype(scores);
-    
-    currentResults = {
-        archetype: archetype,
-        scores: scores,
-        timestamp: new Date()
-    };
-    
-    // Save to history
-    const history = JSON.parse(localStorage.getItem('assessmentHistory') || '[]');
-    history.push(currentResults);
-    localStorage.setItem('assessmentHistory', JSON.stringify(history));
-    
-    // Gamification
-    gamification.addXP(250);
-    gamification.unlockAchievement('first_assessment', 'First Steps', 'Completed your first assessment!');
-    
-    if (scores.openness === 100) {
-        gamification.unlockAchievement('max_openness', 'Open Mind', 'Achieved maximum openness!');
-    }
-    
-    showResults();
-}
-
-function calculateScores(data) {
-    // Calculate Big Five scores
-    const openness = average([data.o1, data.o2, data.o3]) * 20;
-    const conscientiousness = average([data.c1, data.c2, data.c3]) * 20;
-    const extraversion = average([data.e1, data.e2, data.e3]) * 20;
-    const agreeableness = average([data.a1, data.a2, data.a3]) * 20;
-    const neuroticism = average([data.n1, data.n2, data.n3]) * 20;
-    
-    // Calculate neurodiversity scores
-    const adhdScore = average([data.adhd1, data.adhd2]) * 20 || 0;
-    const autismScore = (100 - average([data.asd1, data.asd2]) * 20) || 0; // Reversed scoring
-    
-    return {
-        openness,
-        conscientiousness,
-        extraversion,
-        agreeableness,
-        neuroticism,
-        adhdScore,
-        autismScore
-    };
-}
-
-function average(values) {
-    const filtered = values.filter(v => v !== undefined);
-    if (filtered.length === 0) return 3; // Default to neutral
-    return filtered.reduce((a, b) => a + b, 0) / filtered.length;
-}
-
-function selectArchetype(scores) {
-    // Complex archetype selection based on personality patterns
-    let bestMatch = archetypes[0];
-    let highestScore = 0;
-    
-    archetypes.forEach(archetype => {
-        let matchScore = 0;
-        
-        // Different matching patterns for each archetype type
-        if (archetype.name.includes('Quantum') || archetype.name.includes('Architect')) {
-            matchScore = scores.conscientiousness * 2 + scores.openness;
-            if (scores.autismScore > 60) matchScore += 20;
-        } else if (archetype.name.includes('Empathy') || archetype.name.includes('Harmony')) {
-            matchScore = scores.agreeableness * 2.5 + scores.extraversion * 0.5;
-        } else if (archetype.name.includes('Chaos') || archetype.name.includes('Storm')) {
-            matchScore = scores.extraversion * 1.5 + scores.openness;
-            if (scores.adhdScore > 60) matchScore += 25;
-        } else if (archetype.name.includes('Pattern') || archetype.name.includes('Crystal')) {
-            matchScore = scores.conscientiousness * 2 + (100 - scores.extraversion) * 0.5;
-            if (scores.autismScore > 50) matchScore += 15;
-        } else {
-            // Default scoring
-            matchScore = (scores.openness + scores.conscientiousness + scores.extraversion + 
-                         scores.agreeableness + (100 - scores.neuroticism)) / 5;
+            
+            html += `
+                    </div>
+                    <div class="btn-group">
+                        ${currentQuestionIndex > 0 ? '<button class="btn btn-secondary" onclick="previousQuestion()">← Previous</button>' : ''}
+                        <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn">
+                            ${currentQuestionIndex === assessmentQuestions.length - 1 ? 'Complete Assessment' : 'Next →'}
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            return html;
         }
-        
-        // Add some randomness for variety
-        matchScore += Math.random() * 10;
-        
-        if (matchScore > highestScore) {
-            highestScore = matchScore;
-            bestMatch = archetype;
-        }
-    });
-    
-    return bestMatch;
-}
 
-function showResults() {
-    showScreen('results-screen');
-    displayResults();
-    createCharts();
-    
-    // Celebration
-    setTimeout(() => {
-        confetti({
-            particleCount: 200,
-            spread: 100,
-            origin: { y: 0.5 }
-        });
-    }, 500);
-}
-
-function displayResults() {
-    const { archetype, scores } = currentResults;
-    
-    // Display archetype info
-    document.getElementById('archetype-emoji').textContent = archetype.emoji;
-    document.getElementById('archetype-name').textContent = archetype.name;
-    document.getElementById('archetype-description').textContent = archetype.description;
-    document.getElementById('archetype-quote').textContent = `"${archetype.quote}"`;
-    document.getElementById('mythical-creature').textContent = archetype.mythicalCreature;
-    document.getElementById('element').textContent = archetype.element;
-    
-    // Display traits
-    const traitsHtml = archetype.traits.map(trait => 
-        `<span class="trait-badge">${trait}</span>`
-    ).join('');
-    document.getElementById('archetype-traits').innerHTML = traitsHtml;
-    
-    // Display Big Five scores
-    const bigFiveHtml = Object.entries({
-        'Openness': scores.openness,
-        'Conscientiousness': scores.conscientiousness,
-        'Extraversion': scores.extraversion,
-        'Agreeableness': scores.agreeableness,
-        'Neuroticism': scores.neuroticism
-    }).map(([name, value]) => `
-        <div class="power-stat">
-            <span class="stat-name">${name}</span>
-            <div class="stat-bar">
-                <div class="stat-fill" style="width: ${value}%"></div>
-            </div>
-            <span class="stat-value">${Math.round(value)}%</span>
-        </div>
-    `).join('');
-    document.getElementById('big-five-stats').innerHTML = bigFiveHtml;
-    
-    // Display power stats
-    const powerStatsHtml = Object.entries(archetype.powerStats).map(([stat, value]) => `
-        <div class="power-stat">
-            <span class="stat-name">${stat.charAt(0).toUpperCase() + stat.slice(1)}</span>
-            <div class="stat-bar">
-                <div class="stat-fill" style="width: ${value}%; background: linear-gradient(90deg, #10b981, #059669);"></div>
-            </div>
-            <span class="stat-value">${value}%</span>
-        </div>
-    `).join('');
-    document.getElementById('power-stats').innerHTML = powerStatsHtml;
-    
-    // Display strengths
-    const strengthsHtml = archetype.strengths.map(strength => 
-        `<li>${strength}</li>`
-    ).join('');
-    document.getElementById('strengths-list').innerHTML = strengthsHtml;
-    
-    // Display challenges
-    const challengesHtml = archetype.challenges.map(challenge => 
-        `<li>${challenge}</li>`
-    ).join('');
-    document.getElementById('challenges-list').innerHTML = challengesHtml;
-    
-    // Display careers
-    const careersHtml = archetype.careers.map(career => 
-        `<span class="trait-badge" style="margin: 0.25rem;">${career}</span>`
-    ).join('');
-    document.getElementById('careers-list').innerHTML = careersHtml;
-    
-    // Animate stat bars
-    setTimeout(() => {
-        document.querySelectorAll('.stat-fill').forEach(bar => {
-            const width = bar.style.width;
-            bar.style.width = '0%';
-            setTimeout(() => {
-                bar.style.width = width;
-            }, 100);
-        });
-    }, 100);
-}
-
-function createCharts() {
-    const { scores } = currentResults;
-    
-    // Radar chart
-    const ctxRadar = document.getElementById('radar-chart').getContext('2d');
-    new Chart(ctxRadar, {
-        type: 'radar',
-        data: {
-            labels: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'],
-            datasets: [{
-                label: 'Your Personality',
-                data: [
-                    scores.openness,
-                    scores.conscientiousness,
-                    scores.extraversion,
-                    scores.agreeableness,
-                    scores.neuroticism
-                ],
-                backgroundColor: 'rgba(102, 126, 234, 0.2)',
-                borderColor: 'rgba(102, 126, 234, 1)',
-                pointBackgroundColor: 'rgba(102, 126, 234, 1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(102, 126, 234, 1)',
-                pointRadius: 5,
-                pointHoverRadius: 7
-            }]
-        },
-        options: {
-            scales: {
-                r: {
-                    beginAtZero: true,
-                    max: 100,
-                    ticks: {
-                        stepSize: 20
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-    
-    // Bar chart
-    const ctxBar = document.getElementById('bar-chart').getContext('2d');
-    new Chart(ctxBar, {
-        type: 'bar',
-        data: {
-            labels: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'],
-            datasets: [{
-                label: 'Score',
-                data: [
-                    scores.openness,
-                    scores.conscientiousness,
-                    scores.extraversion,
-                    scores.agreeableness,
-                    scores.neuroticism
-                ],
-                backgroundColor: [
-                    'rgba(102, 126, 234, 0.8)',
-                    'rgba(118, 75, 162, 0.8)',
-                    'rgba(240, 147, 251, 0.8)',
-                    'rgba(79, 172, 254, 0.8)',
-                    'rgba(245, 87, 108, 0.8)'
-                ],
-                borderRadius: 8
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-}
-
-function shareResults() {
-    if (currentResults) {
-        const text = `I'm ${currentResults.archetype.name} according to P.A.T.R.I.C.I.A! ${currentResults.archetype.description}`;
-        const url = window.location.href;
-        
-        if (navigator.share) {
-            navigator.share({
-                title: 'My P.A.T.R.I.C.I.A Personality Archetype',
-                text: text,
-                url: url
+        // Question type renderers
+        function renderVisualGrid(question) {
+            let html = '<div class="visual-grid">';
+            question.options.forEach((option, i) => {
+                html += `
+                    <div class="visual-option" data-value="${option.value}" onclick="selectVisualOption(this, ${question.multiSelect})">
+                        <div class="visual-emoji">${option.emoji}</div>
+                        <div class="visual-text">${option.text}</div>
+                    </div>
+                `;
             });
-        } else {
-            navigator.clipboard.writeText(text + ' ' + url);
-            alert('Results copied to clipboard!');
+            html += '</div>';
+            return html;
         }
-        
-        gamification.addXP(50);
-    }
-}
 
-function downloadResults() {
-    // Create a text summary
-    const { archetype, scores } = currentResults;
-    const summary = `
-P.A.T.R.I.C.I.A PERSONALITY ASSESSMENT RESULTS
-===============================================
+        function renderSlider(question) {
+            const mid = (question.min + question.max) / 2;
+            return `
+                <div class="slider-container">
+                    <div class="slider-track" id="sliderTrack">
+                        <div class="slider-fill" id="sliderFill"></div>
+                        <div class="slider-handle" id="sliderHandle" style="left: 50%;">
+                            <div class="slider-value" id="sliderValue">${mid}</div>
+                        </div>
+                    </div>
+                    <div class="slider-labels">
+                        <span>${question.labels[0]}</span>
+                        <span>${question.labels[1]}</span>
+                        <span>${question.labels[2]}</span>
+                    </div>
+                    <input type="hidden" id="sliderInput" value="${mid}" min="${question.min}" max="${question.max}">
+                </div>
+            `;
+        }
 
-Your Archetype: ${archetype.name} ${archetype.emoji}
-${archetype.description}
+        function renderScenario(question) {
+            let html = '<div class="scenario-options">';
+            question.options.forEach((option, i) => {
+                html += `
+                    <div class="scenario-option visual-option" data-value="${option.value}" onclick="selectVisualOption(this, false)">
+                        ${option.text}
+                    </div>
+                `;
+            });
+            html += '</div>';
+            return html;
+        }
 
-Mythical Creature: ${archetype.mythicalCreature}
-Element: ${archetype.element}
+        function renderFrequencyGrid(question) {
+            let html = '<div class="frequency-grid"><table class="frequency-table"><thead><tr><th></th>';
+            question.scale.forEach(label => {
+                html += `<th>${label}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+            
+            question.items.forEach((item, itemIndex) => {
+                html += `<tr><td>${item}</td>`;
+                question.scale.forEach((label, scaleIndex) => {
+                    html += `<td><div class="frequency-option" data-item="${itemIndex}" data-value="${scaleIndex}" onclick="selectFrequency(this, ${itemIndex})"></div></td>`;
+                });
+                html += '</tr>';
+            });
+            
+            html += '</tbody></table></div>';
+            return html;
+        }
 
-BIG FIVE PERSONALITY TRAITS:
-- Openness: ${Math.round(scores.openness)}%
-- Conscientiousness: ${Math.round(scores.conscientiousness)}%
-- Extraversion: ${Math.round(scores.extraversion)}%
-- Agreeableness: ${Math.round(scores.agreeableness)}%
-- Neuroticism: ${Math.round(scores.neuroticism)}%
+        function renderTimePreference(question) {
+            let html = '<div class="time-options">';
+            question.options.forEach(option => {
+                html += `
+                    <div class="time-option" data-value="${option.value}" onclick="selectVisualOption(this, false)">
+                        <div class="time-icon">${option.icon}</div>
+                        <div>${option.text}</div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            return html;
+        }
 
-STRENGTHS:
-${archetype.strengths.map(s => '• ' + s).join('\n')}
+        function renderTaskRanking(question) {
+            let html = '<div class="ranking-container">';
+            question.items.forEach((item, i) => {
+                html += `
+                    <div class="ranking-item" draggable="true" data-index="${i}">
+                        <span class="ranking-number">${i + 1}</span>
+                        <span class="ranking-text">${item}</span>
+                        <span class="ranking-handle">☰</span>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            return html;
+        }
 
-GROWTH AREAS:
-${archetype.challenges.map(c => '• ' + c).join('\n')}
+        function renderBodyMapping(question) {
+            return `
+                <div class="body-map">
+                    <svg class="body-svg" viewBox="0 0 200 300">
+                        <ellipse class="body-part" data-area="head" cx="100" cy="40" rx="25" ry="30"/>
+                        <rect class="body-part" data-area="neck" x="90" y="65" width="20" height="20"/>
+                        <rect class="body-part" data-area="shoulders" x="60" y="85" width="80" height="20"/>
+                        <rect class="body-part" data-area="chest" x="75" y="105" width="50" height="40"/>
+                        <rect class="body-part" data-area="stomach" x="75" y="145" width="50" height="40"/>
+                        <rect class="body-part" data-area="back" x="80" y="85" width="40" height="100" opacity="0.5"/>
+                        <rect class="body-part" data-area="limbs" x="50" y="105" width="20" height="80"/>
+                        <rect class="body-part" data-area="limbs" x="130" y="105" width="20" height="80"/>
+                        <rect class="body-part" data-area="limbs" x="80" y="185" width="15" height="80"/>
+                        <rect class="body-part" data-area="limbs" x="105" y="185" width="15" height="80"/>
+                    </svg>
+                </div>
+            `;
+        }
 
-IDEAL CAREERS:
-${archetype.careers.join(', ')}
+        // Initialize question interactions
+        function initializeQuestionInteractions(question) {
+            if (question.type === 'slider') {
+                initializeSlider(question);
+            } else if (question.type === 'task_ranking') {
+                initializeDragAndDrop();
+            } else if (question.type === 'body_mapping') {
+                initializeBodyMapping();
+            }
+        }
 
-Quote: "${archetype.quote}"
+        // Initialize slider
+        function initializeSlider(question) {
+            const track = document.getElementById('sliderTrack');
+            const handle = document.getElementById('sliderHandle');
+            const fill = document.getElementById('sliderFill');
+            const value = document.getElementById('sliderValue');
+            const input = document.getElementById('sliderInput');
+            
+            let isDragging = false;
+            
+            handle.addEventListener('mousedown', startDrag);
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', stopDrag);
+            
+            handle.addEventListener('touchstart', startDrag);
+            document.addEventListener('touchmove', drag);
+            document.addEventListener('touchend', stopDrag);
+            
+            function startDrag(e) {
+                isDragging = true;
+                handle.style.cursor = 'grabbing';
+            }
+            
+            function drag(e) {
+                if (!isDragging) return;
+                
+                const rect = track.getBoundingClientRect();
+                const clientX = e.clientX || e.touches[0].clientX;
+                let x = clientX - rect.left;
+                x = Math.max(0, Math.min(x, rect.width));
+                
+                const percent = (x / rect.width) * 100;
+                handle.style.left = `${percent}%`;
+                fill.style.width = `${percent}%`;
+                
+                const val = Math.round(question.min + (percent / 100) * (question.max - question.min));
+                value.textContent = val;
+                input.value = val;
+            }
+            
+            function stopDrag() {
+                isDragging = false;
+                handle.style.cursor = 'grab';
+            }
+        }
 
-Assessment Date: ${new Date().toLocaleDateString()}
-===============================================
-Generated by P.A.T.R.I.C.I.A - Personality Assessment Tool
-    `;
-    
-    const blob = new Blob([summary], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `PATRICIA_Results_${archetype.name.replace(/\s+/g, '_')}.txt`;
-    a.click();
-    
-    gamification.addXP(25);
-}
+        // Initialize drag and drop
+        function initializeDragAndDrop() {
+            const items = document.querySelectorAll('.ranking-item');
+            let draggedElement = null;
+            
+            items.forEach(item => {
+                item.addEventListener('dragstart', (e) => {
+                    draggedElement = e.target;
+                    e.target.classList.add('dragging');
+                });
+                
+                item.addEventListener('dragend', (e) => {
+                    e.target.classList.remove('dragging');
+                });
+                
+                item.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    const afterElement = getDragAfterElement(e.currentTarget.parentNode, e.clientY);
+                    if (afterElement == null) {
+                        e.currentTarget.parentNode.appendChild(draggedElement);
+                    } else {
+                        e.currentTarget.parentNode.insertBefore(draggedElement, afterElement);
+                    }
+                    updateRankingNumbers();
+                });
+            });
+        }
 
-function retakeAssessment() {
-    showScreen('intro-screen');
-    startTime = null;
-}
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.ranking-item:not(.dragging)')];
+            
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        function updateRankingNumbers() {
+            document.querySelectorAll('.ranking-item').forEach((item, index) => {
+                item.querySelector('.ranking-number').textContent = index + 1;
+            });
+        }
+
+        // Initialize body mapping
+        function initializeBodyMapping() {
+            document.querySelectorAll('.body-part').forEach(part => {
+                part.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+            });
+        }
+
+        // Selection handlers
+        function selectVisualOption(element, multiSelect) {
+            if (multiSelect) {
+                element.classList.toggle('selected');
+            } else {
+                document.querySelectorAll('.visual-option, .time-option').forEach(opt => opt.classList.remove('selected'));
+                element.classList.add('selected');
+            }
+        }
+
+        function selectFrequency(element, itemIndex) {
+            document.querySelectorAll(`[data-item="${itemIndex}"]`).forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        // Navigation
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                saveResponse();
+                showQuestion(currentQuestionIndex - 1);
+            }
+        }
+
+        function nextQuestion() {
+            saveResponse();
+            
+            if (currentQuestionIndex < assessmentQuestions.length - 1) {
+                showQuestion(currentQuestionIndex + 1);
+            } else {
+                completeAssessment();
+            }
+        }
+
+        // Save response
+        function saveResponse() {
+            const question = assessmentQuestions[currentQuestionIndex];
+            const responseTime = Date.now() - questionStartTime;
+            
+            let response = {
+                questionId: question.id,
+                type: question.type,
+                category: question.category,
+                responseTime: responseTime,
+                value: null
+            };
+            
+            switch(question.type) {
+                case 'visual_grid':
+                case 'scenario':
+                case 'time_preference':
+                    const selected = document.querySelectorAll('.visual-option.selected, .time-option.selected');
+                    if (question.multiSelect) {
+                        response.value = Array.from(selected).map(el => el.dataset.value);
+                    } else {
+                        response.value = selected[0]?.dataset.value;
+                    }
+                    break;
+                    
+                case 'slider':
+                    response.value = document.getElementById('sliderInput')?.value;
+                    break;
+                    
+                case 'frequency_grid':
+                    response.value = {};
+                    document.querySelectorAll('.frequency-option.selected').forEach(opt => {
+                        const item = question.items[opt.dataset.item];
+                        response.value[item] = parseInt(opt.dataset.value);
+                    });
+                    break;
+                    
+                case 'task_ranking':
+                    response.value = Array.from(document.querySelectorAll('.ranking-item')).map(
+                        item => item.querySelector('.ranking-text').textContent
+                    );
+                    break;
+                    
+                case 'body_mapping':
+                    response.value = Array.from(document.querySelectorAll('.body-part.selected')).map(
+                        part => part.dataset.area
+                    );
+                    break;
+            }
+            
+            responses[question.id] = response;
+            questionStartTime = Date.now();
+        }
+
+        // Complete assessment
+        function completeAssessment() {
+            clearInterval(timeElapsedInterval);
+            
+            document.getElementById('assessmentContainer').style.display = 'none';
+            document.getElementById('progressContainer').style.display = 'none';
+            document.getElementById('loadingScreen').style.display = 'block';
+            
+            setTimeout(() => {
+                const results = calculateResults();
+                displayResults(results);
+            }, 3000);
+        }
+
+        // Calculate results
+        function calculateResults() {
+            const totalTime = Date.now() - startTime;
+            
+            let scores = {
+                openness: 50,
+                conscientiousness: 50,
+                extraversion: 50,
+                agreeableness: 50,
+                neuroticism: 50,
+                honestyHumility: 50
+            };
+            
+            let neuroScores = {
+                autismTraits: 0,
+                adhdTraits: 0,
+                sensitivity: 0,
+                executiveFunction: 50
+            };
+            
+            Object.values(responses).forEach(response => {
+                if (response.category && response.value) {
+                    switch(response.category) {
+                        case 'extraversion':
+                        case 'openness':
+                        case 'conscientiousness':
+                        case 'agreeableness':
+                        case 'neuroticism':
+                            if (typeof response.value === 'number' || !isNaN(response.value)) {
+                                scores[response.category] = (scores[response.category] + parseInt(response.value) * 10) / 2;
+                            }
+                            break;
+                            
+                        case 'adhd_attention':
+                            neuroScores.adhdTraits += 20;
+                            break;
+                            
+                        case 'asd_social':
+                            neuroScores.autismTraits += 15;
+                            break;
+                            
+                        case 'sensitivity':
+                            neuroScores.sensitivity += 25;
+                            break;
+                    }
+                }
+            });
+            
+            // Find best matching profile
+            let bestMatch = personalityProfiles[0];
+            let bestScore = -1;
+            
+            personalityProfiles.forEach(profile => {
+                let matchScore = 0;
+                
+                Object.keys(scores).forEach(trait => {
+                    if (profile.traits[trait]) {
+                        const diff = Math.abs(scores[trait] - profile.traits[trait].score);
+                        matchScore += (100 - diff);
+                    }
+                });
+                
+                if (matchScore > bestScore) {
+                    bestScore = matchScore;
+                    bestMatch = profile;
+                }
+            });
+            
+            return {
+                profile: bestMatch,
+                scores: scores,
+                neuroScores: neuroScores,
+                totalTime: totalTime,
+                responseCount: Object.keys(responses).length,
+                matchConfidence: Math.min(95, Math.round((bestScore / 6)))
+            };
+        }
+
+        // Display results
+        function displayResults(results) {
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'block';
+            
+            const container = document.getElementById('resultsContainer');
+            
+            let html = `
+                <div class="results-header">
+                    <h2 class="results-title">Your Personality Profile</h2>
+                    <p style="color: var(--text-secondary); font-size: 1.125rem;">
+                        Based on ${results.responseCount} responses over ${Math.round(results.totalTime / 60000)} minutes
+                    </p>
+                </div>
+                
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-emoji">${results.profile.emoji}</div>
+                        <div class="profile-info">
+                            <h3 class="profile-name">${results.profile.name}</h3>
+                            <p class="profile-description">${results.profile.description}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="traits-visualization">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--neural-blue);">Personality Dimensions</h3>
+                    <div class="trait-bars">
+            `;
+            
+            Object.entries(results.scores).forEach(([trait, score]) => {
+                const level = score > 70 ? 'high' : score > 40 ? 'medium' : 'low';
+                html += `
+                    <div class="trait-bar">
+                        <div class="trait-name">${trait.charAt(0).toUpperCase() + trait.slice(1).replace(/([A-Z])/g, ' $1')}</div>
+                        <div class="trait-progress">
+                            <div class="trait-fill ${level}" style="width: ${score}%"></div>
+                        </div>
+                        <div class="trait-score">${Math.round(score)}</div>
+                    </div>
+                `;
+            });
+            
+            html += `
+                    </div>
+                </div>
+                
+                <div class="neuro-indicators">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--neural-purple);">Neurodiversity Profile</h3>
+                    <div class="neuro-grid">
+                        <div class="neuro-indicator">
+                            <div class="neuro-icon">🧠</div>
+                            <div class="neuro-label">ADHD Traits</div>
+                            <div class="neuro-value ${results.neuroScores.adhdTraits > 70 ? 'high' : results.neuroScores.adhdTraits > 40 ? 'medium' : 'low'}">${results.neuroScores.adhdTraits}%</div>
+                        </div>
+                        <div class="neuro-indicator">
+                            <div class="neuro-icon">🧩</div>
+                            <div class="neuro-label">Autism Traits</div>
+                            <div class="neuro-value ${results.neuroScores.autismTraits > 70 ? 'high' : results.neuroScores.autismTraits > 40 ? 'medium' : 'low'}">${results.neuroScores.autismTraits}%</div>
+                        </div>
+                        <div class="neuro-indicator">
+                            <div class="neuro-icon">🌺</div>
+                            <div class="neuro-label">Sensitivity</div>
+                            <div class="neuro-value ${results.neuroScores.sensitivity > 70 ? 'high' : results.neuroScores.sensitivity > 40 ? 'medium' : 'low'}">${results.neuroScores.sensitivity}%</div>
+                        </div>
+                        <div class="neuro-indicator">
+                            <div class="neuro-icon">⚙️</div>
+                            <div class="neuro-label">Executive Function</div>
+                            <div class="neuro-value ${results.neuroScores.executiveFunction > 70 ? 'high' : results.neuroScores.executiveFunction > 40 ? 'medium' : 'low'}">${results.neuroScores.executiveFunction}%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-tabs">
+                    <button class="tab-button active" onclick="switchTab('strengths')">Strengths</button>
+                    <button class="tab-button" onclick="switchTab('growth')">Growth</button>
+                    <button class="tab-button" onclick="switchTab('relationships')">Relationships</button>
+                    <button class="tab-button" onclick="switchTab('career')">Career</button>
+                </div>
+                
+                <div class="tab-content active" id="tab-strengths">
+                    <div class="analysis-section">
+                        <h3 class="analysis-title">Your Core Strengths</h3>
+                        <div class="analysis-content">
+                            <ul class="insight-list">
+            `;
+            
+            if (results.profile.detailedAnalysis && results.profile.detailedAnalysis.strengths) {
+                results.profile.detailedAnalysis.strengths.forEach(strength => {
+                    html += `<li class="insight-item">${strength}</li>`;
+                });
+            }
+            
+            html += `
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="tab-growth">
+                    <div class="analysis-section">
+                        <h3 class="analysis-title">Growth Opportunities</h3>
+                        <div class="analysis-content">
+                            <p>${results.profile.detailedAnalysis?.growth || 'Continue leveraging your unique strengths while exploring new areas of growth.'}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="tab-relationships">
+                    <div class="analysis-section">
+                        <h3 class="analysis-title">Relationship Insights</h3>
+                        <div class="analysis-content">
+                            <p>${results.profile.detailedAnalysis?.relationships || 'Build authentic connections that honor your personality.'}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="tab-career">
+                    <div class="analysis-section">
+                        <h3 class="analysis-title">Career Paths</h3>
+                        <div class="analysis-content">
+                            <ul class="insight-list">
+            `;
+            
+            if (results.profile.detailedAnalysis && results.profile.detailedAnalysis.career) {
+                results.profile.detailedAnalysis.career.forEach(career => {
+                    html += `<li class="insight-item">${career}</li>`;
+                });
+            }
+            
+            html += `
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn-group" style="margin-top: 3rem;">
+                    <button class="btn btn-primary" onclick="downloadResults()">
+                        <span>📥</span>
+                        <span>Download Report</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="retakeAssessment()">
+                        <span>🔄</span>
+                        <span>Retake Assessment</span>
+                    </button>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+            
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+            
+            userProfile = results;
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+
+        // Download results
+        function downloadResults() {
+            const report = {
+                timestamp: new Date().toISOString(),
+                profile: userProfile.profile,
+                scores: userProfile.scores,
+                neuroScores: userProfile.neuroScores,
+                responses: responses
+            };
+            
+            const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `patricia-report-${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Retake assessment
+        function retakeAssessment() {
+            currentQuestionIndex = 0;
+            responses = {};
+            startTime = null;
+            questionStartTime = null;
+            userProfile = null;
+            
+            document.getElementById('resultsContainer').style.display = 'none';
+            document.getElementById('welcomeScreen').style.display = 'block';
+            document.getElementById('progressBar').style.width = '0%';
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            initNeuralBackground();
+        });
     </script>
 </body>
 </html>
