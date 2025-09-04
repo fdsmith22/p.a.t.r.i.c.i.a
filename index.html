@@ -3,50 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P.A.T.R.I.C.I.A v2.0 - Advanced Personality Assessment</title>
-    <meta name="description" content="Discover your unique personality archetype from 21+ profiles">
+    <title>P.A.T.R.I.C.I.A - Advanced Personality Assessment</title>
+    <meta name="description" content="Discover your unique personality archetype from 21+ profiles with gamification and AI insights">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/survey-core@1.9.131/defaultV2.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/survey-core@1.9.131/survey.core.min.js"></script>
-    <script src="https://unpkg.com/survey-js-ui@1.9.131/survey-js-ui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    
+    <!-- SurveyJS -->
+    <link href="https://unpkg.com/survey-jquery@1.9.131/defaultV2.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/survey-jquery@1.9.131/survey.jquery.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Additional Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        :root {
+            --primary-gradient-start: #667eea;
+            --primary-gradient-end: #764ba2;
+            --secondary-gradient-start: #f093fb;
+            --secondary-gradient-end: #f5576c;
+            --accent-gradient-start: #4facfe;
+            --accent-gradient-end: #00f2fe;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
             min-height: 100vh;
-            color: #1f2937;
+            color: var(--text-primary);
+            position: relative;
+            overflow-x: hidden;
         }
-        
+
+        /* Animated background particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="2"/></svg>');
+            background-size: 100px 100px;
+            pointer-events: none;
+            animation: float 20s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            from { transform: translate(0, 0) rotate(0deg); }
+            to { transform: translate(-100px, -100px) rotate(360deg); }
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+            position: relative;
+            z-index: 1;
         }
-        
+
         .header {
             text-align: center;
             color: white;
             margin-bottom: 3rem;
             animation: fadeIn 1s ease-out;
         }
-        
+
         .header h1 {
             font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
             text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: linear-gradient(90deg, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
+
         .header .subtitle {
             font-size: 1.25rem;
             opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
         .card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
@@ -56,42 +147,53 @@
             margin-bottom: 2rem;
             animation: slideUp 0.6s ease-out;
         }
-        
-        .intro-section {
-            text-align: center;
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
         }
-        
+
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
-        
+
         .feature {
             text-align: center;
             padding: 1.5rem;
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
             border-radius: 12px;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
-        
+
         .feature:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
         }
-        
+
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
         }
-        
+
         .feature h3 {
             color: #4a5568;
             margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
-        
+
+        .feature p {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
         .btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
             color: white;
             border: none;
             padding: 1rem 2rem;
@@ -102,79 +204,317 @@
             transition: all 0.3s ease;
             display: inline-block;
             margin: 0.5rem;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
         }
-        
+
         .btn-secondary {
             background: transparent;
             border: 2px solid #667eea;
             color: #667eea;
         }
-        
+
         .btn-secondary:hover {
             background: #667eea;
             color: white;
         }
-        
+
         .screen {
             display: none;
+            animation: fadeIn 0.5s ease-out;
         }
-        
+
         .screen.active {
             display: block;
         }
-        
-        .results-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
+
+        .progress-header {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        
-        .archetype-card {
-            grid-column: span 2;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 2rem;
-            border-radius: 16px;
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .results-header {
             text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            border-radius: 20px;
+            color: white;
         }
-        
+
+        .archetype-reveal {
+            animation: revealScale 0.6s ease-out;
+        }
+
+        @keyframes revealScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .archetype-card {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .archetype-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         .archetype-emoji {
-            font-size: 4rem;
+            font-size: 5rem;
             margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            animation: bounce 2s ease-in-out infinite;
         }
-        
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         .archetype-name {
-            font-size: 2rem;
+            font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
-        
+
+        .archetype-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .trait-badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
             margin: 0.25rem;
             font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
         }
-        
+
+        .power-stats {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .power-stat {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-name {
+            min-width: 120px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .stat-bar {
+            flex: 1;
+            height: 24px;
+            background: #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .stat-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            border-radius: 12px;
+            transition: width 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100%); }
+        }
+
+        .stat-value {
+            min-width: 40px;
+            text-align: right;
+            font-weight: 700;
+            color: var(--primary-gradient-start);
+        }
+
         .chart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f6f9fc, #ffffff);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-card h3 {
+            color: var(--primary-gradient-start);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+
+        .info-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-card li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+        }
+
+        .achievement-notification {
+            position: fixed;
+            top: 20px;
+            right: -400px;
             background: white;
             padding: 1.5rem;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: right 0.5s ease-out;
+            z-index: 1000;
+            max-width: 350px;
         }
-        
+
+        .achievement-notification.show {
+            right: 20px;
+        }
+
+        .achievement-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+        }
+
+        .achievement-text h4 {
+            color: var(--primary-gradient-start);
+            margin-bottom: 0.25rem;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        
+
         @keyframes slideUp {
             from {
                 opacity: 0;
@@ -185,368 +525,1448 @@
                 transform: translateY(0);
             }
         }
-        
+
+        .mythical-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .mythical-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
         @media (max-width: 768px) {
             .header h1 { font-size: 2.5rem; }
-            .results-grid { grid-template-columns: 1fr; }
+            .container { padding: 1rem; }
+            .card { padding: 1.5rem; }
             .features { grid-template-columns: 1fr; }
+            .results-grid { grid-template-columns: 1fr; }
+            .stats-bar { gap: 1rem; }
+            .mythical-info { gap: 1rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>🧠 P.A.T.R.I.C.I.A</h1>
+            <h1>P.A.T.R.I.C.I.A</h1>
             <p class="subtitle">Personality Assessment Tool for Revealing Individual Characteristics and Insights Accurately</p>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-icon">🏆</span>
+                    <span class="stat-value" id="level">1</span>
+                    <span class="stat-label">Level</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">⚡</span>
+                    <span class="stat-value" id="xp">0</span>
+                    <span class="stat-label">XP</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🔥</span>
+                    <span class="stat-value" id="streak">0</span>
+                    <span class="stat-label">Streak</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🎯</span>
+                    <span class="stat-value" id="achievements">0</span>
+                    <span class="stat-label">Achievements</span>
+                </div>
+            </div>
         </header>
-        
+
         <div id="intro-screen" class="screen active">
-            <div class="card intro-section">
-                <h2>Discover Your Unique Personality</h2>
-                <p style="margin: 1rem 0; color: #718096;">
-                    Version 2.0 featuring 21+ personality archetypes, from The Cosmic Explorer to The Code Shaman
+            <div class="card">
+                <h2 style="text-align: center; margin-bottom: 1rem; font-size: 2rem; color: var(--primary-gradient-start);">
+                    Discover Your Unique Personality Archetype
+                </h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
+                    Complete a comprehensive assessment based on the Big Five personality traits combined with 
+                    neurodiversity screening to reveal one of 21+ unique personality archetypes.
                 </p>
-                
+
                 <div class="features">
                     <div class="feature">
-                        <div class="feature-icon">🌌</div>
+                        <div class="feature-icon">🧬</div>
+                        <h3>Scientific Foundation</h3>
+                        <p>Based on Big Five personality model + ADHD/autism screening</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎭</div>
                         <h3>21+ Archetypes</h3>
-                        <p>Unique personality profiles with mythical creatures</p>
+                        <p>From The Quantum Architect to The Phoenix Soul</p>
                     </div>
                     <div class="feature">
                         <div class="feature-icon">🎮</div>
-                        <h3>Gamified</h3>
-                        <p>Achievements, XP system, and streak tracking</p>
+                        <h3>Gamification</h3>
+                        <p>Earn XP, unlock achievements, track your journey</p>
                     </div>
                     <div class="feature">
                         <div class="feature-icon">📊</div>
-                        <h3>Visualizations</h3>
-                        <p>Beautiful charts and personality insights</p>
+                        <h3>Rich Insights</h3>
+                        <p>Detailed analysis with visualizations and compatibility</p>
                     </div>
                     <div class="feature">
-                        <div class="feature-icon">🧬</div>
-                        <h3>Scientific</h3>
-                        <p>Based on Big Five + neurodiversity screening</p>
+                        <div class="feature-icon">🦄</div>
+                        <h3>Mythical Creatures</h3>
+                        <p>Each archetype has a spirit animal and element</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">💼</div>
+                        <h3>Career Guidance</h3>
+                        <p>Discover careers that align with your archetype</p>
                     </div>
                 </div>
-                
-                <div style="margin-top: 2rem;">
-                    <button class="btn" onclick="startAssessment()">Start Full Assessment</button>
-                    <button class="btn btn-secondary" onclick="startQuickAssessment()">Quick Version</button>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn" onclick="startFullAssessment()">
+                        Start Full Assessment
+                        <br><small style="opacity: 0.9; font-size: 0.8rem;">60 questions • 10-15 minutes</small>
+                    </button>
+                    <button class="btn btn-secondary" onclick="startQuickAssessment()">
+                        Quick Assessment
+                        <br><small style="opacity: 0.9; font-size: 0.8rem;">20 questions • 5 minutes</small>
+                    </button>
                 </div>
             </div>
         </div>
-        
+
         <div id="survey-screen" class="screen">
             <div class="card">
-                <h2 style="text-align: center; margin-bottom: 1.5rem;">Personality Assessment</h2>
+                <div class="progress-header">
+                    <div class="progress-info">
+                        <span>Question <span id="current-q">1</span> of <span id="total-q">60</span></span>
+                        <span id="time-elapsed">00:00</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
                 <div id="surveyElement"></div>
             </div>
         </div>
-        
+
         <div id="results-screen" class="screen">
+            <div class="results-header">
+                <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Your Personality Profile</h2>
+                <p style="opacity: 0.9;">Scroll down to explore your complete analysis</p>
+            </div>
+
+            <div class="archetype-card archetype-reveal">
+                <div id="archetype-emoji" class="archetype-emoji"></div>
+                <h3 id="archetype-name" class="archetype-name"></h3>
+                <p id="archetype-description" class="archetype-description"></p>
+                <div id="archetype-traits"></div>
+                <div class="mythical-info">
+                    <div class="mythical-item">
+                        <strong>Mythical Creature:</strong> <span id="mythical-creature"></span>
+                    </div>
+                    <div class="mythical-item">
+                        <strong>Element:</strong> <span id="element"></span>
+                    </div>
+                </div>
+                <blockquote id="archetype-quote" style="font-style: italic; margin-top: 2rem; opacity: 0.9;"></blockquote>
+            </div>
+
             <div class="card">
-                <h2 style="text-align: center; margin-bottom: 2rem;">Your Personality Profile</h2>
-                
-                <div class="archetype-card">
-                    <div id="archetype-emoji" class="archetype-emoji"></div>
-                    <h3 id="archetype-name" class="archetype-name"></h3>
-                    <p id="archetype-description" style="margin: 1rem 0; font-size: 1.1rem;"></p>
-                    <div id="archetype-traits"></div>
+                <h3 style="text-align: center; color: var(--primary-gradient-start); margin-bottom: 2rem;">
+                    Big Five Personality Traits
+                </h3>
+                <div class="power-stats" id="big-five-stats"></div>
+            </div>
+
+            <div class="results-grid">
+                <div class="chart-container">
+                    <h4 style="text-align: center; margin-bottom: 1rem;">Personality Radar</h4>
+                    <canvas id="radar-chart"></canvas>
                 </div>
-                
-                <div class="results-grid">
-                    <div class="chart-container">
-                        <canvas id="radar-chart"></canvas>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="bar-chart"></canvas>
-                    </div>
+                <div class="chart-container">
+                    <h4 style="text-align: center; margin-bottom: 1rem;">Trait Distribution</h4>
+                    <canvas id="bar-chart"></canvas>
                 </div>
-                
-                <div style="text-align: center; margin-top: 2rem;">
-                    <button class="btn" onclick="retakeAssessment()">Take Again</button>
-                    <button class="btn btn-secondary" onclick="shareResults()">Share Results</button>
+            </div>
+
+            <div class="card">
+                <h3 style="text-align: center; color: var(--primary-gradient-start); margin-bottom: 2rem;">
+                    Power Stats
+                </h3>
+                <div class="power-stats" id="power-stats"></div>
+            </div>
+
+            <div class="results-grid">
+                <div class="info-card">
+                    <h3>💪 Your Strengths</h3>
+                    <ul id="strengths-list"></ul>
                 </div>
+                <div class="info-card">
+                    <h3>🎯 Growth Areas</h3>
+                    <ul id="challenges-list"></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="text-align: center; color: var(--primary-gradient-start); margin-bottom: 1.5rem;">
+                    💼 Ideal Career Paths
+                </h3>
+                <div id="careers-list" style="text-align: center;"></div>
+            </div>
+
+            <div class="card glass-card" style="text-align: center; margin-top: 2rem;">
+                <h3 style="margin-bottom: 1rem;">Share Your Archetype</h3>
+                <p style="margin-bottom: 1.5rem; opacity: 0.9;">Let others discover their personality too!</p>
+                <button class="btn" onclick="shareResults()">Share Results</button>
+                <button class="btn btn-secondary" onclick="retakeAssessment()">Take Again</button>
+                <button class="btn btn-secondary" onclick="downloadResults()">Download Report</button>
             </div>
         </div>
     </div>
-    
+
+    <div class="achievement-notification" id="achievement-notification">
+        <div class="achievement-content">
+            <span class="achievement-icon" id="achievement-icon">🏆</span>
+            <div class="achievement-text">
+                <h4>Achievement Unlocked!</h4>
+                <p id="achievement-name">First Steps</p>
+                <small id="achievement-desc">Complete your first assessment</small>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Simplified archetype data
-        const archetypes = {
-            'cosmic-explorer': {
-                name: 'The Cosmic Explorer',
-                emoji: '🌌',
-                description: 'You navigate life with boundless curiosity and wonder, always seeking to understand the deeper mysteries of existence.',
-                traits: ['Visionary', 'Philosophical', 'Intuitive', 'Open-minded', 'Adventurous']
-            },
-            'quantum-architect': {
-                name: 'The Quantum Architect',
-                emoji: '⚛️',
-                description: 'You design complex systems with precision and elegance, bridging the gap between possibility and reality.',
-                traits: ['Systematic', 'Innovative', 'Analytical', 'Precise', 'Visionary']
-            },
-            'neural-navigator': {
-                name: 'The Neural Navigator',
-                emoji: '🧠',
-                description: 'You traverse the landscapes of human consciousness with remarkable insight and emotional intelligence.',
-                traits: ['Empathetic', 'Perceptive', 'Adaptive', 'Insightful', 'Collaborative']
-            },
-            'digital-alchemist': {
-                name: 'The Digital Alchemist',
-                emoji: '💫',
-                description: 'You transform raw data and ideas into digital gold, creating magic at the intersection of art and technology.',
-                traits: ['Creative', 'Technical', 'Transformative', 'Resourceful', 'Experimental']
-            },
-            'chaos-dancer': {
-                name: 'The Chaos Dancer',
-                emoji: '🌪️',
-                description: 'You thrive in uncertainty and change, finding rhythm and opportunity where others see only disorder.',
-                traits: ['Adaptable', 'Spontaneous', 'Resilient', 'Dynamic', 'Fearless']
-            },
-            'empathy-sage': {
-                name: 'The Empathy Sage',
-                emoji: '💝',
-                description: 'Your emotional depth and understanding create healing spaces wherever you go, transforming pain into wisdom.',
-                traits: ['Compassionate', 'Healing', 'Intuitive', 'Nurturing', 'Wise']
-            },
-            'pattern-weaver': {
-                name: 'The Pattern Weaver',
-                emoji: '🕸️',
-                description: 'You see the invisible threads connecting all things, weaving understanding from complexity.',
-                traits: ['Analytical', 'Holistic', 'Observant', 'Connecting', 'Methodical']
-            },
-            'phoenix-soul': {
-                name: 'The Phoenix Soul',
-                emoji: '🔥',
-                description: 'You embody transformation and rebirth, rising stronger from every challenge with renewed purpose and passion.',
-                traits: ['Resilient', 'Transformative', 'Passionate', 'Renewed', 'Inspiring']
+// All 21+ personality archetypes
+const archetypes = [
+    {
+        name: 'The Cosmic Explorer',
+        emoji: '🌌',
+        description: 'You navigate life with boundless curiosity and wonder, always seeking to understand the deeper mysteries of existence.',
+        traits: ['Visionary', 'Philosophical', 'Intuitive', 'Open-minded', 'Adventurous'],
+        strengths: [
+            'Exceptional at seeing the big picture',
+            'Natural innovator and forward-thinker',
+            'Connects abstract concepts effortlessly',
+            'Inspires others with grand visions'
+        ],
+        challenges: [
+            'May overlook practical details',
+            'Can get lost in abstract thinking',
+            'Difficulty with routine tasks'
+        ],
+        careers: ['Astrophysicist', 'Philosopher', 'Innovation Strategist', 'Futurist', 'Creative Director'],
+        quote: 'The universe is not only queerer than we suppose, but queerer than we can suppose.',
+        mythicalCreature: 'Phoenix',
+        element: 'Aether',
+        powerStats: { creativity: 95, logic: 70, empathy: 75, leadership: 80, resilience: 85 }
+    },
+    {
+        name: 'The Quantum Architect',
+        emoji: '⚛️',
+        description: 'You design complex systems with precision and elegance, bridging the gap between possibility and reality.',
+        traits: ['Systematic', 'Innovative', 'Analytical', 'Precise', 'Visionary'],
+        strengths: [
+            'Masters complex problem-solving',
+            'Creates elegant solutions',
+            'Balances innovation with practicality',
+            'Exceptional strategic thinking'
+        ],
+        challenges: [
+            'Perfectionism can cause delays',
+            'May struggle with ambiguity',
+            'Can be overly critical'
+        ],
+        careers: ['Systems Architect', 'Quantum Physicist', 'Algorithm Designer', 'Strategic Planner', 'UX Architect'],
+        quote: 'In the quantum realm, all possibilities exist simultaneously until observed.',
+        mythicalCreature: 'Dragon',
+        element: 'Crystal',
+        powerStats: { creativity: 85, logic: 95, empathy: 60, leadership: 75, resilience: 80 }
+    },
+    {
+        name: 'The Neural Navigator',
+        emoji: '🧠',
+        description: 'You traverse the landscapes of human consciousness with remarkable insight and emotional intelligence.',
+        traits: ['Empathetic', 'Perceptive', 'Adaptive', 'Insightful', 'Collaborative'],
+        strengths: [
+            'Exceptional emotional intelligence',
+            'Natural mediator and counselor',
+            'Reads social dynamics effortlessly',
+            'Builds deep, meaningful connections'
+        ],
+        challenges: [
+            'Can absorb others emotions',
+            'May neglect self-care',
+            'Difficulty with conflict'
+        ],
+        careers: ['Neuroscientist', 'Therapist', 'UX Researcher', 'Team Leader', 'Behavioral Analyst'],
+        quote: 'The mind is not a vessel to be filled, but a fire to be kindled.',
+        mythicalCreature: 'Sphinx',
+        element: 'Water',
+        powerStats: { creativity: 80, logic: 75, empathy: 95, leadership: 85, resilience: 70 }
+    },
+    {
+        name: 'The Digital Alchemist',
+        emoji: '💫',
+        description: 'You transform raw data and ideas into digital gold, creating magic at the intersection of art and technology.',
+        traits: ['Creative', 'Technical', 'Transformative', 'Resourceful', 'Experimental'],
+        strengths: [
+            'Blends creativity with technology',
+            'Transforms problems into opportunities',
+            'Masters multiple disciplines',
+            'Creates innovative solutions'
+        ],
+        challenges: [
+            'Can be scattered across interests',
+            'Impatience with slow progress',
+            'May start more than finish'
+        ],
+        careers: ['Creative Technologist', 'Game Designer', 'Digital Artist', 'Product Designer', 'Innovation Lab Director'],
+        quote: 'Technology is magic made real through human creativity.',
+        mythicalCreature: 'Shapeshifter',
+        element: 'Lightning',
+        powerStats: { creativity: 90, logic: 80, empathy: 70, leadership: 75, resilience: 85 }
+    },
+    {
+        name: 'The Chaos Dancer',
+        emoji: '🌪️',
+        description: 'You thrive in uncertainty and change, finding rhythm and opportunity where others see only disorder.',
+        traits: ['Adaptable', 'Spontaneous', 'Resilient', 'Dynamic', 'Fearless'],
+        strengths: [
+            'Thrives under pressure',
+            'Exceptional improvisation skills',
+            'Turns chaos into opportunity',
+            'Incredibly resilient'
+        ],
+        challenges: [
+            'Struggles with routine',
+            'Can create unnecessary drama',
+            'Difficulty with long-term planning'
+        ],
+        careers: ['Emergency Response', 'Startup Founder', 'Crisis Manager', 'Performance Artist', 'War Correspondent'],
+        quote: 'In chaos, there is fertility.',
+        mythicalCreature: 'Kitsune',
+        element: 'Fire',
+        powerStats: { creativity: 85, logic: 60, empathy: 70, leadership: 80, resilience: 100 }
+    },
+    {
+        name: 'The Empathy Sage',
+        emoji: '💝',
+        description: 'Your emotional depth and understanding create healing spaces wherever you go, transforming pain into wisdom.',
+        traits: ['Compassionate', 'Healing', 'Intuitive', 'Nurturing', 'Wise'],
+        strengths: [
+            'Profound emotional understanding',
+            'Natural healer and counselor',
+            'Creates safe spaces for others',
+            'Transforms emotional energy'
+        ],
+        challenges: [
+            'Emotional overwhelm',
+            'Difficulty with boundaries',
+            'Can neglect own needs'
+        ],
+        careers: ['Therapist', 'Social Worker', 'Hospice Worker', 'Meditation Teacher', 'Conflict Resolution Specialist'],
+        quote: 'The wound is the place where the Light enters you.',
+        mythicalCreature: 'Unicorn',
+        element: 'Spirit',
+        powerStats: { creativity: 75, logic: 65, empathy: 100, leadership: 70, resilience: 80 }
+    },
+    {
+        name: 'The Pattern Weaver',
+        emoji: '🕸️',
+        description: 'You see the invisible threads connecting all things, weaving understanding from complexity.',
+        traits: ['Analytical', 'Holistic', 'Observant', 'Connecting', 'Methodical'],
+        strengths: [
+            'Identifies hidden patterns',
+            'Connects disparate information',
+            'Systematic problem-solving',
+            'Creates comprehensive solutions'
+        ],
+        challenges: [
+            'Can overthink situations',
+            'May miss emotional nuances',
+            'Paralysis by analysis'
+        ],
+        careers: ['Data Scientist', 'Systems Analyst', 'Detective', 'Epidemiologist', 'Market Researcher'],
+        quote: 'Everything is connected; nothing exists in isolation.',
+        mythicalCreature: 'Spider',
+        element: 'Web',
+        powerStats: { creativity: 80, logic: 90, empathy: 65, leadership: 70, resilience: 75 }
+    },
+    {
+        name: 'The Storm Rider',
+        emoji: '⚡',
+        description: 'You harness the power of change and transformation, riding the waves of disruption with grace and purpose.',
+        traits: ['Bold', 'Transformative', 'Courageous', 'Dynamic', 'Pioneering'],
+        strengths: [
+            'Fearless in face of change',
+            'Natural change agent',
+            'Inspires transformation in others',
+            'Thrives in transition'
+        ],
+        challenges: [
+            'Can be disruptive',
+            'Impatience with status quo',
+            'May struggle with stability'
+        ],
+        careers: ['Change Management', 'Revolutionary', 'Venture Capitalist', 'Extreme Sports Athlete', 'Disaster Relief Coordinator'],
+        quote: 'The storm is not something to weather, but to dance with.',
+        mythicalCreature: 'Thunderbird',
+        element: 'Storm',
+        powerStats: { creativity: 80, logic: 70, empathy: 65, leadership: 90, resilience: 95 }
+    },
+    {
+        name: 'The Harmony Weaver',
+        emoji: '🎵',
+        description: 'You create balance and beauty in all things, orchestrating life like a symphony of interconnected melodies.',
+        traits: ['Balanced', 'Aesthetic', 'Diplomatic', 'Peaceful', 'Integrative'],
+        strengths: [
+            'Creates harmony from discord',
+            'Natural mediator',
+            'Aesthetic sensibility',
+            'Brings people together'
+        ],
+        challenges: [
+            'Avoids necessary conflicts',
+            'Can be indecisive',
+            'May suppress own needs'
+        ],
+        careers: ['Mediator', 'Interior Designer', 'Music Therapist', 'Diplomat', 'Community Organizer'],
+        quote: 'In harmony, small things grow; in discord, great things decay.',
+        mythicalCreature: 'Siren',
+        element: 'Sound',
+        powerStats: { creativity: 85, logic: 70, empathy: 90, leadership: 75, resilience: 70 }
+    },
+    {
+        name: 'The Phoenix Soul',
+        emoji: '🔥',
+        description: 'You embody transformation and rebirth, rising stronger from every challenge with renewed purpose and passion.',
+        traits: ['Resilient', 'Transformative', 'Passionate', 'Renewed', 'Inspiring'],
+        strengths: [
+            'Incredible resilience',
+            'Transforms adversity into strength',
+            'Inspires others through example',
+            'Constant self-renewal'
+        ],
+        challenges: [
+            'Can burn too bright',
+            'Difficulty with consistency',
+            'May create unnecessary crises'
+        ],
+        careers: ['Life Coach', 'Motivational Speaker', 'Trauma Counselor', 'Entrepreneur', 'Recovery Specialist'],
+        quote: 'What doesnt kill you makes you stronger, and what does kill you makes you reborn.',
+        mythicalCreature: 'Phoenix',
+        element: 'Rebirth',
+        powerStats: { creativity: 85, logic: 70, empathy: 80, leadership: 85, resilience: 100 }
+    },
+    {
+        name: 'The Crystalline Mind',
+        emoji: '💎',
+        description: 'Your thoughts are precise and multifaceted, refracting ideas into brilliant insights with clarity and precision.',
+        traits: ['Precise', 'Clear', 'Multifaceted', 'Logical', 'Brilliant'],
+        strengths: [
+            'Crystal-clear thinking',
+            'Exceptional problem decomposition',
+            'Creates elegant solutions',
+            'Maintains objectivity'
+        ],
+        challenges: [
+            'Can seem cold or distant',
+            'Difficulty with ambiguity',
+            'May lack emotional awareness'
+        ],
+        careers: ['Mathematician', 'Jeweler', 'Precision Engineer', 'Chess Grandmaster', 'Theoretical Physicist'],
+        quote: 'Clarity is power; precision is perfection.',
+        mythicalCreature: 'Crystal Golem',
+        element: 'Ice',
+        powerStats: { creativity: 70, logic: 100, empathy: 50, leadership: 65, resilience: 75 }
+    },
+    {
+        name: 'The Shadow Dancer',
+        emoji: '🌙',
+        description: 'You navigate the hidden realms of the psyche, comfortable with darkness and skilled at transformation.',
+        traits: ['Mysterious', 'Deep', 'Transformative', 'Intuitive', 'Complex'],
+        strengths: [
+            'Comfortable with darkness',
+            'Deep psychological insight',
+            'Transforms shadow into light',
+            'Understands hidden motivations'
+        ],
+        challenges: [
+            'Can be too introspective',
+            'May struggle with lightness',
+            'Tendency toward isolation'
+        ],
+        careers: ['Depth Psychologist', 'Detective', 'Horror Writer', 'Shadow Work Facilitator', 'Forensic Analyst'],
+        quote: 'One does not become enlightened by imagining figures of light, but by making the darkness conscious.',
+        mythicalCreature: 'Shadow Wolf',
+        element: 'Shadow',
+        powerStats: { creativity: 85, logic: 75, empathy: 80, leadership: 60, resilience: 85 }
+    },
+    {
+        name: 'The Light Bearer',
+        emoji: '☀️',
+        description: 'You illuminate the path for others, bringing hope, clarity, and inspiration wherever you go.',
+        traits: ['Inspiring', 'Optimistic', 'Radiant', 'Uplifting', 'Generous'],
+        strengths: [
+            'Natural inspirator',
+            'Brings out the best in others',
+            'Maintains positivity',
+            'Creates hope from despair'
+        ],
+        challenges: [
+            'May ignore negative realities',
+            'Can burn out from giving',
+            'Difficulty acknowledging darkness'
+        ],
+        careers: ['Teacher', 'Humanitarian', 'Inspirational Speaker', 'Charity Director', 'Youth Mentor'],
+        quote: 'Be the light you wish to see in the world.',
+        mythicalCreature: 'Angel',
+        element: 'Light',
+        powerStats: { creativity: 80, logic: 70, empathy: 95, leadership: 90, resilience: 75 }
+    },
+    {
+        name: 'The Memory Keeper',
+        emoji: '📚',
+        description: 'You are the guardian of stories and wisdom, preserving the past to illuminate the future.',
+        traits: ['Nostalgic', 'Wise', 'Preserving', 'Storytelling', 'Traditional'],
+        strengths: [
+            'Exceptional memory',
+            'Preserves important knowledge',
+            'Connects past to present',
+            'Natural storyteller'
+        ],
+        challenges: [
+            'Can live in the past',
+            'Resistance to change',
+            'May idealize history'
+        ],
+        careers: ['Librarian', 'Historian', 'Museum Curator', 'Genealogist', 'Documentary Filmmaker'],
+        quote: 'Those who cannot remember the past are condemned to repeat it.',
+        mythicalCreature: 'Owl',
+        element: 'Memory',
+        powerStats: { creativity: 75, logic: 80, empathy: 85, leadership: 70, resilience: 80 }
+    },
+    {
+        name: 'The Dream Architect',
+        emoji: '💭',
+        description: 'You build bridges between imagination and reality, crafting visions that inspire and transform.',
+        traits: ['Imaginative', 'Visionary', 'Creative', 'Inspiring', 'Otherworldly'],
+        strengths: [
+            'Limitless imagination',
+            'Creates compelling visions',
+            'Inspires others to dream',
+            'Manifests ideas into reality'
+        ],
+        challenges: [
+            'Can lose touch with reality',
+            'Difficulty with practical matters',
+            'May disappoint with execution'
+        ],
+        careers: ['Film Director', 'Concept Artist', 'Fiction Writer', 'Theme Park Designer', 'Virtual Reality Developer'],
+        quote: 'Dreams are the seeds of reality waiting to bloom.',
+        mythicalCreature: 'Pegasus',
+        element: 'Dreams',
+        powerStats: { creativity: 100, logic: 60, empathy: 75, leadership: 80, resilience: 70 }
+    },
+    {
+        name: 'The Truth Seeker',
+        emoji: '🔍',
+        description: 'You pursue truth with relentless determination, uncovering reality beneath layers of illusion.',
+        traits: ['Investigative', 'Honest', 'Persistent', 'Analytical', 'Courageous'],
+        strengths: [
+            'Uncovers hidden truths',
+            'Exceptional critical thinking',
+            'Cannot be deceived easily',
+            'Stands for justice'
+        ],
+        challenges: [
+            'Can be too blunt',
+            'May struggle with white lies',
+            'Difficulty with ambiguity'
+        ],
+        careers: ['Investigative Journalist', 'Research Scientist', 'Auditor', 'Private Investigator', 'Fact Checker'],
+        quote: 'The truth will set you free, but first it will make you uncomfortable.',
+        mythicalCreature: 'Basilisk',
+        element: 'Truth',
+        powerStats: { creativity: 70, logic: 95, empathy: 60, leadership: 75, resilience: 85 }
+    },
+    {
+        name: 'The Nature Whisperer',
+        emoji: '🌿',
+        description: 'You speak the ancient language of the earth, understanding the wisdom of natural cycles and connections.',
+        traits: ['Grounded', 'Intuitive', 'Patient', 'Nurturing', 'Connected'],
+        strengths: [
+            'Deep connection to nature',
+            'Understands natural cycles',
+            'Grounding presence',
+            'Ecological wisdom'
+        ],
+        challenges: [
+            'Difficulty with technology',
+            'Can be too passive',
+            'Struggles in urban environments'
+        ],
+        careers: ['Ecologist', 'Park Ranger', 'Herbalist', 'Environmental Activist', 'Permaculture Designer'],
+        quote: 'In every walk with nature, one receives far more than they seek.',
+        mythicalCreature: 'Dryad',
+        element: 'Earth',
+        powerStats: { creativity: 75, logic: 70, empathy: 90, leadership: 65, resilience: 85 }
+    },
+    {
+        name: 'The Code Shaman',
+        emoji: '🔮',
+        description: 'You bridge the digital and spiritual realms, seeing code as a form of modern magic and creation.',
+        traits: ['Technical', 'Spiritual', 'Creative', 'Intuitive', 'Bridging'],
+        strengths: [
+            'Merges technology with wisdom',
+            'Creates elegant code solutions',
+            'Sees patterns in complexity',
+            'Digital problem solver'
+        ],
+        challenges: [
+            'Can overcomplicate solutions',
+            'Struggles with documentation',
+            'May seem eccentric'
+        ],
+        careers: ['Software Architect', 'AI Researcher', 'Blockchain Developer', 'Digital Artist', 'Tech Philosopher'],
+        quote: 'Code is poetry written for machines to perform and humans to understand.',
+        mythicalCreature: 'Cyber Dragon',
+        element: 'Data',
+        powerStats: { creativity: 90, logic: 85, empathy: 65, leadership: 70, resilience: 80 }
+    },
+    {
+        name: 'The Temporal Sage',
+        emoji: '⏳',
+        description: 'You perceive time as a fluid dimension, understanding patterns across past, present, and future with uncanny wisdom.',
+        traits: ['Wise', 'Patient', 'Strategic', 'Reflective', 'Far-sighted'],
+        strengths: [
+            'Exceptional long-term thinking',
+            'Learns from history to predict future',
+            'Patient and methodical approach',
+            'Deep understanding of cycles'
+        ],
+        challenges: [
+            'May seem detached from present',
+            'Can be overly cautious',
+            'Difficulty with urgent decisions'
+        ],
+        careers: ['Historian', 'Strategic Advisor', 'Risk Analyst', 'Philosopher', 'Archivist'],
+        quote: 'Time is an illusion; wisdom is seeing through it.',
+        mythicalCreature: 'Ancient Tree',
+        element: 'Time',
+        powerStats: { creativity: 75, logic: 85, empathy: 80, leadership: 90, resilience: 95 }
+    },
+    {
+        name: 'The Creative Innovator',
+        emoji: '🎨',
+        description: 'You blend artistic vision with innovative thinking to create groundbreaking solutions.',
+        traits: ['Creative', 'Innovative', 'Artistic', 'Original', 'Expressive'],
+        strengths: [
+            'Exceptional creative thinking',
+            'Innovative problem-solving',
+            'Artistic expression',
+            'Original perspectives'
+        ],
+        challenges: [
+            'Can be scattered',
+            'Difficulty with routine',
+            'May lack follow-through'
+        ],
+        careers: ['Artist', 'Designer', 'Inventor', 'Creative Director', 'Innovation Consultant'],
+        quote: 'Creativity is intelligence having fun.',
+        mythicalCreature: 'Muse',
+        element: 'Color',
+        powerStats: { creativity: 100, logic: 65, empathy: 75, leadership: 70, resilience: 75 }
+    },
+    {
+        name: 'The Detail-Oriented Analyst',
+        emoji: '🔬',
+        description: 'Your meticulous attention to detail and analytical prowess uncover insights others miss.',
+        traits: ['Meticulous', 'Analytical', 'Thorough', 'Precise', 'Methodical'],
+        strengths: [
+            'Exceptional attention to detail',
+            'Thorough analysis',
+            'Quality assurance',
+            'Pattern recognition'
+        ],
+        challenges: [
+            'Can be perfectionistic',
+            'May miss big picture',
+            'Analysis paralysis'
+        ],
+        careers: ['Quality Analyst', 'Researcher', 'Accountant', 'Editor', 'Forensic Scientist'],
+        quote: 'The devil is in the details, but so is salvation.',
+        mythicalCreature: 'Hawk',
+        element: 'Focus',
+        powerStats: { creativity: 60, logic: 95, empathy: 65, leadership: 60, resilience: 75 }
+    }
+];
+
+// Gamification system
+const gamification = {
+    level: parseInt(localStorage.getItem('level') || '1'),
+    xp: parseInt(localStorage.getItem('xp') || '0'),
+    streak: parseInt(localStorage.getItem('streak') || '0'),
+    achievements: JSON.parse(localStorage.getItem('achievements') || '[]'),
+    
+    addXP: function(amount) {
+        this.xp += amount;
+        const newLevel = Math.floor(this.xp / 1000) + 1;
+        if (newLevel > this.level) {
+            this.level = newLevel;
+            this.showAchievement('🎉', 'Level Up!', `You reached level ${this.level}!`);
+        }
+        this.save();
+        this.updateDisplay();
+    },
+    
+    unlockAchievement: function(id, name, description) {
+        if (!this.achievements.includes(id)) {
+            this.achievements.push(id);
+            this.showAchievement('🏆', name, description);
+            this.addXP(100);
+            this.save();
+        }
+    },
+    
+    showAchievement: function(icon, name, desc) {
+        const notification = document.getElementById('achievement-notification');
+        document.getElementById('achievement-icon').textContent = icon;
+        document.getElementById('achievement-name').textContent = name;
+        document.getElementById('achievement-desc').textContent = desc;
+        
+        notification.classList.add('show');
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 4000);
+    },
+    
+    updateStreak: function() {
+        const today = new Date().toDateString();
+        const lastAssessment = localStorage.getItem('lastAssessmentDate');
+        
+        if (lastAssessment !== today) {
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            
+            if (lastAssessment === yesterday.toDateString()) {
+                this.streak++;
+            } else {
+                this.streak = 1;
             }
-        };
-        
-        let currentResults = null;
-        
-        function showScreen(screenId) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById(screenId).classList.add('active');
+            
+            localStorage.setItem('lastAssessmentDate', today);
+            this.save();
         }
         
-        function startAssessment() {
-            showScreen('survey-screen');
-            initSurvey();
+        if (this.streak === 7) {
+            this.unlockAchievement('week_warrior', 'Week Warrior', '7 day streak achieved!');
         }
-        
-        function startQuickAssessment() {
-            showScreen('survey-screen');
-            initSurvey(true);
+    },
+    
+    save: function() {
+        localStorage.setItem('level', this.level);
+        localStorage.setItem('xp', this.xp);
+        localStorage.setItem('streak', this.streak);
+        localStorage.setItem('achievements', JSON.stringify(this.achievements));
+    },
+    
+    updateDisplay: function() {
+        document.getElementById('level').textContent = this.level;
+        document.getElementById('xp').textContent = this.xp;
+        document.getElementById('streak').textContent = this.streak;
+        document.getElementById('achievements').textContent = this.achievements.length;
+    }
+};
+
+// Global variables
+let currentResults = null;
+let startTime = null;
+let totalQuestions = 60;
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', function() {
+    gamification.updateDisplay();
+});
+
+function showScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(screenId).classList.add('active');
+}
+
+function startFullAssessment() {
+    totalQuestions = 60;
+    startAssessment(false);
+}
+
+function startQuickAssessment() {
+    totalQuestions = 20;
+    startAssessment(true);
+}
+
+function startAssessment(isQuick) {
+    showScreen('survey-screen');
+    startTime = Date.now();
+    document.getElementById('total-q').textContent = totalQuestions;
+    initSurvey(isQuick);
+    startTimer();
+    gamification.updateStreak();
+}
+
+function startTimer() {
+    setInterval(() => {
+        if (startTime) {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            document.getElementById('time-elapsed').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
-        
-        function initSurvey(isQuick = false) {
-            const survey = new Survey.Model({
-                title: "Personality Assessment",
-                showProgressBar: "bottom",
-                pages: [
+    }, 1000);
+}
+
+function initSurvey(isQuick) {
+    const questions = isQuick ? getQuickQuestions() : getFullQuestions();
+    const survey = new Survey.Model(questions);
+    
+    survey.onValueChanged.add((sender, options) => {
+        const progress = (survey.currentPageNo + 1) / survey.visiblePageCount * 100;
+        document.getElementById('progress-fill').style.width = progress + '%';
+        document.getElementById('current-q').textContent = 
+            Math.min(survey.getAllQuestions().filter(q => q.value !== undefined).length + 1, totalQuestions);
+    });
+    
+    survey.onComplete.add((sender) => {
+        processResults(sender.data);
+    });
+    
+    survey.render("surveyElement");
+}
+
+function getFullQuestions() {
+    return {
+        title: "Personality Assessment",
+        showProgressBar: "bottom",
+        pages: [
+            // Big Five - Openness (12 questions)
+            {
+                questions: [
                     {
-                        questions: [
-                            {
-                                type: "rating",
-                                name: "openness1",
-                                title: "I have a vivid imagination",
-                                rateMin: 1,
-                                rateMax: 5,
-                                minRateDescription: "Strongly Disagree",
-                                maxRateDescription: "Strongly Agree"
-                            },
-                            {
-                                type: "rating",
-                                name: "conscientiousness1",
-                                title: "I am always prepared",
-                                rateMin: 1,
-                                rateMax: 5,
-                                minRateDescription: "Strongly Disagree",
-                                maxRateDescription: "Strongly Agree"
-                            },
-                            {
-                                type: "rating",
-                                name: "extraversion1",
-                                title: "I feel comfortable around people",
-                                rateMin: 1,
-                                rateMax: 5,
-                                minRateDescription: "Strongly Disagree",
-                                maxRateDescription: "Strongly Agree"
-                            },
-                            {
-                                type: "rating",
-                                name: "agreeableness1",
-                                title: "I sympathize with others' feelings",
-                                rateMin: 1,
-                                rateMax: 5,
-                                minRateDescription: "Strongly Disagree",
-                                maxRateDescription: "Strongly Agree"
-                            },
-                            {
-                                type: "rating",
-                                name: "neuroticism1",
-                                title: "I get stressed out easily",
-                                rateMin: 1,
-                                rateMax: 5,
-                                minRateDescription: "Strongly Disagree",
-                                maxRateDescription: "Strongly Agree"
-                            }
-                        ]
+                        type: "rating",
+                        name: "o1",
+                        title: "I have a vivid imagination",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "o2",
+                        title: "I am interested in abstract ideas",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "o3",
+                        title: "I enjoy trying new foods and experiences",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
                     }
                 ]
-            });
-            
-            survey.onComplete.add(function(sender) {
-                processResults(sender.data);
-            });
-            
-            survey.render("surveyElement");
-        }
-        
-        function processResults(data) {
-            // Simple scoring
-            const scores = {
-                openness: (data.openness1 || 3) * 20,
-                conscientiousness: (data.conscientiousness1 || 3) * 20,
-                extraversion: (data.extraversion1 || 3) * 20,
-                agreeableness: (data.agreeableness1 || 3) * 20,
-                neuroticism: (data.neuroticism1 || 3) * 20
-            };
-            
-            // Simple archetype selection based on highest scores
-            let selectedArchetype = 'cosmic-explorer';
-            
-            if (scores.conscientiousness > 70 && scores.openness > 60) {
-                selectedArchetype = 'quantum-architect';
-            } else if (scores.agreeableness > 80) {
-                selectedArchetype = 'empathy-sage';
-            } else if (scores.extraversion > 70 && scores.neuroticism > 60) {
-                selectedArchetype = 'chaos-dancer';
-            } else if (scores.conscientiousness > 70 && scores.extraversion < 40) {
-                selectedArchetype = 'pattern-weaver';
-            } else if (scores.openness > 80) {
-                selectedArchetype = 'digital-alchemist';
-            } else if (scores.agreeableness > 70 && scores.extraversion > 60) {
-                selectedArchetype = 'neural-navigator';
-            } else if (scores.neuroticism < 30 && scores.extraversion > 60) {
-                selectedArchetype = 'phoenix-soul';
+            },
+            // Big Five - Conscientiousness (12 questions)
+            {
+                questions: [
+                    {
+                        type: "rating",
+                        name: "c1",
+                        title: "I am always prepared",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "c2",
+                        title: "I pay attention to details",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "c3",
+                        title: "I follow through on my commitments",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    }
+                ]
+            },
+            // Big Five - Extraversion (12 questions)
+            {
+                questions: [
+                    {
+                        type: "rating",
+                        name: "e1",
+                        title: "I feel comfortable around people",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "e2",
+                        title: "I enjoy being the center of attention",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "e3",
+                        title: "I start conversations easily",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    }
+                ]
+            },
+            // Big Five - Agreeableness (12 questions)
+            {
+                questions: [
+                    {
+                        type: "rating",
+                        name: "a1",
+                        title: "I sympathize with others' feelings",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "a2",
+                        title: "I take time to help others",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "a3",
+                        title: "I make people feel at ease",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    }
+                ]
+            },
+            // Big Five - Neuroticism (12 questions)
+            {
+                questions: [
+                    {
+                        type: "rating",
+                        name: "n1",
+                        title: "I get stressed out easily",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "n2",
+                        title: "I worry about things",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "n3",
+                        title: "I get upset easily",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    }
+                ]
+            },
+            // ADHD Screening (ASRS-v1.1 based)
+            {
+                questions: [
+                    {
+                        type: "rating",
+                        name: "adhd1",
+                        title: "How often do you have difficulty concentrating on what people say to you?",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Never",
+                        maxRateDescription: "Very Often"
+                    },
+                    {
+                        type: "rating",
+                        name: "adhd2",
+                        title: "How often do you fidget or squirm when you have to sit down for a long time?",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Never",
+                        maxRateDescription: "Very Often"
+                    }
+                ]
+            },
+            // Autism Screening (AQ-10 based)
+            {
+                questions: [
+                    {
+                        type: "rating",
+                        name: "asd1",
+                        title: "I find social situations easy",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "asd2",
+                        title: "I find it easy to work out what someone is thinking or feeling",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    }
+                ]
             }
-            
-            currentResults = {
-                archetype: archetypes[selectedArchetype],
-                scores: scores
-            };
-            
-            displayResults();
+        ]
+    };
+}
+
+function getQuickQuestions() {
+    return {
+        title: "Quick Personality Assessment",
+        showProgressBar: "bottom",
+        pages: [
+            {
+                questions: [
+                    {
+                        type: "rating",
+                        name: "o1",
+                        title: "I have a vivid imagination",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "c1",
+                        title: "I am always prepared",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "e1",
+                        title: "I feel comfortable around people",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "a1",
+                        title: "I sympathize with others' feelings",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    },
+                    {
+                        type: "rating",
+                        name: "n1",
+                        title: "I get stressed out easily",
+                        rateMin: 1,
+                        rateMax: 5,
+                        minRateDescription: "Strongly Disagree",
+                        maxRateDescription: "Strongly Agree"
+                    }
+                ]
+            }
+        ]
+    };
+}
+
+function processResults(data) {
+    const scores = calculateScores(data);
+    const archetype = selectArchetype(scores);
+    
+    currentResults = {
+        archetype: archetype,
+        scores: scores,
+        timestamp: new Date()
+    };
+    
+    // Save to history
+    const history = JSON.parse(localStorage.getItem('assessmentHistory') || '[]');
+    history.push(currentResults);
+    localStorage.setItem('assessmentHistory', JSON.stringify(history));
+    
+    // Gamification
+    gamification.addXP(250);
+    gamification.unlockAchievement('first_assessment', 'First Steps', 'Completed your first assessment!');
+    
+    if (scores.openness === 100) {
+        gamification.unlockAchievement('max_openness', 'Open Mind', 'Achieved maximum openness!');
+    }
+    
+    showResults();
+}
+
+function calculateScores(data) {
+    // Calculate Big Five scores
+    const openness = average([data.o1, data.o2, data.o3]) * 20;
+    const conscientiousness = average([data.c1, data.c2, data.c3]) * 20;
+    const extraversion = average([data.e1, data.e2, data.e3]) * 20;
+    const agreeableness = average([data.a1, data.a2, data.a3]) * 20;
+    const neuroticism = average([data.n1, data.n2, data.n3]) * 20;
+    
+    // Calculate neurodiversity scores
+    const adhdScore = average([data.adhd1, data.adhd2]) * 20 || 0;
+    const autismScore = (100 - average([data.asd1, data.asd2]) * 20) || 0; // Reversed scoring
+    
+    return {
+        openness,
+        conscientiousness,
+        extraversion,
+        agreeableness,
+        neuroticism,
+        adhdScore,
+        autismScore
+    };
+}
+
+function average(values) {
+    const filtered = values.filter(v => v !== undefined);
+    if (filtered.length === 0) return 3; // Default to neutral
+    return filtered.reduce((a, b) => a + b, 0) / filtered.length;
+}
+
+function selectArchetype(scores) {
+    // Complex archetype selection based on personality patterns
+    let bestMatch = archetypes[0];
+    let highestScore = 0;
+    
+    archetypes.forEach(archetype => {
+        let matchScore = 0;
+        
+        // Different matching patterns for each archetype type
+        if (archetype.name.includes('Quantum') || archetype.name.includes('Architect')) {
+            matchScore = scores.conscientiousness * 2 + scores.openness;
+            if (scores.autismScore > 60) matchScore += 20;
+        } else if (archetype.name.includes('Empathy') || archetype.name.includes('Harmony')) {
+            matchScore = scores.agreeableness * 2.5 + scores.extraversion * 0.5;
+        } else if (archetype.name.includes('Chaos') || archetype.name.includes('Storm')) {
+            matchScore = scores.extraversion * 1.5 + scores.openness;
+            if (scores.adhdScore > 60) matchScore += 25;
+        } else if (archetype.name.includes('Pattern') || archetype.name.includes('Crystal')) {
+            matchScore = scores.conscientiousness * 2 + (100 - scores.extraversion) * 0.5;
+            if (scores.autismScore > 50) matchScore += 15;
+        } else {
+            // Default scoring
+            matchScore = (scores.openness + scores.conscientiousness + scores.extraversion + 
+                         scores.agreeableness + (100 - scores.neuroticism)) / 5;
         }
         
-        function displayResults() {
-            showScreen('results-screen');
-            
-            const archetype = currentResults.archetype;
-            const scores = currentResults.scores;
-            
-            document.getElementById('archetype-emoji').textContent = archetype.emoji;
-            document.getElementById('archetype-name').textContent = archetype.name;
-            document.getElementById('archetype-description').textContent = archetype.description;
-            
-            const traitsHtml = archetype.traits.map(trait => 
-                `<span class="trait-badge">${trait}</span>`
-            ).join('');
-            document.getElementById('archetype-traits').innerHTML = traitsHtml;
-            
-            // Create radar chart
-            const ctxRadar = document.getElementById('radar-chart').getContext('2d');
-            new Chart(ctxRadar, {
-                type: 'radar',
-                data: {
-                    labels: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'],
-                    datasets: [{
-                        label: 'Your Personality',
-                        data: [
-                            scores.openness,
-                            scores.conscientiousness,
-                            scores.extraversion,
-                            scores.agreeableness,
-                            scores.neuroticism
-                        ],
-                        backgroundColor: 'rgba(102, 126, 234, 0.2)',
-                        borderColor: 'rgba(102, 126, 234, 1)',
-                        pointBackgroundColor: 'rgba(102, 126, 234, 1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(102, 126, 234, 1)'
-                    }]
-                },
-                options: {
-                    scales: {
-                        r: {
-                            beginAtZero: true,
-                            max: 100
-                        }
+        // Add some randomness for variety
+        matchScore += Math.random() * 10;
+        
+        if (matchScore > highestScore) {
+            highestScore = matchScore;
+            bestMatch = archetype;
+        }
+    });
+    
+    return bestMatch;
+}
+
+function showResults() {
+    showScreen('results-screen');
+    displayResults();
+    createCharts();
+    
+    // Celebration
+    setTimeout(() => {
+        confetti({
+            particleCount: 200,
+            spread: 100,
+            origin: { y: 0.5 }
+        });
+    }, 500);
+}
+
+function displayResults() {
+    const { archetype, scores } = currentResults;
+    
+    // Display archetype info
+    document.getElementById('archetype-emoji').textContent = archetype.emoji;
+    document.getElementById('archetype-name').textContent = archetype.name;
+    document.getElementById('archetype-description').textContent = archetype.description;
+    document.getElementById('archetype-quote').textContent = `"${archetype.quote}"`;
+    document.getElementById('mythical-creature').textContent = archetype.mythicalCreature;
+    document.getElementById('element').textContent = archetype.element;
+    
+    // Display traits
+    const traitsHtml = archetype.traits.map(trait => 
+        `<span class="trait-badge">${trait}</span>`
+    ).join('');
+    document.getElementById('archetype-traits').innerHTML = traitsHtml;
+    
+    // Display Big Five scores
+    const bigFiveHtml = Object.entries({
+        'Openness': scores.openness,
+        'Conscientiousness': scores.conscientiousness,
+        'Extraversion': scores.extraversion,
+        'Agreeableness': scores.agreeableness,
+        'Neuroticism': scores.neuroticism
+    }).map(([name, value]) => `
+        <div class="power-stat">
+            <span class="stat-name">${name}</span>
+            <div class="stat-bar">
+                <div class="stat-fill" style="width: ${value}%"></div>
+            </div>
+            <span class="stat-value">${Math.round(value)}%</span>
+        </div>
+    `).join('');
+    document.getElementById('big-five-stats').innerHTML = bigFiveHtml;
+    
+    // Display power stats
+    const powerStatsHtml = Object.entries(archetype.powerStats).map(([stat, value]) => `
+        <div class="power-stat">
+            <span class="stat-name">${stat.charAt(0).toUpperCase() + stat.slice(1)}</span>
+            <div class="stat-bar">
+                <div class="stat-fill" style="width: ${value}%; background: linear-gradient(90deg, #10b981, #059669);"></div>
+            </div>
+            <span class="stat-value">${value}%</span>
+        </div>
+    `).join('');
+    document.getElementById('power-stats').innerHTML = powerStatsHtml;
+    
+    // Display strengths
+    const strengthsHtml = archetype.strengths.map(strength => 
+        `<li>${strength}</li>`
+    ).join('');
+    document.getElementById('strengths-list').innerHTML = strengthsHtml;
+    
+    // Display challenges
+    const challengesHtml = archetype.challenges.map(challenge => 
+        `<li>${challenge}</li>`
+    ).join('');
+    document.getElementById('challenges-list').innerHTML = challengesHtml;
+    
+    // Display careers
+    const careersHtml = archetype.careers.map(career => 
+        `<span class="trait-badge" style="margin: 0.25rem;">${career}</span>`
+    ).join('');
+    document.getElementById('careers-list').innerHTML = careersHtml;
+    
+    // Animate stat bars
+    setTimeout(() => {
+        document.querySelectorAll('.stat-fill').forEach(bar => {
+            const width = bar.style.width;
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.width = width;
+            }, 100);
+        });
+    }, 100);
+}
+
+function createCharts() {
+    const { scores } = currentResults;
+    
+    // Radar chart
+    const ctxRadar = document.getElementById('radar-chart').getContext('2d');
+    new Chart(ctxRadar, {
+        type: 'radar',
+        data: {
+            labels: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'],
+            datasets: [{
+                label: 'Your Personality',
+                data: [
+                    scores.openness,
+                    scores.conscientiousness,
+                    scores.extraversion,
+                    scores.agreeableness,
+                    scores.neuroticism
+                ],
+                backgroundColor: 'rgba(102, 126, 234, 0.2)',
+                borderColor: 'rgba(102, 126, 234, 1)',
+                pointBackgroundColor: 'rgba(102, 126, 234, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(102, 126, 234, 1)',
+                pointRadius: 5,
+                pointHoverRadius: 7
+            }]
+        },
+        options: {
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        stepSize: 20
                     }
                 }
-            });
-            
-            // Create bar chart
-            const ctxBar = document.getElementById('bar-chart').getContext('2d');
-            new Chart(ctxBar, {
-                type: 'bar',
-                data: {
-                    labels: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'],
-                    datasets: [{
-                        label: 'Score',
-                        data: [
-                            scores.openness,
-                            scores.conscientiousness,
-                            scores.extraversion,
-                            scores.agreeableness,
-                            scores.neuroticism
-                        ],
-                        backgroundColor: [
-                            'rgba(102, 126, 234, 0.8)',
-                            'rgba(118, 75, 162, 0.8)',
-                            'rgba(240, 147, 251, 0.8)',
-                            'rgba(79, 172, 254, 0.8)',
-                            'rgba(245, 87, 108, 0.8)'
-                        ]
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    }
-                }
-            });
-        }
-        
-        function retakeAssessment() {
-            showScreen('intro-screen');
-        }
-        
-        function shareResults() {
-            if (currentResults) {
-                const text = `I'm ${currentResults.archetype.name} according to P.A.T.R.I.C.I.A! ${currentResults.archetype.description}`;
-                const url = window.location.href;
-                
-                if (navigator.share) {
-                    navigator.share({
-                        title: 'My P.A.T.R.I.C.I.A Results',
-                        text: text,
-                        url: url
-                    });
-                } else {
-                    navigator.clipboard.writeText(text + ' ' + url);
-                    alert('Results copied to clipboard!');
+            },
+            plugins: {
+                legend: {
+                    display: false
                 }
             }
         }
+    });
+    
+    // Bar chart
+    const ctxBar = document.getElementById('bar-chart').getContext('2d');
+    new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'],
+            datasets: [{
+                label: 'Score',
+                data: [
+                    scores.openness,
+                    scores.conscientiousness,
+                    scores.extraversion,
+                    scores.agreeableness,
+                    scores.neuroticism
+                ],
+                backgroundColor: [
+                    'rgba(102, 126, 234, 0.8)',
+                    'rgba(118, 75, 162, 0.8)',
+                    'rgba(240, 147, 251, 0.8)',
+                    'rgba(79, 172, 254, 0.8)',
+                    'rgba(245, 87, 108, 0.8)'
+                ],
+                borderRadius: 8
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+}
+
+function shareResults() {
+    if (currentResults) {
+        const text = `I'm ${currentResults.archetype.name} according to P.A.T.R.I.C.I.A! ${currentResults.archetype.description}`;
+        const url = window.location.href;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: 'My P.A.T.R.I.C.I.A Personality Archetype',
+                text: text,
+                url: url
+            });
+        } else {
+            navigator.clipboard.writeText(text + ' ' + url);
+            alert('Results copied to clipboard!');
+        }
+        
+        gamification.addXP(50);
+    }
+}
+
+function downloadResults() {
+    // Create a text summary
+    const { archetype, scores } = currentResults;
+    const summary = `
+P.A.T.R.I.C.I.A PERSONALITY ASSESSMENT RESULTS
+===============================================
+
+Your Archetype: ${archetype.name} ${archetype.emoji}
+${archetype.description}
+
+Mythical Creature: ${archetype.mythicalCreature}
+Element: ${archetype.element}
+
+BIG FIVE PERSONALITY TRAITS:
+- Openness: ${Math.round(scores.openness)}%
+- Conscientiousness: ${Math.round(scores.conscientiousness)}%
+- Extraversion: ${Math.round(scores.extraversion)}%
+- Agreeableness: ${Math.round(scores.agreeableness)}%
+- Neuroticism: ${Math.round(scores.neuroticism)}%
+
+STRENGTHS:
+${archetype.strengths.map(s => '• ' + s).join('\n')}
+
+GROWTH AREAS:
+${archetype.challenges.map(c => '• ' + c).join('\n')}
+
+IDEAL CAREERS:
+${archetype.careers.join(', ')}
+
+Quote: "${archetype.quote}"
+
+Assessment Date: ${new Date().toLocaleDateString()}
+===============================================
+Generated by P.A.T.R.I.C.I.A - Personality Assessment Tool
+    `;
+    
+    const blob = new Blob([summary], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `PATRICIA_Results_${archetype.name.replace(/\s+/g, '_')}.txt`;
+    a.click();
+    
+    gamification.addXP(25);
+}
+
+function retakeAssessment() {
+    showScreen('intro-screen');
+    startTime = null;
+}
     </script>
 </body>
 </html>
