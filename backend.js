@@ -438,37 +438,452 @@ function generateCertificate(assessment) {
 // Calculation functions (these would be imported from a separate module)
 function calculateValidatedResults(responses) {
     // Implementation of validated scoring algorithms
-    // This would match the client-side implementation
+    const scores = {};
+    const rawScores = {};
+    const clinicalIndicators = {};
+    
+    // 1. Big Five (BFI-2) Scoring
+    const bfi2Items = responses.filter(r => r.instrument === 'BFI-2');
+    if (bfi2Items.length > 0) {
+        const domains = ['openness', 'conscientiousness', 'extraversion', 'agreeableness', 'neuroticism'];
+        
+        domains.forEach(domain => {
+            const domainItems = bfi2Items.filter(r => r.category === domain);
+            if (domainItems.length > 0) {
+                const domainScore = domainItems.reduce((sum, r) => sum + r.value, 0) / domainItems.length;
+                rawScores[domain] = domainScore;
+                scores[domain] = {
+                    score: domainScore,
+                    percentile: calculatePercentile(domainScore, 3.5, 0.8),
+                    stanine: Math.min(9, Math.max(1, Math.round((domainScore - 1) * 2.25))),
+                    interpretation: interpretBigFive(domain, domainScore)
+                };
+            }
+        });
+    }
+    
+    // 2. HEXACO-60 Scoring
+    const hexacoItems = responses.filter(r => r.instrument === 'HEXACO-60');
+    if (hexacoItems.length > 0) {
+        const honestyItems = hexacoItems.filter(r => r.category === 'honesty-humility');
+        if (honestyItems.length > 0) {
+            const honestyScore = honestyItems.reduce((sum, r) => sum + r.value, 0) / honestyItems.length;
+            scores['honesty-humility'] = {
+                score: honestyScore,
+                percentile: calculatePercentile(honestyScore, 3.3, 0.85),
+                interpretation: honestyScore > 4 ? 'High integrity' : honestyScore > 2.5 ? 'Moderate' : 'Pragmatic'
+            };
+        }
+    }
+    
+    // 3. Clinical Screening Indicators
+    
+    // ADHD (ASRS-5)
+    const adhdItems = responses.filter(r => r.instrument === 'ASRS-5');
+    if (adhdItems.length >= 4) {
+        const adhdScore = adhdItems.reduce((sum, r) => sum + r.value, 0);
+        clinicalIndicators.adhd = {
+            score: adhdScore,
+            risk: adhdScore >= 14 ? 'High' : adhdScore >= 9 ? 'Moderate' : 'Low',
+            recommendation: adhdScore >= 14 ? 'Consider professional evaluation' : 'Within normal range'
+        };
+    }
+    
+    // Autism Spectrum (AQ-10)
+    const autismItems = responses.filter(r => r.instrument === 'AQ-10');
+    if (autismItems.length >= 6) {
+        const autismScore = autismItems.filter(r => r.value >= 3).length;
+        clinicalIndicators.autism = {
+            score: autismScore,
+            risk: autismScore >= 6 ? 'Elevated' : 'Low',
+            recommendation: autismScore >= 6 ? 'Consider comprehensive assessment' : 'No concerns indicated'
+        };
+    }
+    
+    // Depression (PHQ-2)
+    const depressionItems = responses.filter(r => r.instrument === 'PHQ-2');
+    if (depressionItems.length === 2) {
+        const depressionScore = depressionItems.reduce((sum, r) => sum + r.value, 0);
+        clinicalIndicators.depression = {
+            score: depressionScore,
+            risk: depressionScore >= 3 ? 'Positive screen' : 'Negative',
+            recommendation: depressionScore >= 3 ? 'Follow up with PHQ-9' : 'No current concerns'
+        };
+    }
+    
+    // Anxiety (GAD-2)
+    const anxietyItems = responses.filter(r => r.instrument === 'GAD-2');
+    if (anxietyItems.length === 2) {
+        const anxietyScore = anxietyItems.reduce((sum, r) => sum + r.value, 0);
+        clinicalIndicators.anxiety = {
+            score: anxietyScore,
+            risk: anxietyScore >= 3 ? 'Positive screen' : 'Negative',
+            recommendation: anxietyScore >= 3 ? 'Consider GAD-7 assessment' : 'No current concerns'
+        };
+    }
+    
+    // Calculate quality metrics
+    const qualityMetrics = calculateQualityMetrics(responses);
+    
+    // Determine personality profile
+    const profile = determinePersonalityProfile(scores, clinicalIndicators);
+    
+    // Calculate match confidence
+    const matchConfidence = calculateMatchConfidence(responses, scores, qualityMetrics);
+    
     return {
-        profile: {},
-        scores: {},
-        rawScores: {},
-        clinicalIndicators: {},
-        qualityMetrics: {},
-        matchConfidence: 85
+        profile,
+        scores,
+        rawScores,
+        clinicalIndicators,
+        qualityMetrics,
+        matchConfidence,
+        timestamp: new Date(),
+        version: '3.0.0-validated'
     };
+}
+
+// Interpret Big Five scores
+function interpretBigFive(domain, score) {
+    const interpretations = {
+        openness: score > 4 ? 'Creative and curious' : score > 3 ? 'Balanced' : 'Practical and conventional',
+        conscientiousness: score > 4 ? 'Organized and dependable' : score > 3 ? 'Moderately organized' : 'Flexible and spontaneous',
+        extraversion: score > 4 ? 'Outgoing and energetic' : score > 3 ? 'Ambiverted' : 'Reserved and introspective',
+        agreeableness: score > 4 ? 'Compassionate and cooperative' : score > 3 ? 'Balanced' : 'Competitive and skeptical',
+        neuroticism: score > 4 ? 'Emotionally reactive' : score > 3 ? 'Moderate emotional stability' : 'Emotionally stable'
+    };
+    return interpretations[domain] || 'Average';
+}
+
+// Calculate quality metrics
+function calculateQualityMetrics(responses) {
+    const responseTimes = responses.map(r => r.responseTime).filter(Boolean);
+    const avgResponseTime = responseTimes.length > 0 ? 
+        responseTimes.reduce((sum, t) => sum + t, 0) / responseTimes.length : 0;
+    
+    // Check for response patterns
+    const values = responses.map(r => r.value);
+    const uniqueValues = [...new Set(values)];
+    const responseVariability = uniqueValues.length / Math.min(values.length, 7);
+    
+    // Check for straight-lining (same response repeatedly)
+    let maxConsecutive = 0;
+    let currentConsecutive = 1;
+    for (let i = 1; i < values.length; i++) {
+        if (values[i] === values[i-1]) {
+            currentConsecutive++;
+            maxConsecutive = Math.max(maxConsecutive, currentConsecutive);
+        } else {
+            currentConsecutive = 1;
+        }
+    }
+    
+    return {
+        completionRate: responses.length / 100, // Adjust based on expected questions
+        avgResponseTime,
+        responseVariability,
+        straightLining: maxConsecutive > 10,
+        carelessResponding: avgResponseTime < 1000 || responseVariability < 0.3,
+        dataQuality: responseVariability > 0.5 && !this.straightLining ? 'Good' : 'Review needed'
+    };
+}
+
+// Determine personality profile
+function determinePersonalityProfile(scores, clinicalIndicators) {
+    const profiles = [];
+    
+    // Check Big Five patterns
+    if (scores.openness?.percentile > 75 && scores.conscientiousness?.percentile > 75) {
+        profiles.push('Achiever');
+    }
+    if (scores.extraversion?.percentile > 75 && scores.agreeableness?.percentile > 75) {
+        profiles.push('Harmonizer');
+    }
+    if (scores.openness?.percentile > 80) {
+        profiles.push('Innovator');
+    }
+    if (scores.conscientiousness?.percentile > 80) {
+        profiles.push('Organizer');
+    }
+    if (scores.neuroticism?.percentile < 25) {
+        profiles.push('Resilient');
+    }
+    
+    // Consider HEXACO
+    if (scores['honesty-humility']?.percentile > 75) {
+        profiles.push('Ethical Leader');
+    }
+    
+    return {
+        primary: profiles[0] || 'Balanced',
+        secondary: profiles.slice(1, 3),
+        description: generateProfileDescription(profiles, scores)
+    };
+}
+
+// Generate profile description
+function generateProfileDescription(profiles, scores) {
+    let description = 'Your personality profile shows ';
+    
+    if (profiles.includes('Achiever')) {
+        description += 'a strong drive for excellence combined with creative thinking. ';
+    }
+    if (profiles.includes('Harmonizer')) {
+        description += 'exceptional interpersonal skills and social awareness. ';
+    }
+    if (profiles.includes('Innovator')) {
+        description += 'high intellectual curiosity and openness to new experiences. ';
+    }
+    
+    description += 'This assessment is based on validated psychological instruments with strong scientific backing.';
+    
+    return description;
+}
+
+// Calculate match confidence
+function calculateMatchConfidence(responses, scores, qualityMetrics) {
+    let confidence = 75; // Base confidence for validated measures
+    
+    // Adjust based on completion
+    if (responses.length > 80) confidence += 10;
+    if (responses.length > 150) confidence += 5;
+    
+    // Adjust based on quality metrics
+    if (qualityMetrics.dataQuality === 'Good') confidence += 10;
+    if (qualityMetrics.carelessResponding) confidence -= 15;
+    if (qualityMetrics.straightLining) confidence -= 10;
+    
+    // Check for consistency across related scales
+    if (scores.neuroticism && scores.extraversion) {
+        // These tend to be somewhat inversely related
+        const consistency = Math.abs(scores.neuroticism.percentile + scores.extraversion.percentile - 100) < 40;
+        if (consistency) confidence += 5;
+    }
+    
+    return Math.min(95, Math.max(50, confidence));
 }
 
 function calculateExperimentalResults(responses) {
     // Implementation of experimental scoring algorithms
-    // Including all the cutting-edge measures
+    const experimentalScores = {};
+    
+    // 1. Nonattachment Scale (Buddhist Psychology)
+    const nonattachmentItems = responses.filter(r => r.category === 'nonattachment');
+    if (nonattachmentItems.length > 0) {
+        const nonattachmentScore = nonattachmentItems.reduce((sum, r) => sum + r.value, 0) / nonattachmentItems.length;
+        experimentalScores.nonattachment = {
+            score: nonattachmentScore,
+            percentile: calculatePercentile(nonattachmentScore, 3.5, 0.8),
+            interpretation: nonattachmentScore > 4 ? 'High' : nonattachmentScore > 2.5 ? 'Moderate' : 'Low'
+        };
+    }
+    
+    // 2. Hindu Gunas System
+    const gunasItems = responses.filter(r => r.category === 'gunas');
+    if (gunasItems.length > 0) {
+        const sattva = gunasItems.filter(r => r.instrument === 'sattva').reduce((sum, r) => sum + r.value, 0) / 3;
+        const rajas = gunasItems.filter(r => r.instrument === 'rajas').reduce((sum, r) => sum + r.value, 0) / 3;
+        const tamas = gunasItems.filter(r => r.instrument === 'tamas').reduce((sum, r) => sum + r.value, 0) / 3;
+        experimentalScores.gunas = {
+            sattva: { score: sattva, percentile: calculatePercentile(sattva, 3.5, 0.7) },
+            rajas: { score: rajas, percentile: calculatePercentile(rajas, 3.2, 0.8) },
+            tamas: { score: tamas, percentile: calculatePercentile(tamas, 2.8, 0.9) },
+            dominant: sattva > rajas && sattva > tamas ? 'Sattva' : rajas > tamas ? 'Rajas' : 'Tamas'
+        };
+    }
+    
+    // 3. Ubuntu (African Philosophy)
+    const ubuntuItems = responses.filter(r => r.category === 'ubuntu');
+    if (ubuntuItems.length > 0) {
+        const ubuntuScore = ubuntuItems.reduce((sum, r) => sum + r.value, 0) / ubuntuItems.length;
+        experimentalScores.ubuntu = {
+            score: ubuntuScore,
+            percentile: calculatePercentile(ubuntuScore, 4.0, 0.6),
+            interpretation: ubuntuScore > 4.2 ? 'Strong communal orientation' : 'Moderate interconnectedness'
+        };
+    }
+    
+    // 4. Beauty Engagement
+    const beautyItems = responses.filter(r => r.category === 'beauty');
+    if (beautyItems.length > 0) {
+        const beautyScore = beautyItems.reduce((sum, r) => sum + r.value, 0) / beautyItems.length;
+        experimentalScores.beauty = {
+            score: beautyScore,
+            percentile: calculatePercentile(beautyScore, 3.8, 0.9),
+            domains: {
+                natural: beautyItems.filter(r => r.instrument === 'natural').reduce((s, r) => s + r.value, 0) / 2,
+                artistic: beautyItems.filter(r => r.instrument === 'artistic').reduce((s, r) => s + r.value, 0) / 2,
+                moral: beautyItems.filter(r => r.instrument === 'moral').reduce((s, r) => s + r.value, 0) / 2
+            }
+        };
+    }
+    
+    // 5. Antifragility
+    const antifragilityItems = responses.filter(r => r.category === 'antifragility');
+    if (antifragilityItems.length > 0) {
+        const antifragilityScore = antifragilityItems.reduce((sum, r) => sum + r.value, 0) / antifragilityItems.length;
+        experimentalScores.antifragility = {
+            score: antifragilityScore,
+            percentile: calculatePercentile(antifragilityScore, 3.3, 0.85),
+            level: antifragilityScore > 4 ? 'Antifragile' : antifragilityScore > 3 ? 'Resilient' : 'Fragile'
+        };
+    }
+    
+    // 6. Flow Proneness
+    const flowItems = responses.filter(r => r.category === 'flow');
+    if (flowItems.length > 0) {
+        const flowScore = flowItems.reduce((sum, r) => sum + r.value, 0) / flowItems.length;
+        experimentalScores.flowProneness = {
+            score: flowScore,
+            percentile: calculatePercentile(flowScore, 3.6, 0.75),
+            frequency: flowScore > 4 ? 'Frequent' : flowScore > 3 ? 'Occasional' : 'Rare'
+        };
+    }
+    
+    // 7. Psychological Flexibility
+    const flexibilityItems = responses.filter(r => r.category === 'flexibility');
+    if (flexibilityItems.length > 0) {
+        const flexibilityScore = flexibilityItems.reduce((sum, r) => sum + r.value, 0) / flexibilityItems.length;
+        experimentalScores.psychologicalFlexibility = {
+            score: flexibilityScore,
+            percentile: calculatePercentile(flexibilityScore, 3.4, 0.8),
+            interpretation: flexibilityScore > 4 ? 'Highly flexible' : 'Moderately flexible'
+        };
+    }
+    
+    // 8. Dark Factor
+    const darkItems = responses.filter(r => r.category === 'dark');
+    if (darkItems.length > 0) {
+        const darkScore = darkItems.reduce((sum, r) => sum + r.value, 0) / darkItems.length;
+        experimentalScores.darkFactor = {
+            score: darkScore,
+            percentile: calculatePercentile(darkScore, 2.5, 1.0),
+            level: darkScore < 2 ? 'Low' : darkScore < 3.5 ? 'Moderate' : 'High',
+            warning: darkScore > 3.5
+        };
+    }
+    
+    // 9. Future Self-Continuity
+    const futureItems = responses.filter(r => r.category === 'future');
+    if (futureItems.length > 0) {
+        const futureScore = futureItems.reduce((sum, r) => sum + r.value, 0) / futureItems.length;
+        experimentalScores.futureSelfContinuity = {
+            score: futureScore,
+            percentile: calculatePercentile(futureScore, 3.7, 0.85),
+            interpretation: futureScore > 4 ? 'Strong future orientation' : 'Present-focused'
+        };
+    }
+    
+    // 10. Biometric Analysis (if available)
+    const biometricData = responses.filter(r => r.biometrics).map(r => r.biometrics);
+    if (biometricData.length > 0) {
+        const avgLatency = biometricData.reduce((sum, b) => sum + (b.latency || 0), 0) / biometricData.length;
+        const keystrokeVariability = calculateVariability(biometricData.map(b => b.keystrokeMetrics?.dwellTime).filter(Boolean));
+        
+        experimentalScores.biometricAnalysis = {
+            responseLatency: avgLatency,
+            keystrokePattern: keystrokeVariability > 100 ? 'Variable' : 'Consistent',
+            confidenceLevel: keystrokeVariability < 50 ? 'High' : keystrokeVariability < 150 ? 'Moderate' : 'Low',
+            authenticityScore: Math.max(0, Math.min(100, 100 - keystrokeVariability / 3))
+        };
+    }
+    
+    // Calculate overall experimental profile
+    const profile = determineExperimentalProfile(experimentalScores);
+    
+    // Calculate match confidence based on response consistency
+    const matchConfidence = calculateExperimentalConfidence(responses, experimentalScores);
+    
     return {
-        profile: {},
-        scores: {},
-        experimentalScores: {
-            nonattachment: {},
-            gunas: {},
-            ubuntu: {},
-            beauty: {},
-            antifragility: {},
-            flowProneness: {},
-            psychologicalFlexibility: {},
-            darkFactor: {},
-            futureSelfContinuity: {}
-        },
-        biometricAnalysis: {},
-        matchConfidence: 82
+        profile,
+        scores: {}, // Traditional scores if any overlap
+        experimentalScores,
+        biometricAnalysis: experimentalScores.biometricAnalysis || {},
+        matchConfidence,
+        timestamp: new Date(),
+        version: '3.0.0-experimental'
     };
+}
+
+// Helper function to calculate percentile
+function calculatePercentile(score, mean, sd) {
+    const z = (score - mean) / sd;
+    // Approximate normal CDF
+    const t = 1 / (1 + 0.2316419 * Math.abs(z));
+    const d = 0.3989423 * Math.exp(-z * z / 2);
+    const probability = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+    const percentile = z > 0 ? (1 - probability) * 100 : probability * 100;
+    return Math.round(percentile);
+}
+
+// Helper function to calculate variability
+function calculateVariability(values) {
+    if (!values || values.length === 0) return 0;
+    const mean = values.reduce((sum, v) => sum + v, 0) / values.length;
+    const variance = values.reduce((sum, v) => sum + Math.pow(v - mean, 2), 0) / values.length;
+    return Math.sqrt(variance);
+}
+
+// Determine experimental profile based on scores
+function determineExperimentalProfile(scores) {
+    const profiles = [];
+    
+    if (scores.nonattachment?.score > 4) profiles.push('Zen Master');
+    if (scores.gunas?.dominant === 'Sattva') profiles.push('Harmonizer');
+    if (scores.ubuntu?.score > 4.2) profiles.push('Community Builder');
+    if (scores.beauty?.score > 4) profiles.push('Aesthetic Appreciator');
+    if (scores.antifragility?.level === 'Antifragile') profiles.push('Chaos Navigator');
+    if (scores.flowProneness?.frequency === 'Frequent') profiles.push('Flow Seeker');
+    if (scores.psychologicalFlexibility?.score > 4) profiles.push('Adaptive Mind');
+    if (scores.darkFactor?.level === 'Low') profiles.push('Light Bearer');
+    if (scores.futureSelfContinuity?.score > 4) profiles.push('Visionary');
+    
+    return {
+        primary: profiles[0] || 'Explorer',
+        secondary: profiles.slice(1, 3),
+        description: generateExperimentalDescription(profiles, scores)
+    };
+}
+
+// Generate description based on experimental profile
+function generateExperimentalDescription(profiles, scores) {
+    let description = 'Your experimental psychological profile reveals ';
+    
+    if (profiles.includes('Zen Master')) {
+        description += 'exceptional non-attachment and emotional equanimity. ';
+    }
+    if (profiles.includes('Community Builder')) {
+        description += 'a deep sense of interconnectedness and communal responsibility. ';
+    }
+    if (profiles.includes('Chaos Navigator')) {
+        description += 'remarkable ability to thrive in uncertainty and grow from challenges. ';
+    }
+    
+    description += 'This cutting-edge assessment integrates Eastern philosophy, indigenous wisdom, and modern psychological research.';
+    
+    return description;
+}
+
+// Calculate confidence in experimental results
+function calculateExperimentalConfidence(responses, scores) {
+    let confidence = 70; // Base confidence for experimental measures
+    
+    // Increase confidence based on response consistency
+    const responseCount = responses.length;
+    if (responseCount > 50) confidence += 10;
+    if (responseCount > 70) confidence += 5;
+    
+    // Check for biometric data
+    if (scores.biometricAnalysis?.authenticityScore > 80) confidence += 10;
+    
+    // Check for response time consistency
+    const responseTimes = responses.map(r => r.responseTime).filter(Boolean);
+    if (responseTimes.length > 0) {
+        const avgTime = responseTimes.reduce((sum, t) => sum + t, 0) / responseTimes.length;
+        if (avgTime > 2000 && avgTime < 10000) confidence += 5; // Thoughtful responses
+    }
+    
+    return Math.min(95, confidence); // Cap at 95% for experimental
 }
 
 // Start server
