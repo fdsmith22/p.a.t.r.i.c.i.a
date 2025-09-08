@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+claude<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -523,6 +523,543 @@
             color: var(--text-secondary);
         }
 
+        /* Likert Scale */
+        .likert-scale {
+            padding: 1.5rem 0;
+        }
+        
+        .likert-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding: 0 0.5rem;
+        }
+        
+        .likert-label {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            text-align: center;
+            flex: 1;
+        }
+        
+        .likert-options {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+        
+        .likert-option {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .likert-radio {
+            display: none;
+        }
+        
+        .likert-button {
+            display: block;
+            width: 100%;
+            padding: 1rem 0.5rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .likert-radio:checked + .likert-button {
+            background: linear-gradient(135deg, var(--neural-blue) 0%, var(--neural-purple) 100%);
+            color: white;
+            border-color: var(--neural-blue);
+            transform: scale(1.05);
+        }
+        
+        .likert-button:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border-active);
+        }
+        
+        /* Frequency Scale */
+        .frequency-scale {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.75rem;
+            padding: 1.5rem 0;
+        }
+        
+        .frequency-option-single {
+            position: relative;
+        }
+        
+        .frequency-radio {
+            display: none;
+        }
+        
+        .frequency-button {
+            display: block;
+            width: 100%;
+            padding: 1.25rem 0.75rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+        
+        .frequency-radio:checked + .frequency-button {
+            background: linear-gradient(135deg, var(--neural-teal) 0%, var(--neural-green) 100%);
+            color: white;
+            border-color: var(--neural-teal);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(94, 186, 160, 0.3);
+        }
+        
+        .frequency-button:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border-active);
+            transform: translateY(-1px);
+        }
+        
+        /* Problem Solving */
+        .problem-container {
+            padding: 2rem 0;
+        }
+        
+        .problem-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .problem-input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .problem-input:focus {
+            outline: none;
+            border-color: var(--neural-blue);
+            background: var(--bg-tertiary);
+        }
+        
+        .problem-hint {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+        
+        /* Instrument Info */
+        .instrument-info {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--neural-purple);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            opacity: 0.8;
+        }
+        
+        /* Situational Judgment Tests */
+        .situational-judgment {
+            padding: 1.5rem 0;
+        }
+        
+        .situation-context {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border-left: 4px solid var(--neural-gold);
+        }
+        
+        .judgment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .judgment-option {
+            position: relative;
+        }
+        
+        .judgment-radio {
+            display: none;
+        }
+        
+        .judgment-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .judgment-radio:checked + .judgment-label {
+            background: linear-gradient(135deg, var(--neural-gold) 0%, var(--neural-coral) 100%);
+            color: white;
+            border-color: var(--neural-gold);
+            transform: translateX(4px);
+        }
+        
+        .judgment-label:hover {
+            border-color: var(--border-active);
+            background: var(--bg-card);
+        }
+        
+        .judgment-style {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            opacity: 0.8;
+        }
+        
+        /* Forced Choice */
+        .forced-choice {
+            padding: 1.5rem 0;
+        }
+        
+        .forced-prompt {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+        
+        .forced-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .forced-option {
+            position: relative;
+        }
+        
+        .forced-radio {
+            display: none;
+        }
+        
+        .forced-button {
+            display: block;
+            width: 100%;
+            padding: 1.5rem 1rem;
+            background: var(--bg-secondary);
+            border: 3px solid var(--border-color);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        .forced-radio:checked + .forced-button {
+            background: var(--bg-card);
+            border-color: var(--neural-purple);
+            box-shadow: 0 0 0 3px rgba(165, 132, 183, 0.2);
+            transform: scale(1.02);
+        }
+        
+        .forced-button:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border-active);
+        }
+        
+        /* Visual Scale */
+        .visual-scale {
+            padding: 1.5rem 0;
+        }
+        
+        .visual-instruction {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .visual-scale-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 0.5rem;
+        }
+        
+        .visual-scale-option {
+            position: relative;
+        }
+        
+        .visual-scale-radio {
+            display: none;
+        }
+        
+        .visual-scale-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.75rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .visual-scale-radio:checked + .visual-scale-label {
+            background: linear-gradient(135deg, var(--neural-teal) 0%, var(--neural-blue) 100%);
+            color: white;
+            border-color: var(--neural-teal);
+            transform: translateY(-4px);
+        }
+        
+        .visual-representation {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .visual-description {
+            font-size: 0.75rem;
+            text-align: center;
+            opacity: 0.9;
+        }
+        
+        /* Rapid Association */
+        .rapid-association {
+            padding: 2rem 0;
+        }
+        
+        .rapid-prompt {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .rapid-instruction {
+            font-size: 0.9rem;
+            color: var(--warning);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .rapid-input {
+            width: 100%;
+            padding: 1.25rem;
+            font-size: 1.1rem;
+            background: var(--bg-secondary);
+            border: 3px solid var(--border-active);
+            border-radius: 12px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .rapid-input:focus {
+            outline: none;
+            border-color: var(--neural-coral);
+            background: var(--bg-tertiary);
+            box-shadow: 0 0 20px rgba(240, 144, 144, 0.2);
+        }
+        
+        .rapid-timer {
+            margin-top: 1rem;
+            height: 6px;
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .timer-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neural-coral) 0%, var(--warning) 100%);
+            width: 100%;
+            transition: width linear;
+            transform-origin: left;
+        }
+        
+        .timer-bar.active {
+            animation: timerCountdown var(--timer-duration) linear forwards;
+        }
+        
+        @keyframes timerCountdown {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+        
+        /* Word Association */
+        .word-association {
+            padding: 1.5rem 0;
+        }
+        
+        .association-prompt {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+        
+        .word-pairs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .word-pair-option {
+            position: relative;
+        }
+        
+        .pair-radio {
+            display: none;
+        }
+        
+        .pair-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.25rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pair-radio:checked + .pair-label {
+            background: linear-gradient(135deg, var(--neural-blue) 0%, var(--neural-green) 100%);
+            color: white;
+            border-color: var(--neural-blue);
+            transform: scale(1.05);
+        }
+        
+        .word-1, .word-2 {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .pair-connector {
+            opacity: 0.5;
+            font-size: 1.2rem;
+        }
+        
+        /* Mode Selection */
+        .mode-selector {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .mode-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--neural-blue) 0%, var(--neural-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .mode-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .mode-option {
+            padding: 1.5rem;
+            background: var(--bg-tertiary);
+            border: 3px solid var(--border-color);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mode-option:hover {
+            border-color: var(--neural-blue);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(107, 155, 209, 0.2);
+        }
+        
+        .mode-option.selected {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-tertiary) 100%);
+            border-color: var(--neural-purple);
+            box-shadow: 0 0 0 3px rgba(165, 132, 183, 0.2);
+        }
+        
+        .mode-option.selected::before {
+            content: '✓';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 30px;
+            height: 30px;
+            background: var(--neural-purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .mode-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .mode-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .mode-features {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+        }
+        
+        .mode-feature {
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .mode-feature::before {
+            content: '•';
+            color: var(--neural-blue);
+        }
+        
         /* Slider */
         .slider-container {
             padding: 2rem 0;
@@ -1674,31 +2211,2332 @@
             }
         ];
 
-        // Research-based psychological assessment with validated measures
-        // Based on: NEO-PI-R, HEXACO-PI-R, RAADS-R, AQ-10, ASRS, BRIEF-A, Dark Triad
-        const assessmentQuestions = [
-            // === BASELINE & EMOTIONAL CALIBRATION ===
+        // =====================================
+        // VALIDATED ASSESSMENT FRAMEWORKS
+        // =====================================
+        
+        // Assessment configuration with tiered structure
+        const assessmentConfig = {
+            version: '3.0.0',
+            tiers: {
+                core: 'Core Screening (20-25 min)',
+                comprehensive: 'Comprehensive Assessment (45-60 min)',
+                specialized: 'Specialized Modules (as needed)',
+                experimental: 'Experimental Cutting-Edge (30-40 min)'
+            },
+            currentTier: 'core',
+            mode: 'validated', // 'validated' or 'experimental'
+            adaptiveTesting: true,
+            psychometricValidation: true,
+            culturalAdaptation: true,
+            biometricTracking: false
+        };
+
+        // Psychometric properties and norms
+        const psychometricData = {
+            bigFive: {
+                reliability: { min: 0.82, max: 0.85 },
+                facets: 15,
+                items: { full: 60, short: 30 },
+                norms: {
+                    extraversion: { mean: 3.25, sd: 0.90 },
+                    agreeableness: { mean: 3.64, sd: 0.72 },
+                    conscientiousness: { mean: 3.45, sd: 0.73 },
+                    neuroticism: { mean: 2.97, sd: 0.89 },
+                    openness: { mean: 3.66, sd: 0.76 }
+                }
+            },
+            hexaco: {
+                reliability: { alpha: 0.80 },
+                crossCultural: { countries: 48, n: 347192 },
+                genderDifference: { honestyHumility: { d: 0.37 } }
+            },
+            darkTetrad: {
+                reliability: { min: 0.69, max: 0.85 },
+                items: 28,
+                factors: ['machiavellianism', 'narcissism', 'psychopathy', 'sadism']
+            },
+            adhd: {
+                sensitivity: 0.90,
+                specificity: 0.88,
+                cutoff: 14,
+                auc: 0.904
+            },
+            autism: {
+                sensitivity: 0.97,
+                specificity: 1.00,
+                cutoff: 65
+            },
+            stress: {
+                communityMean: 15.3,
+                sd: 7.49,
+                validity: '4-8 weeks'
+            },
+            resilience: {
+                communityMean: 31.8,
+                sd: 5.4,
+                reliability: { min: 0.85, max: 0.90 }
+            }
+        };
+
+        // Response bias detection parameters
+        const biasDetection = {
+            responseTime: {
+                minimum: 2000, // milliseconds
+                flagThreshold: 1500
+            },
+            longString: {
+                threshold: 5 // consecutive same responses
+            },
+            socialDesirability: {
+                items: ['sd_1', 'sd_2', 'sd_3'] // embedded items
+            },
+            carelessResponding: {
+                mahalonobisThreshold: 3.5
+            }
+        };
+
+        // =====================================
+        // TIER 1: CORE SCREENING QUESTIONS
+        // =====================================
+        
+        const coreScreeningQuestions = [
+            // === BFI-2-S: Big Five Inventory Short Form (30 items) ===
+            // EXTRAVERSION FACETS
             {
-                id: 'baseline_affect',
-                type: 'visual_grid',
-                category: 'emotional_baseline',
-                text: 'Which emotions resonate with you right now?',
-                instruction: 'Select all that apply - this calibrates the assessment to your current state',
-                options: [
-                    { emoji: '⚡', text: 'Energized', value: 'positive_activation' },
-                    { emoji: '🌊', text: 'Calm', value: 'positive_deactivation' },
-                    { emoji: '🔥', text: 'Passionate', value: 'engaged_motivated' },
-                    { emoji: '❄️', text: 'Detached', value: 'negative_deactivation' },
-                    { emoji: '🌪️', text: 'Restless', value: 'negative_activation' },
-                    { emoji: '🌱', text: 'Hopeful', value: 'positive_future' },
-                    { emoji: '🏔️', text: 'Grounded', value: 'centered_present' },
-                    { emoji: '🌫️', text: 'Unclear', value: 'confused_uncertain' }
-                ],
-                multiSelect: true,
-                research: 'PANAS (Watson et al., 1988)'
+                id: 'bfi2_e1_sociability',
+                type: 'likert',
+                category: 'extraversion',
+                facet: 'sociability',
+                text: 'I am someone who is outgoing and sociable',
+                scale: 5,
+                labels: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'],
+                scoring: 'normal',
+                instrument: 'BFI-2-S',
+                reliability: 0.84
+            },
+            {
+                id: 'bfi2_e2_assertiveness',
+                type: 'likert',
+                category: 'extraversion',
+                facet: 'assertiveness',
+                text: 'I am someone who has an assertive personality',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_e3_energy',
+                type: 'likert',
+                category: 'extraversion',
+                facet: 'energy_level',
+                text: 'I am someone who is full of energy',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_e4_sociability_r',
+                type: 'likert',
+                category: 'extraversion',
+                facet: 'sociability',
+                text: 'I am someone who prefers to have others take the lead',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_e5_assertiveness_r',
+                type: 'likert',
+                category: 'extraversion',
+                facet: 'assertiveness',
+                text: 'I am someone who is less active than other people',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_e6_energy_r',
+                type: 'likert',
+                category: 'extraversion',
+                facet: 'energy_level',
+                text: 'I am someone who tends to be quiet',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+
+            // AGREEABLENESS FACETS
+            {
+                id: 'bfi2_a1_compassion',
+                type: 'likert',
+                category: 'agreeableness',
+                facet: 'compassion',
+                text: 'I am someone who is compassionate and has a soft heart',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_a2_respectfulness',
+                type: 'likert',
+                category: 'agreeableness',
+                facet: 'respectfulness',
+                text: 'I am someone who is respectful and treats others with respect',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_a3_trust',
+                type: 'likert',
+                category: 'agreeableness',
+                facet: 'trust',
+                text: 'I am someone who assumes the best about people',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_a4_compassion_r',
+                type: 'likert',
+                category: 'agreeableness',
+                facet: 'compassion',
+                text: 'I am someone who feels little sympathy for others',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_a5_respectfulness_r',
+                type: 'likert',
+                category: 'agreeableness',
+                facet: 'respectfulness',
+                text: 'I am someone who can be cold and uncaring',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_a6_trust_r',
+                type: 'likert',
+                category: 'agreeableness',
+                facet: 'trust',
+                text: 'I am someone who is suspicious of others\' intentions',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+
+            // CONSCIENTIOUSNESS FACETS
+            {
+                id: 'bfi2_c1_organization',
+                type: 'likert',
+                category: 'conscientiousness',
+                facet: 'organization',
+                text: 'I am someone who is organized',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_c2_productiveness',
+                type: 'likert',
+                category: 'conscientiousness',
+                facet: 'productiveness',
+                text: 'I am someone who is persistent and works until the task is finished',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_c3_responsibility',
+                type: 'likert',
+                category: 'conscientiousness',
+                facet: 'responsibility',
+                text: 'I am someone who is reliable and can always be counted on',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_c4_organization_r',
+                type: 'likert',
+                category: 'conscientiousness',
+                facet: 'organization',
+                text: 'I am someone who tends to be disorganized',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_c5_productiveness_r',
+                type: 'likert',
+                category: 'conscientiousness',
+                facet: 'productiveness',
+                text: 'I am someone who tends to be lazy',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_c6_responsibility_r',
+                type: 'likert',
+                category: 'conscientiousness',
+                facet: 'responsibility',
+                text: 'I am someone who can be somewhat careless',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+
+            // NEGATIVE EMOTIONALITY (NEUROTICISM) FACETS
+            {
+                id: 'bfi2_n1_anxiety',
+                type: 'likert',
+                category: 'neuroticism',
+                facet: 'anxiety',
+                text: 'I am someone who worries a lot',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_n2_depression',
+                type: 'likert',
+                category: 'neuroticism',
+                facet: 'depression',
+                text: 'I am someone who tends to feel depressed and blue',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_n3_volatility',
+                type: 'likert',
+                category: 'neuroticism',
+                facet: 'emotional_volatility',
+                text: 'I am someone who is temperamental and gets emotional easily',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_n4_anxiety_r',
+                type: 'likert',
+                category: 'neuroticism',
+                facet: 'anxiety',
+                text: 'I am someone who is relaxed and handles stress well',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_n5_depression_r',
+                type: 'likert',
+                category: 'neuroticism',
+                facet: 'depression',
+                text: 'I am someone who feels secure and comfortable with self',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_n6_volatility_r',
+                type: 'likert',
+                category: 'neuroticism',
+                facet: 'emotional_volatility',
+                text: 'I am someone who is emotionally stable and not easily upset',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+
+            // OPEN-MINDEDNESS (OPENNESS) FACETS
+            {
+                id: 'bfi2_o1_curiosity',
+                type: 'likert',
+                category: 'openness',
+                facet: 'intellectual_curiosity',
+                text: 'I am someone who is curious about many different things',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_o2_aesthetic',
+                type: 'likert',
+                category: 'openness',
+                facet: 'aesthetic_sensitivity',
+                text: 'I am someone who is fascinated by art, music, or literature',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_o3_imagination',
+                type: 'likert',
+                category: 'openness',
+                facet: 'creative_imagination',
+                text: 'I am someone who has an active imagination',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_o4_curiosity_r',
+                type: 'likert',
+                category: 'openness',
+                facet: 'intellectual_curiosity',
+                text: 'I am someone who has little interest in abstract ideas',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_o5_aesthetic_r',
+                type: 'likert',
+                category: 'openness',
+                facet: 'aesthetic_sensitivity',
+                text: 'I am someone who has little creative ability',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+            {
+                id: 'bfi2_o6_imagination_r',
+                type: 'likert',
+                category: 'openness',
+                facet: 'creative_imagination',
+                text: 'I am someone who has difficulty imagining things',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'BFI-2-S'
+            },
+
+            // === HEXACO-60 HONESTY-HUMILITY ITEMS ===
+            {
+                id: 'hexaco_h1_sincerity',
+                type: 'likert',
+                category: 'honesty_humility',
+                facet: 'sincerity',
+                text: 'I wouldn\'t use flattery to get a raise or promotion at work, even if I thought it would succeed',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'HEXACO-60',
+                reliability: 0.82
+            },
+            {
+                id: 'hexaco_h2_fairness',
+                type: 'likert',
+                category: 'honesty_humility',
+                facet: 'fairness',
+                text: 'If I knew that I could never get caught, I would be willing to steal a million dollars',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'HEXACO-60'
+            },
+            {
+                id: 'hexaco_h3_greed_avoidance',
+                type: 'likert',
+                category: 'honesty_humility',
+                facet: 'greed_avoidance',
+                text: 'Having a lot of money is not especially important to me',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'HEXACO-60'
+            },
+            {
+                id: 'hexaco_h4_modesty',
+                type: 'likert',
+                category: 'honesty_humility',
+                facet: 'modesty',
+                text: 'I think that I am entitled to more respect than the average person is',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'HEXACO-60'
+            },
+
+            // === ASRS-5: ADHD SCREENING (6 items) ===
+            {
+                id: 'asrs_1',
+                type: 'frequency',
+                category: 'adhd_inattention',
+                text: 'How often do you have difficulty concentrating on what people say to you, even when they are speaking to you directly?',
+                scale: 5,
+                labels: ['Never', 'Rarely', 'Sometimes', 'Often', 'Very Often'],
+                scoring: 'normal',
+                instrument: 'ASRS-5',
+                clinical_weight: 2
+            },
+            {
+                id: 'asrs_2',
+                type: 'frequency',
+                category: 'adhd_hyperactivity',
+                text: 'How often do you leave your seat in meetings or other situations in which you are expected to remain seated?',
+                scale: 5,
+                labels: ['Never', 'Rarely', 'Sometimes', 'Often', 'Very Often'],
+                scoring: 'normal',
+                instrument: 'ASRS-5',
+                clinical_weight: 2
+            },
+            {
+                id: 'asrs_3',
+                type: 'frequency',
+                category: 'adhd_inattention',
+                text: 'How often do you have difficulty unwinding and relaxing when you have time to yourself?',
+                scale: 5,
+                labels: ['Never', 'Rarely', 'Sometimes', 'Often', 'Very Often'],
+                scoring: 'normal',
+                instrument: 'ASRS-5',
+                clinical_weight: 3
+            },
+            {
+                id: 'asrs_4',
+                type: 'frequency',
+                category: 'adhd_hyperactivity',
+                text: 'When you\'re in a conversation, how often do you find yourself finishing the sentences of the people you are talking to before they can finish them themselves?',
+                scale: 5,
+                labels: ['Never', 'Rarely', 'Sometimes', 'Often', 'Very Often'],
+                scoring: 'normal',
+                instrument: 'ASRS-5',
+                clinical_weight: 2
+            },
+            {
+                id: 'asrs_5',
+                type: 'frequency',
+                category: 'adhd_inattention',
+                text: 'How often do you put things off until the last minute?',
+                scale: 5,
+                labels: ['Never', 'Rarely', 'Sometimes', 'Often', 'Very Often'],
+                scoring: 'normal',
+                instrument: 'ASRS-5',
+                clinical_weight: 3
+            },
+            {
+                id: 'asrs_6',
+                type: 'frequency',
+                category: 'adhd_hyperactivity',
+                text: 'How often do you depend on others to keep your life in order and attend to details?',
+                scale: 5,
+                labels: ['Never', 'Rarely', 'Sometimes', 'Often', 'Very Often'],
+                scoring: 'normal',
+                instrument: 'ASRS-5',
+                clinical_weight: 2
+            },
+
+            // === AQ-10: AUTISM SPECTRUM SCREENING ===
+            {
+                id: 'aq10_1',
+                type: 'likert',
+                category: 'asd_social',
+                text: 'I often notice small sounds when others do not',
+                scale: 4,
+                labels: ['Definitely Disagree', 'Slightly Disagree', 'Slightly Agree', 'Definitely Agree'],
+                scoring: 'asd_positive',
+                instrument: 'AQ-10',
+                cutoff_contribution: 1
+            },
+            {
+                id: 'aq10_2',
+                type: 'likert',
+                category: 'asd_attention',
+                text: 'I usually concentrate more on the whole picture, rather than the small details',
+                scale: 4,
+                labels: ['Definitely Disagree', 'Slightly Disagree', 'Slightly Agree', 'Definitely Agree'],
+                scoring: 'asd_negative',
+                instrument: 'AQ-10'
+            },
+            {
+                id: 'aq10_3',
+                type: 'likert',
+                category: 'asd_social',
+                text: 'I find it easy to do more than one thing at once',
+                scale: 4,
+                labels: ['Definitely Disagree', 'Slightly Disagree', 'Slightly Agree', 'Definitely Agree'],
+                scoring: 'asd_negative',
+                instrument: 'AQ-10'
+            },
+            {
+                id: 'aq10_4',
+                type: 'likert',
+                category: 'asd_communication',
+                text: 'If there is an interruption, I can switch back to what I was doing very quickly',
+                scale: 4,
+                labels: ['Definitely Disagree', 'Slightly Disagree', 'Slightly Agree', 'Definitely Agree'],
+                scoring: 'asd_negative',
+                instrument: 'AQ-10'
+            },
+            {
+                id: 'aq10_5',
+                type: 'likert',
+                category: 'asd_social',
+                text: 'I find it easy to "read between the lines" when someone is talking to me',
+                scale: 4,
+                labels: ['Definitely Disagree', 'Slightly Disagree', 'Slightly Agree', 'Definitely Agree'],
+                scoring: 'asd_negative',
+                instrument: 'AQ-10'
+            },
+
+            // === PSS-10: PERCEIVED STRESS SCALE ===
+            {
+                id: 'pss_1',
+                type: 'frequency',
+                category: 'stress_perception',
+                text: 'In the last month, how often have you been upset because of something that happened unexpectedly?',
+                scale: 5,
+                labels: ['Never', 'Almost Never', 'Sometimes', 'Fairly Often', 'Very Often'],
+                scoring: 'normal',
+                instrument: 'PSS-10',
+                timeframe: 'last_month'
+            },
+            {
+                id: 'pss_2',
+                type: 'frequency',
+                category: 'stress_perception',
+                text: 'In the last month, how often have you felt that you were unable to control the important things in your life?',
+                scale: 5,
+                labels: ['Never', 'Almost Never', 'Sometimes', 'Fairly Often', 'Very Often'],
+                scoring: 'normal',
+                instrument: 'PSS-10'
+            },
+            {
+                id: 'pss_3',
+                type: 'frequency',
+                category: 'stress_perception',
+                text: 'In the last month, how often have you felt nervous and stressed?',
+                scale: 5,
+                labels: ['Never', 'Almost Never', 'Sometimes', 'Fairly Often', 'Very Often'],
+                scoring: 'normal',
+                instrument: 'PSS-10'
+            },
+            {
+                id: 'pss_4',
+                type: 'frequency',
+                category: 'stress_coping',
+                text: 'In the last month, how often have you felt confident about your ability to handle your personal problems?',
+                scale: 5,
+                labels: ['Never', 'Almost Never', 'Sometimes', 'Fairly Often', 'Very Often'],
+                scoring: 'reverse',
+                instrument: 'PSS-10'
+            },
+            {
+                id: 'pss_5',
+                type: 'frequency',
+                category: 'stress_coping',
+                text: 'In the last month, how often have you felt that things were going your way?',
+                scale: 5,
+                labels: ['Never', 'Almost Never', 'Sometimes', 'Fairly Often', 'Very Often'],
+                scoring: 'reverse',
+                instrument: 'PSS-10'
+            },
+
+            // === CD-RISC-10: RESILIENCE SCALE ===
+            {
+                id: 'cdrisc_1',
+                type: 'likert',
+                category: 'resilience',
+                text: 'I am able to adapt when changes occur',
+                scale: 5,
+                labels: ['Not True At All', 'Rarely True', 'Sometimes True', 'Often True', 'True Nearly All The Time'],
+                scoring: 'normal',
+                instrument: 'CD-RISC-10',
+                reliability: 0.87
+            },
+            {
+                id: 'cdrisc_2',
+                type: 'likert',
+                category: 'resilience',
+                text: 'I can deal with whatever comes my way',
+                scale: 5,
+                labels: ['Not True At All', 'Rarely True', 'Sometimes True', 'Often True', 'True Nearly All The Time'],
+                scoring: 'normal',
+                instrument: 'CD-RISC-10'
+            },
+            {
+                id: 'cdrisc_3',
+                type: 'likert',
+                category: 'resilience',
+                text: 'I try to see the humorous side of things when I am faced with problems',
+                scale: 5,
+                labels: ['Not True At All', 'Rarely True', 'Sometimes True', 'Often True', 'True Nearly All The Time'],
+                scoring: 'normal',
+                instrument: 'CD-RISC-10'
+            },
+            {
+                id: 'cdrisc_4',
+                type: 'likert',
+                category: 'resilience',
+                text: 'Having to cope with stress can make me stronger',
+                scale: 5,
+                labels: ['Not True At All', 'Rarely True', 'Sometimes True', 'Often True', 'True Nearly All The Time'],
+                scoring: 'normal',
+                instrument: 'CD-RISC-10'
+            },
+            {
+                id: 'cdrisc_5',
+                type: 'likert',
+                category: 'resilience',
+                text: 'I tend to bounce back after illness, injury, or other hardships',
+                scale: 5,
+                labels: ['Not True At All', 'Rarely True', 'Sometimes True', 'Often True', 'True Nearly All The Time'],
+                scoring: 'normal',
+                instrument: 'CD-RISC-10'
+        ];
+
+        // =====================================
+        // TIER 2: COMPREHENSIVE ASSESSMENT
+        // =====================================
+        
+        const comprehensiveAssessmentQuestions = [
+            // === SD4: SHORT DARK TETRAD (28 items) ===
+            // MACHIAVELLIANISM
+            {
+                id: 'sd4_m1',
+                type: 'likert',
+                category: 'dark_machiavellianism',
+                text: 'It\'s not wise to tell your secrets',
+                scale: 5,
+                labels: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'],
+                scoring: 'normal',
+                instrument: 'SD4',
+                reliability: 0.83
+            },
+            {
+                id: 'sd4_m2',
+                type: 'likert',
+                category: 'dark_machiavellianism',
+                text: 'I like to use clever manipulation to get my way',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_m3',
+                type: 'likert',
+                category: 'dark_machiavellianism',
+                text: 'Whatever it takes, you must get the important people on your side',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_m4',
+                type: 'likert',
+                category: 'dark_machiavellianism',
+                text: 'Avoid direct conflict with others because they may be useful in the future',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_m5',
+                type: 'likert',
+                category: 'dark_machiavellianism',
+                text: 'It\'s wise to keep track of information that you can use against people later',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_m6',
+                type: 'likert',
+                category: 'dark_machiavellianism',
+                text: 'You should wait for the right time to get back at people',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_m7',
+                type: 'likert',
+                category: 'dark_machiavellianism',
+                text: 'There are things you should hide from other people to preserve your reputation',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+
+            // NARCISSISM
+            {
+                id: 'sd4_n1',
+                type: 'likert',
+                category: 'dark_narcissism',
+                text: 'People see me as a natural leader',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4',
+                reliability: 0.78
+            },
+            {
+                id: 'sd4_n2',
+                type: 'likert',
+                category: 'dark_narcissism',
+                text: 'I hate being the center of attention',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_n3',
+                type: 'likert',
+                category: 'dark_narcissism',
+                text: 'Many group activities tend to be dull without me',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_n4',
+                type: 'likert',
+                category: 'dark_narcissism',
+                text: 'I know that I am special because everyone keeps telling me so',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_n5',
+                type: 'likert',
+                category: 'dark_narcissism',
+                text: 'I like to get acquainted with important people',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_n6',
+                type: 'likert',
+                category: 'dark_narcissism',
+                text: 'I feel embarrassed if someone compliments me',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_n7',
+                type: 'likert',
+                category: 'dark_narcissism',
+                text: 'I have been compared to famous people',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+
+            // PSYCHOPATHY
+            {
+                id: 'sd4_p1',
+                type: 'likert',
+                category: 'dark_psychopathy',
+                text: 'I like to get revenge on authorities',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4',
+                reliability: 0.80
+            },
+            {
+                id: 'sd4_p2',
+                type: 'likert',
+                category: 'dark_psychopathy',
+                text: 'I avoid dangerous situations',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_p3',
+                type: 'likert',
+                category: 'dark_psychopathy',
+                text: 'Payback needs to be quick and nasty',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_p4',
+                type: 'likert',
+                category: 'dark_psychopathy',
+                text: 'People often say I\'m out of control',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_p5',
+                type: 'likert',
+                category: 'dark_psychopathy',
+                text: 'It\'s true that I can be mean to others',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_p6',
+                type: 'likert',
+                category: 'dark_psychopathy',
+                text: 'People who mess with me always regret it',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_p7',
+                type: 'likert',
+                category: 'dark_psychopathy',
+                text: 'I have never gotten into trouble with the law',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'SD4'
+            },
+
+            // SADISM
+            {
+                id: 'sd4_s1',
+                type: 'likert',
+                category: 'dark_sadism',
+                text: 'I enjoy watching YouTube clips of people fighting',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4',
+                reliability: 0.85
+            },
+            {
+                id: 'sd4_s2',
+                type: 'likert',
+                category: 'dark_sadism',
+                text: 'I think about hurting people who irritate me',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_s3',
+                type: 'likert',
+                category: 'dark_sadism',
+                text: 'I would hurt somebody if it meant I would be in control',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_s4',
+                type: 'likert',
+                category: 'dark_sadism',
+                text: 'When I mock someone, it\'s funny to see them get upset',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_s5',
+                type: 'likert',
+                category: 'dark_sadism',
+                text: 'Being mean to others can be exciting',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_s6',
+                type: 'likert',
+                category: 'dark_sadism',
+                text: 'I get pleasure from mocking people in front of their friends',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+            {
+                id: 'sd4_s7',
+                type: 'likert',
+                category: 'dark_sadism',
+                text: 'Watching a fist fight excites me',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'SD4'
+            },
+
+            // === BRIEF-A: EXECUTIVE FUNCTION (Selected Items) ===
+            {
+                id: 'brief_1_inhibit',
+                type: 'frequency',
+                category: 'executive_inhibition',
+                text: 'I tap my fingers or bounce my legs',
+                scale: 3,
+                labels: ['Never', 'Sometimes', 'Often'],
+                scoring: 'normal',
+                instrument: 'BRIEF-A',
+                subscale: 'Inhibit'
+            },
+            {
+                id: 'brief_2_shift',
+                type: 'frequency',
+                category: 'executive_shift',
+                text: 'I have trouble changing from one activity or task to another',
+                scale: 3,
+                labels: ['Never', 'Sometimes', 'Often'],
+                scoring: 'normal',
+                instrument: 'BRIEF-A',
+                subscale: 'Shift'
+            },
+            {
+                id: 'brief_3_emotional',
+                type: 'frequency',
+                category: 'executive_emotional',
+                text: 'I have emotional outbursts for little reason',
+                scale: 3,
+                labels: ['Never', 'Sometimes', 'Often'],
+                scoring: 'normal',
+                instrument: 'BRIEF-A',
+                subscale: 'Emotional Control'
+            },
+            {
+                id: 'brief_4_initiate',
+                type: 'frequency',
+                category: 'executive_initiate',
+                text: 'I have trouble getting started on tasks',
+                scale: 3,
+                labels: ['Never', 'Sometimes', 'Often'],
+                scoring: 'normal',
+                instrument: 'BRIEF-A',
+                subscale: 'Initiate'
+            },
+            {
+                id: 'brief_5_working_memory',
+                type: 'frequency',
+                category: 'executive_memory',
+                text: 'I have trouble with jobs or tasks that have more than one step',
+                scale: 3,
+                labels: ['Never', 'Sometimes', 'Often'],
+                scoring: 'normal',
+                instrument: 'BRIEF-A',
+                subscale: 'Working Memory'
+            },
+            {
+                id: 'brief_6_plan',
+                type: 'frequency',
+                category: 'executive_planning',
+                text: 'I have trouble prioritizing activities',
+                scale: 3,
+                labels: ['Never', 'Sometimes', 'Often'],
+                scoring: 'normal',
+                instrument: 'BRIEF-A',
+                subscale: 'Plan/Organize'
+            },
+            {
+                id: 'brief_7_monitor',
+                type: 'frequency',
+                category: 'executive_monitor',
+                text: 'I make careless errors when completing tasks',
+                scale: 3,
+                labels: ['Never', 'Sometimes', 'Often'],
+                scoring: 'normal',
+                instrument: 'BRIEF-A',
+                subscale: 'Task Monitor'
+            },
+            {
+                id: 'brief_8_organization',
+                type: 'frequency',
+                category: 'executive_organization',
+                text: 'My room is a mess',
+                scale: 3,
+                labels: ['Never', 'Sometimes', 'Often'],
+                scoring: 'normal',
+                instrument: 'BRIEF-A',
+                subscale: 'Organization of Materials'
+            },
+
+            // === ERQ: EMOTION REGULATION QUESTIONNAIRE ===
+            {
+                id: 'erq_1_reappraisal',
+                type: 'likert',
+                category: 'emotion_reappraisal',
+                text: 'When I want to feel more positive emotion, I change what I\'m thinking about',
+                scale: 7,
+                labels: ['Strongly Disagree', '', '', 'Neutral', '', '', 'Strongly Agree'],
+                scoring: 'normal',
+                instrument: 'ERQ',
+                reliability: 0.79
+            },
+            {
+                id: 'erq_2_reappraisal',
+                type: 'likert',
+                category: 'emotion_reappraisal',
+                text: 'When I want to feel less negative emotion, I change what I\'m thinking about',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'ERQ'
+            },
+            {
+                id: 'erq_3_reappraisal',
+                type: 'likert',
+                category: 'emotion_reappraisal',
+                text: 'When I\'m faced with a stressful situation, I make myself think about it in a way that helps me stay calm',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'ERQ'
+            },
+            {
+                id: 'erq_4_reappraisal',
+                type: 'likert',
+                category: 'emotion_reappraisal',
+                text: 'When I want to feel more positive emotion, I change the way I\'m thinking about the situation',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'ERQ'
+            },
+            {
+                id: 'erq_5_reappraisal',
+                type: 'likert',
+                category: 'emotion_reappraisal',
+                text: 'I control my emotions by changing the way I think about the situation I\'m in',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'ERQ'
+            },
+            {
+                id: 'erq_6_reappraisal',
+                type: 'likert',
+                category: 'emotion_reappraisal',
+                text: 'When I want to feel less negative emotion, I change the way I\'m thinking about the situation',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'ERQ'
+            },
+            {
+                id: 'erq_7_suppression',
+                type: 'likert',
+                category: 'emotion_suppression',
+                text: 'I keep my emotions to myself',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'ERQ',
+                reliability: 0.73
+            },
+            {
+                id: 'erq_8_suppression',
+                type: 'likert',
+                category: 'emotion_suppression',
+                text: 'When I am feeling positive emotions, I am careful not to express them',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'ERQ'
+            },
+            {
+                id: 'erq_9_suppression',
+                type: 'likert',
+                category: 'emotion_suppression',
+                text: 'I control my emotions by not expressing them',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'ERQ'
+            },
+            {
+                id: 'erq_10_suppression',
+                type: 'likert',
+                category: 'emotion_suppression',
+                text: 'When I am feeling negative emotions, I make sure not to express them',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'ERQ'
+            },
+
+            // === DERS-16: DIFFICULTIES IN EMOTION REGULATION SCALE ===
+            {
+                id: 'ders_1_clarity',
+                type: 'frequency',
+                category: 'emotion_clarity',
+                text: 'I have difficulty making sense out of my feelings',
+                scale: 5,
+                labels: ['Almost Never', 'Sometimes', 'About Half the Time', 'Most of the Time', 'Almost Always'],
+                scoring: 'normal',
+                instrument: 'DERS-16',
+                subscale: 'Clarity'
+            },
+            {
+                id: 'ders_2_goals',
+                type: 'frequency',
+                category: 'emotion_goals',
+                text: 'When I\'m upset, I have difficulty getting work done',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'DERS-16',
+                subscale: 'Goals'
+            },
+            {
+                id: 'ders_3_impulse',
+                type: 'frequency',
+                category: 'emotion_impulse',
+                text: 'When I\'m upset, I become out of control',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'DERS-16',
+                subscale: 'Impulse'
+            },
+            {
+                id: 'ders_4_awareness',
+                type: 'frequency',
+                category: 'emotion_awareness',
+                text: 'I pay attention to how I feel',
+                scale: 5,
+                scoring: 'reverse',
+                instrument: 'DERS-16',
+                subscale: 'Awareness'
+            },
+            {
+                id: 'ders_5_strategies',
+                type: 'frequency',
+                category: 'emotion_strategies',
+                text: 'When I\'m upset, I believe that I will remain that way for a long time',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'DERS-16',
+                subscale: 'Strategies'
+            },
+            {
+                id: 'ders_6_nonacceptance',
+                type: 'frequency',
+                category: 'emotion_nonacceptance',
+                text: 'When I\'m upset, I feel ashamed for feeling that way',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'DERS-16',
+                subscale: 'Non-acceptance'
+            },
+
+            // === IRI-16: INTERPERSONAL REACTIVITY INDEX (Brief) ===
+            {
+                id: 'iri_1_perspective',
+                type: 'likert',
+                category: 'empathy_perspective',
+                text: 'I try to look at everybody\'s side of a disagreement before I make a decision',
+                scale: 5,
+                labels: ['Does not describe me well', '', 'Neutral', '', 'Describes me very well'],
+                scoring: 'normal',
+                instrument: 'IRI-16',
+                subscale: 'Perspective Taking',
+                reliability: 0.75
+            },
+            {
+                id: 'iri_2_fantasy',
+                type: 'likert',
+                category: 'empathy_fantasy',
+                text: 'I really get involved with the feelings of the characters in a novel',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'IRI-16',
+                subscale: 'Fantasy'
+            },
+            {
+                id: 'iri_3_concern',
+                type: 'likert',
+                category: 'empathy_concern',
+                text: 'I often have tender, concerned feelings for people less fortunate than me',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'IRI-16',
+                subscale: 'Empathic Concern'
+            },
+            {
+                id: 'iri_4_distress',
+                type: 'likert',
+                category: 'empathy_distress',
+                text: 'In emergency situations, I feel apprehensive and ill-at-ease',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'IRI-16',
+                subscale: 'Personal Distress'
+            },
+            {
+                id: 'iri_5_perspective',
+                type: 'likert',
+                category: 'empathy_perspective',
+                text: 'When I\'m upset at someone, I usually try to "put myself in their shoes" for a while',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'IRI-16',
+                subscale: 'Perspective Taking'
+            },
+            {
+                id: 'iri_6_fantasy',
+                type: 'likert',
+                category: 'empathy_fantasy',
+                text: 'After seeing a play or movie, I have felt as though I were one of the characters',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'IRI-16',
+                subscale: 'Fantasy'
+            },
+            {
+                id: 'iri_7_concern',
+                type: 'likert',
+                category: 'empathy_concern',
+                text: 'When I see someone being taken advantage of, I feel kind of protective towards them',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'IRI-16',
+                subscale: 'Empathic Concern'
+            },
+            {
+                id: 'iri_8_distress',
+                type: 'likert',
+                category: 'empathy_distress',
+                text: 'I sometimes feel helpless when I am in the middle of a very emotional situation',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'IRI-16',
+                subscale: 'Personal Distress'
+            },
+
+            // === BRIEF COPE (Selected Subscales) ===
+            {
+                id: 'cope_1_active',
+                type: 'frequency',
+                category: 'coping_problem',
+                text: 'I concentrate my efforts on doing something about the situation I\'m in',
+                scale: 4,
+                labels: ['I haven\'t been doing this at all', 'A little bit', 'A medium amount', 'I\'ve been doing this a lot'],
+                scoring: 'normal',
+                instrument: 'Brief-COPE',
+                subscale: 'Active Coping'
+            },
+            {
+                id: 'cope_2_planning',
+                type: 'frequency',
+                category: 'coping_problem',
+                text: 'I try to come up with a strategy about what to do',
+                scale: 4,
+                scoring: 'normal',
+                instrument: 'Brief-COPE',
+                subscale: 'Planning'
+            },
+            {
+                id: 'cope_3_positive',
+                type: 'frequency',
+                category: 'coping_emotion',
+                text: 'I try to see it in a different light, to make it seem more positive',
+                scale: 4,
+                scoring: 'normal',
+                instrument: 'Brief-COPE',
+                subscale: 'Positive Reframing'
+            },
+            {
+                id: 'cope_4_acceptance',
+                type: 'frequency',
+                category: 'coping_emotion',
+                text: 'I accept the reality of the fact that it has happened',
+                scale: 4,
+                scoring: 'normal',
+                instrument: 'Brief-COPE',
+                subscale: 'Acceptance'
+            },
+            {
+                id: 'cope_5_humor',
+                type: 'frequency',
+                category: 'coping_emotion',
+                text: 'I make jokes about it',
+                scale: 4,
+                scoring: 'normal',
+                instrument: 'Brief-COPE',
+                subscale: 'Humor'
+            },
+            {
+                id: 'cope_6_emotional',
+                type: 'frequency',
+                category: 'coping_emotion',
+                text: 'I get emotional support from others',
+                scale: 4,
+                scoring: 'normal',
+                instrument: 'Brief-COPE',
+                subscale: 'Emotional Support'
+            },
+            {
+                id: 'cope_7_denial',
+                type: 'frequency',
+                category: 'coping_dysfunctional',
+                text: 'I refuse to believe that it has happened',
+                scale: 4,
+                scoring: 'normal',
+                instrument: 'Brief-COPE',
+                subscale: 'Denial'
+            },
+            {
+                id: 'cope_8_behavioral',
+                type: 'frequency',
+                category: 'coping_dysfunctional',
+                text: 'I give up trying to deal with it',
+                scale: 4,
+                scoring: 'normal',
+                instrument: 'Brief-COPE',
+                subscale: 'Behavioral Disengagement'
+            },
+            {
+                id: 'cope_9_venting',
+                type: 'frequency',
+                category: 'coping_dysfunctional',
+                text: 'I express my negative feelings',
+                scale: 4,
+                scoring: 'normal',
+                instrument: 'Brief-COPE',
+                subscale: 'Venting'
+            },
+            {
+                id: 'cope_10_self_blame',
+                type: 'frequency',
+                category: 'coping_dysfunctional',
+                text: 'I criticize myself',
+                scale: 4,
+                scoring: 'normal',
+                instrument: 'Brief-COPE',
+                subscale: 'Self-Blame'
+            }
+        ];
+
+        // =====================================
+        // TIER 3: SPECIALIZED MODULES
+        // =====================================
+        
+        const specializedModules = {
+            // RAADS-R: Detailed Autism Assessment
+            autism_detailed: [
+                {
+                    id: 'raads_1_language',
+                    type: 'likert',
+                    category: 'asd_language',
+                    text: 'I take things too literally, so I often miss what people are trying to say',
+                    scale: 4,
+                    labels: ['Never True', 'True only when I was younger', 'True only now', 'True now and when I was young'],
+                    scoring: 'raads',
+                    instrument: 'RAADS-R',
+                    domain: 'Language'
+                },
+                {
+                    id: 'raads_2_social',
+                    type: 'likert',
+                    category: 'asd_social',
+                    text: 'I often don\'t know how to act in social situations',
+                    scale: 4,
+                    scoring: 'raads',
+                    instrument: 'RAADS-R',
+                    domain: 'Social Relatedness'
+                },
+                {
+                    id: 'raads_3_sensory',
+                    type: 'likert',
+                    category: 'asd_sensory',
+                    text: 'I get extremely upset when the way I like to do things is suddenly changed',
+                    scale: 4,
+                    scoring: 'raads',
+                    instrument: 'RAADS-R',
+                    domain: 'Sensory-Motor'
+                },
+                {
+                    id: 'raads_4_interests',
+                    type: 'likert',
+                    category: 'asd_interests',
+                    text: 'I have obsessions that I feel I must do or I will feel very anxious',
+                    scale: 4,
+                    scoring: 'raads',
+                    instrument: 'RAADS-R',
+                    domain: 'Circumscribed Interests'
+                }
+            ],
+
+            // CAT-Q: Camouflaging/Masking Behaviors
+            masking: [
+                {
+                    id: 'catq_1_compensation',
+                    type: 'likert',
+                    category: 'masking_compensation',
+                    text: 'I have developed a script to follow in social situations',
+                    scale: 7,
+                    labels: ['Strongly Disagree', '', '', 'Neither', '', '', 'Strongly Agree'],
+                    scoring: 'normal',
+                    instrument: 'CAT-Q',
+                    subscale: 'Compensation'
+                },
+                {
+                    id: 'catq_2_masking',
+                    type: 'likert',
+                    category: 'masking_masking',
+                    text: 'I monitor my body language or facial expressions so that I appear relaxed',
+                    scale: 7,
+                    scoring: 'normal',
+                    instrument: 'CAT-Q',
+                    subscale: 'Masking'
+                },
+                {
+                    id: 'catq_3_assimilation',
+                    type: 'likert',
+                    category: 'masking_assimilation',
+                    text: 'I feel like I am pretending to be "normal" when I am interacting with others',
+                    scale: 7,
+                    scoring: 'normal',
+                    instrument: 'CAT-Q',
+                    subscale: 'Assimilation'
+                }
+            ],
+
+            // Sensory Processing Profile
+            sensory: [
+                {
+                    id: 'dunn_1_registration',
+                    type: 'frequency',
+                    category: 'sensory_registration',
+                    text: 'I don\'t notice when my name is called',
+                    scale: 5,
+                    labels: ['Never', 'Seldom', 'Sometimes', 'Frequently', 'Always'],
+                    scoring: 'normal',
+                    instrument: 'Adult-Sensory-Profile',
+                    quadrant: 'Low Registration'
+                },
+                {
+                    id: 'dunn_2_seeking',
+                    type: 'frequency',
+                    category: 'sensory_seeking',
+                    text: 'I add spice to my food',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'Adult-Sensory-Profile',
+                    quadrant: 'Sensation Seeking'
+                },
+                {
+                    id: 'dunn_3_sensitivity',
+                    type: 'frequency',
+                    category: 'sensory_sensitivity',
+                    text: 'I startle easily at unexpected or loud noises',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'Adult-Sensory-Profile',
+                    quadrant: 'Sensory Sensitivity'
+                },
+                {
+                    id: 'dunn_4_avoiding',
+                    type: 'frequency',
+                    category: 'sensory_avoiding',
+                    text: 'I only eat familiar foods',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'Adult-Sensory-Profile',
+                    quadrant: 'Sensation Avoiding'
+                },
+                {
+                    id: 'hsps_1',
+                    type: 'likert',
+                    category: 'sensory_sensitivity',
+                    text: 'I seem to be aware of subtleties in my environment',
+                    scale: 7,
+                    labels: ['Not at all', '', '', 'Moderately', '', '', 'Extremely'],
+                    scoring: 'normal',
+                    instrument: 'HSPS-10'
+                }
+            ],
+
+            // Cognitive Styles
+            cognition: [
+                {
+                    id: 'ncs_1',
+                    type: 'likert',
+                    category: 'need_cognition',
+                    text: 'I would prefer complex to simple problems',
+                    scale: 5,
+                    labels: ['Extremely Uncharacteristic', 'Somewhat Uncharacteristic', 'Uncertain', 'Somewhat Characteristic', 'Extremely Characteristic'],
+                    scoring: 'normal',
+                    instrument: 'NCS-6'
+                },
+                {
+                    id: 'crt_1',
+                    type: 'problem',
+                    category: 'cognitive_reflection',
+                    text: 'A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?',
+                    intuitive_answer: '10 cents',
+                    reflective_answer: '5 cents',
+                    instrument: 'CRT'
+                },
+                {
+                    id: 'rei_1_rational',
+                    type: 'likert',
+                    category: 'thinking_rational',
+                    text: 'I enjoy solving problems that require hard thinking',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'REI-40',
+                    subscale: 'Rational Engagement'
+                },
+                {
+                    id: 'rei_2_experiential',
+                    type: 'likert',
+                    category: 'thinking_experiential',
+                    text: 'I trust my initial feelings about people',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'REI-40',
+                    subscale: 'Experiential Ability'
+                }
+            ],
+
+            // Mindfulness & Metacognition
+            awareness: [
+                {
+                    id: 'maas_1',
+                    type: 'frequency',
+                    category: 'mindfulness',
+                    text: 'I find myself doing things without paying attention',
+                    scale: 6,
+                    labels: ['Almost Always', 'Very Frequently', 'Somewhat Frequently', 'Somewhat Infrequently', 'Very Infrequently', 'Almost Never'],
+                    scoring: 'reverse',
+                    instrument: 'MAAS'
+                },
+                {
+                    id: 'mai_1_knowledge',
+                    type: 'likert',
+                    category: 'metacognitive_knowledge',
+                    text: 'I know when I understand something',
+                    scale: 5,
+                    labels: ['Never', 'Seldom', 'Sometimes', 'Often', 'Always'],
+                    scoring: 'normal',
+                    instrument: 'MAI-40'
+                },
+                {
+                    id: 'mai_2_regulation',
+                    type: 'likert',
+                    category: 'metacognitive_regulation',
+                    text: 'I periodically review to help me understand important relationships',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'MAI-40'
+                }
+            ],
+
+            // Achievement & Motivation
+            achievement: [
+                {
+                    id: 'bpns_1_autonomy',
+                    type: 'likert',
+                    category: 'needs_autonomy',
+                    text: 'I feel like I am free to decide for myself how to live my life',
+                    scale: 7,
+                    labels: ['Not at all true', '', '', 'Somewhat true', '', '', 'Very true'],
+                    scoring: 'normal',
+                    instrument: 'BPNS'
+                },
+                {
+                    id: 'bpns_2_competence',
+                    type: 'likert',
+                    category: 'needs_competence',
+                    text: 'Most days I feel a sense of accomplishment from what I do',
+                    scale: 7,
+                    scoring: 'normal',
+                    instrument: 'BPNS'
+                },
+                {
+                    id: 'bpns_3_relatedness',
+                    type: 'likert',
+                    category: 'needs_relatedness',
+                    text: 'I really like the people I interact with',
+                    scale: 7,
+                    scoring: 'normal',
+                    instrument: 'BPNS'
+                },
+                {
+                    id: 'agq_1_mastery_approach',
+                    type: 'likert',
+                    category: 'goals_mastery',
+                    text: 'My aim is to completely master material presented in my classes',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'AGQ-R'
+                },
+                {
+                    id: 'grit_1_perseverance',
+                    type: 'likert',
+                    category: 'grit',
+                    text: 'Setbacks don\'t discourage me',
+                    scale: 5,
+                    labels: ['Not like me at all', 'Not much like me', 'Somewhat like me', 'Mostly like me', 'Very much like me'],
+                    scoring: 'normal',
+                    instrument: 'Grit-S'
+                }
+            ],
+
+            // Alexithymia Assessment
+            alexithymia: [
+                {
+                    id: 'tas_1_identify',
+                    type: 'likert',
+                    category: 'alexithymia_identify',
+                    text: 'I am often confused about what emotion I am feeling',
+                    scale: 5,
+                    labels: ['Strongly Disagree', 'Disagree', 'Neither', 'Agree', 'Strongly Agree'],
+                    scoring: 'normal',
+                    instrument: 'TAS-20',
+                    subscale: 'Difficulty Identifying Feelings'
+                },
+                {
+                    id: 'tas_2_describe',
+                    type: 'likert',
+                    category: 'alexithymia_describe',
+                    text: 'It is difficult for me to find the right words for my feelings',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'TAS-20',
+                    subscale: 'Difficulty Describing Feelings'
+                },
+                {
+                    id: 'tas_3_external',
+                    type: 'likert',
+                    category: 'alexithymia_external',
+                    text: 'I prefer to analyze problems rather than just describe them',
+                    scale: 5,
+                    scoring: 'reverse',
+                    instrument: 'TAS-20',
+                    subscale: 'Externally Oriented Thinking'
+                }
+            ],
+
+            // Decision Making Styles
+            decision_making: [
+                {
+                    id: 'gdms_1_rational',
+                    type: 'likert',
+                    category: 'decision_rational',
+                    text: 'I double-check my information sources to be sure I have the right facts before making decisions',
+                    scale: 5,
+                    labels: ['Strongly Disagree', 'Disagree', 'Neither', 'Agree', 'Strongly Agree'],
+                    scoring: 'normal',
+                    instrument: 'GDMS'
+                },
+                {
+                    id: 'gdms_2_intuitive',
+                    type: 'likert',
+                    category: 'decision_intuitive',
+                    text: 'When making decisions, I rely upon my instincts',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'GDMS'
+                },
+                {
+                    id: 'gdms_3_dependent',
+                    type: 'likert',
+                    category: 'decision_dependent',
+                    text: 'I rarely make important decisions without consulting other people',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'GDMS'
+                },
+                {
+                    id: 'gdms_4_avoidant',
+                    type: 'likert',
+                    category: 'decision_avoidant',
+                    text: 'I postpone decision making whenever possible',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'GDMS'
+                },
+                {
+                    id: 'gdms_5_spontaneous',
+                    type: 'likert',
+                    category: 'decision_spontaneous',
+                    text: 'I generally make snap decisions',
+                    scale: 5,
+                    scoring: 'normal',
+                    instrument: 'GDMS'
+                }
+            ]
+        };
+
+        // =====================================
+        // EXPERIMENTAL CUTTING-EDGE ASSESSMENTS
+        // =====================================
+        
+        const experimentalAssessments = {
+            // Keystroke Dynamics Tracking
+            keystrokeDynamics: {
+                enabled: false,
+                metrics: {
+                    dwellTime: [], // How long keys are held
+                    flightTime: [], // Time between keystrokes
+                    pressure: [], // Key pressure (if available)
+                    typingSpeed: 0,
+                    rhythmConsistency: 0
+                },
+                personalityCorrelates: {
+                    neuroticism: { dwellTimeVar: 0.26, flightTimeVar: 0.31 },
+                    conscientiousness: { typingSpeed: -0.22, consistency: 0.35 },
+                    extraversion: { typingSpeed: 0.28, pressure: 0.19 }
+                }
             },
             
-            // Cognitive Processing Style (Dual Process Theory - Kahneman)
+            // Mouse Movement Patterns
+            mouseTracking: {
+                enabled: false,
+                metrics: {
+                    trajectories: [],
+                    velocity: [],
+                    acceleration: [],
+                    clicks: [],
+                    scrollPatterns: [],
+                    MAD: 0, // Maximum Absolute Deviation
+                    AUC: 0 // Area Under Curve
+                },
+                personalityIndicators: {
+                    decisionConflict: 0,
+                    impulsivity: 0,
+                    exploration: 0
+                }
+            },
+            
+            // Digital Biomarkers
+            digitalBiomarkers: {
+                responseLatency: [],
+                questionRevisits: 0,
+                backtracking: 0,
+                pausePatterns: [],
+                engagementScore: 0
+            }
+        };
+        
+        // Experimental Assessment Questions
+        const experimentalQuestions = [
+            // === NONATTACHMENT SCALE (NAS-7) ===
+            {
+                id: 'nas_1',
+                type: 'likert',
+                category: 'nonattachment',
+                text: 'I can enjoy pleasant experiences without needing them to continue or be repeated',
+                scale: 6,
+                labels: ['Disagree Strongly', 'Disagree', 'Disagree a little', 'Agree a little', 'Agree', 'Agree Strongly'],
+                scoring: 'normal',
+                instrument: 'NAS-7',
+                domain: 'buddhist_psychology'
+            },
+            {
+                id: 'nas_2',
+                type: 'likert',
+                category: 'nonattachment',
+                text: 'I can accept the flow of events in my life without hanging onto them or pushing them away',
+                scale: 6,
+                scoring: 'normal',
+                instrument: 'NAS-7'
+            },
+            {
+                id: 'nas_3',
+                type: 'likert',
+                category: 'nonattachment',
+                text: 'I can remain open to thoughts and feelings without getting caught up in them',
+                scale: 6,
+                scoring: 'normal',
+                instrument: 'NAS-7'
+            },
+            {
+                id: 'nas_4',
+                type: 'likert',
+                category: 'nonattachment',
+                text: 'When pleasant experiences end, I am fine moving on to what comes next',
+                scale: 6,
+                scoring: 'normal',
+                instrument: 'NAS-7'
+            },
+            {
+                id: 'nas_5',
+                type: 'likert',
+                category: 'nonattachment',
+                text: 'I can let go of regrets and feelings of dissatisfaction about the past',
+                scale: 6,
+                scoring: 'normal',
+                instrument: 'NAS-7'
+            },
+            {
+                id: 'nas_6',
+                type: 'likert',
+                category: 'nonattachment',
+                text: 'When my expectations are not met, I can adapt without getting upset',
+                scale: 6,
+                scoring: 'normal',
+                instrument: 'NAS-7'
+            },
+            {
+                id: 'nas_7',
+                type: 'likert',
+                category: 'nonattachment',
+                text: 'I feel at peace with the impermanent nature of existence',
+                scale: 6,
+                scoring: 'normal',
+                instrument: 'NAS-7'
+            },
+            
+            // === VEDIC PERSONALITY INVENTORY (Gunas) ===
+            {
+                id: 'vpi_sattva_1',
+                type: 'likert',
+                category: 'gunas_sattva',
+                text: 'I feel content and peaceful most of the time',
+                scale: 5,
+                labels: ['Never', 'Rarely', 'Sometimes', 'Often', 'Always'],
+                scoring: 'normal',
+                instrument: 'VPI',
+                guna: 'sattva'
+            },
+            {
+                id: 'vpi_sattva_2',
+                type: 'likert',
+                category: 'gunas_sattva',
+                text: 'I prefer foods that are fresh, light, and naturally prepared',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'VPI',
+                guna: 'sattva'
+            },
+            {
+                id: 'vpi_rajas_1',
+                type: 'likert',
+                category: 'gunas_rajas',
+                text: 'I am driven by ambition and the desire to achieve',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'VPI',
+                guna: 'rajas'
+            },
+            {
+                id: 'vpi_rajas_2',
+                type: 'likert',
+                category: 'gunas_rajas',
+                text: 'I often feel restless and need to be constantly active',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'VPI',
+                guna: 'rajas'
+            },
+            {
+                id: 'vpi_tamas_1',
+                type: 'likert',
+                category: 'gunas_tamas',
+                text: 'I tend to procrastinate and avoid difficult tasks',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'VPI',
+                guna: 'tamas'
+            },
+            {
+                id: 'vpi_tamas_2',
+                type: 'likert',
+                category: 'gunas_tamas',
+                text: 'I often feel lethargic and lack motivation',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'VPI',
+                guna: 'tamas'
+            },
+            
+            // === UBUNTU SCALE (African Philosophy) ===
+            {
+                id: 'ubuntu_1',
+                type: 'likert',
+                category: 'ubuntu',
+                text: 'I am who I am because of who we all are',
+                scale: 5,
+                labels: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'],
+                scoring: 'normal',
+                instrument: 'Ubuntu-Scale',
+                cultural: 'african'
+            },
+            {
+                id: 'ubuntu_2',
+                type: 'likert',
+                category: 'ubuntu',
+                text: 'My well-being is deeply connected to the well-being of my community',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'Ubuntu-Scale'
+            },
+            {
+                id: 'ubuntu_3',
+                type: 'likert',
+                category: 'ubuntu',
+                text: 'Individual success means nothing if the community suffers',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'Ubuntu-Scale'
+            },
+            {
+                id: 'ubuntu_4',
+                type: 'likert',
+                category: 'ubuntu',
+                text: 'Harmony in relationships is more important than personal achievement',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'Ubuntu-Scale'
+            },
+            
+            // === CHINESE PERSONALITY (Face & Guanxi) ===
+            {
+                id: 'cpai_face_1',
+                type: 'likert',
+                category: 'chinese_face',
+                text: 'I am very concerned about how others perceive my social status',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'CPAI-Face',
+                cultural: 'chinese'
+            },
+            {
+                id: 'cpai_face_2',
+                type: 'likert',
+                category: 'chinese_face',
+                text: 'Losing face in public is one of my greatest fears',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'CPAI-Face'
+            },
+            {
+                id: 'cpai_guanxi_1',
+                type: 'likert',
+                category: 'chinese_guanxi',
+                text: 'I invest significant time maintaining my social network connections',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'CPAI-Guanxi'
+            },
+            {
+                id: 'cpai_guanxi_2',
+                type: 'likert',
+                category: 'chinese_guanxi',
+                text: 'Reciprocal obligations in relationships guide many of my decisions',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'CPAI-Guanxi'
+            },
+            
+            // === ENGAGEMENT WITH BEAUTY SCALE (EBS-R) ===
+            {
+                id: 'ebs_natural',
+                type: 'likert',
+                category: 'beauty_natural',
+                text: 'I notice and am moved by the beauty of nature',
+                scale: 7,
+                labels: ['Very Strongly Disagree', 'Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree', 'Very Strongly Agree'],
+                scoring: 'normal',
+                instrument: 'EBS-R'
+            },
+            {
+                id: 'ebs_artistic',
+                type: 'likert',
+                category: 'beauty_artistic',
+                text: 'I am deeply moved when I see beautiful art',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'EBS-R'
+            },
+            {
+                id: 'ebs_moral',
+                type: 'likert',
+                category: 'beauty_moral',
+                text: 'I am touched by displays of moral beauty (like acts of virtue or self-sacrifice)',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'EBS-R'
+            },
+            {
+                id: 'ebs_ideas',
+                type: 'likert',
+                category: 'beauty_ideas',
+                text: 'I experience awe when I encounter beautiful ideas or elegant theories',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'EBS-R'
+            },
+            
+            // === DARK FACTOR OF PERSONALITY (D16) ===
+            {
+                id: 'd16_1',
+                type: 'likert',
+                category: 'dark_factor',
+                text: 'I\'ll say anything to get what I want',
+                scale: 5,
+                labels: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'],
+                scoring: 'normal',
+                instrument: 'D16'
+            },
+            {
+                id: 'd16_2',
+                type: 'likert',
+                category: 'dark_factor',
+                text: 'It is sometimes worth a little suffering on my part to see others receive the punishment they deserve',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'D16'
+            },
+            {
+                id: 'd16_3',
+                type: 'likert',
+                category: 'dark_factor',
+                text: 'I know that I am special because everyone keeps telling me so',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'D16'
+            },
+            {
+                id: 'd16_4',
+                type: 'likert',
+                category: 'dark_factor',
+                text: 'Payback needs to be quick and nasty',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'D16'
+            },
+            
+            // === FUTURE SELF-CONTINUITY ===
+            {
+                id: 'fsc_1',
+                type: 'visual_scale',
+                category: 'future_self',
+                text: 'How connected do you feel to your future self 10 years from now?',
+                instruction: 'Select the pair of circles that best represents your connection',
+                options: [
+                    { value: 1, visual: '⭕ ⭕', description: 'Completely separate' },
+                    { value: 2, visual: '⭕⭕', description: 'Barely touching' },
+                    { value: 3, visual: '⊕', description: 'Slightly overlapping' },
+                    { value: 4, visual: '◉', description: 'Moderately overlapping' },
+                    { value: 5, visual: '●', description: 'Strongly overlapping' },
+                    { value: 6, visual: '◆', description: 'Mostly overlapping' },
+                    { value: 7, visual: '■', description: 'Complete overlap' }
+                ],
+                instrument: 'FSC'
+            },
+            {
+                id: 'fsc_2',
+                type: 'likert',
+                category: 'future_self',
+                text: 'My future self feels like a stranger to me',
+                scale: 7,
+                labels: ['Strongly Disagree', '', '', 'Neutral', '', '', 'Strongly Agree'],
+                scoring: 'reverse',
+                instrument: 'FSC'
+            },
+            {
+                id: 'fsc_3',
+                type: 'likert',
+                category: 'future_self',
+                text: 'I have a vivid image of who I will be in the future',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'FSC'
+            },
+            
+            // === FLOW PRONENESS ===
+            {
+                id: 'flow_1',
+                type: 'likert',
+                category: 'flow_proneness',
+                text: 'I often experience moments where I lose track of time while deeply engaged in an activity',
+                scale: 5,
+                labels: ['Never', 'Rarely', 'Sometimes', 'Often', 'Very Often'],
+                scoring: 'normal',
+                instrument: 'GFPS'
+            },
+            {
+                id: 'flow_2',
+                type: 'likert',
+                category: 'flow_proneness',
+                text: 'When doing something I enjoy, the world around me often fades away',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'GFPS'
+            },
+            {
+                id: 'flow_3',
+                type: 'likert',
+                category: 'flow_proneness',
+                text: 'I naturally seek out activities that perfectly match my skill level',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'GFPS'
+            },
+            
+            // === PSYCHOLOGICAL FLEXIBILITY ===
+            {
+                id: 'psyflex_1',
+                type: 'likert',
+                category: 'psychological_flexibility',
+                text: 'I can observe my thoughts and feelings without being controlled by them',
+                scale: 7,
+                labels: ['Never True', '', '', 'Sometimes True', '', '', 'Always True'],
+                scoring: 'normal',
+                instrument: 'PsyFlex'
+            },
+            {
+                id: 'psyflex_2',
+                type: 'likert',
+                category: 'psychological_flexibility',
+                text: 'Even when I feel afraid, I can still do what\'s important to me',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'PsyFlex'
+            },
+            {
+                id: 'psyflex_3',
+                type: 'likert',
+                category: 'psychological_flexibility',
+                text: 'I can stay focused on the present moment even when I\'m anxious',
+                scale: 7,
+                scoring: 'normal',
+                instrument: 'PsyFlex'
+            },
+            
+            // === ANTIFRAGILITY ===
+            {
+                id: 'antifragile_1',
+                type: 'likert',
+                category: 'antifragility',
+                text: 'I actually become stronger when facing moderate stressors',
+                scale: 5,
+                labels: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'],
+                scoring: 'normal',
+                instrument: 'AFS'
+            },
+            {
+                id: 'antifragile_2',
+                type: 'likert',
+                category: 'antifragility',
+                text: 'Ambiguous situations help me develop new capabilities',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'AFS'
+            },
+            {
+                id: 'antifragile_3',
+                type: 'likert',
+                category: 'antifragility',
+                text: 'I thrive on volatility and change rather than just surviving it',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'AFS'
+            },
+            {
+                id: 'antifragile_4',
+                type: 'likert',
+                category: 'antifragility',
+                text: 'Difficulties in specific areas of my life often lead to unexpected gains in other areas',
+                scale: 5,
+                scoring: 'normal',
+                instrument: 'AFS'
+            },
+            
+            // === SITUATIONAL JUDGMENT TESTS ===
+            {
+                id: 'sjt_1',
+                type: 'situational_judgment',
+                category: 'judgment_interpersonal',
+                text: 'You\'re leading a team project. One talented member consistently delivers excellent work but is difficult to work with and creates tension. What do you do?',
+                options: [
+                    { text: 'Address the behavior privately, focusing on specific impacts on the team', value: 4, style: 'collaborative' },
+                    { text: 'Restructure work to minimize their interaction with others', value: 2, style: 'avoidant' },
+                    { text: 'Publicly praise their work while ignoring the behavior', value: 1, style: 'passive' },
+                    { text: 'Implement team-building activities to improve dynamics', value: 3, style: 'indirect' }
+                ],
+                instrument: 'SJT'
+            },
+            {
+                id: 'sjt_2',
+                type: 'situational_judgment',
+                category: 'judgment_ethical',
+                text: 'You discover a close friend has been slightly exaggerating their qualifications on job applications. They ask for your advice. What do you say?',
+                options: [
+                    { text: 'Encourage them to correct it immediately to maintain integrity', value: 4, style: 'principled' },
+                    { text: 'Suggest they stop doing it in future applications', value: 2, style: 'pragmatic' },
+                    { text: 'Tell them it\'s their decision and you\'ll support them either way', value: 1, style: 'neutral' },
+                    { text: 'Help them reframe their experience honestly but compellingly', value: 3, style: 'constructive' }
+                ],
+                instrument: 'SJT'
+            },
+            
+            // === FORCED CHOICE ADAPTIVE ===
+            {
+                id: 'fc_1',
+                type: 'forced_choice',
+                category: 'forced_choice',
+                text: 'Which statement describes you better?',
+                options: [
+                    { text: 'I prefer working independently on complex problems', trait: 'autonomy', value: 1 },
+                    { text: 'I prefer collaborating with others to find solutions', trait: 'collaboration', value: 1 }
+                ],
+                instrument: 'MUPP'
+            },
+            {
+                id: 'fc_2',
+                type: 'forced_choice',
+                category: 'forced_choice',
+                text: 'Which approach resonates more with you?',
+                options: [
+                    { text: 'Planning thoroughly before taking action', trait: 'deliberation', value: 1 },
+                    { text: 'Adapting quickly as situations unfold', trait: 'flexibility', value: 1 }
+                ],
+                instrument: 'MUPP'
+            },
+            {
+                id: 'fc_3',
+                type: 'forced_choice',
+                category: 'forced_choice',
+                text: 'In relationships, I value more:',
+                options: [
+                    { text: 'Deep connections with a few people', trait: 'depth', value: 1 },
+                    { text: 'Diverse connections with many people', trait: 'breadth', value: 1 }
+                ],
+                instrument: 'MUPP'
+            },
+            
+            // === IMPLICIT ASSOCIATION STYLE QUESTIONS ===
+            {
+                id: 'iat_1',
+                type: 'rapid_association',
+                category: 'implicit_self',
+                text: 'First word that comes to mind when you think of yourself:',
+                instruction: 'Respond as quickly as possible without overthinking',
+                freeResponse: true,
+                timeLimit: 5000,
+                instrument: 'IAT-Style'
+            },
+            {
+                id: 'iat_2',
+                type: 'word_association',
+                category: 'implicit_values',
+                text: 'Which word pair feels more naturally connected to you?',
+                pairs: [
+                    { pair: ['Success', 'Happiness'], value: 'achievement' },
+                    { pair: ['Peace', 'Contentment'], value: 'harmony' },
+                    { pair: ['Growth', 'Challenge'], value: 'development' },
+                    { pair: ['Security', 'Stability'], value: 'safety' }
+                ],
+                responseTime: true,
+                instrument: 'IAT-Style'
+            }
+        ];
+        
+        // Combine questions based on assessment mode and tier
+        let assessmentQuestions = [];
+        
+        if (assessmentConfig.mode === 'experimental') {
+            // Use experimental cutting-edge assessments
+            assessmentQuestions = experimentalQuestions;
+            assessmentConfig.biometricTracking = true;
+        } else {
+            // Use validated traditional assessments
+            if (assessmentConfig.currentTier === 'core') {
+                assessmentQuestions = coreScreeningQuestions;
+            } else if (assessmentConfig.currentTier === 'comprehensive') {
+                assessmentQuestions = [...coreScreeningQuestions, ...comprehensiveAssessmentQuestions];
+            } else if (assessmentConfig.currentTier === 'specialized') {
+                // Add specialized modules based on user selection or adaptive testing
+                assessmentQuestions = [
+                    ...coreScreeningQuestions,
+                    ...comprehensiveAssessmentQuestions,
+                    ...Object.values(specializedModules).flat()
+                ];
+            }
+        }
+
+        // Legacy compatibility - keep some original creative questions for transition
+        const creativeQuestions = [
+            // Cognitive Processing Style
             {
                 id: 'cognitive_style',
                 type: 'scenario',
@@ -2217,6 +5055,41 @@
         document.body.setAttribute('data-theme', savedTheme);
         document.querySelector('.theme-icon').textContent = savedTheme === 'light' ? '☀️' : '🌙';
 
+        // Select assessment mode
+        function selectMode(mode) {
+            assessmentConfig.mode = mode;
+            
+            // Update UI
+            document.querySelectorAll('.mode-option').forEach(opt => opt.classList.remove('selected'));
+            document.getElementById(`mode-${mode}`).classList.add('selected');
+            
+            // Update button text
+            const startBtn = document.querySelector('#welcomeScreen .btn-primary span');
+            if (startBtn) {
+                startBtn.textContent = mode === 'experimental' ? 'Begin Experimental Assessment' : 'Begin Validated Assessment';
+            }
+            
+            // Update question set
+            if (mode === 'experimental') {
+                assessmentQuestions = experimentalQuestions;
+                assessmentConfig.biometricTracking = true;
+            } else {
+                // Reset to validated questions based on tier
+                if (assessmentConfig.currentTier === 'core') {
+                    assessmentQuestions = coreScreeningQuestions;
+                } else if (assessmentConfig.currentTier === 'comprehensive') {
+                    assessmentQuestions = [...coreScreeningQuestions, ...comprehensiveAssessmentQuestions];
+                } else if (assessmentConfig.currentTier === 'specialized') {
+                    assessmentQuestions = [
+                        ...coreScreeningQuestions,
+                        ...comprehensiveAssessmentQuestions,
+                        ...Object.values(specializedModules).flat()
+                    ];
+                }
+                assessmentConfig.biometricTracking = false;
+            }
+        }
+        
         // Start assessment
         function startAssessment() {
             document.getElementById('welcomeScreen').style.display = 'none';
@@ -2230,6 +5103,11 @@
             document.getElementById('totalQuestions').textContent = assessmentQuestions.length;
             
             timeElapsedInterval = setInterval(updateTimeElapsed, 1000);
+            
+            // Initialize biometric tracking if experimental mode
+            if (assessmentConfig.mode === 'experimental' && assessmentConfig.biometricTracking) {
+                initializeBiometricTracking();
+            }
             
             showQuestion(0);
         }
@@ -2285,6 +5163,12 @@
             `;
             
             switch(question.type) {
+                case 'likert':
+                    html += renderLikert(question);
+                    break;
+                case 'frequency':
+                    html += renderFrequency(question);
+                    break;
                 case 'visual_grid':
                     html += renderVisualGrid(question);
                     break;
@@ -2306,8 +5190,26 @@
                 case 'body_mapping':
                     html += renderBodyMapping(question);
                     break;
+                case 'problem':
+                    html += renderProblem(question);
+                    break;
+e                case 'situational_judgment':
+                    html += renderSituationalJudgment(question);
+                    break;
+                case 'forced_choice':
+                    html += renderForcedChoice(question);
+                    break;
+                case 'visual_scale':
+                    html += renderVisualScale(question);
+                    break;
+                case 'rapid_association':
+                    html += renderRapidAssociation(question);
+                    break;
+                case 'word_association':
+                    html += renderWordAssociation(question);
+                    break;
                 default:
-                    html += renderScenario(question);
+                    html += renderLikert(question); // Default to Likert for most validated instruments
             }
             
             html += `
@@ -2325,6 +5227,191 @@
         }
 
         // Question type renderers
+        
+        // Render Likert scale questions (most common type for validated instruments)
+        function renderLikert(question) {
+            const scale = question.scale || 5;
+            const labels = question.labels || ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'];
+            
+            let html = '<div class="likert-scale">';
+            
+            // Add scale labels if they exist
+            if (labels.length === scale) {
+                html += '<div class="likert-labels">';
+                labels.forEach((label, i) => {
+                    html += `<span class="likert-label">${label}</span>`;
+                });
+                html += '</div>';
+            }
+            
+            // Add radio buttons
+            html += '<div class="likert-options">';
+            for (let i = 1; i <= scale; i++) {
+                const id = `${question.id}_${i}`;
+                html += `
+                    <div class="likert-option">
+                        <input type="radio" id="${id}" name="${question.id}" value="${i}" class="likert-radio">
+                        <label for="${id}" class="likert-button">
+                            ${labels.length === 2 ? (i === 1 ? labels[0] : i === scale ? labels[1] : i) : i}
+                        </label>
+                    </div>
+                `;
+            }
+            html += '</div>';
+            
+            // Add instrument info if available
+            if (question.instrument) {
+                html += `<div class="instrument-info">Source: ${question.instrument}</div>`;
+            }
+            
+            html += '</div>';
+            return html;
+        }
+        
+        // Render frequency questions
+        function renderFrequency(question) {
+            const labels = question.labels || ['Never', 'Rarely', 'Sometimes', 'Often', 'Very Often'];
+            
+            let html = '<div class="frequency-scale">';
+            labels.forEach((label, i) => {
+                const id = `${question.id}_${i}`;
+                html += `
+                    <div class="frequency-option-single">
+                        <input type="radio" id="${id}" name="${question.id}" value="${label}" class="frequency-radio">
+                        <label for="${id}" class="frequency-button">
+                            ${label}
+                        </label>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            return html;
+        }
+        
+        // Render problem-solving questions (like CRT)
+        function renderProblem(question) {
+            return `
+                <div class="problem-container">
+                    <div class="problem-text">${question.text}</div>
+                    <input type="text" class="problem-input" id="${question.id}_input" placeholder="Enter your answer">
+                    <div class="problem-hint">Think carefully before answering</div>
+                </div>
+            `;
+        }
+        
+        // Render situational judgment tests
+        function renderSituationalJudgment(question) {
+            let html = '<div class="situational-judgment">';
+            html += `<div class="situation-context">${question.text}</div>`;
+            html += '<div class="judgment-options">';
+            
+            question.options.forEach((option, i) => {
+                const id = `${question.id}_${i}`;
+                html += `
+                    <div class="judgment-option">
+                        <input type="radio" id="${id}" name="${question.id}" value="${i}" class="judgment-radio">
+                        <label for="${id}" class="judgment-label">
+                            <span class="judgment-text">${option.text}</span>
+                            ${option.style ? `<span class="judgment-style">${option.style}</span>` : ''}
+                        </label>
+                    </div>
+                `;
+            });
+            
+            html += '</div></div>';
+            return html;
+        }
+        
+        // Render forced choice questions
+        function renderForcedChoice(question) {
+            let html = '<div class="forced-choice">';
+            html += `<div class="forced-prompt">${question.text}</div>`;
+            html += '<div class="forced-options">';
+            
+            question.options.forEach((option, i) => {
+                const id = `${question.id}_${i}`;
+                html += `
+                    <div class="forced-option">
+                        <input type="radio" id="${id}" name="${question.id}" value="${i}" class="forced-radio">
+                        <label for="${id}" class="forced-button">
+                            ${option.text}
+                        </label>
+                    </div>
+                `;
+            });
+            
+            html += '</div></div>';
+            return html;
+        }
+        
+        // Render visual scale (like Future Self-Continuity)
+        function renderVisualScale(question) {
+            let html = '<div class="visual-scale">';
+            if (question.instruction) {
+                html += `<div class="visual-instruction">${question.instruction}</div>`;
+            }
+            html += '<div class="visual-scale-options">';
+            
+            question.options.forEach((option, i) => {
+                const id = `${question.id}_${i}`;
+                html += `
+                    <div class="visual-scale-option">
+                        <input type="radio" id="${id}" name="${question.id}" value="${option.value}" class="visual-scale-radio">
+                        <label for="${id}" class="visual-scale-label">
+                            <div class="visual-representation">${option.visual}</div>
+                            <div class="visual-description">${option.description}</div>
+                        </label>
+                    </div>
+                `;
+            });
+            
+            html += '</div></div>';
+            return html;
+        }
+        
+        // Render rapid association (timed response)
+        function renderRapidAssociation(question) {
+            const timeLimit = question.timeLimit || 5000;
+            return `
+                <div class="rapid-association" data-time-limit="${timeLimit}">
+                    <div class="rapid-prompt">${question.text}</div>
+                    ${question.instruction ? `<div class="rapid-instruction">${question.instruction}</div>` : ''}
+                    <input type="text" 
+                           class="rapid-input" 
+                           id="${question.id}_input" 
+                           placeholder="Type your response quickly..."
+                           autocomplete="off">
+                    <div class="rapid-timer" id="${question.id}_timer">
+                        <div class="timer-bar" id="${question.id}_timer_bar"></div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Render word association pairs
+        function renderWordAssociation(question) {
+            let html = '<div class="word-association">';
+            html += `<div class="association-prompt">${question.text}</div>`;
+            html += '<div class="word-pairs">';
+            
+            question.pairs.forEach((pair, i) => {
+                const id = `${question.id}_${i}`;
+                html += `
+                    <div class="word-pair-option">
+                        <input type="radio" id="${id}" name="${question.id}" value="${pair.value}" class="pair-radio">
+                        <label for="${id}" class="pair-label">
+                            <span class="word-1">${pair.pair[0]}</span>
+                            <span class="pair-connector">+</span>
+                            <span class="word-2">${pair.pair[1]}</span>
+                        </label>
+                    </div>
+                `;
+            });
+            
+            html += '</div></div>';
+            return html;
+        }
+        
         function renderVisualGrid(question) {
             let html = '<div class="visual-grid">';
             question.options.forEach((option, i) => {
@@ -2447,6 +5534,133 @@
                 initializeDragAndDrop();
             } else if (question.type === 'body_mapping') {
                 initializeBodyMapping();
+            } else if (question.type === 'rapid_association') {
+                initializeRapidAssociation(question);
+            }
+            
+            // Initialize biometric tracking if enabled
+            if (assessmentConfig.biometricTracking) {
+                initializeBiometricTracking();
+            }
+        }
+        
+        // Initialize rapid association timer
+        function initializeRapidAssociation(question) {
+            const timeLimit = question.timeLimit || 5000;
+            const timerBar = document.getElementById(`${question.id}_timer_bar`);
+            const input = document.getElementById(`${question.id}_input`);
+            
+            if (timerBar && input) {
+                // Start timer animation
+                timerBar.style.setProperty('--timer-duration', `${timeLimit}ms`);
+                timerBar.classList.add('active');
+                
+                // Auto-submit after time limit
+                setTimeout(() => {
+                    if (currentQuestionIndex === assessmentQuestions.findIndex(q => q.id === question.id)) {
+                        nextQuestion();
+                    }
+                }, timeLimit);
+                
+                // Focus input immediately
+                input.focus();
+            }
+        }
+        
+        // Initialize biometric tracking
+        function initializeBiometricTracking() {
+            if (!experimentalAssessments) return;
+            
+            // Keystroke dynamics tracking
+            if (!experimentalAssessments.keystrokeDynamics.enabled) {
+                experimentalAssessments.keystrokeDynamics.enabled = true;
+                
+                let lastKeyTime = Date.now();
+                
+                document.addEventListener('keydown', (e) => {
+                    const currentTime = Date.now();
+                    const flightTime = currentTime - lastKeyTime;
+                    
+                    experimentalAssessments.keystrokeDynamics.metrics.flightTime.push(flightTime);
+                    experimentalAssessments.keystrokeDynamics.metrics.dwellTime.push(0); // Start dwell timer
+                    
+                    lastKeyTime = currentTime;
+                });
+                
+                document.addEventListener('keyup', (e) => {
+                    const dwellTime = Date.now() - lastKeyTime;
+                    const lastIndex = experimentalAssessments.keystrokeDynamics.metrics.dwellTime.length - 1;
+                    if (lastIndex >= 0) {
+                        experimentalAssessments.keystrokeDynamics.metrics.dwellTime[lastIndex] = dwellTime;
+                    }
+                });
+            }
+            
+            // Mouse movement tracking
+            if (!experimentalAssessments.mouseTracking.enabled) {
+                experimentalAssessments.mouseTracking.enabled = true;
+                
+                let mouseTrajectory = [];
+                let lastMouseTime = Date.now();
+                let lastX = 0, lastY = 0;
+                
+                document.addEventListener('mousemove', (e) => {
+                    const currentTime = Date.now();
+                    const deltaTime = currentTime - lastMouseTime;
+                    
+                    if (deltaTime > 50) { // Sample every 50ms
+                        const deltaX = e.clientX - lastX;
+                        const deltaY = e.clientY - lastY;
+                        const velocity = Math.sqrt(deltaX * deltaX + deltaY * deltaY) / deltaTime;
+                        
+                        mouseTrajectory.push({ x: e.clientX, y: e.clientY, t: currentTime });
+                        experimentalAssessments.mouseTracking.metrics.velocity.push(velocity);
+                        
+                        if (mouseTrajectory.length > 2) {
+                            const accel = (velocity - experimentalAssessments.mouseTracking.metrics.velocity[experimentalAssessments.mouseTracking.metrics.velocity.length - 2]) / deltaTime;
+                            experimentalAssessments.mouseTracking.metrics.acceleration.push(accel);
+                        }
+                        
+                        lastMouseTime = currentTime;
+                        lastX = e.clientX;
+                        lastY = e.clientY;
+                    }
+                });
+                
+                document.addEventListener('click', (e) => {
+                    experimentalAssessments.mouseTracking.metrics.clicks.push({
+                        x: e.clientX,
+                        y: e.clientY,
+                        t: Date.now()
+                    });
+                });
+                
+                // Calculate trajectory metrics periodically
+                setInterval(() => {
+                    if (mouseTrajectory.length > 10) {
+                        experimentalAssessments.mouseTracking.metrics.trajectories.push([...mouseTrajectory]);
+                        
+                        // Calculate MAD and AUC
+                        const xCoords = mouseTrajectory.map(p => p.x);
+                        const yCoords = mouseTrajectory.map(p => p.y);
+                        const maxX = Math.max(...xCoords);
+                        const minX = Math.min(...xCoords);
+                        const maxY = Math.max(...yCoords);
+                        const minY = Math.min(...yCoords);
+                        
+                        experimentalAssessments.mouseTracking.metrics.MAD = Math.max(maxX - minX, maxY - minY);
+                        
+                        // Simple AUC calculation
+                        let auc = 0;
+                        for (let i = 1; i < mouseTrajectory.length; i++) {
+                            auc += Math.abs(mouseTrajectory[i].x - mouseTrajectory[i-1].x) * 
+                                   Math.abs(mouseTrajectory[i].y - mouseTrajectory[i-1].y);
+                        }
+                        experimentalAssessments.mouseTracking.metrics.AUC = auc;
+                        
+                        mouseTrajectory = []; // Reset for next interval
+                    }
+                }, 5000); // Every 5 seconds
             }
         }
 
@@ -2612,8 +5826,22 @@
                     }
                     break;
                     
+                case 'likert':
+                    const likertSelected = document.querySelector(`input[name="${question.id}"]:checked`);
+                    response.value = likertSelected?.value;
+                    break;
+                    
+                case 'frequency':
+                    const freqSelected = document.querySelector(`input[name="${question.id}"]:checked`);
+                    response.value = freqSelected?.value;
+                    break;
+                    
                 case 'slider':
                     response.value = document.getElementById('sliderInput')?.value;
+                    break;
+                    
+                case 'problem':
+                    response.value = document.getElementById(`${question.id}_input`)?.value;
                     break;
                     
                 case 'frequency_grid':
@@ -2635,6 +5863,65 @@
                         part => part.dataset.area
                     );
                     break;
+                    
+                case 'situational_judgment':
+                    const sjSelected = document.querySelector(`input[name="${question.id}"]:checked`);
+                    if (sjSelected) {
+                        const optionIndex = parseInt(sjSelected.value);
+                        response.value = {
+                            index: optionIndex,
+                            ...question.options[optionIndex]
+                        };
+                    }
+                    break;
+                    
+                case 'forced_choice':
+                    const fcSelected = document.querySelector(`input[name="${question.id}"]:checked`);
+                    if (fcSelected) {
+                        const optionIndex = parseInt(fcSelected.value);
+                        response.value = {
+                            index: optionIndex,
+                            trait: question.options[optionIndex].trait,
+                            text: question.options[optionIndex].text
+                        };
+                    }
+                    break;
+                    
+                case 'visual_scale':
+                    const vsSelected = document.querySelector(`input[name="${question.id}"]:checked`);
+                    response.value = vsSelected?.value;
+                    break;
+                    
+                case 'rapid_association':
+                    const rapidInput = document.getElementById(`${question.id}_input`);
+                    response.value = rapidInput?.value;
+                    // Add response latency for IAT-style analysis
+                    response.latency = responseTime;
+                    response.timed = true;
+                    break;
+                    
+                case 'word_association':
+                    const waSelected = document.querySelector(`input[name="${question.id}"]:checked`);
+                    response.value = waSelected?.value;
+                    // Track selection speed for implicit association
+                    response.latency = responseTime;
+                    break;
+            }
+            
+            // Track biometric data if enabled
+            if (assessmentConfig.biometricTracking && experimentalAssessments) {
+                if (experimentalAssessments.keystrokeDynamics.enabled) {
+                    response.keystrokeMetrics = {
+                        dwellTime: experimentalAssessments.keystrokeDynamics.metrics.dwellTime.slice(-10),
+                        flightTime: experimentalAssessments.keystrokeDynamics.metrics.flightTime.slice(-10)
+                    };
+                }
+                if (experimentalAssessments.mouseTracking.enabled) {
+                    response.mouseMetrics = {
+                        trajectoryLength: experimentalAssessments.mouseTracking.metrics.trajectories.length,
+                        clicks: experimentalAssessments.mouseTracking.metrics.clicks.length
+                    };
+                }
             }
             
             responses[question.id] = response;
@@ -2655,82 +5942,558 @@
             }, 3000);
         }
 
-        // Calculate results
+        // =====================================
+        // PSYCHOMETRIC SCORING ENGINE
+        // =====================================
+        
+        // Advanced scoring with Item Response Theory principles
         function calculateResults() {
             const totalTime = Date.now() - startTime;
+            const responseTimes = [];
             
-            let scores = {
-                openness: 50,
-                conscientiousness: 50,
-                extraversion: 50,
-                agreeableness: 50,
-                neuroticism: 50,
-                honestyHumility: 50
+            // Initialize domain scores
+            const domainScores = {
+                // Big Five domains with facets
+                extraversion: { score: 0, facets: { sociability: 0, assertiveness: 0, energy_level: 0 }, items: 0 },
+                agreeableness: { score: 0, facets: { compassion: 0, respectfulness: 0, trust: 0 }, items: 0 },
+                conscientiousness: { score: 0, facets: { organization: 0, productiveness: 0, responsibility: 0 }, items: 0 },
+                neuroticism: { score: 0, facets: { anxiety: 0, depression: 0, emotional_volatility: 0 }, items: 0 },
+                openness: { score: 0, facets: { intellectual_curiosity: 0, aesthetic_sensitivity: 0, creative_imagination: 0 }, items: 0 },
+                
+                // HEXACO addition
+                honesty_humility: { score: 0, facets: { sincerity: 0, fairness: 0, greed_avoidance: 0, modesty: 0 }, items: 0 },
+                
+                // Dark Tetrad
+                dark_traits: {
+                    machiavellianism: { score: 0, items: 0 },
+                    narcissism: { score: 0, items: 0 },
+                    psychopathy: { score: 0, items: 0 },
+                    sadism: { score: 0, items: 0 }
+                },
+                
+                // Neurodiversity
+                neurodiversity: {
+                    adhd: { inattention: 0, hyperactivity: 0, total_score: 0, items: 0 },
+                    autism: { score: 0, items: 0, raads_score: 0 },
+                    sensory: { sensitivity: 0, seeking: 0, avoiding: 0, registration: 0 },
+                    executive: { inhibit: 0, shift: 0, emotional_control: 0, initiate: 0, working_memory: 0, plan: 0, monitor: 0, organization: 0 }
+                },
+                
+                // Emotional & Social
+                emotional: {
+                    regulation: { reappraisal: 0, suppression: 0, items: 0 },
+                    difficulties: { clarity: 0, goals: 0, impulse: 0, awareness: 0, strategies: 0, nonacceptance: 0 },
+                    empathy: { perspective_taking: 0, fantasy: 0, empathic_concern: 0, personal_distress: 0 },
+                    alexithymia: { identify: 0, describe: 0, external: 0, total: 0 }
+                },
+                
+                // Stress & Coping
+                wellbeing: {
+                    stress: { perceived: 0, coping_efficacy: 0, items: 0 },
+                    resilience: { score: 0, items: 0 },
+                    coping: { problem_focused: 0, emotion_focused: 0, dysfunctional: 0 }
+                },
+                
+                // Cognitive Styles
+                cognitive: {
+                    need_for_cognition: 0,
+                    reflection_score: 0,
+                    thinking_style: { rational: 0, experiential: 0 },
+                    decision_style: { rational: 0, intuitive: 0, dependent: 0, avoidant: 0, spontaneous: 0 },
+                    metacognition: { knowledge: 0, regulation: 0 },
+                    mindfulness: 0
+                },
+                
+                // Motivation
+                motivation: {
+                    basic_needs: { autonomy: 0, competence: 0, relatedness: 0 },
+                    achievement_goals: { mastery_approach: 0, mastery_avoidance: 0, performance_approach: 0, performance_avoidance: 0 },
+                    grit: { perseverance: 0, passion: 0 }
+                }
             };
             
-            let neuroScores = {
-                autismTraits: 0,
-                adhdTraits: 0,
-                sensitivity: 0,
-                executiveFunction: 50
+            // Response quality metrics
+            const qualityMetrics = {
+                responseTime: { total: totalTime, average: 0, tooFast: 0, tooSlow: 0 },
+                consistency: { internal: 0, temporal: 0 },
+                socialDesirability: 0,
+                carelessResponding: 0,
+                longString: 0,
+                mahalanobis: 0,
+                validResponses: 0,
+                invalidResponses: 0
             };
             
-            Object.values(responses).forEach(response => {
-                if (response.category && response.value) {
-                    switch(response.category) {
-                        case 'extraversion':
-                        case 'openness':
-                        case 'conscientiousness':
-                        case 'agreeableness':
-                        case 'neuroticism':
-                            if (typeof response.value === 'number' || !isNaN(response.value)) {
-                                scores[response.category] = (scores[response.category] + parseInt(response.value) * 10) / 2;
-                            }
-                            break;
-                            
-                        case 'adhd_attention':
-                            neuroScores.adhdTraits += 20;
-                            break;
-                            
-                        case 'asd_social':
-                            neuroScores.autismTraits += 15;
-                            break;
-                            
-                        case 'sensitivity':
-                            neuroScores.sensitivity += 25;
-                            break;
+            // Process each response with proper scoring
+            Object.entries(responses).forEach(([questionId, response]) => {
+                const question = findQuestionById(questionId);
+                if (!question || !response) return;
+                
+                // Track response time
+                if (response.responseTime) {
+                    responseTimes.push(response.responseTime);
+                    if (response.responseTime < biasDetection.responseTime.flagThreshold) {
+                        qualityMetrics.tooFast++;
                     }
+                }
+                
+                // Score based on instrument and scoring method
+                const score = scoreItem(question, response);
+                
+                // Apply to appropriate domain
+                applyScoreToDomain(domainScores, question, score);
+                
+                qualityMetrics.validResponses++;
+            });
+            
+            // Calculate average response time
+            if (responseTimes.length > 0) {
+                qualityMetrics.responseTime.average = responseTimes.reduce((a, b) => a + b, 0) / responseTimes.length;
+            }
+            
+            // Detect response biases
+            const biasResults = detectResponseBiases(responses, qualityMetrics);
+            
+            // Normalize scores to percentiles using norms
+            const normalizedScores = normalizeScores(domainScores);
+            
+            // Calculate clinical indicators
+            const clinicalIndicators = calculateClinicalIndicators(normalizedScores);
+            
+            // Generate comprehensive profile
+            const profile = generateComprehensiveProfile(normalizedScores, clinicalIndicators);
+            
+            // Calculate match confidence using psychometric principles
+            const matchConfidence = calculateMatchConfidence(qualityMetrics, responseTimes.length);
+            
+            return {
+                profile: profile,
+                scores: normalizedScores,
+                rawScores: domainScores,
+                clinicalIndicators: clinicalIndicators,
+                qualityMetrics: qualityMetrics,
+                biasIndicators: biasResults,
+                totalTime: totalTime,
+                responseCount: Object.keys(responses).length,
+                matchConfidence: matchConfidence,
+                assessmentTier: assessmentConfig.currentTier,
+                timestamp: new Date().toISOString()
+            };
+        }
+        
+        // Helper function to find question by ID
+        function findQuestionById(id) {
+            const allQuestions = [...coreScreeningQuestions, ...comprehensiveAssessmentQuestions, ...Object.values(specializedModules).flat()];
+            return allQuestions.find(q => q.id === id);
+        }
+        
+        // Score individual item based on type and method
+        function scoreItem(question, response) {
+            let score = 0;
+            const value = response.value;
+            
+            switch (question.type) {
+                case 'likert':
+                    score = question.scoring === 'reverse' ? 
+                        (question.scale + 1 - parseInt(value)) : parseInt(value);
+                    break;
+                    
+                case 'frequency':
+                    const freqMap = { 'Never': 1, 'Rarely': 2, 'Sometimes': 3, 'Often': 4, 'Very Often': 5, 'Always': 5 };
+                    score = freqMap[value] || parseInt(value);
+                    if (question.scoring === 'reverse') {
+                        score = 6 - score;
+                    }
+                    break;
+                    
+                case 'slider':
+                    score = parseInt(value);
+                    if (question.scoring === 'reverse') {
+                        score = (question.max || 7) + 1 - score;
+                    }
+                    break;
+                    
+                case 'visual_grid':
+                case 'scenario':
+                    // Handle complex response types
+                    if (typeof value === 'object') {
+                        score = value.score || 3;
+                    } else {
+                        score = parseInt(value) || 3;
+                    }
+                    break;
+                    
+                default:
+                    score = parseInt(value) || 0;
+            }
+            
+            // Apply clinical weighting if present
+            if (question.clinical_weight) {
+                score *= question.clinical_weight;
+            }
+            
+            return score;
+        }
+        
+        // Apply score to appropriate domain
+        function applyScoreToDomain(domains, question, score) {
+            const category = question.category;
+            const facet = question.facet;
+            
+            // Big Five domains
+            if (['extraversion', 'agreeableness', 'conscientiousness', 'neuroticism', 'openness'].includes(category)) {
+                domains[category].score += score;
+                domains[category].items++;
+                if (facet && domains[category].facets[facet] !== undefined) {
+                    domains[category].facets[facet] += score;
+                }
+            }
+            
+            // HEXACO Honesty-Humility
+            else if (category === 'honesty_humility') {
+                domains.honesty_humility.score += score;
+                domains.honesty_humility.items++;
+                if (facet && domains.honesty_humility.facets[facet] !== undefined) {
+                    domains.honesty_humility.facets[facet] += score;
+                }
+            }
+            
+            // Dark traits
+            else if (category.startsWith('dark_')) {
+                const trait = category.replace('dark_', '');
+                if (domains.dark_traits[trait]) {
+                    domains.dark_traits[trait].score += score;
+                    domains.dark_traits[trait].items++;
+                }
+            }
+            
+            // ADHD
+            else if (category.startsWith('adhd_')) {
+                const subtype = category.replace('adhd_', '');
+                domains.neurodiversity.adhd[subtype] += score;
+                domains.neurodiversity.adhd.total_score += score;
+                domains.neurodiversity.adhd.items++;
+            }
+            
+            // Autism
+            else if (category.startsWith('asd_')) {
+                domains.neurodiversity.autism.score += score;
+                domains.neurodiversity.autism.items++;
+                if (question.instrument === 'RAADS-R') {
+                    domains.neurodiversity.autism.raads_score += score;
+                }
+            }
+            
+            // Executive function
+            else if (category.startsWith('executive_')) {
+                const function_type = category.replace('executive_', '');
+                if (domains.neurodiversity.executive[function_type] !== undefined) {
+                    domains.neurodiversity.executive[function_type] += score;
+                }
+            }
+            
+            // Emotion regulation
+            else if (category.startsWith('emotion_')) {
+                const subtype = category.replace('emotion_', '');
+                if (subtype === 'reappraisal' || subtype === 'suppression') {
+                    domains.emotional.regulation[subtype] += score;
+                    domains.emotional.regulation.items++;
+                } else if (domains.emotional.difficulties[subtype] !== undefined) {
+                    domains.emotional.difficulties[subtype] += score;
+                }
+            }
+            
+            // Empathy
+            else if (category.startsWith('empathy_')) {
+                const subtype = category.replace('empathy_', '');
+                if (domains.emotional.empathy[subtype] !== undefined) {
+                    domains.emotional.empathy[subtype] += score;
+                }
+            }
+            
+            // Stress & Resilience
+            else if (category === 'stress_perception' || category === 'stress_coping') {
+                domains.wellbeing.stress.perceived += score;
+                domains.wellbeing.stress.items++;
+            } else if (category === 'resilience') {
+                domains.wellbeing.resilience.score += score;
+                domains.wellbeing.resilience.items++;
+            }
+            
+            // Coping
+            else if (category.startsWith('coping_')) {
+                const style = category.replace('coping_', '');
+                if (domains.wellbeing.coping[style + '_focused'] !== undefined) {
+                    domains.wellbeing.coping[style + '_focused'] += score;
+                } else if (style === 'dysfunctional') {
+                    domains.wellbeing.coping.dysfunctional += score;
+                }
+            }
+        }
+        
+        // Detect response biases
+        function detectResponseBiases(responses, metrics) {
+            const biases = {
+                acquiescence: 0,
+                extremeResponding: 0,
+                centralTendency: 0,
+                socialDesirability: 0,
+                inconsistency: 0
+            };
+            
+            const values = Object.values(responses).map(r => parseInt(r.value) || 0);
+            const mean = values.reduce((a, b) => a + b, 0) / values.length;
+            const variance = values.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / values.length;
+            
+            // Detect acquiescence (tendency to agree)
+            const agreeCount = values.filter(v => v >= 4).length;
+            biases.acquiescence = (agreeCount / values.length) * 100;
+            
+            // Detect extreme responding
+            const extremeCount = values.filter(v => v === 1 || v === 5).length;
+            biases.extremeResponding = (extremeCount / values.length) * 100;
+            
+            // Detect central tendency
+            const centralCount = values.filter(v => v === 3).length;
+            biases.centralTendency = (centralCount / values.length) * 100;
+            
+            // Check for long strings (consecutive same responses)
+            let maxConsecutive = 1;
+            let currentConsecutive = 1;
+            for (let i = 1; i < values.length; i++) {
+                if (values[i] === values[i-1]) {
+                    currentConsecutive++;
+                    maxConsecutive = Math.max(maxConsecutive, currentConsecutive);
+                } else {
+                    currentConsecutive = 1;
+                }
+            }
+            metrics.longString = maxConsecutive;
+            
+            return biases;
+        }
+        
+        // Normalize scores using population norms
+        function normalizeScores(rawScores) {
+            const normalized = {};
+            
+            // Big Five normalization
+            ['extraversion', 'agreeableness', 'conscientiousness', 'neuroticism', 'openness'].forEach(trait => {
+                if (rawScores[trait].items > 0) {
+                    const rawMean = rawScores[trait].score / rawScores[trait].items;
+                    const norm = psychometricData.bigFive.norms[trait];
+                    const zScore = (rawMean - norm.mean) / norm.sd;
+                    normalized[trait] = {
+                        percentile: normalCDF(zScore) * 100,
+                        stanine: Math.min(9, Math.max(1, Math.round(zScore * 2 + 5))),
+                        tScore: Math.round(zScore * 10 + 50),
+                        raw: rawMean,
+                        facets: {}
+                    };
+                    
+                    // Normalize facets
+                    Object.entries(rawScores[trait].facets).forEach(([facet, score]) => {
+                        normalized[trait].facets[facet] = score / Math.max(1, rawScores[trait].items / 3);
+                    });
                 }
             });
             
-            // Find best matching profile
-            let bestMatch = personalityProfiles[0];
+            // HEXACO normalization
+            if (rawScores.honesty_humility.items > 0) {
+                const rawMean = rawScores.honesty_humility.score / rawScores.honesty_humility.items;
+                normalized.honesty_humility = {
+                    percentile: Math.min(95, Math.max(5, rawMean * 20)),
+                    raw: rawMean
+                };
+            }
+            
+            // Clinical scores normalization
+            // ADHD
+            if (rawScores.neurodiversity.adhd.items > 0) {
+                const adhdScore = rawScores.neurodiversity.adhd.total_score;
+                normalized.adhd = {
+                    total: adhdScore,
+                    clinical: adhdScore >= psychometricData.adhd.cutoff,
+                    percentile: adhdScore * 100 / (rawScores.neurodiversity.adhd.items * 5),
+                    inattention: rawScores.neurodiversity.adhd.inattention,
+                    hyperactivity: rawScores.neurodiversity.adhd.hyperactivity
+                };
+            }
+            
+            // Autism
+            if (rawScores.neurodiversity.autism.items > 0) {
+                const asdScore = rawScores.neurodiversity.autism.score;
+                normalized.autism = {
+                    total: asdScore,
+                    clinical: asdScore >= psychometricData.autism.cutoff,
+                    percentile: Math.min(95, asdScore * 100 / (rawScores.neurodiversity.autism.items * 4)),
+                    raads: rawScores.neurodiversity.autism.raads_score
+                };
+            }
+            
+            // Stress
+            if (rawScores.wellbeing.stress.items > 0) {
+                const stressScore = rawScores.wellbeing.stress.perceived / rawScores.wellbeing.stress.items;
+                const zScore = (stressScore - psychometricData.stress.communityMean) / psychometricData.stress.sd;
+                normalized.stress = {
+                    percentile: normalCDF(zScore) * 100,
+                    raw: stressScore,
+                    level: stressScore > 20 ? 'high' : stressScore > 14 ? 'moderate' : 'low'
+                };
+            }
+            
+            // Resilience
+            if (rawScores.wellbeing.resilience.items > 0) {
+                const resilienceScore = rawScores.wellbeing.resilience.score / rawScores.wellbeing.resilience.items;
+                const zScore = (resilienceScore - psychometricData.resilience.communityMean) / psychometricData.resilience.sd;
+                normalized.resilience = {
+                    percentile: normalCDF(zScore) * 100,
+                    raw: resilienceScore,
+                    level: resilienceScore > 35 ? 'high' : resilienceScore > 25 ? 'moderate' : 'low'
+                };
+            }
+            
+            // Dark traits
+            Object.entries(rawScores.dark_traits).forEach(([trait, data]) => {
+                if (data.items > 0) {
+                    normalized[`dark_${trait}`] = {
+                        percentile: Math.min(95, (data.score / (data.items * 5)) * 100),
+                        raw: data.score / data.items,
+                        clinical: data.score / data.items > 3.5
+                    };
+                }
+            });
+            
+            return normalized;
+        }
+        
+        // Normal CDF for z-score to percentile conversion
+        function normalCDF(z) {
+            const a1 = 0.254829592;
+            const a2 = -0.284496736;
+            const a3 = 1.421413741;
+            const a4 = -1.453152027;
+            const a5 = 1.061405429;
+            const p = 0.3275911;
+            
+            const sign = z < 0 ? -1 : 1;
+            z = Math.abs(z) / Math.sqrt(2);
+            
+            const t = 1 / (1 + p * z);
+            const y = 1 - ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.exp(-z * z);
+            
+            return 0.5 * (1 + sign * y);
+        }
+        
+        // Calculate clinical indicators
+        function calculateClinicalIndicators(scores) {
+            const indicators = {
+                flags: [],
+                strengths: [],
+                recommendations: []
+            };
+            
+            // Check for clinical-level scores
+            if (scores.adhd && scores.adhd.clinical) {
+                indicators.flags.push('ADHD screening positive - consider professional evaluation');
+                indicators.recommendations.push('Executive function support strategies may be helpful');
+            }
+            
+            if (scores.autism && scores.autism.clinical) {
+                indicators.flags.push('Autism traits elevated - neurodiversity-affirming support recommended');
+                indicators.strengths.push('Detail-oriented processing and pattern recognition');
+            }
+            
+            if (scores.stress && scores.stress.level === 'high') {
+                indicators.flags.push('Elevated stress levels detected');
+                indicators.recommendations.push('Stress management techniques recommended');
+            }
+            
+            if (scores.resilience && scores.resilience.level === 'high') {
+                indicators.strengths.push('High resilience and adaptability');
+            }
+            
+            // Check dark traits
+            ['machiavellianism', 'narcissism', 'psychopathy', 'sadism'].forEach(trait => {
+                if (scores[`dark_${trait}`] && scores[`dark_${trait}`].clinical) {
+                    indicators.flags.push(`Elevated ${trait} traits - self-awareness important`);
+                }
+            });
+            
+            // Identify personality strengths
+            ['extraversion', 'agreeableness', 'conscientiousness', 'openness'].forEach(trait => {
+                if (scores[trait] && scores[trait].percentile > 70) {
+                    indicators.strengths.push(`High ${trait} (${Math.round(scores[trait].percentile)}th percentile)`);
+                }
+            });
+            
+            if (scores.neuroticism && scores.neuroticism.percentile < 30) {
+                indicators.strengths.push('Emotional stability');
+            }
+            
+            return indicators;
+        }
+        
+        // Generate comprehensive profile
+        function generateComprehensiveProfile(scores, indicators) {
+            // Find best matching archetype based on pattern matching
+            let bestMatch = null;
             let bestScore = -1;
             
             personalityProfiles.forEach(profile => {
                 let matchScore = 0;
+                let matchCount = 0;
                 
-                Object.keys(scores).forEach(trait => {
-                    if (profile.traits[trait]) {
-                        const diff = Math.abs(scores[trait] - profile.traits[trait].score);
+                // Match Big Five patterns
+                ['extraversion', 'agreeableness', 'conscientiousness', 'neuroticism', 'openness'].forEach(trait => {
+                    if (scores[trait] && profile.traits[trait]) {
+                        const diff = Math.abs(scores[trait].percentile - profile.traits[trait].score);
                         matchScore += (100 - diff);
+                        matchCount++;
                     }
                 });
                 
-                if (matchScore > bestScore) {
-                    bestScore = matchScore;
-                    bestMatch = profile;
+                // Consider HEXACO if available
+                if (scores.honesty_humility && profile.traits.honestyHumility) {
+                    const diff = Math.abs(scores.honesty_humility.percentile - profile.traits.honestyHumility.score);
+                    matchScore += (100 - diff);
+                    matchCount++;
+                }
+                
+                if (matchCount > 0) {
+                    const avgMatch = matchScore / matchCount;
+                    if (avgMatch > bestScore) {
+                        bestScore = avgMatch;
+                        bestMatch = profile;
+                    }
                 }
             });
             
-            return {
-                profile: bestMatch,
-                scores: scores,
-                neuroScores: neuroScores,
-                totalTime: totalTime,
-                responseCount: Object.keys(responses).length,
-                matchConfidence: Math.min(95, Math.round((bestScore / 6)))
-            };
+            // Enhance profile with clinical insights
+            if (bestMatch) {
+                bestMatch.clinicalIndicators = indicators;
+                bestMatch.matchPercentage = Math.round(bestScore);
+            }
+            
+            return bestMatch || personalityProfiles[0];
+        }
+        
+        // Calculate match confidence
+        function calculateMatchConfidence(metrics, responseCount) {
+            let confidence = 100;
+            
+            // Reduce confidence for insufficient responses
+            if (responseCount < 30) confidence -= 20;
+            else if (responseCount < 60) confidence -= 10;
+            
+            // Reduce confidence for response biases
+            if (metrics.tooFast > responseCount * 0.1) confidence -= 15;
+            if (metrics.longString > 5) confidence -= 10;
+            
+            // Reduce confidence for extreme response styles
+            if (metrics.responseTime.average < 2000) confidence -= 10;
+            
+            return Math.max(40, Math.min(95, confidence));
         }
 
         // Display results
