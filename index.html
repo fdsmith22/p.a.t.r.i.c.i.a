@@ -5306,9 +5306,13 @@
         // Update progress
         function updateProgress() {
             const progress = ((currentQuestionIndex + 1) / assessmentQuestions.length) * 100;
-            document.getElementById('progressBar').style.width = `${progress}%`;
-            document.getElementById('questionNumber').textContent = currentQuestionIndex + 1;
-            document.getElementById('completionRate').textContent = `${Math.round(progress)}%`;
+            const progressBar = document.getElementById('progressBar');
+            const questionNumber = document.getElementById('questionNumber');
+            const completionRate = document.getElementById('completionRate');
+            
+            if (progressBar) progressBar.style.width = `${progress}%`;
+            if (questionNumber) questionNumber.textContent = currentQuestionIndex + 1;
+            if (completionRate) completionRate.textContent = `${Math.round(progress)}%`;
         }
 
         // Render question based on type
@@ -5340,7 +5344,7 @@
                 if (questionNumber) {
                     questionNumber.textContent = currentQuestionIndex + 1;
                 }
-                updateProgressBar();
+                updateProgress();
                 return;
             }
             
@@ -6476,7 +6480,7 @@
             
             // Big Five normalization
             ['extraversion', 'agreeableness', 'conscientiousness', 'neuroticism', 'openness'].forEach(trait => {
-                if (rawScores[trait].items > 0) {
+                if (rawScores[trait] && rawScores[trait].items > 0) {
                     const rawMean = rawScores[trait].score / rawScores[trait].items;
                     const norm = psychometricData.bigFive.norms[trait];
                     const zScore = (rawMean - norm.mean) / norm.sd;
@@ -6496,7 +6500,7 @@
             });
             
             // HEXACO normalization
-            if (rawScores.honesty_humility.items > 0) {
+            if (rawScores.honesty_humility && rawScores.honesty_humility.items > 0) {
                 const rawMean = rawScores.honesty_humility.score / rawScores.honesty_humility.items;
                 normalized.honesty_humility = {
                     percentile: Math.min(95, Math.max(5, rawMean * 20)),
@@ -6506,7 +6510,7 @@
             
             // Clinical scores normalization
             // ADHD
-            if (rawScores.neurodiversity.adhd.items > 0) {
+            if (rawScores.neurodiversity && rawScores.neurodiversity.adhd && rawScores.neurodiversity.adhd.items > 0) {
                 const adhdScore = rawScores.neurodiversity.adhd.total_score;
                 normalized.adhd = {
                     total: adhdScore,
@@ -6518,7 +6522,7 @@
             }
             
             // Autism
-            if (rawScores.neurodiversity.autism.items > 0) {
+            if (rawScores.neurodiversity && rawScores.neurodiversity.autism && rawScores.neurodiversity.autism.items > 0) {
                 const asdScore = rawScores.neurodiversity.autism.score;
                 normalized.autism = {
                     total: asdScore,
@@ -6699,6 +6703,16 @@
             document.getElementById('resultsContainer').style.display = 'block';
             
             const container = document.getElementById('resultsContainer');
+            
+            // Ensure neuroScores exist with default values
+            if (!results.neuroScores) {
+                results.neuroScores = {
+                    adhdTraits: 50,
+                    autismTraits: 50,
+                    sensitivity: 50,
+                    executiveFunction: 50
+                };
+            }
             
             let html = `
                 <div class="results-header">
