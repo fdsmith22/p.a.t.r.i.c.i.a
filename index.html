@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="ultimate-visual-overhaul.css">
     <link rel="stylesheet" href="enhanced-questions.css">
     <link rel="stylesheet" href="enhanced-title.css">
+    <link rel="stylesheet" href="enhanced-results-styles.css">
     <!-- Comprehensive fix must be loaded last to override conflicts -->
     <link rel="stylesheet" href="comprehensive-fix.css">
     
@@ -22,6 +23,8 @@
     <script src="enhanced-questions.js" defer></script>
     <script src="question-integration.js" defer></script>
     <script src="enhanced-title.js" defer></script>
+    <script src="enhanced-results-engine.js" defer></script>
+    <script src="enhanced-results-display.js" defer></script>
     
     <style>
         :root {
@@ -6749,6 +6752,14 @@
             document.getElementById('loadingScreen').style.display = 'none';
             document.getElementById('resultsContainer').style.display = 'block';
             
+            // Use enhanced results display if available
+            if (window.EnhancedResultsDisplay) {
+                const enhancedDisplay = new EnhancedResultsDisplay();
+                enhancedDisplay.displayEnhancedResults(results);
+                return;
+            }
+            
+            // Fallback to original display
             const container = document.getElementById('resultsContainer');
             
             // Ensure neuroScores exist with default values
