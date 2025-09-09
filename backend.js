@@ -15,11 +15,27 @@ const helmet = require('helmet');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Security middleware
-app.use(helmet());
+// Security middleware with appropriate CSP
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 
+                       "https://cdn.jsdelivr.net", 
+                       "https://unpkg.com",
+                       "https://cdnjs.cloudflare.com"],
+            styleSrc: ["'self'", "'unsafe-inline'", 
+                      "https://cdn.jsdelivr.net", 
+                      "https://fonts.googleapis.com"],
+            fontSrc: ["'self'", "https://fonts.gstatic.com"],
+            imgSrc: ["'self'", "data:", "https:"],
+            connectSrc: ["'self'", "http://localhost:*", "https://api.stripe.com"]
+        }
+    }
+}));
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
-app.use(express.static('public'));
+app.use(express.static('.'));
 
 // Rate limiting
 const limiter = rateLimit({
