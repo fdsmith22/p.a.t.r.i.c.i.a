@@ -1700,6 +1700,34 @@ claude<!DOCTYPE html>
             100% { transform: rotate(360deg); }
         }
 
+        /* Mode selection styles */
+        .mode-option {
+            position: relative;
+            display: block;
+        }
+
+        .mode-option:hover {
+            background: rgba(74, 144, 226, 0.1);
+            border-color: var(--primary) !important;
+        }
+
+        .mode-option input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        .mode-option input[type="radio"]:checked ~ strong {
+            color: var(--primary);
+        }
+
+        .mode-option input[type="radio"]:checked ~ p {
+            color: var(--text-primary);
+        }
+
+        label.mode-option:has(input[type="radio"]:checked) {
+            border-color: var(--primary) !important;
+            background: rgba(74, 144, 226, 0.1);
+        }
+
         .loading-text {
             font-size: 1.25rem;
             color: var(--text-secondary);
@@ -1863,9 +1891,42 @@ claude<!DOCTYPE html>
                     </div>
                 </div>
 
+                <!-- Mode Selection -->
                 <div style="background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%); padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem;">
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Choose Your Assessment Mode</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <label class="mode-option" style="cursor: pointer; padding: 1rem; border: 2px solid var(--card-border); border-radius: 10px; transition: all 0.3s;">
+                            <input type="radio" name="assessmentMode" value="validated" checked onchange="updateModeSelection()">
+                            <strong>Validated Mode</strong>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-secondary);">
+                                Scientifically validated instruments (BFI-2, HEXACO, clinical screening)
+                            </p>
+                        </label>
+                        
+                        <label class="mode-option" style="cursor: pointer; padding: 1rem; border: 2px solid var(--card-border); border-radius: 10px; transition: all 0.3s;">
+                            <input type="radio" name="assessmentMode" value="experimental" onchange="updateModeSelection()">
+                            <strong>Experimental Mode</strong>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-secondary);">
+                                Cutting-edge measures (2020-2025 research, Eastern philosophy, indigenous frameworks)
+                            </p>
+                        </label>
+                    </div>
+
+                    <!-- Tier Selection for Validated Mode -->
+                    <div id="tierSelection" style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary);">
+                            <strong>Select Assessment Depth:</strong>
+                        </label>
+                        <select id="assessmentTier" style="width: 100%; padding: 0.75rem; border-radius: 8px; background: var(--bg-primary); color: var(--text-primary); border: 1px solid var(--card-border);">
+                            <option value="core">Core Screening (20-25 min)</option>
+                            <option value="comprehensive">Comprehensive Assessment (45-60 min)</option>
+                            <option value="specialized">Specialized Modules (60+ min)</option>
+                        </select>
+                    </div>
+
                     <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 0.5rem;">
-                        ⏱️ Estimated time: 15-20 minutes
+                        ⏱️ <span id="timeEstimate">Estimated time: 20-25 minutes</span>
                     </p>
                     <p style="color: var(--text-secondary); margin: 0;">
                         This assessment is designed to be engaging and insightful. Take your time and answer honestly - 
@@ -4946,6 +5007,50 @@ claude<!DOCTYPE html>
         let currentQuestionIndex = 0;
         let responses = {};
         let startTime = null;
+
+        // Mode selection handler
+        function updateModeSelection() {
+            const mode = document.querySelector('input[name="assessmentMode"]:checked').value;
+            assessmentConfig.mode = mode;
+            
+            const tierSelection = document.getElementById('tierSelection');
+            const timeEstimate = document.getElementById('timeEstimate');
+            
+            if (mode === 'experimental') {
+                tierSelection.style.display = 'none';
+                timeEstimate.textContent = 'Estimated time: 30-40 minutes';
+            } else {
+                tierSelection.style.display = 'block';
+                updateTierSelection();
+            }
+        }
+
+        // Tier selection handler
+        function updateTierSelection() {
+            const tier = document.getElementById('assessmentTier').value;
+            assessmentConfig.currentTier = tier;
+            
+            const timeEstimate = document.getElementById('timeEstimate');
+            switch(tier) {
+                case 'core':
+                    timeEstimate.textContent = 'Estimated time: 20-25 minutes';
+                    break;
+                case 'comprehensive':
+                    timeEstimate.textContent = 'Estimated time: 45-60 minutes';
+                    break;
+                case 'specialized':
+                    timeEstimate.textContent = 'Estimated time: 60+ minutes';
+                    break;
+            }
+        }
+
+        // Add event listener for tier selection
+        document.addEventListener('DOMContentLoaded', function() {
+            const tierSelect = document.getElementById('assessmentTier');
+            if (tierSelect) {
+                tierSelect.addEventListener('change', updateTierSelection);
+            }
+        });
         let questionStartTime = null;
         let timeElapsedInterval = null;
         let progressMinimized = false;
