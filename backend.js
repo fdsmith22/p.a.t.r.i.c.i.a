@@ -1,9 +1,11 @@
 // P.A.T.R.I.C.I.A Backend Server
 // Comprehensive backend with payment integration, data persistence, and analytics
 
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -114,11 +116,18 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/patricia', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+// Connect to MongoDB (with graceful handling if not available)
+if (process.env.MONGODB_URI || process.env.NODE_ENV === 'production') {
+    mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/patricia')
+        .then(() => {
+            console.log('MongoDB connected successfully');
+        }).catch(err => {
+            console.log('MongoDB connection failed:', err.message);
+            console.log('Running in demo mode without database persistence');
+        });
+} else {
+    console.log('Running in development mode without MongoDB');
+}
 
 // === API ENDPOINTS ===
 
@@ -578,13 +587,16 @@ function calculateQualityMetrics(responses) {
         }
     }
     
+    const straightLining = maxConsecutive > 10;
+    const carelessResponding = avgResponseTime < 1000 || responseVariability < 0.3;
+    
     return {
         completionRate: responses.length / 100, // Adjust based on expected questions
         avgResponseTime,
         responseVariability,
-        straightLining: maxConsecutive > 10,
-        carelessResponding: avgResponseTime < 1000 || responseVariability < 0.3,
-        dataQuality: responseVariability > 0.5 && !this.straightLining ? 'Good' : 'Review needed'
+        straightLining,
+        carelessResponding,
+        dataQuality: responseVariability > 0.5 && !straightLining ? 'Good' : 'Review needed'
     };
 }
 
