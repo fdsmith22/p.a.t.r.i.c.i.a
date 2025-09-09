@@ -331,8 +331,8 @@ function renderEnhancedQuestion(question) {
             renderTimeOfDayQuestion(container, question);
             break;
         default:
-            // Fallback to traditional likert
-            renderTraditionalLikert(container, question);
+            // Fallback to basic likert scale
+            renderBasicLikertQuestion(container, question);
     }
     
     return container;
@@ -645,6 +645,45 @@ function renderTimeOfDayQuestion(container, question) {
     
     clockDiv.appendChild(clock);
     container.appendChild(clockDiv);
+}
+
+// Fallback renderer for basic likert questions
+function renderBasicLikertQuestion(container, question) {
+    const likertDiv = document.createElement('div');
+    likertDiv.className = 'likert-container';
+    
+    const scale = question.scale || 5;
+    const labels = question.labels || ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'];
+    
+    labels.forEach((label, index) => {
+        const option = document.createElement('div');
+        option.className = 'likert-option';
+        option.dataset.value = index + 1;
+        
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = `question-${question.id}`;
+        radio.value = index + 1;
+        radio.id = `${question.id}-${index}`;
+        
+        const labelElem = document.createElement('label');
+        labelElem.htmlFor = `${question.id}-${index}`;
+        labelElem.textContent = label;
+        
+        option.appendChild(radio);
+        option.appendChild(labelElem);
+        
+        option.addEventListener('click', function() {
+            radio.checked = true;
+            document.querySelectorAll('.likert-option').forEach(o => o.classList.remove('selected'));
+            this.classList.add('selected');
+            window.currentResponse = index + 1;
+        });
+        
+        likertDiv.appendChild(option);
+    });
+    
+    container.appendChild(likertDiv);
 }
 
 // Export functions
