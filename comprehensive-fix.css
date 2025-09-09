@@ -1,0 +1,213 @@
+/* Comprehensive fix for scrolling and title visibility issues */
+
+/* ===== SCROLLING FIX ===== */
+/* Reset all overflow issues from conflicting CSS */
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow: initial !important;
+}
+
+html {
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    scroll-behavior: smooth !important;
+}
+
+body {
+    overflow: visible !important;
+    min-height: 100vh !important;
+    position: relative !important;
+}
+
+/* Remove any height constraints causing double scroll */
+.container,
+#mainContent,
+.assessment-card,
+#welcomeScreen,
+#assessmentContainer {
+    height: auto !important;
+    min-height: initial !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* ===== TITLE VISIBILITY FIX ===== */
+/* Ensure title is visible */
+h1, .patricia-title {
+    /* Remove transparent text fill that might be hiding the title */
+    -webkit-text-fill-color: initial !important;
+    color: #8b6cc1 !important; /* Use a visible color */
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 100 !important;
+    font-size: 3.5rem !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    margin: 0 0 1rem 0 !important;
+    padding: 0 !important;
+    
+    /* Add a text shadow for better visibility */
+    text-shadow: 0 2px 10px rgba(139, 108, 193, 0.3) !important;
+    
+    /* Override any gradient text issues */
+    background: none !important;
+    background-clip: initial !important;
+    -webkit-background-clip: initial !important;
+}
+
+/* Fix subtitle visibility */
+.subtitle, .enhanced-subtitle {
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: #c8bfe6 !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+/* Ensure header is visible */
+.header, .header-content {
+    position: relative !important;
+    z-index: 100 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    background: rgba(26, 22, 39, 0.8) !important;
+    padding: 2rem !important;
+    border-radius: 20px !important;
+    margin-bottom: 2rem !important;
+}
+
+/* ===== Z-INDEX HIERARCHY FIX ===== */
+/* Background elements should be behind everything */
+.floating-orbs,
+.neural-bg,
+#neuralCanvas,
+.matrix-bg,
+.morphing-bg,
+#particle-canvas,
+.particle-canvas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+}
+
+/* Main container should be above background but below modals */
+.container {
+    position: relative !important;
+    z-index: 10 !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 2rem !important;
+    background: rgba(37, 33, 54, 0.9) !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* Content should be above container */
+#mainContent {
+    position: relative !important;
+    z-index: 20 !important;
+}
+
+/* Interactive elements should be on top */
+.btn, button, input, select, textarea {
+    position: relative !important;
+    z-index: 30 !important;
+}
+
+/* ===== ENHANCED TITLE ANIMATION FIX ===== */
+/* If the enhanced title JS has issues, ensure basic visibility */
+.letter-wrapper {
+    display: inline-block !important;
+    color: inherit !important;
+}
+
+.letter {
+    color: inherit !important;
+    display: inline-block !important;
+}
+
+/* Override problematic animations */
+@media (prefers-reduced-motion: no-preference) {
+    h1 {
+        animation: simple-gradient 4s ease infinite !important;
+    }
+}
+
+@keyframes simple-gradient {
+    0%, 100% {
+        color: #8b6cc1;
+    }
+    33% {
+        color: #f4a09c;
+    }
+    66% {
+        color: #6aa89a;
+    }
+}
+
+/* ===== MOBILE FIXES ===== */
+@media (max-width: 768px) {
+    html, body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+    
+    .container {
+        width: calc(100% - 2rem) !important;
+        margin: 1rem !important;
+        padding: 1.5rem !important;
+        border-radius: 16px !important;
+    }
+    
+    h1, .patricia-title {
+        font-size: 2rem !important;
+    }
+    
+    .subtitle {
+        font-size: 1rem !important;
+    }
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+/* Single, styled scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #8b6cc1, #6f4ba8);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #a692d4, #8b6cc1);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #8b6cc1 rgba(255, 255, 255, 0.02);
+}
+
+/* ===== DEBUG HELPERS ===== */
+/* Uncomment to see element boundaries for debugging */
+/*
+* {
+    outline: 1px solid red !important;
+}
+*/

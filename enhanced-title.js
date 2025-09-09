@@ -1,7 +1,18 @@
 // Enhanced Title Effects for P.A.T.R.I.C.I.A
 
 document.addEventListener('DOMContentLoaded', function() {
-    enhanceTitleEffects();
+    try {
+        enhanceTitleEffects();
+    } catch (error) {
+        console.error('Title enhancement failed:', error);
+        // Ensure title remains visible even if enhancement fails
+        const title = document.querySelector('h1');
+        if (title) {
+            title.style.color = '#8b6cc1';
+            title.style.opacity = '1';
+            title.style.visibility = 'visible';
+        }
+    }
 });
 
 function enhanceTitleEffects() {
