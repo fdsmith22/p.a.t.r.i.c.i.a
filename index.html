@@ -9,12 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="enhanced-styles.css">
     <link rel="stylesheet" href="ultimate-visual-overhaul.css">
+    <link rel="stylesheet" href="enhanced-questions.css">
     
     <!-- Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="visual-interactions.js" defer></script>
+    <script src="enhanced-questions.js" defer></script>
+    <script src="question-integration.js" defer></script>
     
     <style>
         :root {
@@ -4586,23 +4589,40 @@
         // Combine questions based on assessment mode and tier
         let assessmentQuestions = [];
         
-        if (assessmentConfig.mode === 'experimental') {
-            // Use experimental cutting-edge assessments
-            assessmentQuestions = experimentalQuestions;
-            assessmentConfig.biometricTracking = true;
+        // Use enhanced question formats when available
+        if (window.questionIntegration) {
+            if (assessmentConfig.mode === 'experimental') {
+                // Use enhanced experimental questions
+                assessmentQuestions = window.questionIntegration.transformExperimental();
+                assessmentConfig.biometricTracking = true;
+            } else {
+                // Use enhanced validated questions
+                assessmentQuestions = window.questionIntegration.transformValidated();
+                
+                // Add more questions based on tier
+                if (assessmentConfig.currentTier === 'comprehensive') {
+                    assessmentQuestions = [...assessmentQuestions, ...comprehensiveAssessmentQuestions.slice(0, 10)];
+                } else if (assessmentConfig.currentTier === 'specialized') {
+                    assessmentQuestions = [...assessmentQuestions, ...Object.values(specializedModules).flat().slice(0, 15)];
+                }
+            }
         } else {
-            // Use validated traditional assessments
-            if (assessmentConfig.currentTier === 'core') {
-                assessmentQuestions = coreScreeningQuestions;
-            } else if (assessmentConfig.currentTier === 'comprehensive') {
-                assessmentQuestions = [...coreScreeningQuestions, ...comprehensiveAssessmentQuestions];
-            } else if (assessmentConfig.currentTier === 'specialized') {
-                // Add specialized modules based on user selection or adaptive testing
-                assessmentQuestions = [
-                    ...coreScreeningQuestions,
-                    ...comprehensiveAssessmentQuestions,
-                    ...Object.values(specializedModules).flat()
-                ];
+            // Fallback to original questions if enhancement not loaded
+            if (assessmentConfig.mode === 'experimental') {
+                assessmentQuestions = experimentalQuestions;
+                assessmentConfig.biometricTracking = true;
+            } else {
+                if (assessmentConfig.currentTier === 'core') {
+                    assessmentQuestions = coreScreeningQuestions;
+                } else if (assessmentConfig.currentTier === 'comprehensive') {
+                    assessmentQuestions = [...coreScreeningQuestions, ...comprehensiveAssessmentQuestions];
+                } else if (assessmentConfig.currentTier === 'specialized') {
+                    assessmentQuestions = [
+                        ...coreScreeningQuestions,
+                        ...comprehensiveAssessmentQuestions,
+                        ...Object.values(specializedModules).flat()
+                    ];
+                }
             }
         }
 
@@ -5185,24 +5205,41 @@
                 startBtn.textContent = mode === 'experimental' ? 'Begin Experimental Assessment' : 'Begin Validated Assessment';
             }
             
-            // Update question set
-            if (mode === 'experimental') {
-                assessmentQuestions = experimentalQuestions;
-                assessmentConfig.biometricTracking = true;
-            } else {
-                // Reset to validated questions based on tier
-                if (assessmentConfig.currentTier === 'core') {
-                    assessmentQuestions = coreScreeningQuestions;
-                } else if (assessmentConfig.currentTier === 'comprehensive') {
-                    assessmentQuestions = [...coreScreeningQuestions, ...comprehensiveAssessmentQuestions];
-                } else if (assessmentConfig.currentTier === 'specialized') {
-                    assessmentQuestions = [
-                        ...coreScreeningQuestions,
-                        ...comprehensiveAssessmentQuestions,
-                        ...Object.values(specializedModules).flat()
-                    ];
+            // Update question set with enhanced formats
+            if (window.questionIntegration) {
+                if (mode === 'experimental') {
+                    assessmentQuestions = window.questionIntegration.transformExperimental();
+                    assessmentConfig.biometricTracking = true;
+                } else {
+                    assessmentQuestions = window.questionIntegration.transformValidated();
+                    assessmentConfig.biometricTracking = false;
+                    
+                    // Add more questions based on tier
+                    if (assessmentConfig.currentTier === 'comprehensive') {
+                        assessmentQuestions = [...assessmentQuestions, ...comprehensiveAssessmentQuestions.slice(0, 10)];
+                    } else if (assessmentConfig.currentTier === 'specialized') {
+                        assessmentQuestions = [...assessmentQuestions, ...Object.values(specializedModules).flat().slice(0, 15)];
+                    }
                 }
-                assessmentConfig.biometricTracking = false;
+            } else {
+                // Fallback to original questions
+                if (mode === 'experimental') {
+                    assessmentQuestions = experimentalQuestions;
+                    assessmentConfig.biometricTracking = true;
+                } else {
+                    if (assessmentConfig.currentTier === 'core') {
+                        assessmentQuestions = coreScreeningQuestions;
+                    } else if (assessmentConfig.currentTier === 'comprehensive') {
+                        assessmentQuestions = [...coreScreeningQuestions, ...comprehensiveAssessmentQuestions];
+                    } else if (assessmentConfig.currentTier === 'specialized') {
+                        assessmentQuestions = [
+                            ...coreScreeningQuestions,
+                            ...comprehensiveAssessmentQuestions,
+                            ...Object.values(specializedModules).flat()
+                        ];
+                    }
+                    assessmentConfig.biometricTracking = false;
+                }
             }
         }
         
@@ -5264,6 +5301,19 @@
 
         // Render question based on type
         function renderQuestion(question) {
+            // Use enhanced renderer if available
+            if (window.questionIntegration && window.questionIntegration.renderEnhanced) {
+                const container = window.questionIntegration.renderEnhanced(question);
+                document.getElementById('questionContent').innerHTML = '';
+                document.getElementById('questionContent').appendChild(container);
+                
+                // Update progress display
+                document.getElementById('questionCounter').textContent = `Question ${currentQuestionIndex + 1} of ${assessmentQuestions.length}`;
+                updateProgressBar();
+                return;
+            }
+            
+            // Fallback to original renderer
             let html = `
                 <div class="assessment-card">
                     <div class="question-header">
@@ -5273,7 +5323,7 @@
                         </div>
                         <div class="question-category">${question.category.replace(/_/g, ' ')}</div>
                     </div>
-                    <div class="question-text">${question.text}</div>
+                    <div class="question-text">${question.text || question.prompt}</div>
                     ${question.instruction ? `<div class="question-instruction">${question.instruction}</div>` : ''}
                     <div class="question-content">
             `;
