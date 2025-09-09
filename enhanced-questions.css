@@ -487,6 +487,43 @@
     }
 }
 
+/* Question Navigation */
+.question-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.question-navigation .btn {
+    flex: 1;
+    max-width: 200px;
+}
+
+.question-navigation .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Enhanced question container */
+.enhanced-question-container {
+    animation: fadeIn 0.5s ease;
+    padding: 2rem;
+    background: var(--glass-bg);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.enhanced-prompt {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     .metaphor-container {

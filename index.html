@@ -5290,7 +5290,15 @@
             updateProgress();
             
             const container = document.getElementById('assessmentContainer');
-            container.innerHTML = renderQuestion(question);
+            
+            // Check if we're using enhanced renderer
+            if (window.questionIntegration && window.questionIntegration.renderEnhanced) {
+                // Enhanced renderer handles DOM directly
+                renderQuestion(question);
+            } else {
+                // Original renderer returns HTML string
+                container.innerHTML = renderQuestion(question);
+            }
             
             initializeQuestionInteractions(question);
         }
@@ -5308,11 +5316,30 @@
             // Use enhanced renderer if available
             if (window.questionIntegration && window.questionIntegration.renderEnhanced) {
                 const container = window.questionIntegration.renderEnhanced(question);
-                document.getElementById('questionContent').innerHTML = '';
-                document.getElementById('questionContent').appendChild(container);
+                const assessmentContainer = document.getElementById('assessmentContainer');
+                if (assessmentContainer) {
+                    assessmentContainer.innerHTML = '';
+                    assessmentContainer.appendChild(container);
+                    
+                    // Add navigation buttons
+                    const navDiv = document.createElement('div');
+                    navDiv.className = 'question-navigation';
+                    navDiv.innerHTML = `
+                        <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestionIndex === 0 ? 'disabled' : ''}>
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="nextQuestion()">
+                            ${currentQuestionIndex === assessmentQuestions.length - 1 ? 'Complete' : 'Next'}
+                        </button>
+                    `;
+                    assessmentContainer.appendChild(navDiv);
+                }
                 
                 // Update progress display
-                document.getElementById('questionCounter').textContent = `Question ${currentQuestionIndex + 1} of ${assessmentQuestions.length}`;
+                const questionNumber = document.getElementById('questionNumber');
+                if (questionNumber) {
+                    questionNumber.textContent = currentQuestionIndex + 1;
+                }
                 updateProgressBar();
                 return;
             }
