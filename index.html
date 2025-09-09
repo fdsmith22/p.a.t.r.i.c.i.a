@@ -1709,6 +1709,53 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* Celebration animation fallback for when confetti is blocked */
+        .celebration-animation {
+            animation: celebrate 3s ease-out;
+        }
+        
+        @keyframes celebrate {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            10% {
+                transform: scale(1.05) rotate(-2deg);
+            }
+            20% {
+                transform: scale(1.02) rotate(2deg);
+            }
+            30% {
+                transform: scale(1.01) rotate(-1deg);
+            }
+            40% {
+                transform: scale(1) rotate(1deg);
+            }
+        }
+        
+        .celebration-animation::before {
+            content: '🎉';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            animation: float-up 3s ease-out;
+        }
+        
+        @keyframes float-up {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(0);
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-100px);
+            }
+        }
 
         /* Mode selection styles */
         .mode-option {
@@ -6857,11 +6904,23 @@
             
             container.innerHTML = html;
             
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
+            // Try to show confetti, but don't fail if CSP blocks it
+            try {
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }
+            } catch (error) {
+                console.log('Confetti animation blocked by CSP, using CSS animation instead');
+                // Add a CSS celebration animation as fallback
+                container.classList.add('celebration-animation');
+                setTimeout(() => {
+                    container.classList.remove('celebration-animation');
+                }, 3000);
+            }
             
             userProfile = results;
         }
