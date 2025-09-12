@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P.A.T.R.I.C.I.A - Advanced Psychometric Assessment Platform</title>
+    <meta name="description" content="Comprehensive personality assessment integrating Big Five, HEXACO, neurodiversity screening, and cognitive profiling">
+    <meta name="theme-color" content="#1A1F2E">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Enhanced Stylesheets -->
+    <link rel="stylesheet" href="styles/patricia-main.css">
+    <link rel="stylesheet" href="styles/patricia-enhanced.css">
+    
+    <!-- Critical Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+    
+    <!-- Modular JavaScript -->
+    <script type="module" src="js/app-enhanced.js"></script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Background Effects -->
+    <div class="neural-bg" aria-hidden="true"></div>
+    <div class="gradient-mesh-bg" aria-hidden="true"></div>
+    <canvas id="particle-constellation" aria-hidden="true"></canvas>
+    
+    <!-- Main Container -->
+    <div class="container" id="main-content">
+        <!-- Enhanced Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="title-container">
+                    <!-- Animated Title with Individual Letters -->
+                    <h1 class="title-main" id="main-title">
+                        <span class="title-letter" style="--index: 0" data-letter="P">P</span>
+                        <span class="title-letter" style="--index: 1" data-letter="•">•</span>
+                        <span class="title-letter" style="--index: 2" data-letter="A">A</span>
+                        <span class="title-letter" style="--index: 3" data-letter="•">•</span>
+                        <span class="title-letter" style="--index: 4" data-letter="T">T</span>
+                        <span class="title-letter" style="--index: 5" data-letter="•">•</span>
+                        <span class="title-letter" style="--index: 6" data-letter="R">R</span>
+                        <span class="title-letter" style="--index: 7" data-letter="•">•</span>
+                        <span class="title-letter" style="--index: 8" data-letter="I">I</span>
+                        <span class="title-letter" style="--index: 9" data-letter="•">•</span>
+                        <span class="title-letter" style="--index: 10" data-letter="C">C</span>
+                        <span class="title-letter" style="--index: 11" data-letter="•">•</span>
+                        <span class="title-letter" style="--index: 12" data-letter="I">I</span>
+                        <span class="title-letter" style="--index: 13" data-letter="•">•</span>
+                        <span class="title-letter" style="--index: 14" data-letter="A">A</span>
+                    </h1>
+                    
+                    <!-- Floating Particles -->
+                    <div class="title-particles" aria-hidden="true">
+                        <span class="title-particle"></span>
+                        <span class="title-particle"></span>
+                        <span class="title-particle"></span>
+                        <span class="title-particle"></span>
+                        <span class="title-particle"></span>
+                    </div>
+                    
+                    <!-- Acronym Breakdown -->
+                    <div class="acronym-breakdown" id="acronym-breakdown">
+                        <div class="acronym-word">
+                            <span class="acronym-letter-large">P</span>
+                            <span class="acronym-word-text">Personalized</span>
+                        </div>
+                        <div class="acronym-word">
+                            <span class="acronym-letter-large">A</span>
+                            <span class="acronym-word-text">Assessment</span>
+                        </div>
+                        <div class="acronym-word">
+                            <span class="acronym-letter-large">T</span>
+                            <span class="acronym-word-text">Through</span>
+                        </div>
+                        <div class="acronym-word">
+                            <span class="acronym-letter-large">R</span>
+                            <span class="acronym-word-text">Robust</span>
+                        </div>
+                        <div class="acronym-word">
+                            <span class="acronym-letter-large">I</span>
+                            <span class="acronym-word-text">Integrated</span>
+                        </div>
+                        <div class="acronym-word">
+                            <span class="acronym-letter-large">C</span>
+                            <span class="acronym-word-text">Cognitive</span>
+                        </div>
+                        <div class="acronym-word">
+                            <span class="acronym-letter-large">I</span>
+                            <span class="acronym-word-text">Identity</span>
+                        </div>
+                        <div class="acronym-word">
+                            <span class="acronym-letter-large">A</span>
+                            <span class="acronym-word-text">Analysis</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="subtitle animate-float">
+                    Advanced Psychometric Intelligence Platform for Comprehensive Personality Profiling
+                </p>
+            </div>
+        </header>
+        
+        <!-- Enhanced Progress Container -->
+        <div class="progress-container glass" id="progress-container">
+            <button class="progress-toggle" aria-label="Toggle progress view">
+                <span class="progress-toggle-icon">▼</span>
+                <span class="progress-minimized-text">Progress: <span id="progress-percent">0%</span></span>
+            </button>
+            
+            <div class="progress-stats">
+                <div class="progress-stat hover-lift">
+                    <div class="progress-stat-value" id="current-question">0</div>
+                    <div class="progress-stat-label">Current</div>
+                </div>
+                <div class="progress-stat hover-lift">
+                    <div class="progress-stat-value" id="total-questions">0</div>
+                    <div class="progress-stat-label">Total</div>
+                </div>
+                <div class="progress-stat hover-lift">
+                    <div class="progress-stat-value" id="answered-questions">0</div>
+                    <div class="progress-stat-label">Answered</div>
+                </div>
+                <div class="progress-stat hover-lift">
+                    <div class="progress-stat-value" id="completion-rate">0%</div>
+                    <div class="progress-stat-label">Complete</div>
+                </div>
+                <div class="progress-stat hover-lift">
+                    <div class="progress-stat-value" id="time-elapsed">0:00</div>
+                    <div class="progress-stat-label">Time</div>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+        
+        <!-- Main Assessment Area -->
+        <main class="assessment-container" id="assessment-container">
+            <!-- Enhanced Welcome Screen -->
+            <div class="assessment-card" id="welcome-screen">
+                <h2 class="text-3xl font-bold gradient-text mb-3">Welcome to P.A.T.R.I.C.I.A</h2>
+                <p class="text-lg mb-4">
+                    Experience the most advanced psychometric assessment platform, designed to provide deep insights 
+                    into your personality, cognitive patterns, and behavioral tendencies through scientifically validated instruments.
+                </p>
+                
+                <!-- Feature Grid -->
+                <div class="feature-grid">
+                    <div class="feature-card hover-lift">
+                        <span class="feature-icon">🧠</span>
+                        <h3>Cognitive Analysis</h3>
+                        <p>Advanced assessment of thinking patterns, processing styles, and cognitive flexibility</p>
+                    </div>
+                    <div class="feature-card hover-lift">
+                        <span class="feature-icon">🎯</span>
+                        <h3>Personality Profiling</h3>
+                        <p>Comprehensive Big Five and HEXACO personality dimensions with sub-facet analysis</p>
+                    </div>
+                    <div class="feature-card hover-lift">
+                        <span class="feature-icon">🌟</span>
+                        <h3>Neurodiversity Screening</h3>
+                        <p>Identify unique cognitive characteristics and neurodivergent traits with sensitivity</p>
+                    </div>
+                    <div class="feature-card hover-lift">
+                        <span class="feature-icon">📊</span>
+                        <h3>Detailed Reports</h3>
+                        <p>In-depth analysis with actionable insights, personalized recommendations, and growth paths</p>
+                    </div>
+                    <div class="feature-card hover-lift">
+                        <span class="feature-icon">🔬</span>
+                        <h3>Scientific Validation</h3>
+                        <p>Based on peer-reviewed research and continuously updated with latest findings</p>
+                    </div>
+                    <div class="feature-card hover-lift">
+                        <span class="feature-icon">🔒</span>
+                        <h3>Privacy First</h3>
+                        <p>Your data is encrypted and never shared. Complete anonymity option available</p>
+                    </div>
+                </div>
+                
+                <!-- Enhanced Mode Selection -->
+                <div class="assessment-options mt-5">
+                    <h3 class="text-2xl font-bold mb-3">Choose Your Assessment Journey:</h3>
+                    <div class="mode-selection">
+                        <button class="mode-option hover-lift" data-mode="core">
+                            <h4 class="gradient-text">Core Assessment</h4>
+                            <p class="mb-2">Essential personality traits and cognitive patterns</p>
+                            <div class="flex justify-between items-center mt-3">
+                                <span class="text-sm opacity-75">⏱️ 15-20 minutes</span>
+                                <span class="text-sm opacity-75">📝 50 questions</span>
+                            </div>
+                        </button>
+                        <button class="mode-option hover-lift" data-mode="comprehensive">
+                            <h4 class="gradient-text">Comprehensive Assessment</h4>
+                            <p class="mb-2">Full psychometric battery with detailed sub-facets</p>
+                            <div class="flex justify-between items-center mt-3">
+                                <span class="text-sm opacity-75">⏱️ 45-60 minutes</span>
+                                <span class="text-sm opacity-75">📝 200 questions</span>
+                            </div>
+                        </button>
+                        <button class="mode-option hover-lift" data-mode="specialized">
+                            <h4 class="gradient-text">Specialized Screening</h4>
+                            <p class="mb-2">Targeted neurodiversity and cognitive assessment</p>
+                            <div class="flex justify-between items-center mt-3">
+                                <span class="text-sm opacity-75">⏱️ 30-40 minutes</span>
+                                <span class="text-sm opacity-75">📝 120 questions</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center mt-5">
+                    <button class="btn btn-primary btn-morph text-lg px-5 py-3" id="start-assessment" disabled>
+                        <span>Begin Your Journey</span>
+                        <span class="ml-2">→</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Enhanced Question Display Area -->
+            <div class="assessment-card hidden" id="question-screen">
+                <div class="question-header">
+                    <span class="question-number glass">
+                        <span class="font-bold">Question</span>
+                        <span id="question-num" class="gradient-text text-xl font-black">1</span>
+                    </span>
+                    <span class="question-category" id="question-category">Category</span>
+                </div>
+                
+                <div class="question-content" id="question-content">
+                    <!-- Dynamic question content will be inserted here -->
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary nav-button hover-lift" id="prev-button">
+                        <span>←</span>
+                        <span>Previous</span>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <button class="btn btn-ghost" id="skip-button">Skip</button>
+                        <button class="btn btn-ghost" id="flag-button">🚩 Flag</button>
+                    </div>
+                    <button class="btn btn-primary nav-button hover-lift" id="next-button" disabled>
+                        <span>Next</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Enhanced Results Display Area -->
+            <div class="results-container hidden" id="results-screen">
+                <div class="results-header text-center">
+                    <h2 class="text-4xl font-black gradient-text mb-3">Assessment Complete!</h2>
+                    <div class="results-score text-5xl font-black animate-pulse-glow">95%</div>
+                    <p class="text-lg opacity-75">Thank you for completing the P.A.T.R.I.C.I.A assessment</p>
+                </div>
+                
+                <div id="results-content" class="mt-5">
+                    <!-- Dynamic results will be inserted here -->
+                </div>
+                
+                <div class="results-actions flex justify-center gap-3 mt-5">
+                    <button class="btn btn-primary hover-scale" id="download-results">
+                        <span>📥</span>
+                        <span>Download Report</span>
+                    </button>
+                    <button class="btn btn-secondary hover-scale" id="share-results">
+                        <span>🔗</span>
+                        <span>Share Results</span>
+                    </button>
+                    <button class="btn btn-ghost hover-scale" id="retake-assessment">
+                        <span>🔄</span>
+                        <span>Retake Assessment</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Enhanced Loading State -->
+        <div class="loading-container hidden glass" id="loading-screen">
+            <div class="spinner-loader"></div>
+            <p class="text-lg mt-3 gradient-text">Processing your responses...</p>
+            <div class="loading-progress mt-3">
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Enhanced Error State -->
+        <div class="error-container hidden" id="error-screen">
+            <div class="error-icon text-5xl mb-3">⚠️</div>
+            <h2 class="text-2xl font-bold mb-2">Something went wrong</h2>
+            <p id="error-message" class="opacity-75 mb-4">An unexpected error occurred.</p>
+            <button class="btn btn-primary hover-scale" id="retry-button">
+                <span>🔄</span>
+                <span>Try Again</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Enhanced Notification Container -->
+    <div class="notification-container" id="notification-container" aria-live="polite"></div>
+    
+    <!-- Enhanced Modal Container -->
+    <div class="modal-backdrop hidden" id="modal-backdrop"></div>
+    <div class="modal glass hidden" id="modal">
+        <div class="modal-content" id="modal-content"></div>
+    </div>
+    
+    <!-- Tooltip Container -->
+    <div class="tooltip hidden" id="tooltip" role="tooltip"></div>
+</body>
+</html>
