@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P.A.T.R.I.C.I.A - Advanced Psychometric Assessment</title>
+    <meta name="description" content="Comprehensive personality assessment integrating Big Five, HEXACO, neurodiversity screening, and cognitive profiling">
+    <meta name="theme-color" content="#1A1F2E">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Single Consolidated Stylesheet -->
+    <link rel="stylesheet" href="styles/patricia-main.css">
+    
+    <!-- Critical Libraries Only -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+    
+    <!-- Modular JavaScript -->
+    <script type="module" src="js/app.js"></script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Background Effects -->
+    <div class="neural-bg" aria-hidden="true"></div>
+    <div class="gradient-mesh-bg" aria-hidden="true"></div>
+    <canvas id="particle-constellation" aria-hidden="true"></canvas>
+    
+    <!-- Main Container -->
+    <div class="container" id="main-content">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="title-container">
+                    <h1 class="title-main title-gradient">P.A.T.R.I.C.I.A</h1>
+                    <div class="title-reflection title-gradient" aria-hidden="true">P.A.T.R.I.C.I.A</div>
+                </div>
+                <p class="subtitle">
+                    Personalized Assessment Through Robust Integrated Cognitive & Identity Analysis
+                </p>
+            </div>
+        </header>
+        
+        <!-- Progress Container -->
+        <div class="progress-container" id="progress-container">
+            <button class="progress-toggle" aria-label="Toggle progress view">
+                <span class="progress-toggle-icon">▼</span>
+                <span class="progress-minimized-text">Progress: <span id="progress-percent">0%</span></span>
+            </button>
+            
+            <div class="progress-stats">
+                <div class="progress-stat">
+                    <div class="progress-stat-value" id="current-question">0</div>
+                    <div class="progress-stat-label">Current Question</div>
+                </div>
+                <div class="progress-stat">
+                    <div class="progress-stat-value" id="total-questions">0</div>
+                    <div class="progress-stat-label">Total Questions</div>
+                </div>
+                <div class="progress-stat">
+                    <div class="progress-stat-value" id="answered-questions">0</div>
+                    <div class="progress-stat-label">Answered</div>
+                </div>
+                <div class="progress-stat">
+                    <div class="progress-stat-value" id="time-elapsed">0:00</div>
+                    <div class="progress-stat-label">Time Elapsed</div>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+        
+        <!-- Main Assessment Area -->
+        <main class="assessment-container" id="assessment-container">
+            <!-- Welcome Screen -->
+            <div class="assessment-card" id="welcome-screen">
+                <h2>Welcome to P.A.T.R.I.C.I.A</h2>
+                <p>This comprehensive psychometric assessment will help you understand your personality, cognitive patterns, and behavioral tendencies through scientifically validated instruments.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🧠</span>
+                        <h3>Cognitive Analysis</h3>
+                        <p>Assess thinking patterns and processing styles</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎯</span>
+                        <h3>Personality Profiling</h3>
+                        <p>Big Five and HEXACO personality dimensions</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🌟</span>
+                        <h3>Neurodiversity Screening</h3>
+                        <p>Identify unique cognitive characteristics</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📊</span>
+                        <h3>Detailed Reports</h3>
+                        <p>Comprehensive analysis with actionable insights</p>
+                    </div>
+                </div>
+                
+                <div class="assessment-options">
+                    <h3>Choose Your Assessment Mode:</h3>
+                    <div class="mode-selection">
+                        <button class="mode-option" data-mode="core">
+                            <h4>Core Assessment</h4>
+                            <p>Essential personality traits • 15-20 minutes</p>
+                        </button>
+                        <button class="mode-option" data-mode="comprehensive">
+                            <h4>Comprehensive Assessment</h4>
+                            <p>Full psychometric battery • 45-60 minutes</p>
+                        </button>
+                        <button class="mode-option" data-mode="specialized">
+                            <h4>Specialized Screening</h4>
+                            <p>Targeted neurodiversity assessment • 30-40 minutes</p>
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" id="start-assessment">
+                    Begin Assessment
+                </button>
+            </div>
+            
+            <!-- Question Display Area -->
+            <div class="assessment-card hidden" id="question-screen">
+                <div class="question-header">
+                    <span class="question-number">
+                        Question <span id="question-num">1</span>
+                    </span>
+                    <span class="question-category" id="question-category">Category</span>
+                </div>
+                
+                <div class="question-content" id="question-content">
+                    <!-- Dynamic question content will be inserted here -->
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary nav-button" id="prev-button">
+                        ← Previous
+                    </button>
+                    <button class="btn btn-primary nav-button" id="next-button">
+                        Next →
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Results Display Area -->
+            <div class="results-container hidden" id="results-screen">
+                <div class="results-header">
+                    <h2>Your Assessment Results</h2>
+                    <div class="results-score">95% Complete</div>
+                    <p>Thank you for completing the P.A.T.R.I.C.I.A assessment</p>
+                </div>
+                
+                <div id="results-content">
+                    <!-- Dynamic results will be inserted here -->
+                </div>
+                
+                <div class="results-actions">
+                    <button class="btn btn-primary" id="download-results">
+                        Download Full Report
+                    </button>
+                    <button class="btn btn-secondary" id="share-results">
+                        Share Results
+                    </button>
+                    <button class="btn btn-ghost" id="retake-assessment">
+                        Take Assessment Again
+                    </button>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Loading State -->
+        <div class="loading-container hidden" id="loading-screen">
+            <div class="loading-spinner"></div>
+            <p>Processing your responses...</p>
+        </div>
+        
+        <!-- Error State -->
+        <div class="error-container hidden" id="error-screen">
+            <h2>Something went wrong</h2>
+            <p id="error-message">An unexpected error occurred.</p>
+            <button class="btn btn-primary" id="retry-button">Try Again</button>
+        </div>
+    </div>
+    
+    <!-- Notification Container -->
+    <div class="notification-container" id="notification-container" aria-live="polite"></div>
+    
+    <!-- Modal Container -->
+    <div class="modal-backdrop hidden" id="modal-backdrop"></div>
+    <div class="modal hidden" id="modal">
+        <div class="modal-content" id="modal-content"></div>
+    </div>
+</body>
+</html>
