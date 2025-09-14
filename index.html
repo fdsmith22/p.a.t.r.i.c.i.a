@@ -5,7 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neurlyn - Intelligent Personality Assessment</title>
     <meta name="description" content="Professional personality assessment platform powered by advanced psychometric science">
-    <meta name="theme-color" content="#FFFFFF">
+    <meta name="theme-color" content="#6C9E83">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Neurlyn - Intelligent Personality Assessment">
+    <meta property="og:description" content="Discover your unique personality profile through scientifically-validated assessments">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://neurlyn.com">
+    <meta property="og:image" content="https://neurlyn.com/assets/images/og-image.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Neurlyn - Intelligent Personality Assessment">
+    <meta name="twitter:description" content="Professional personality assessment platform">
+    <meta name="twitter:image" content="https://neurlyn.com/assets/images/twitter-card.png">
     
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,12 +32,25 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Neurlyn Stylesheet -->
+    <!-- Neurlyn Stylesheets -->
     <link rel="stylesheet" href="styles/neurlyn.css">
+    <link rel="stylesheet" href="styles/neurlyn-dark.css">
+    <link rel="stylesheet" href="styles/neurlyn-print.css" media="print">
 </head>
 <body>
+    <!-- Load SVG Icons -->
+    <div style="display: none;" aria-hidden="true">
+        <object data="/assets/icons/icons.svg" type="image/svg+xml"></object>
+    </div>
+    
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="theme-icon-light" width="20" height="20"><use href="/assets/icons/icons.svg#icon-sun"></use></svg>
+        <svg class="theme-icon-dark" width="20" height="20"><use href="/assets/icons/icons.svg#icon-moon"></use></svg>
+    </button>
     
     <!-- Main Container -->
     <div class="container" id="main-content">
@@ -43,17 +74,23 @@
                     <h3>Select Assessment Type</h3>
                     <div class="mode-grid">
                         <button class="mode-option" data-mode="quick">
-                            <div class="mode-icon">⚡</div>
+                            <div class="mode-icon">
+                                <svg width="32" height="32"><use href="/assets/icons/icons.svg#icon-lightning"></use></svg>
+                            </div>
                             <h4>Quick Assessment</h4>
                             <p>Core personality traits<br>5-7 minutes</p>
                         </button>
                         <button class="mode-option" data-mode="standard">
-                            <div class="mode-icon">📊</div>
+                            <div class="mode-icon">
+                                <svg width="32" height="32"><use href="/assets/icons/icons.svg#icon-chart"></use></svg>
+                            </div>
                             <h4>Standard Assessment</h4>
                             <p>Comprehensive profile<br>15-20 minutes</p>
                         </button>
                         <button class="mode-option" data-mode="deep">
-                            <div class="mode-icon">🔬</div>
+                            <div class="mode-icon">
+                                <svg width="32" height="32"><use href="/assets/icons/icons.svg#icon-microscope"></use></svg>
+                            </div>
                             <h4>Deep Analysis</h4>
                             <p>Extended evaluation<br>25-30 minutes</p>
                         </button>
@@ -149,7 +186,7 @@
         </nav>
     </footer>
     
-    <!-- Neurlyn JavaScript -->
-    <script type="module" src="js/neurlyn.js"></script>
+    <!-- Neurlyn Enhanced JavaScript -->
+    <script type="module" src="js/neurlyn-enhanced.js"></script>
 </body>
 </html>
