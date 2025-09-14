@@ -1,5 +1,5 @@
-// P.A.T.R.I.C.I.A Backend Server
-// Comprehensive backend with payment integration, data persistence, and analytics
+// Neurlyn Backend Server
+// Professional assessment platform with data persistence and analytics
 
 require('dotenv').config();
 

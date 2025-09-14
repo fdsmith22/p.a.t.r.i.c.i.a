@@ -1,7 +1,7 @@
 {
-  "name": "patricia-assessment",
-  "version": "3.0.0",
-  "description": "P.A.T.R.I.C.I.A - Advanced Psychometric Assessment Platform",
+  "name": "neurlyn",
+  "version": "1.0.0",
+  "description": "Neurlyn - Intelligent Personality Assessment Platform",
   "main": "backend.js",
   "scripts": {
     "start": "node backend.js",
