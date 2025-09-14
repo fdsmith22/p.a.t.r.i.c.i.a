@@ -136,6 +136,8 @@ class NeurlynApp {
         const downloadBtn = document.getElementById('download-results');
         const shareBtn = document.getElementById('share-results');
         const retakeBtn = document.getElementById('retake-assessment');
+        const homeBtn = document.getElementById('home-button');
+        const skipBtn = document.getElementById('skip-button');
         
         if (downloadBtn) {
             downloadBtn.addEventListener('click', () => this.downloadResults());
@@ -147,6 +149,14 @@ class NeurlynApp {
         
         if (retakeBtn) {
             retakeBtn.addEventListener('click', () => this.retakeAssessment());
+        }
+        
+        if (homeBtn) {
+            homeBtn.addEventListener('click', () => this.goHome());
+        }
+        
+        if (skipBtn) {
+            skipBtn.addEventListener('click', () => this.skipQuestion());
         }
         
         // Auto-save on page unload
@@ -458,6 +468,7 @@ class NeurlynApp {
         document.getElementById('prev-button').disabled = this.state.currentQuestionIndex === 0;
         
         this.updateProgress();
+        this.updateBreadcrumb();
     }
     
     renderEnhancedQuestion(question) {
@@ -556,7 +567,8 @@ class NeurlynApp {
         if (newIndex < 0 || newIndex > this.questions.length) return;
         
         if (newIndex === this.questions.length) {
-            this.completeAssessment();
+            // Show review modal before completing
+            this.showReviewModal();
         } else {
             // Smooth transition
             const contentEl = document.getElementById('question-content');
@@ -568,6 +580,14 @@ class NeurlynApp {
                 this.state.currentQuestionIndex = newIndex;
                 this.displayQuestion();
                 contentEl.classList.remove(slideClass);
+                
+                // Update next button text on last question
+                if (newIndex === this.questions.length - 1) {
+                    const nextBtn = document.getElementById('next-button');
+                    if (nextBtn) {
+                        nextBtn.innerHTML = 'Review & Submit <svg width="16" height="16"><use href="/assets/icons/icons.svg#icon-check"></use></svg>';
+                    }
+                }
             }, 200);
         }
     }
@@ -996,23 +1016,168 @@ class NeurlynApp {
     
     retakeAssessment() {
         if (confirm('Start a new assessment? Your current results will be saved.')) {
-            this.state = {
-                currentMode: null,
-                currentScreen: 'welcome',
-                currentQuestionIndex: 0,
-                responses: [],
-                startTime: null,
-                sessionId: this.generateSessionId(),
-                isPaused: false,
-                theme: this.state.theme
-            };
-            
+            this.saveAssessmentHistory();
+            this.resetState();
             this.fadeTransition('results-screen', 'welcome-screen');
-            
-            document.querySelectorAll('.mode-option').forEach(btn => {
-                btn.classList.remove('selected');
+        }
+    }
+    
+    goHome() {
+        if (this.state.currentScreen === 'question') {
+            if (confirm('Return to home? Your progress will be saved.')) {
+                this.saveState();
+                this.resetState();
+                this.fadeTransition('question-screen', 'welcome-screen');
+            }
+        } else {
+            this.resetState();
+            this.fadeTransition('results-screen', 'welcome-screen');
+        }
+    }
+    
+    resetState() {
+        this.state = {
+            currentMode: null,
+            currentScreen: 'welcome',
+            currentQuestionIndex: 0,
+            responses: [],
+            startTime: null,
+            sessionId: this.generateSessionId(),
+            isPaused: false,
+            theme: this.state.theme
+        };
+        
+        document.querySelectorAll('.mode-option').forEach(btn => {
+            btn.classList.remove('selected');
+        });
+        document.getElementById('start-assessment').disabled = true;
+    }
+    
+    skipQuestion() {
+        // Mark question as skipped
+        this.state.responses[this.state.currentQuestionIndex] = {
+            questionIndex: this.state.currentQuestionIndex,
+            questionId: this.questions[this.state.currentQuestionIndex].id,
+            value: null,
+            skipped: true,
+            category: this.questions[this.state.currentQuestionIndex].category,
+            timestamp: Date.now()
+        };
+        
+        // Add skip indicator
+        const card = document.querySelector('.question-card');
+        if (card) {
+            card.classList.add('skipped');
+            setTimeout(() => card.classList.remove('skipped'), 500);
+        }
+        
+        this.showToast('Question skipped', 'info');
+        this.navigateQuestion(1);
+    }
+    
+    saveAssessmentHistory() {
+        const history = JSON.parse(localStorage.getItem('neurlyn-history') || '[]');
+        const results = this.calculateEnhancedResults();
+        
+        history.push({
+            date: Date.now(),
+            mode: this.state.currentMode,
+            results: results,
+            duration: Date.now() - this.state.startTime,
+            sessionId: this.state.sessionId
+        });
+        
+        // Keep only last 10 assessments
+        if (history.length > 10) {
+            history.shift();
+        }
+        
+        localStorage.setItem('neurlyn-history', JSON.stringify(history));
+    }
+    
+    showReviewModal() {
+        const modal = document.createElement('div');
+        modal.className = 'review-modal';
+        modal.innerHTML = `
+            <div class="review-content">
+                <div class="review-header">
+                    <h2>Review Your Answers</h2>
+                    <button class="btn btn-ghost" onclick="this.closest('.review-modal').remove()">✕</button>
+                </div>
+                <div class="review-grid">
+                    ${this.generateReviewItems()}
+                </div>
+                <div class="review-actions">
+                    <button class="btn btn-secondary" onclick="this.closest('.review-modal').remove()">
+                        Continue Editing
+                    </button>
+                    <button class="btn btn-primary" id="submit-review">
+                        Submit Assessment
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        setTimeout(() => modal.classList.add('show'), 10);
+        
+        document.getElementById('submit-review').addEventListener('click', () => {
+            modal.remove();
+            this.completeAssessment();
+        });
+        
+        // Add edit functionality
+        modal.querySelectorAll('.review-edit').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const index = parseInt(e.target.dataset.index);
+                modal.remove();
+                this.state.currentQuestionIndex = index;
+                this.displayQuestion();
             });
-            document.getElementById('start-assessment').disabled = true;
+        });
+    }
+    
+    generateReviewItems() {
+        return this.questions.map((q, i) => {
+            const response = this.state.responses[i];
+            const answered = response && !response.skipped;
+            
+            return `
+                <div class="review-item ${!answered ? 'unanswered' : ''}">
+                    <div class="review-number">${i + 1}</div>
+                    <div class="review-question">${q.text}</div>
+                    <div class="review-answer">
+                        ${answered ? this.getAnswerLabel(response.value) : 'Not answered'}
+                    </div>
+                    <button class="review-edit" data-index="${i}">Edit</button>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    getAnswerLabel(value) {
+        const labels = {
+            1: 'Strongly Disagree',
+            2: 'Disagree',
+            3: 'Neutral',
+            4: 'Agree',
+            5: 'Strongly Agree'
+        };
+        return labels[value] || 'Unknown';
+    }
+    
+    // Update breadcrumb
+    updateBreadcrumb() {
+        const modeBreadcrumb = document.getElementById('mode-breadcrumb');
+        const questionBreadcrumb = document.getElementById('breadcrumb-question');
+        
+        if (modeBreadcrumb && this.state.currentMode) {
+            modeBreadcrumb.textContent = this.state.currentMode.charAt(0).toUpperCase() + 
+                                         this.state.currentMode.slice(1) + ' Assessment';
+        }
+        
+        if (questionBreadcrumb) {
+            questionBreadcrumb.textContent = this.state.currentQuestionIndex + 1;
         }
     }
     
