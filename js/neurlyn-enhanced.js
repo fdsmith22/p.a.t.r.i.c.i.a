@@ -3,6 +3,8 @@
  * With localStorage, dark mode, keyboard shortcuts, and enhanced UX
  */
 
+import { ReportGenerator } from './report-generator.js';
+
 class NeurlynApp {
     constructor() {
         this.state = {
@@ -18,6 +20,7 @@ class NeurlynApp {
         
         this.questions = [];
         this.autoSaveInterval = null;
+        this.reportGenerator = new ReportGenerator();
         this.init();
     }
     
@@ -709,53 +712,232 @@ class NeurlynApp {
     }
     
     displayEnhancedResults(results) {
-        const contentEl = document.getElementById('results-content');
-        let html = '<div class="results-grid">';
+        // Generate comprehensive report
+        const duration = Date.now() - this.state.startTime;
+        const report = this.reportGenerator.generateComprehensiveReport(
+            results, 
+            this.state.responses, 
+            this.state.currentMode,
+            duration
+        );
         
-        // Animate results appearance
-        let delay = 0;
-        for (const category in results) {
-            const result = results[category];
-            html += `
-                <div class="result-item" style="animation-delay: ${delay}ms">
-                    <h4>${category}</h4>
-                    <div class="result-visualization">
-                        <div class="result-bar">
-                            <div class="result-fill" data-score="${result.score}" style="width: 0"></div>
-                        </div>
-                        <div class="result-details">
-                            <span class="result-percentage">${result.score}%</span>
-                            <span class="result-percentile">Percentile: ${result.percentile}</span>
+        // Build comprehensive report HTML
+        const contentEl = document.getElementById('results-content');
+        let html = `
+            <div class="report-container">
+                <!-- Report Header -->
+                <div class="report-header">
+                    <h1 class="report-title">Your Personality Profile</h1>
+                    <p class="report-subtitle">Comprehensive Assessment Report</p>
+                    <div class="report-meta">
+                        <span>📅 ${report.meta.date}</span>
+                        <span>⏱️ ${report.meta.duration}</span>
+                        <span>📊 ${report.meta.questions} questions</span>
+                        <span>✓ ${report.meta.reliability} reliability</span>
+                    </div>
+                </div>
+                
+                <!-- Personality Overview -->
+                <div class="personality-overview">
+                    <div class="personality-type">
+                        <div class="type-badge">${report.archetype?.name?.charAt(0) || 'P'}</div>
+                        <div class="type-info">
+                            <h3>${report.archetype?.name || 'Your Unique Profile'}</h3>
+                            <p class="type-description">${report.overview.summary}</p>
                         </div>
                     </div>
-                    <p class="result-interpretation">${result.interpretation}</p>
+                </div>
+                
+                <!-- Detailed Traits -->
+                <section class="traits-section">
+                    <h2>Personality Traits Analysis</h2>
+                    <div class="traits-grid">
+        `;
+        
+        // Add trait cards
+        for (const [trait, data] of Object.entries(report.traits)) {
+            html += `
+                <div class="trait-card">
+                    <div class="trait-header">
+                        <span class="trait-name">${trait}</span>
+                        <div class="trait-score">
+                            <span class="score-badge">${data.score}%</span>
+                            <span class="percentile-badge">${data.comparison}</span>
+                        </div>
+                    </div>
+                    <div class="trait-visual">
+                        <div class="trait-bar-container">
+                            <div class="trait-bar-fill" data-score="${data.score}" style="width: 0"></div>
+                        </div>
+                    </div>
+                    <p class="trait-description">${data.description}</p>
+                    <div class="trait-details">
+                        <p><strong>${data.icon} ${data.title}</strong></p>
+                        <p style="font-size: 0.875rem; color: var(--gray-600); margin-top: 0.5rem;">${data.interpretation}</p>
+                    </div>
                 </div>
             `;
-            delay += 100;
         }
         
-        html += '</div>';
-        
-        // Add summary
-        const timeElapsed = Math.round((Date.now() - this.state.startTime) / 60000);
         html += `
-            <div class="results-summary">
-                <h3>Assessment Summary</h3>
-                <p>Completed in ${timeElapsed} minutes</p>
-                <p>Based on ${this.state.responses.length} responses</p>
-                <p>Session ID: ${this.state.sessionId}</p>
+                    </div>
+                </section>
+                
+                <!-- Archetype Section -->
+                ${report.archetype ? `
+                <section class="archetype-section">
+                    <div class="archetype-header">
+                        <h2 class="archetype-title">${report.archetype.name}</h2>
+                        <p class="archetype-subtitle">${report.archetype.description}</p>
+                    </div>
+                    <div class="archetype-traits">
+                        ${report.archetype.strengths.split(',').map(s => 
+                            `<span class="archetype-trait">${s.trim()}</span>`
+                        ).join('')}
+                    </div>
+                    <p style="text-align: center; margin-top: 1rem; color: var(--gray-600);">
+                        ${report.archetype.matchScore}% match • Similar to: ${report.archetype.famous}
+                    </p>
+                </section>
+                ` : ''}
+                
+                <!-- Insights Grid -->
+                <div class="insights-container">
+                    <!-- Strengths -->
+                    <div class="insight-card">
+                        <h3>
+                            <svg width="24" height="24"><use href="/assets/icons/icons.svg#icon-check"></use></svg>
+                            Your Strengths
+                        </h3>
+                        <ul class="insight-list">
+                            ${report.insights.strengths.map(s => `<li>${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <!-- Growth Areas -->
+                    <div class="insight-card">
+                        <h3>
+                            <svg width="24" height="24"><use href="/assets/icons/icons.svg#icon-arrow-right"></use></svg>
+                            Growth Opportunities
+                        </h3>
+                        <ul class="insight-list">
+                            ${report.insights.growth.map(g => `<li>${g}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Career Insights -->
+                <div class="insight-card" style="margin-top: 2rem;">
+                    <h3>Career Insights</h3>
+                    <p>${report.insights.career.strengths}</p>
+                    <p style="margin-top: 1rem;">${report.insights.career.environment}</p>
+                    <div style="margin-top: 1rem;">
+                        <strong>Suitable Careers:</strong>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+                            ${report.insights.career.suitable.map(c => 
+                                `<span class="archetype-trait">${c}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Relationship Insights -->
+                <div class="insight-card" style="margin-top: 2rem;">
+                    <h3>Relationship Insights</h3>
+                    <p>${report.insights.relationships.style}</p>
+                    <div style="margin-top: 1rem;">
+                        <strong>Relationship Strengths:</strong>
+                        <ul class="insight-list">
+                            ${report.insights.relationships.strengths.map(s => `<li>${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <p style="margin-top: 1rem;">${report.insights.relationships.compatibility}</p>
+                </div>
+                
+                <!-- Communication & Leadership -->
+                <div class="insights-container" style="margin-top: 2rem;">
+                    <div class="insight-card">
+                        <h3>Communication Style</h3>
+                        <p>${report.insights.communication}</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Leadership Style</h3>
+                        <p>${report.insights.leadership}</p>
+                    </div>
+                </div>
+                
+                <!-- Stress & Motivation -->
+                <div class="insights-container" style="margin-top: 2rem;">
+                    <div class="insight-card">
+                        <h3>Stress Profile</h3>
+                        <p>${report.insights.stress.responses}</p>
+                        <strong style="display: block; margin-top: 1rem;">Coping Strategies:</strong>
+                        <ul class="insight-list">
+                            ${report.insights.stress.copingStrategies.map(s => `<li>${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Motivation</h3>
+                        <p>${report.insights.motivation.description}</p>
+                    </div>
+                </div>
+                
+                <!-- Recommendations -->
+                <section class="action-items">
+                    <h3>Personalized Recommendations</h3>
+                    <div class="action-grid">
+                        <div class="action-card">
+                            <h4>📚 Recommended Reading</h4>
+                            <p>${report.recommendations.books.join(', ')}</p>
+                        </div>
+                        <div class="action-card">
+                            <h4>🎯 Activities to Try</h4>
+                            <p>${report.recommendations.activities.join(', ')}</p>
+                        </div>
+                        <div class="action-card">
+                            <h4>💡 Skills to Develop</h4>
+                            <p>${report.recommendations.skills.join(', ')}</p>
+                        </div>
+                        <div class="action-card">
+                            <h4>🧘 Mindfulness Practices</h4>
+                            <p>${report.recommendations.mindfulness.join(', ')}</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Goals -->
+                <section class="action-items" style="background: var(--warm-100); border-color: var(--warm-200);">
+                    <h3>Personal Development Goals</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <div>
+                            <h4>Short-term Goals (3 months)</h4>
+                            <ul class="insight-list">
+                                ${report.recommendations.goals.shortTerm.map(g => `<li>${g}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Long-term Goals (1 year)</h4>
+                            <ul class="insight-list">
+                                ${report.recommendations.goals.longTerm.map(g => `<li>${g}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </section>
             </div>
         `;
         
         contentEl.innerHTML = html;
         
-        // Animate progress bars
+        // Animate progress bars and trait fills
         setTimeout(() => {
-            document.querySelectorAll('.result-fill').forEach(fill => {
+            document.querySelectorAll('.trait-bar-fill, .result-fill').forEach(fill => {
                 const score = fill.dataset.score;
                 fill.style.width = `${score}%`;
             });
         }, 100);
+        
+        // Scroll to top of results
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         
         // Trigger celebration
         this.celebrate();
