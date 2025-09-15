@@ -221,12 +221,13 @@
 
 /* Dark Mode Likert Options - Fix white-out issue */
 [data-theme="dark"] .likert-option.selected {
-  background: linear-gradient(135deg, var(--sage-600) 0%, var(--sage-700) 100%);
-  color: var(--white) !important;
+  background: linear-gradient(135deg, var(--sage-400) 0%, var(--sage-500) 100%);
+  color: var(--gray-900) !important;
+  border-color: var(--sage-500);
 }
 
 [data-theme="dark"] .likert-option.selected * {
-  color: var(--white) !important;
+  color: var(--gray-900) !important;
 }
 
 /* Smooth Theme Transition */
