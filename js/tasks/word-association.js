@@ -36,17 +36,54 @@ export class WordAssociationTask extends BaseTask {
     async render() {
         const container = this.createContainer();
         
-        // Instructions with better explanation
-        const instructions = document.createElement('div');
-        instructions.className = 'word-association-instructions';
-        instructions.innerHTML = `
-            <div class="instruction-content">
-                <h3>Word Association</h3>
-                <p>You'll see a series of words. Type the <strong>first word</strong> that comes to mind for each one.</p>
-                <p class="instruction-emphasis">Be spontaneous - don't overthink!</p>
+        // Start screen with instructions
+        const startScreen = document.createElement('div');
+        startScreen.className = 'task-start-screen';
+        startScreen.innerHTML = `
+            <div class="task-intro-card">
+                <div class="task-icon-large">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        <circle cx="9" cy="10" r="1"/>
+                        <circle cx="15" cy="10" r="1"/>
+                    </svg>
+                </div>
+                <h3>Rapid Word Association</h3>
+                <p class="task-description">This task measures your semantic networks and unconscious associations.</p>
+                <div class="task-rules">
+                    <div class="rule-item">
+                        <span class="rule-icon">⚡</span>
+                        <span>You have <strong>5 seconds</strong> per word</span>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-icon">🧠</span>
+                        <span>Type the <strong>first word</strong> that comes to mind</span>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-icon">✨</span>
+                        <span>Don't overthink - be spontaneous!</span>
+                    </div>
+                </div>
+                <button id="start-task-btn" class="btn btn-primary btn-large">
+                    Start Task
+                    <svg width="20" height="20">
+                        <use href="assets/icons/icons.svg#icon-arrow-right"></use>
+                    </svg>
+                </button>
             </div>
         `;
-        container.appendChild(instructions);
+        container.appendChild(startScreen);
+        
+        // Main task screen (initially hidden)
+        const taskScreen = document.createElement('div');
+        taskScreen.className = 'task-main-screen hidden';
+        taskScreen.innerHTML = `
+            <div class="word-association-header">
+                <h3>Word Association</h3>
+                <p class="instruction-emphasis">Type the first word that comes to mind!</p>
+            </div>
+        `;
+        container.appendChild(taskScreen);
         
         // Progress indicator
         const progressContainer = document.createElement('div');
@@ -57,12 +94,17 @@ export class WordAssociationTask extends BaseTask {
             </div>
             <div class="word-progress-text">
                 <span id="word-count">Word 1 of ${this.words.length}</span>
-                <span id="time-remaining" class="time-indicator">Time: 5s</span>
+                <span id="time-remaining" class="time-indicator">
+                    <svg width="16" height="16" class="timer-icon">
+                        <use href="assets/icons/icons.svg#icon-clock"></use>
+                    </svg>
+                    <span id="timer-text">5s</span>
+                </span>
             </div>
         `;
-        container.appendChild(progressContainer);
+        taskScreen.appendChild(progressContainer);
         
-        // Main word display
+        // Main word display with enhanced visuals
         const wordDisplay = document.createElement('div');
         wordDisplay.className = 'word-display-container';
         wordDisplay.innerHTML = `
@@ -71,38 +113,43 @@ export class WordAssociationTask extends BaseTask {
                 <div id="stimulus-word" class="stimulus-word">
                     <!-- Word will appear here -->
                 </div>
+                <div class="word-pulse-effect"></div>
             </div>
         `;
-        container.appendChild(wordDisplay);
+        taskScreen.appendChild(wordDisplay);
         
-        // Input field
+        // Input field with enhanced design
         const inputContainer = document.createElement('div');
         inputContainer.className = 'word-input-container';
         inputContainer.innerHTML = `
-            <input 
-                type="text" 
-                id="word-input" 
-                class="word-input-field" 
-                placeholder="Type your association..."
-                autocomplete="off"
-                autocorrect="off"
-                autocapitalize="off"
-                spellcheck="false"
-            />
-            <button id="submit-word" class="btn btn-primary word-submit-btn">
-                Next
-                <svg width="16" height="16">
-                    <use href="assets/icons/icons.svg#icon-arrow-right"></use>
-                </svg>
-            </button>
+            <div class="input-wrapper">
+                <input 
+                    type="text" 
+                    id="word-input" 
+                    class="word-input-field" 
+                    placeholder="Type your association..."
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    disabled
+                />
+                <button id="submit-word" class="btn btn-primary word-submit-btn" disabled>
+                    Submit
+                    <svg width="16" height="16">
+                        <use href="assets/icons/icons.svg#icon-arrow-right"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="input-hint">Press Enter or click Submit</div>
         `;
-        container.appendChild(inputContainer);
+        taskScreen.appendChild(inputContainer);
         
         // Visual feedback area
         const feedbackArea = document.createElement('div');
         feedbackArea.id = 'word-feedback';
         feedbackArea.className = 'word-feedback-area';
-        container.appendChild(feedbackArea);
+        taskScreen.appendChild(feedbackArea);
         
         // Add custom styles
         this.addStyles();
@@ -121,22 +168,45 @@ export class WordAssociationTask extends BaseTask {
         this.currentWordElement = document.getElementById('stimulus-word');
         this.progressElement = document.getElementById('word-progress-fill');
         
-        // Setup event listeners
+        // Setup start button
+        const startBtn = document.getElementById('start-task-btn');
+        startBtn.addEventListener('click', () => this.startTask());
+        
+        // Setup submit button (initially disabled)
         const submitBtn = document.getElementById('submit-word');
         submitBtn.addEventListener('click', () => this.submitAssociation());
         
         // Enter key submits
         this.inputField.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
+            if (e.key === 'Enter' && !this.inputField.disabled) {
                 this.submitAssociation();
             }
         });
+    }
+    
+    /**
+     * Start the task after instructions
+     */
+    startTask() {
+        // Hide start screen, show main screen
+        const startScreen = document.querySelector('.task-start-screen');
+        const mainScreen = document.querySelector('.task-main-screen');
         
-        // Focus on input
-        this.inputField.focus();
-        
-        // Start with first word
-        this.presentWord();
+        startScreen.style.opacity = '0';
+        setTimeout(() => {
+            startScreen.classList.add('hidden');
+            mainScreen.classList.remove('hidden');
+            
+            // Enable input
+            this.inputField.disabled = false;
+            document.getElementById('submit-word').disabled = false;
+            
+            // Focus on input
+            this.inputField.focus();
+            
+            // Start with first word
+            this.presentWord();
+        }, 300);
     }
     
     /**

@@ -6,6 +6,7 @@
 import { ReportGenerator } from './report-generator.js';
 import { taskController } from './modules/task-controller.js';
 import { behavioralTracker } from './modules/behavioral-tracker.js';
+import { getLateralQuestions, lateralScoringMatrix } from './questions/lateral-questions.js';
 
 class NeurlynIntegratedApp {
     constructor() {
@@ -149,6 +150,35 @@ class NeurlynIntegratedApp {
             <h4>Assessment Style</h4>
             <div class="task-type-options">
                 <label class="task-type-option">
+                    <input type="radio" name="taskType" value="traditional" />
+                    <span class="option-content">
+                        <span class="option-title">Traditional</span>
+                        <span class="option-desc">Standard questionnaire</span>
+                    </span>
+                </label>
+                <label class="task-type-option">
+                    <input type="radio" name="taskType" value="gamified" />
+                    <span class="option-content">
+                        <span class="option-title">Interactive</span>
+                        <span class="option-desc">Games & activities</span>
+                    </span>
+                </label>
+                <label class="task-type-option">
+                    <input type="radio" name="taskType" value="lateral" />
+                    <span class="option-content">
+                        <span class="option-title">Lateral</span>
+                        <span class="option-desc">Creative scenarios</span>
+                    </span>
+                </label>
+                <label class="task-type-option">
+                    <input type="radio" name="taskType" value="hybrid" checked />
+                    <span class="option-content">
+                        <span class="option-title">Hybrid</span>
+                        <span class="option-desc">Mixed approach</span>
+                    </span>
+                </label>
+            </div>
+                <label class="task-type-option">
                     <input type="radio" name="taskMode" value="traditional" ${this.state.taskMode === 'traditional' ? 'checked' : ''}>
                     <span class="option-label">
                         <strong>Traditional</strong>
@@ -178,7 +208,7 @@ class NeurlynIntegratedApp {
         }
         
         // Handle task mode selection
-        selector.querySelectorAll('input[name="taskMode"]').forEach(input => {
+        selector.querySelectorAll('input[name="taskType"]').forEach(input => {
             input.addEventListener('change', (e) => {
                 this.state.taskMode = e.target.value;
                 this.showToast(`Assessment style: ${e.target.value}`, 'info');
@@ -226,19 +256,31 @@ class NeurlynIntegratedApp {
             if (questions.length < config.questionCount) {
                 questions.push(...this.generateLikertQuestions(config.questionCount - questions.length));
             }
+        } else if (this.state.taskMode === 'lateral') {
+            // Use lateral thinking questions
+            const lateralQuestions = getLateralQuestions(config.questionCount);
+            questions.push(...lateralQuestions.map(q => this.createLateralQuestion(q)));
         } else {
-            // Hybrid - mix both types
-            const gamifiedInterval = 3; // Every 3rd question is gamified
-            let gamifiedIndex = 0;
+            // Hybrid - mix all three types
+            const totalQuestions = config.questionCount;
+            const gamifiedCount = config.gamifiedTasks.length;
+            const lateralCount = Math.floor(totalQuestions * 0.3); // 30% lateral
+            const traditionalCount = totalQuestions - gamifiedCount - lateralCount;
             
-            for (let i = 0; i < config.questionCount; i++) {
-                if (i % gamifiedInterval === 2 && gamifiedIndex < config.gamifiedTasks.length) {
-                    questions.push(this.createGamifiedTask(config.gamifiedTasks[gamifiedIndex]));
-                    gamifiedIndex++;
-                } else {
-                    questions.push(this.createLikertQuestion(i));
-                }
+            // Add gamified tasks
+            questions.push(...this.generateGamifiedTasks(config.gamifiedTasks));
+            
+            // Add lateral questions
+            const lateralQuestions = getLateralQuestions(lateralCount);
+            questions.push(...lateralQuestions.map(q => this.createLateralQuestion(q)));
+            
+            // Fill rest with traditional
+            if (traditionalCount > 0) {
+                questions.push(...this.generateLikertQuestions(traditionalCount));
             }
+            
+            // Shuffle for variety
+            questions.sort(() => Math.random() - 0.5);
         }
         
         return questions;
@@ -308,6 +350,18 @@ class NeurlynIntegratedApp {
             questions.push(this.createLikertQuestion(i));
         }
         return questions;
+    }
+    
+    // Create Lateral Question
+    createLateralQuestion(lateralQ) {
+        return {
+            type: 'lateral',
+            id: lateralQ.id,
+            question: lateralQ.text,
+            options: lateralQ.options,
+            category: 'Lateral Thinking',
+            measures: lateralQ.measures
+        };
     }
     
     // Create Likert Question

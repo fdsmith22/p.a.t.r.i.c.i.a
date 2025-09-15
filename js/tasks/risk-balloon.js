@@ -47,56 +47,84 @@ export class RiskBalloonTask extends BaseTask {
      * Detect user's currency based on locale and timezone
      */
     detectCurrency() {
-        const locale = navigator.language || 'en-US';
-        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-        
-        // Currency mapping based on locale
-        const currencyMap = {
-            'en-GB': { symbol: '£', code: 'GBP', name: 'pound' },
-            'en-US': { symbol: '$', code: 'USD', name: 'dollar' },
-            'en-CA': { symbol: '$', code: 'CAD', name: 'dollar' },
-            'en-AU': { symbol: '$', code: 'AUD', name: 'dollar' },
-            'en-NZ': { symbol: '$', code: 'NZD', name: 'dollar' },
-            'en-IN': { symbol: '₹', code: 'INR', name: 'rupee' },
-            'de-DE': { symbol: '€', code: 'EUR', name: 'euro' },
-            'fr-FR': { symbol: '€', code: 'EUR', name: 'euro' },
-            'es-ES': { symbol: '€', code: 'EUR', name: 'euro' },
-            'it-IT': { symbol: '€', code: 'EUR', name: 'euro' },
-            'pt-BR': { symbol: 'R$', code: 'BRL', name: 'real' },
-            'ja-JP': { symbol: '¥', code: 'JPY', name: 'yen' },
-            'zh-CN': { symbol: '¥', code: 'CNY', name: 'yuan' },
-            'ko-KR': { symbol: '₩', code: 'KRW', name: 'won' },
-            'ru-RU': { symbol: '₽', code: 'RUB', name: 'ruble' },
-            'ar-SA': { symbol: 'ر.س', code: 'SAR', name: 'riyal' },
-            'he-IL': { symbol: '₪', code: 'ILS', name: 'shekel' },
-            'sv-SE': { symbol: 'kr', code: 'SEK', name: 'krona' },
-            'no-NO': { symbol: 'kr', code: 'NOK', name: 'krone' },
-            'da-DK': { symbol: 'kr', code: 'DKK', name: 'krone' },
-            'pl-PL': { symbol: 'zł', code: 'PLN', name: 'zloty' },
-            'tr-TR': { symbol: '₺', code: 'TRY', name: 'lira' },
-            'th-TH': { symbol: '฿', code: 'THB', name: 'baht' },
-            'id-ID': { symbol: 'Rp', code: 'IDR', name: 'rupiah' },
-            'ms-MY': { symbol: 'RM', code: 'MYR', name: 'ringgit' },
-            'vi-VN': { symbol: '₫', code: 'VND', name: 'dong' },
-            'hi-IN': { symbol: '₹', code: 'INR', name: 'rupee' }
-        };
-        
-        // Check locale first
-        let currency = currencyMap[locale];
-        
-        // If not found, check by country code
-        if (!currency) {
-            const countryCode = locale.split('-')[1];
-            if (countryCode === 'GB') currency = currencyMap['en-GB'];
-            else if (countryCode === 'US') currency = currencyMap['en-US'];
-            else if (countryCode === 'CA') currency = currencyMap['en-CA'];
-            else if (countryCode === 'AU') currency = currencyMap['en-AU'];
-            else if (countryCode === 'IN') currency = currencyMap['en-IN'];
-            else if (timezone.includes('Europe')) currency = currencyMap['de-DE'];
-            else currency = currencyMap['en-US']; // Default to USD
+        // Try to get currency from Intl API first (most reliable)
+        try {
+            const formatter = new Intl.NumberFormat(navigator.language, {
+                style: 'currency',
+                currency: 'USD',
+                currencyDisplay: 'narrowSymbol'
+            });
+            
+            // Get the actual locale being used
+            const locale = formatter.resolvedOptions().locale || navigator.language || 'en-US';
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+            
+            // Try to detect currency from locale
+            const currencyByLocale = {
+                'GB': { symbol: '£', code: 'GBP', name: 'pound' },
+                'UK': { symbol: '£', code: 'GBP', name: 'pound' },
+                'US': { symbol: '$', code: 'USD', name: 'dollar' },
+                'CA': { symbol: '$', code: 'CAD', name: 'dollar' },
+                'AU': { symbol: '$', code: 'AUD', name: 'dollar' },
+                'NZ': { symbol: '$', code: 'NZD', name: 'dollar' },
+                'IN': { symbol: '₹', code: 'INR', name: 'rupee' },
+                'DE': { symbol: '€', code: 'EUR', name: 'euro' },
+                'FR': { symbol: '€', code: 'EUR', name: 'euro' },
+                'ES': { symbol: '€', code: 'EUR', name: 'euro' },
+                'IT': { symbol: '€', code: 'EUR', name: 'euro' },
+                'NL': { symbol: '€', code: 'EUR', name: 'euro' },
+                'BE': { symbol: '€', code: 'EUR', name: 'euro' },
+                'AT': { symbol: '€', code: 'EUR', name: 'euro' },
+                'PT': { symbol: '€', code: 'EUR', name: 'euro' },
+                'FI': { symbol: '€', code: 'EUR', name: 'euro' },
+                'GR': { symbol: '€', code: 'EUR', name: 'euro' },
+                'IE': { symbol: '€', code: 'EUR', name: 'euro' },
+                'BR': { symbol: 'R$', code: 'BRL', name: 'real' },
+                'JP': { symbol: '¥', code: 'JPY', name: 'yen' },
+                'CN': { symbol: '¥', code: 'CNY', name: 'yuan' },
+                'KR': { symbol: '₩', code: 'KRW', name: 'won' },
+                'RU': { symbol: '₽', code: 'RUB', name: 'ruble' },
+                'SE': { symbol: 'kr', code: 'SEK', name: 'krona' },
+                'NO': { symbol: 'kr', code: 'NOK', name: 'krone' },
+                'DK': { symbol: 'kr', code: 'DKK', name: 'krone' },
+                'PL': { symbol: 'zł', code: 'PLN', name: 'zloty' },
+                'TR': { symbol: '₺', code: 'TRY', name: 'lira' },
+                'TH': { symbol: '฿', code: 'THB', name: 'baht' },
+                'ID': { symbol: 'Rp', code: 'IDR', name: 'rupiah' },
+                'MY': { symbol: 'RM', code: 'MYR', name: 'ringgit' },
+                'VN': { symbol: '₫', code: 'VND', name: 'dong' }
+            };
+            
+            // Extract country code from locale (e.g., 'en-GB' -> 'GB')
+            const countryCode = locale.split('-')[1] || '';
+            let currency = currencyByLocale[countryCode];
+            
+            // If not found by exact match, check timezone for Europe
+            if (!currency && timezone) {
+                if (timezone.includes('London') || timezone.includes('Dublin')) {
+                    currency = currencyByLocale['GB'];
+                } else if (timezone.includes('Europe/')) {
+                    currency = currencyByLocale['DE']; // Default to Euro for Europe
+                } else if (timezone.includes('America/New_York') || timezone.includes('America/Los_Angeles')) {
+                    currency = currencyByLocale['US'];
+                } else if (timezone.includes('America/Toronto')) {
+                    currency = currencyByLocale['CA'];
+                } else if (timezone.includes('Australia/')) {
+                    currency = currencyByLocale['AU'];
+                } else if (timezone.includes('Asia/Tokyo')) {
+                    currency = currencyByLocale['JP'];
+                } else if (timezone.includes('Asia/Shanghai') || timezone.includes('Asia/Beijing')) {
+                    currency = currencyByLocale['CN'];
+                }
+            }
+            
+            // Default to USD if nothing matches
+            return currency || { symbol: '$', code: 'USD', name: 'dollar' };
+            
+        } catch (e) {
+            // Fallback to USD if Intl API fails
+            return { symbol: '$', code: 'USD', name: 'dollar' };
         }
-        
-        return currency || { symbol: '$', code: 'USD', name: 'dollar' };
     }
     
     /**
