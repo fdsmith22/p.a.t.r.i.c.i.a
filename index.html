@@ -307,6 +307,73 @@
     </footer>
     
     <!-- Neurlyn Simple JavaScript -->
-    <script src="js/neurlyn-simple.js"></script>
+    <script>
+    // Simple initialization script without dark mode
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize consent checkboxes
+        const consentCheck = document.getElementById('consent-check');
+        const ageCheck = document.getElementById('age-check');
+        const acceptBtn = document.getElementById('accept-disclaimer');
+        
+        // Setup pricing tab selection
+        const pricingTabs = document.querySelectorAll('.selector-tab');
+        const selectedDescription = document.getElementById('selected-description');
+        
+        if (pricingTabs.length > 0) {
+            pricingTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active from all tabs
+                    pricingTabs.forEach(t => t.classList.remove('active'));
+                    // Add active to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Update description and button text based on selection
+                    const plan = tab.dataset.plan;
+                    if (plan === 'free') {
+                        if (selectedDescription) {
+                            selectedDescription.textContent = 'Get your basic personality profile with key traits - completely free';
+                        }
+                        if (acceptBtn) {
+                            acceptBtn.textContent = 'Start Free Assessment';
+                        }
+                    } else if (plan === 'premium') {
+                        if (selectedDescription) {
+                            selectedDescription.textContent = 'Complete neurodiversity screening with detailed analysis and downloadable report';
+                        }
+                        if (acceptBtn) {
+                            acceptBtn.textContent = 'Start In-Depth Analysis - £1.99';
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Handle consent checkboxes
+        if (consentCheck && ageCheck && acceptBtn) {
+            const checkConsent = () => {
+                acceptBtn.disabled = !(consentCheck.checked && ageCheck.checked);
+            };
+            
+            consentCheck.addEventListener('change', checkConsent);
+            ageCheck.addEventListener('change', checkConsent);
+            
+            acceptBtn.addEventListener('click', () => {
+                // For now, just show the welcome screen
+                const disclaimerScreen = document.getElementById('disclaimer-screen');
+                const welcomeScreen = document.getElementById('welcome-screen');
+                
+                if (disclaimerScreen) {
+                    disclaimerScreen.classList.add('hidden');
+                    disclaimerScreen.classList.remove('active');
+                }
+                
+                if (welcomeScreen) {
+                    welcomeScreen.classList.remove('hidden');
+                    welcomeScreen.classList.add('active');
+                }
+            });
+        }
+    });
+    </script>
 </body>
 </html>
