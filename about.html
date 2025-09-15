@@ -141,14 +141,48 @@
         .cta-secondary:hover {
             background: rgba(108, 158, 131, 0.05);
         }
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .footer-separator {
+            color: #9CA3AF;
+        }
     </style>
 </head>
 <body>
+    <!-- Service Worker Cleanup Script -->
+    <script>
+    // Unregister any existing service workers to fix navigation
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+                console.log('Service worker unregistered');
+            }
+        });
+    }
+    
+    // Clear caches to ensure fresh content
+    if ('caches' in window) {
+        caches.keys().then(function(names) {
+            for (let name of names) {
+                caches.delete(name);
+                console.log('Cache cleared:', name);
+            }
+        });
+    }
+    </script>
     <!-- Navigation -->
     <nav class="main-nav">
         <div class="container">
             <div class="nav-content">
-                <a href="index.html" class="nav-brand">Neurlyn</a>
+                <div class="nav-brand-group">
+                    <a href="index.html" class="nav-brand">Neurlyn</a>
+                    <span class="nav-tagline">Intelligent Personality Assessment</span>
+                </div>
                 <div class="nav-links">
                     <a href="index.html" class="nav-link">Assessment</a>
                     <a href="support.html" class="nav-link">Support</a>
@@ -289,9 +323,15 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Neurlyn. Science-based personality insights.</p>
+    <footer class="footer compact">
+        <div class="footer-content">
+            <span>&copy; 2024 Neurlyn. All rights reserved.</span>
+            <span class="footer-separator">|</span>
+            <a href="#privacy">Privacy</a>
+            <span class="footer-separator">|</span>
+            <a href="#terms">Terms</a>
+            <span class="footer-separator">|</span>
+            <a href="#contact">Contact</a>
         </div>
     </footer>
 </body>

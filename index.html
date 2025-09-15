@@ -10,7 +10,8 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
     <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-    <link rel="manifest" href="manifest.json">
+    <!-- Manifest disabled to fix navigation issues -->
+    <!-- <link rel="manifest" href="manifest.json"> -->
     
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="Neurlyn - Intelligent Personality Assessment">
@@ -308,6 +309,26 @@
     
     <!-- Neurlyn Simple JavaScript -->
     <script>
+    // Unregister any existing service workers to fix navigation
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+                console.log('Service worker unregistered');
+            }
+        });
+    }
+    
+    // Clear caches to ensure fresh content
+    if ('caches' in window) {
+        caches.keys().then(function(names) {
+            for (let name of names) {
+                caches.delete(name);
+                console.log('Cache cleared:', name);
+            }
+        });
+    }
+    
     // Simple initialization script without dark mode
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize consent checkboxes
