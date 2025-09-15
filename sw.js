@@ -1,5 +1,5 @@
 // Neurlyn Service Worker
-const CACHE_NAME = 'neurlyn-v1757958602'; // Force complete refresh
+const CACHE_NAME = 'neurlyn-v1757959116'; // Force complete refresh
 const urlsToCache = [
   './',
   './index.html',

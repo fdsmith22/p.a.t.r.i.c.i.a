@@ -195,6 +195,30 @@ class NeurlynIntegratedApp {
         });
     }
     
+    // Update expected duration
+    updateExpectedDuration(mode) {
+        const durations = {
+            quick: '5-7 minutes',
+            standard: '15-20 minutes',
+            deep: '25-30 minutes'
+        };
+        
+        const description = document.querySelector('.description');
+        if (description && durations[mode]) {
+            const trackText = this.state.assessmentTrack ? 
+                ` (${this.state.assessmentTrack} track)` : '';
+            description.innerHTML = `
+                This assessment will take approximately <strong>${durations[mode]}</strong>${trackText}.
+            `;
+        }
+    }
+    
+    // Load questions
+    loadQuestions() {
+        // This will be populated when assessment starts based on track and mode
+        this.questions = [];
+    }
+    
     // Enhanced Mode Selection with Task Types
     selectMode(mode) {
         this.state.currentMode = mode;
@@ -438,6 +462,116 @@ class NeurlynIntegratedApp {
             questions.push(this.createLikertQuestion(i));
         }
         return questions;
+    }
+    
+    // Check for saved progress
+    checkForSavedProgress() {
+        const savedState = localStorage.getItem('neurlyn-progress');
+        if (savedState) {
+            const progress = JSON.parse(savedState);
+            if (progress.sessionId === this.state.sessionId) {
+                // Restore progress
+                this.state = { ...this.state, ...progress };
+                this.showToast('Progress restored', 'info');
+            }
+        }
+    }
+    
+    // Initialize service worker
+    initServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Service Worker registered'))
+                .catch(err => console.log('Service Worker registration failed'));
+        }
+    }
+    
+    // Load saved state
+    loadSavedState() {
+        const savedState = localStorage.getItem('neurlyn-state');
+        if (savedState) {
+            try {
+                const parsed = JSON.parse(savedState);
+                // Only restore non-sensitive state
+                this.state.theme = parsed.theme || 'system';
+                this.state.taskMode = parsed.taskMode || 'hybrid';
+            } catch (e) {
+                console.error('Failed to load saved state:', e);
+            }
+        }
+    }
+    
+    // Setup keyboard shortcuts
+    setupKeyboardShortcuts() {
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + S to save progress
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                this.saveProgress();
+            }
+            // Escape to pause
+            if (e.key === 'Escape' && this.state.currentScreen === 'question') {
+                this.togglePause();
+            }
+        });
+    }
+    
+    // Save progress
+    saveProgress() {
+        const progress = {
+            sessionId: this.state.sessionId,
+            currentQuestionIndex: this.state.currentQuestionIndex,
+            responses: this.state.responses,
+            timestamp: Date.now()
+        };
+        localStorage.setItem('neurlyn-progress', JSON.stringify(progress));
+        this.showToast('Progress saved', 'success');
+    }
+    
+    // Toggle pause
+    togglePause() {
+        this.state.isPaused = !this.state.isPaused;
+        if (this.state.isPaused) {
+            this.showToast('Assessment paused', 'info');
+        } else {
+            this.showToast('Assessment resumed', 'info');
+        }
+    }
+    
+    // Show toast notification
+    showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 100);
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+    
+    // Show screen
+    showScreen(screenId) {
+        document.querySelectorAll('.screen').forEach(screen => {
+            screen.classList.add('hidden');
+        });
+        
+        const targetScreen = document.getElementById(`${screenId}-screen`);
+        if (targetScreen) {
+            targetScreen.classList.remove('hidden');
+            targetScreen.classList.add('active');
+            this.state.currentScreen = screenId;
+        }
+    }
+    
+    // Generate session ID
+    generateSessionId() {
+        return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
     }
     
     // Create Lateral Question
