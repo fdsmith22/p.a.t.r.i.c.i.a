@@ -258,7 +258,7 @@ class NeurlynIntegratedApp {
                 instructions: 'Pump the balloon to earn money, but be careful - it might pop! Press SPACE to pump, ENTER to collect.',
                 category: 'Risk Taking',
                 timeLimit: 120000, // 2 minutes
-                balloons: 15
+                balloons: 5  // Reduced from 15 to 5 for better UX
             },
             'word-association': {
                 type: 'word-association',

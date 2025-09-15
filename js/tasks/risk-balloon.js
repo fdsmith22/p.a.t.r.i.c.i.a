@@ -10,9 +10,10 @@ export class RiskBalloonTask extends BaseTask {
         super(taskData);
         
         this.type = 'risk-balloon';
-        this.balloons = taskData.balloons || 30; // Total number of balloons
+        this.balloons = taskData.balloons || 5; // Reduced to 5 balloons for better UX
         this.maxPumps = taskData.maxPumps || 128; // Maximum pumps before guaranteed pop
         this.pumpValue = taskData.pumpValue || 0.05; // Points per pump
+        this.currency = this.detectCurrency(); // Auto-detect user's currency
         this.colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96E6B3', '#F7DC6F'];
         
         // Game state
@@ -40,6 +41,69 @@ export class RiskBalloonTask extends BaseTask {
         
         // Risk calculation parameters
         this.explosionProbabilities = this.generateExplosionCurve();
+    }
+    
+    /**
+     * Detect user's currency based on locale and timezone
+     */
+    detectCurrency() {
+        const locale = navigator.language || 'en-US';
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        
+        // Currency mapping based on locale
+        const currencyMap = {
+            'en-GB': { symbol: '£', code: 'GBP', name: 'pound' },
+            'en-US': { symbol: '$', code: 'USD', name: 'dollar' },
+            'en-CA': { symbol: '$', code: 'CAD', name: 'dollar' },
+            'en-AU': { symbol: '$', code: 'AUD', name: 'dollar' },
+            'en-NZ': { symbol: '$', code: 'NZD', name: 'dollar' },
+            'en-IN': { symbol: '₹', code: 'INR', name: 'rupee' },
+            'de-DE': { symbol: '€', code: 'EUR', name: 'euro' },
+            'fr-FR': { symbol: '€', code: 'EUR', name: 'euro' },
+            'es-ES': { symbol: '€', code: 'EUR', name: 'euro' },
+            'it-IT': { symbol: '€', code: 'EUR', name: 'euro' },
+            'pt-BR': { symbol: 'R$', code: 'BRL', name: 'real' },
+            'ja-JP': { symbol: '¥', code: 'JPY', name: 'yen' },
+            'zh-CN': { symbol: '¥', code: 'CNY', name: 'yuan' },
+            'ko-KR': { symbol: '₩', code: 'KRW', name: 'won' },
+            'ru-RU': { symbol: '₽', code: 'RUB', name: 'ruble' },
+            'ar-SA': { symbol: 'ر.س', code: 'SAR', name: 'riyal' },
+            'he-IL': { symbol: '₪', code: 'ILS', name: 'shekel' },
+            'sv-SE': { symbol: 'kr', code: 'SEK', name: 'krona' },
+            'no-NO': { symbol: 'kr', code: 'NOK', name: 'krone' },
+            'da-DK': { symbol: 'kr', code: 'DKK', name: 'krone' },
+            'pl-PL': { symbol: 'zł', code: 'PLN', name: 'zloty' },
+            'tr-TR': { symbol: '₺', code: 'TRY', name: 'lira' },
+            'th-TH': { symbol: '฿', code: 'THB', name: 'baht' },
+            'id-ID': { symbol: 'Rp', code: 'IDR', name: 'rupiah' },
+            'ms-MY': { symbol: 'RM', code: 'MYR', name: 'ringgit' },
+            'vi-VN': { symbol: '₫', code: 'VND', name: 'dong' },
+            'hi-IN': { symbol: '₹', code: 'INR', name: 'rupee' }
+        };
+        
+        // Check locale first
+        let currency = currencyMap[locale];
+        
+        // If not found, check by country code
+        if (!currency) {
+            const countryCode = locale.split('-')[1];
+            if (countryCode === 'GB') currency = currencyMap['en-GB'];
+            else if (countryCode === 'US') currency = currencyMap['en-US'];
+            else if (countryCode === 'CA') currency = currencyMap['en-CA'];
+            else if (countryCode === 'AU') currency = currencyMap['en-AU'];
+            else if (countryCode === 'IN') currency = currencyMap['en-IN'];
+            else if (timezone.includes('Europe')) currency = currencyMap['de-DE'];
+            else currency = currencyMap['en-US']; // Default to USD
+        }
+        
+        return currency || { symbol: '$', code: 'USD', name: 'dollar' };
+    }
+    
+    /**
+     * Format currency value
+     */
+    formatCurrency(value) {
+        return `${this.currency.symbol}${value.toFixed(2)}`;
     }
     
     /**
@@ -72,11 +136,11 @@ export class RiskBalloonTask extends BaseTask {
                 </div>
                 <div class="stat-item">
                     <span class="stat-label">Current Value</span>
-                    <span class="stat-value" id="current-value">$0.00</span>
+                    <span class="stat-value" id="current-value">${this.formatCurrency(0)}</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-label">Total Earned</span>
-                    <span class="stat-value" id="total-score">$0.00</span>
+                    <span class="stat-value" id="total-score">${this.formatCurrency(0)}</span>
                 </div>
             </div>
         `;
@@ -180,7 +244,7 @@ export class RiskBalloonTask extends BaseTask {
         // Update display
         document.getElementById('balloon-number').textContent = 
             `${this.currentBalloon} / ${this.balloons}`;
-        document.getElementById('current-value').textContent = '$0.00';
+        document.getElementById('current-value').textContent = this.formatCurrency(0);
         document.getElementById('risk-fill').style.width = '0%';
         
         // Enable buttons
@@ -213,7 +277,7 @@ export class RiskBalloonTask extends BaseTask {
             this.balloon.targetRadius = this.balloon.baseRadius + (this.currentPumps * 2);
             
             // Update display
-            document.getElementById('current-value').textContent = `$${currentValue.toFixed(2)}`;
+            document.getElementById('current-value').textContent = this.formatCurrency(currentValue);
             
             // Update risk indicator
             const riskPercent = (this.currentPumps / this.maxPumps) * 100;
