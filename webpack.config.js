@@ -53,8 +53,9 @@ module.exports = {
         { from: 'js/tasks', to: 'js/tasks' },
         { from: 'js/questions', to: 'js/questions' },
         { from: 'manifest.json', to: 'manifest.json' },
-        { from: 'sw.js', to: 'sw.js' },
-        { from: 'backend.js', to: 'backend.js' }
+        { from: 'backend.js', to: 'backend.js' },
+        { from: 'about.html', to: 'about.html' },
+        { from: 'support.html', to: 'support.html' }
       ]
     })
   ],
