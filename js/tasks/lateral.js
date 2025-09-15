@@ -22,7 +22,22 @@ export class LateralTask extends BaseTask {
      * Render the lateral question
      */
     async render() {
-        const container = this.createContainer();
+        // Create container but skip the default question rendering
+        const container = document.createElement('div');
+        container.className = 'task-content';
+        
+        // Add instructions if present (but skip default question)
+        if (this.instructions) {
+            const instructions = document.createElement('div');
+            instructions.className = 'task-instructions';
+            instructions.innerHTML = `
+                <svg class="instruction-icon" width="16" height="16">
+                    <use href="assets/icons/icons.svg#icon-info"></use>
+                </svg>
+                <p>${this.instructions}</p>
+            `;
+            container.appendChild(instructions);
+        }
         
         // Question display with enhanced styling
         const questionDiv = document.createElement('div');
@@ -33,6 +48,25 @@ export class LateralTask extends BaseTask {
             </div>
         `;
         container.appendChild(questionDiv);
+        
+        // Add timer if time limit exists
+        if (this.timeLimit) {
+            const timerEl = document.createElement('div');
+            timerEl.className = 'task-timer';
+            timerEl.innerHTML = `
+                <svg width="16" height="16">
+                    <use href="assets/icons/icons.svg#icon-clock"></use>
+                </svg>
+                <span id="task-timer-display">${this.formatTime(this.timeLimit)}</span>
+            `;
+            container.appendChild(timerEl);
+            
+            // Start countdown
+            this.startTimer(timerEl.querySelector('#task-timer-display'));
+        }
+        
+        // Store container reference
+        this.container = container;
         
         // Options container
         const optionsDiv = document.createElement('div');
@@ -90,6 +124,48 @@ export class LateralTask extends BaseTask {
             question: this.question,
             measures: this.measures
         });
+    }
+    
+    /**
+     * Format milliseconds to MM:SS (needed for timer)
+     */
+    formatTime(ms) {
+        const totalSeconds = Math.floor(ms / 1000);
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+    
+    /**
+     * Start countdown timer (needed for timer)
+     */
+    startTimer(displayElement) {
+        let remaining = this.timeLimit;
+        
+        this.timerInterval = setInterval(() => {
+            remaining -= 1000;
+            
+            if (remaining <= 0) {
+                clearInterval(this.timerInterval);
+                this.onTimeUp();
+                displayElement.textContent = '0:00';
+            } else {
+                displayElement.textContent = this.formatTime(remaining);
+                
+                // Add warning class when < 10 seconds
+                if (remaining < 10000) {
+                    displayElement.parentElement.classList.add('timer-warning');
+                }
+            }
+        }, 1000);
+    }
+    
+    /**
+     * Called when time runs out (needed for timer)
+     */
+    onTimeUp() {
+        this.logEvent('time_up');
+        // Could auto-select a random option or disable interaction
     }
     
     /**
@@ -192,12 +268,23 @@ export class LateralTask extends BaseTask {
      * Cleanup
      */
     destroy() {
+        // Clean up timer
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+        }
+        
         // Remove keyboard handlers
         if (this.keyHandlers) {
             this.keyHandlers.forEach(({ event, handler }) => {
                 document.removeEventListener(event, handler);
             });
         }
+        
+        // Clean up container
+        if (this.container) {
+            this.container.remove();
+        }
+        
         super.destroy();
     }
     
