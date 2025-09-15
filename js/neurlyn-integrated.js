@@ -122,10 +122,8 @@ class NeurlynIntegratedApp {
             }
         });
         
-        // Show task type selector for enhanced modes
-        if (mode !== 'quick') {
-            this.showTaskTypeSelector();
-        }
+        // Always show task type selector
+        this.showTaskTypeSelector();
         
         const startBtn = document.getElementById('start-assessment');
         if (startBtn) {
@@ -192,14 +190,14 @@ class NeurlynIntegratedApp {
     generateEnhancedQuestions() {
         const modeConfigs = {
             quick: {
-                questionCount: 5,
+                questionCount: 7,
                 gamifiedTasks: ['risk-balloon'],
-                traditionalCount: 5
+                traditionalCount: 6
             },
             standard: {
                 questionCount: 15,
                 gamifiedTasks: ['risk-balloon', 'word-association', 'visual-attention'],
-                traditionalCount: 10
+                traditionalCount: 12
             },
             deep: {
                 questionCount: 30,
@@ -211,7 +209,7 @@ class NeurlynIntegratedApp {
                     'iowa-gambling',
                     'card-sorting'
                 ],
-                traditionalCount: 20
+                traditionalCount: 24
             }
         };
         
@@ -892,7 +890,209 @@ class NeurlynIntegratedApp {
         this.state.currentScreen = screenName;
     }
     
-    // ... Additional helper methods from original file ...
+    // LocalStorage Management
+    saveState() {
+        const stateToSave = {
+            ...this.state,
+            questions: this.questions,
+            timestamp: Date.now()
+        };
+        
+        try {
+            localStorage.setItem('neurlyn-assessment', JSON.stringify(stateToSave));
+            this.showToast('Progress saved', 'success');
+        } catch (e) {
+            console.error('Failed to save state:', e);
+        }
+    }
+    
+    loadSavedState() {
+        try {
+            const saved = localStorage.getItem('neurlyn-assessment');
+            if (saved) {
+                const parsedState = JSON.parse(saved);
+                // Check if saved state is less than 24 hours old
+                if (Date.now() - parsedState.timestamp < 24 * 60 * 60 * 1000) {
+                    return parsedState;
+                }
+            }
+        } catch (e) {
+            console.error('Failed to load saved state:', e);
+        }
+        return null;
+    }
+    
+    clearSavedState() {
+        localStorage.removeItem('neurlyn-assessment');
+    }
+    
+    checkForSavedProgress() {
+        const saved = this.loadSavedState();
+        if (saved && saved.currentScreen === 'question') {
+            this.showResumeDialog(saved);
+        }
+    }
+    
+    showResumeDialog(savedState) {
+        const dialog = document.createElement('div');
+        dialog.className = 'resume-dialog';
+        dialog.innerHTML = `
+            <div class="dialog-content">
+                <h3>Resume Assessment?</h3>
+                <p>You have an assessment in progress.</p>
+                <p>Progress: Question ${savedState.currentQuestionIndex + 1}</p>
+                <div class="dialog-actions">
+                    <button class="btn btn-primary" id="resume-yes">Resume</button>
+                    <button class="btn btn-secondary" id="resume-no">Start New</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(dialog);
+        
+        document.getElementById('resume-yes').addEventListener('click', () => {
+            this.resumeAssessment(savedState);
+            dialog.remove();
+        });
+        
+        document.getElementById('resume-no').addEventListener('click', () => {
+            this.clearSavedState();
+            dialog.remove();
+        });
+    }
+    
+    resumeAssessment(savedState) {
+        this.state = savedState;
+        this.questions = savedState.questions;
+        this.transitionToScreen('question');
+        this.displayQuestion();
+        this.startAutoSave();
+        this.showToast('Assessment resumed', 'info');
+    }
+    
+    startAutoSave() {
+        this.autoSaveInterval = setInterval(() => {
+            if (this.state.currentScreen === 'question') {
+                this.saveState();
+            }
+        }, 30000);
+    }
+    
+    stopAutoSave() {
+        if (this.autoSaveInterval) {
+            clearInterval(this.autoSaveInterval);
+            this.autoSaveInterval = null;
+        }
+    }
+    
+    updateExpectedDuration(mode) {
+        const durations = {
+            quick: '5-7 minutes',
+            standard: '15-20 minutes',
+            deep: '25-30 minutes'
+        };
+        
+        const durationElement = document.getElementById('expected-duration');
+        if (durationElement) {
+            durationElement.textContent = durations[mode];
+        }
+    }
+    
+    setupKeyboardShortcuts() {
+        document.addEventListener('keydown', (e) => {
+            // Only in question screen
+            if (this.state.currentScreen === 'question') {
+                switch(e.key) {
+                    case 'ArrowLeft':
+                        this.navigateQuestion(-1);
+                        break;
+                    case 'ArrowRight':
+                        if (!document.getElementById('next-button').disabled) {
+                            this.navigateQuestion(1);
+                        }
+                        break;
+                    case 'Enter':
+                        if (!document.getElementById('next-button').disabled) {
+                            this.navigateQuestion(1);
+                        }
+                        break;
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                        const options = document.querySelectorAll('.likert-option');
+                        const index = parseInt(e.key) - 1;
+                        if (options[index]) {
+                            options[index].click();
+                        }
+                        break;
+                }
+            }
+        });
+    }
+    
+    skipQuestion() {
+        this.state.responses.push({
+            questionIndex: this.state.currentQuestionIndex,
+            question: this.questions[this.state.currentQuestionIndex].question,
+            category: this.questions[this.state.currentQuestionIndex].category,
+            response: { skipped: true },
+            timestamp: Date.now(),
+            taskType: this.questions[this.state.currentQuestionIndex].type
+        });
+        
+        this.navigateQuestion(1);
+    }
+    
+    saveResultsToHistory(results) {
+        try {
+            const history = JSON.parse(localStorage.getItem('neurlyn-history') || '[]');
+            history.push({
+                date: Date.now(),
+                mode: this.state.currentMode,
+                results: results
+            });
+            // Keep only last 10 results
+            if (history.length > 10) {
+                history.shift();
+            }
+            localStorage.setItem('neurlyn-history', JSON.stringify(history));
+        } catch (e) {
+            console.error('Failed to save results:', e);
+        }
+    }
+    
+    downloadResults() {
+        // Implementation for downloading results as PDF/JSON
+        this.showToast('Preparing download...', 'info');
+        // TODO: Implement actual download
+    }
+    
+    shareResults() {
+        // Implementation for sharing results
+        if (navigator.share) {
+            navigator.share({
+                title: 'My Neurlyn Assessment Results',
+                text: 'Check out my personality profile!',
+                url: window.location.href
+            });
+        } else {
+            this.showToast('Sharing not available on this device', 'error');
+        }
+    }
+    
+    retakeAssessment() {
+        location.reload();
+    }
+    
+    initServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log('Service Worker registered'))
+                .catch(err => console.error('Service Worker registration failed:', err));
+        }
+    }
 }
 
 // Initialize app when DOM is ready
