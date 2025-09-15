@@ -7,32 +7,94 @@ export class TaskController {
     constructor() {
         this.taskTypes = {
             'likert': 'LikertTask',
+            'lateral': 'LateralTask',
             'risk-balloon': 'RiskBalloonTask',
             'word-association': 'WordAssociationTask',
             'visual-attention': 'VisualAttentionTask',
-            'microexpression': 'MicroexpressionTask',
-            'tat-digital': 'ThematicApperceptionTask',
-            'iowa-gambling': 'IowaGamblingTask',
-            'story-branching': 'InteractiveStoryTask',
-            'card-sorting': 'CardSortingTask',
-            'free-association': 'FreeAssociationTask',
-            'drawing': 'DigitalDrawingTask',
-            'economics': 'BehavioralEconomicsTask',
-            'implicit-learning': 'ImplicitLearningTask',
-            'sentence-completion': 'SentenceCompletionTask'
+            'pattern-recognition': 'PatternRecognitionTask'
+            // Note: Other task types (microexpression, tat-digital, etc.) will be added when their files are created
         };
         
         this.loadedTasks = new Map();
         this.currentTask = null;
         this.behavioralData = [];
+        
+        // Validate all task mappings on initialization
+        this.validateTaskMappings();
+    }
+    
+    /**
+     * Validate that all task type mappings have corresponding files and classes
+     */
+    async validateTaskMappings() {
+        console.log('🔍 Validating task type mappings...');
+        const validationResults = {
+            valid: [],
+            invalid: [],
+            warnings: []
+        };
+        
+        for (const [taskType, className] of Object.entries(this.taskTypes)) {
+            try {
+                // Try to import the module
+                const module = await import(`../tasks/${taskType}.js`);
+                const TaskClass = module[className];
+                
+                if (TaskClass) {
+                    validationResults.valid.push({ taskType, className });
+                    console.log(`✅ ${taskType} → ${className}`);
+                } else {
+                    validationResults.invalid.push({ 
+                        taskType, 
+                        className, 
+                        error: `Class '${className}' not found in module`
+                    });
+                    console.error(`❌ ${taskType} → ${className} (class not found)`);
+                }
+            } catch (error) {
+                validationResults.invalid.push({ 
+                    taskType, 
+                    className, 
+                    error: error.message 
+                });
+                console.error(`❌ ${taskType} → ${className} (${error.message})`);
+            }
+        }
+        
+        // Check for commonly used task types that might be missing
+        const commonTaskTypes = ['lateral', 'likert', 'choice', 'multiple-choice', 'scale'];
+        commonTaskTypes.forEach(taskType => {
+            if (!this.taskTypes[taskType]) {
+                validationResults.warnings.push(`Warning: Common task type '${taskType}' not in mapping`);
+                console.warn(`⚠️  Common task type '${taskType}' not in mapping`);
+            }
+        });
+        
+        console.log(`📊 Validation complete: ${validationResults.valid.length} valid, ${validationResults.invalid.length} invalid, ${validationResults.warnings.length} warnings`);
+        
+        if (validationResults.invalid.length > 0) {
+            console.warn('Some task types may not work correctly:', validationResults.invalid);
+        }
+        
+        return validationResults;
     }
     
     /**
      * Dynamically load and initialize a task based on type
      */
     async loadTask(taskType, taskData) {
+        const originalTaskType = taskType;
+        
         if (!this.taskTypes[taskType]) {
-            console.warn(`Unknown task type: ${taskType}, falling back to Likert`);
+            console.error(`CRITICAL: Unknown task type: '${taskType}'. This will cause incorrect question rendering!`);
+            console.error(`Available task types:`, Object.keys(this.taskTypes));
+            console.error(`Question data:`, { type: taskData.type, question: taskData.question?.substring(0, 100) + '...' });
+            
+            // Create user-visible error for debugging
+            if (typeof window !== 'undefined' && window.neurlynApp) {
+                window.neurlynApp.showToast(`ERROR: Task type '${taskType}' not found. Falling back to Likert.`, 'error');
+            }
+            
             taskType = 'likert';
         }
         
@@ -41,13 +103,39 @@ export class TaskController {
             try {
                 const module = await import(`../tasks/${taskType}.js`);
                 const TaskClass = module[this.taskTypes[taskType]];
+                
+                if (!TaskClass) {
+                    throw new Error(`Task class '${this.taskTypes[taskType]}' not found in module ${taskType}.js`);
+                }
+                
                 this.loadedTasks.set(taskType, TaskClass);
+                
+                // Log successful loading for debugging
+                if (originalTaskType !== taskType) {
+                    console.warn(`Successfully loaded fallback task: ${taskType}`);
+                } else {
+                    console.log(`Successfully loaded task: ${taskType}`);
+                }
+                
             } catch (error) {
                 console.error(`Failed to load task module: ${taskType}`, error);
+                console.error(`Module path attempted: ../tasks/${taskType}.js`);
+                console.error(`Expected class name: ${this.taskTypes[taskType]}`);
+                
                 // Fall back to Likert task
-                const module = await import(`../tasks/likert.js`);
-                const TaskClass = module.LikertTask;
-                this.loadedTasks.set(taskType, TaskClass);
+                try {
+                    const module = await import(`../tasks/likert.js`);
+                    const TaskClass = module.LikertTask;
+                    this.loadedTasks.set(taskType, TaskClass);
+                    
+                    // Alert user about fallback
+                    if (typeof window !== 'undefined' && window.neurlynApp) {
+                        window.neurlynApp.showToast(`Failed to load ${originalTaskType} task. Using Likert fallback.`, 'error');
+                    }
+                } catch (fallbackError) {
+                    console.error(`FATAL: Even Likert fallback failed:`, fallbackError);
+                    throw new Error(`Cannot load any task type. Original: ${originalTaskType}, Fallback: likert`);
+                }
             }
         }
         
