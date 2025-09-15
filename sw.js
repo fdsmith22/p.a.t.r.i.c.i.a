@@ -7,8 +7,14 @@ const urlsToCache = [
   './styles/neurlyn-dark.css',
   './styles/neurlyn-enhancements.css',
   './styles/neurlyn-navigation.css',
-  './js/neurlyn-enhanced.js',
+  './styles/neurlyn-gamified.css',
+  './js/neurlyn-integrated.js',
   './js/report-generator.js',
+  './js/modules/task-controller.js',
+  './js/modules/behavioral-tracker.js',
+  './js/tasks/base-task.js',
+  './js/tasks/likert.js',
+  './js/tasks/risk-balloon.js',
   './assets/icons/icons.svg',
   './manifest.json'
 ];

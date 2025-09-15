@@ -41,22 +41,19 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html',
       filename: 'index.html',
-      inject: 'body'
+      inject: false  // Don't auto-inject, we'll load our module directly
     }),
     new CopyWebpackPlugin({
       patterns: [
         { from: 'styles', to: 'styles' },
         { from: 'assets', to: 'assets' },
         { from: 'js/neurlyn-integrated.js', to: 'js/neurlyn-integrated.js' },
-        { from: 'js/neurlyn-enhanced.js', to: 'js/neurlyn-enhanced.js' },
-        { from: 'js/neurlyn.js', to: 'js/neurlyn.js' },
         { from: 'js/report-generator.js', to: 'js/report-generator.js' },
         { from: 'js/modules', to: 'js/modules' },
         { from: 'js/tasks', to: 'js/tasks' },
         { from: 'manifest.json', to: 'manifest.json' },
         { from: 'sw.js', to: 'sw.js' },
-        { from: 'backend.js', to: 'backend.js' },
-        { from: 'package.json', to: 'package.json' }
+        { from: 'backend.js', to: 'backend.js' }
       ]
     })
   ],
