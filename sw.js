@@ -1,5 +1,5 @@
 // Neurlyn Service Worker
-const CACHE_NAME = 'neurlyn-v2'; // Increment version to bust cache
+const CACHE_NAME = 'neurlyn-v3'; // Force complete refresh
 const urlsToCache = [
   './',
   './index.html',
