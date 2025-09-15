@@ -51,11 +51,23 @@
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <!-- Theme Toggle -->
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-        <svg class="theme-icon-light" width="20" height="20"><use href="assets/icons/icons.svg#icon-sun"></use></svg>
-        <svg class="theme-icon-dark" width="20" height="20"><use href="assets/icons/icons.svg#icon-moon"></use></svg>
-    </button>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="nav-brand">Neurlyn</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link active">Assessment</a>
+                    <a href="support.html" class="nav-link">Emergency Support</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" style="background: transparent; border: none; color: #6C9E83;">
+                        <svg class="theme-icon-light" width="20" height="20"><use href="assets/icons/icons.svg#icon-sun"></use></svg>
+                        <svg class="theme-icon-dark" width="20" height="20"><use href="assets/icons/icons.svg#icon-moon"></use></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
     
     <!-- Main Container -->
     <div class="container" id="main-content">
@@ -69,83 +81,67 @@
         
         <!-- Disclaimer Screen -->
         <section id="disclaimer-screen" class="screen active">
-            <div class="card disclaimer-card">
+            <div class="card disclaimer-card compact">
                 <h2>Welcome to Neurlyn Assessment</h2>
-                <p class="disclaimer-intro">Please review the following information before beginning your assessment journey.</p>
-                <div class="disclaimer-content">
-                    <div class="disclaimer-grid">
-                        <div class="disclaimer-column">
-                            <div class="disclaimer-section">
-                                <h3>What We Assess</h3>
-                                <ul class="assessment-features">
-                                    <li>Neurodivergent traits (ADHD, Autism, Dyslexia)</li>
-                                    <li>Cognitive processing patterns</li>
-                                    <li>Executive function</li>
-                                    <li>Sensory processing preferences</li>
-                                    <li>Social communication styles</li>
-                                    <li>Emotional regulation patterns</li>
-                                    <li>Learning differences</li>
-                                    <li>Mental health indicators</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="disclaimer-section">
-                                <h3>Your Privacy & Safety</h3>
-                                <ul class="privacy-features">
-                                    <li>All responses are confidential and encrypted</li>
-                                    <li>You can skip any question or task</li>
-                                    <li>Take breaks whenever needed</li>
-                                    <li>Results are for your personal use only</li>
-                                </ul>
+                <p class="disclaimer-intro">Quick assessment for personality insights and neurodivergent traits.</p>
+                
+                <div class="disclaimer-compact">
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <svg width="24" height="24" class="feature-icon">
+                                <use href="assets/icons/icons.svg#icon-brain"></use>
+                            </svg>
+                            <div>
+                                <strong>Personality & Traits</strong>
+                                <p>Big Five personality, ADHD, Autism, cognitive patterns</p>
                             </div>
                         </div>
                         
-                        <div class="disclaimer-column">
-                            <div class="disclaimer-section">
-                                <h3>Assessment Purpose</h3>
-                                <p>This platform provides insights into neurodivergent traits, cognitive patterns, and personality characteristics. It is designed for self-discovery and understanding.</p>
+                        <div class="feature-item">
+                            <svg width="24" height="24" class="feature-icon">
+                                <use href="assets/icons/icons.svg#icon-user"></use>
+                            </svg>
+                            <div>
+                                <strong>Private & Secure</strong>
+                                <p>Confidential results, skip questions, take breaks anytime</p>
                             </div>
-                            
-                            <div class="disclaimer-warning">
-                                <svg width="20" height="20" class="warning-icon">
-                                    <use href="assets/icons/icons.svg#icon-info"></use>
-                                </svg>
-                                <div>
-                                    <strong>Note on Results</strong>
-                                    <p>This assessment provides insights but does not constitute a medical diagnosis. For official evaluation, please consult qualified healthcare professionals.</p>
-                                </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <svg width="24" height="24" class="feature-icon">
+                                <use href="assets/icons/icons.svg#icon-info"></use>
+                            </svg>
+                            <div>
+                                <strong>For Self-Discovery</strong>
+                                <p>Insights only - not a medical diagnosis. <a href="support.html" class="support-link">Need help?</a></p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="support-notice">
-                        <div class="support-content">
-                            <div class="support-text">
-                                <h3>Support Resources</h3>
-                                <p>Help is always available if you need it:</p>
-                            </div>
-                            <div class="crisis-resources">
-                                <a href="tel:988" class="crisis-link">988 Crisis Line (US)</a>
-                                <a href="tel:116123" class="crisis-link">116 123 (UK)</a>
-                                <a href="https://www.crisistextline.org" target="_blank" class="crisis-link">Text Support</a>
-                                <a href="https://findahelpline.com" target="_blank" class="crisis-link">International</a>
-                            </div>
+                    <div class="pricing-info">
+                        <div class="price-tier">
+                            <span class="price-label">Free Assessment</span>
+                            <span class="price-desc">Basic personality profile</span>
+                        </div>
+                        <div class="price-tier premium">
+                            <span class="price-label">Deep Analysis - £1.99</span>
+                            <span class="price-desc">Complete neurodiversity + detailed report</span>
                         </div>
                     </div>
                     
                     <div class="consent-section">
                         <label class="consent-checkbox">
                             <input type="checkbox" id="consent-check" />
-                            <span>I understand this is a screening tool, not a diagnostic assessment</span>
+                            <span>I understand this is for insights, not medical diagnosis</span>
                         </label>
                         <label class="consent-checkbox">
                             <input type="checkbox" id="age-check" />
-                            <span>I confirm I am 13 years or older (or have parental consent)</span>
+                            <span>I am 13+ years old (or have parental consent)</span>
                         </label>
                     </div>
                     
                     <button id="accept-disclaimer" class="btn btn-primary" disabled>
-                        Continue to Assessment
+                        Start Free Assessment
                     </button>
                 </div>
             </div>
@@ -328,6 +324,6 @@
     </footer>
     
     <!-- Neurlyn Integrated JavaScript -->
-    <script type="module" src="js/neurlyn-integrated.js?v=1757965682"></script>
+    <script type="module" src="js/neurlyn-integrated.js?v=1757966617"></script>
 </body>
 </html>
