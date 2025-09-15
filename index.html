@@ -8,9 +8,9 @@
     <meta name="theme-color" content="#6C9E83">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="Neurlyn - Intelligent Personality Assessment">
@@ -42,7 +42,7 @@
 <body>
     <!-- Load SVG Icons -->
     <div style="display: none;" aria-hidden="true">
-        <object data="/assets/icons/icons.svg" type="image/svg+xml"></object>
+        <object data="assets/icons/icons.svg" type="image/svg+xml"></object>
     </div>
     
     <!-- Skip to main content for accessibility -->
@@ -50,15 +50,15 @@
     
     <!-- Theme Toggle -->
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-        <svg class="theme-icon-light" width="20" height="20"><use href="/assets/icons/icons.svg#icon-sun"></use></svg>
-        <svg class="theme-icon-dark" width="20" height="20"><use href="/assets/icons/icons.svg#icon-moon"></use></svg>
+        <svg class="theme-icon-light" width="20" height="20"><use href="assets/icons/icons.svg#icon-sun"></use></svg>
+        <svg class="theme-icon-dark" width="20" height="20"><use href="assets/icons/icons.svg#icon-moon"></use></svg>
     </button>
     
     <!-- Main Container -->
     <div class="container" id="main-content">
         <!-- Clean Header -->
         <header class="header">
-            <a href="/" class="brand-link">
+            <a href="#" class="brand-link" onclick="window.location.reload(); return false;">
                 <h1 class="brand">Neurlyn</h1>
             </a>
             <p class="tagline">Intelligent Personality Assessment</p>
@@ -79,21 +79,21 @@
                     <div class="mode-grid">
                         <button class="mode-option" data-mode="quick">
                             <div class="mode-icon">
-                                <svg width="32" height="32"><use href="/assets/icons/icons.svg#icon-lightning"></use></svg>
+                                <svg width="32" height="32"><use href="assets/icons/icons.svg#icon-lightning"></use></svg>
                             </div>
                             <h4>Quick Assessment</h4>
                             <p>Core personality traits<br>5-7 minutes</p>
                         </button>
                         <button class="mode-option" data-mode="standard">
                             <div class="mode-icon">
-                                <svg width="32" height="32"><use href="/assets/icons/icons.svg#icon-chart"></use></svg>
+                                <svg width="32" height="32"><use href="assets/icons/icons.svg#icon-chart"></use></svg>
                             </div>
                             <h4>Standard Assessment</h4>
                             <p>Comprehensive profile<br>15-20 minutes</p>
                         </button>
                         <button class="mode-option" data-mode="deep">
                             <div class="mode-icon">
-                                <svg width="32" height="32"><use href="/assets/icons/icons.svg#icon-microscope"></use></svg>
+                                <svg width="32" height="32"><use href="assets/icons/icons.svg#icon-microscope"></use></svg>
                             </div>
                             <h4>Deep Analysis</h4>
                             <p>Extended evaluation<br>25-30 minutes</p>
@@ -112,7 +112,7 @@
             <!-- Breadcrumb Navigation -->
             <nav class="breadcrumb" aria-label="Breadcrumb">
                 <ol>
-                    <li><a href="/">Home</a></li>
+                    <li><a href="#" onclick="window.location.reload(); return false;">Home</a></li>
                     <li><span id="mode-breadcrumb">Assessment</span></li>
                     <li aria-current="page">Question <span id="breadcrumb-question">1</span></li>
                 </ol>
@@ -142,13 +142,13 @@
                 <!-- Navigation -->
                 <div class="question-nav">
                     <button id="prev-button" class="btn btn-secondary">
-                        <svg width="16" height="16"><use href="/assets/icons/icons.svg#icon-arrow-left"></use></svg>
+                        <svg width="16" height="16"><use href="assets/icons/icons.svg#icon-arrow-left"></use></svg>
                         Previous
                     </button>
                     <button id="skip-button" class="btn btn-ghost">Skip</button>
                     <button id="next-button" class="btn btn-primary" disabled>
                         Next
-                        <svg width="16" height="16"><use href="/assets/icons/icons.svg#icon-arrow-right"></use></svg>
+                        <svg width="16" height="16"><use href="assets/icons/icons.svg#icon-arrow-right"></use></svg>
                     </button>
                 </div>
             </div>
@@ -164,19 +164,19 @@
                 
                 <div class="results-actions">
                     <button id="download-results" class="btn btn-primary">
-                        <svg width="16" height="16"><use href="/assets/icons/icons.svg#icon-download"></use></svg>
+                        <svg width="16" height="16"><use href="assets/icons/icons.svg#icon-download"></use></svg>
                         Download Report
                     </button>
                     <button id="share-results" class="btn btn-secondary">
-                        <svg width="16" height="16"><use href="/assets/icons/icons.svg#icon-share"></use></svg>
+                        <svg width="16" height="16"><use href="assets/icons/icons.svg#icon-share"></use></svg>
                         Share Results
                     </button>
                     <button id="retake-assessment" class="btn btn-secondary">
-                        <svg width="16" height="16"><use href="/assets/icons/icons.svg#icon-refresh"></use></svg>
+                        <svg width="16" height="16"><use href="assets/icons/icons.svg#icon-refresh"></use></svg>
                         Take Again
                     </button>
                     <button id="home-button" class="btn btn-secondary">
-                        <svg width="16" height="16"><use href="/assets/icons/icons.svg#icon-arrow-left"></use></svg>
+                        <svg width="16" height="16"><use href="assets/icons/icons.svg#icon-arrow-left"></use></svg>
                         Back to Home
                     </button>
                 </div>

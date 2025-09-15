@@ -585,7 +585,7 @@ class NeurlynApp {
                 if (newIndex === this.questions.length - 1) {
                     const nextBtn = document.getElementById('next-button');
                     if (nextBtn) {
-                        nextBtn.innerHTML = 'Review & Submit <svg width="16" height="16"><use href="/assets/icons/icons.svg#icon-check"></use></svg>';
+                        nextBtn.innerHTML = 'Review & Submit <svg width="16" height="16"><use href="assets/icons/icons.svg#icon-check"></use></svg>';
                     }
                 }
             }, 200);
@@ -826,7 +826,7 @@ class NeurlynApp {
                     <!-- Strengths -->
                     <div class="insight-card">
                         <h3>
-                            <svg width="24" height="24"><use href="/assets/icons/icons.svg#icon-check"></use></svg>
+                            <svg width="24" height="24"><use href="assets/icons/icons.svg#icon-check"></use></svg>
                             Your Strengths
                         </h3>
                         <ul class="insight-list">
@@ -837,7 +837,7 @@ class NeurlynApp {
                     <!-- Growth Areas -->
                     <div class="insight-card">
                         <h3>
-                            <svg width="24" height="24"><use href="/assets/icons/icons.svg#icon-arrow-right"></use></svg>
+                            <svg width="24" height="24"><use href="assets/icons/icons.svg#icon-arrow-right"></use></svg>
                             Growth Opportunities
                         </h3>
                         <ul class="insight-list">
@@ -1315,7 +1315,7 @@ class NeurlynApp {
     // Service Worker for Offline Support
     initServiceWorker() {
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
+            navigator.serviceWorker.register('sw.js')
                 .then(reg => console.log('Service Worker registered'))
                 .catch(err => console.log('Service Worker registration failed'));
         }
