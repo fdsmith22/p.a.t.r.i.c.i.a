@@ -19,8 +19,14 @@
     align-items: center;
 }
 
+.nav-brand-group {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+}
+
 .nav-brand {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: #6C9E83;
     text-decoration: none;
@@ -29,6 +35,19 @@
 
 .nav-brand:hover {
     color: #5A8A70;
+}
+
+.nav-tagline {
+    font-size: 0.85rem;
+    color: #6B7280;
+    font-weight: 400;
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .nav-tagline {
+        display: inline;
+    }
 }
 
 .nav-links {
