@@ -1,0 +1,17 @@
+
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6C9E83;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5A8970;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="512" height="512" rx="102" fill="url(#bg-gradient)"/>
+  <!-- White circle -->
+  <circle cx="256" cy="256" r="180" fill="rgba(255,255,255,0.95)"/>
+  <!-- Letter N -->
+  <text x="256" y="256" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="240" font-weight="bold" fill="#6C9E83" 
+        text-anchor="middle" dominant-baseline="central">N</text>
+</svg>
