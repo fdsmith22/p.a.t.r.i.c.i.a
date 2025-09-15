@@ -42,6 +42,196 @@
     <link rel="stylesheet" href="styles/neurlyn-interactive.css">
     <link rel="stylesheet" href="styles/neurlyn-neurodiversity.css">
     <link rel="stylesheet" href="styles/neurlyn-print.css" media="print">
+    
+    <style>
+        /* Enhanced Landing Page Styles */
+        body {
+            background: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+        
+        #disclaimer-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 160px);
+            padding: 2rem 0;
+        }
+        
+        .disclaimer-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            padding: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid rgba(108, 158, 131, 0.1);
+        }
+        
+        .features-pricing-row {
+            background: linear-gradient(135deg, rgba(108, 158, 131, 0.05) 0%, rgba(108, 158, 131, 0.02) 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: #6C9E83;
+            border-radius: 10px;
+            padding: 8px;
+            fill: white;
+        }
+        
+        .feature-item strong {
+            display: block;
+            font-size: 1rem;
+            color: #1F2937;
+            margin-bottom: 0.25rem;
+        }
+        
+        .feature-item p {
+            font-size: 0.875rem;
+            color: #6B7280;
+            margin: 0;
+        }
+        
+        .assessment-selector {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .selector-tabs {
+            display: flex;
+            gap: 1rem;
+            background: white;
+            border-radius: 12px;
+            padding: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .selector-tab {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .selector-tab.active {
+            background: #6C9E83;
+            color: white;
+        }
+        
+        .selector-tab:hover:not(.active) {
+            background: rgba(108, 158, 131, 0.1);
+        }
+        
+        .tab-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .tab-desc, .tab-price {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .selector-tab.active .tab-desc,
+        .selector-tab.active .tab-price {
+            color: white;
+        }
+        
+        .consent-row {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .consent-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #4B5563;
+        }
+        
+        .consent-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #6C9E83;
+        }
+        
+        #accept-disclaimer {
+            background: linear-gradient(135deg, #6C9E83 0%, #5A8A70 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 4px 12px rgba(108, 158, 131, 0.3);
+        }
+        
+        #accept-disclaimer:not(:disabled):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 158, 131, 0.4);
+        }
+        
+        #accept-disclaimer:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        @media (max-width: 768px) {
+            .feature-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .disclaimer-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .selector-tabs {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .selector-tab {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Load SVG Icons -->
@@ -74,8 +264,8 @@
         <!-- Disclaimer Screen -->
         <section id="disclaimer-screen" class="screen active">
             <div class="card disclaimer-card ultra-wide">
-                <h2 class="compact-title">Welcome to Neurlyn</h2>
-                <p class="disclaimer-intro compact">Quick personality assessment with neurodivergent trait insights</p>
+                <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; color: #1F2937;">Welcome to Neurlyn</h1>
+                <p style="font-size: 1.2rem; color: #6B7280; margin-bottom: 2rem;">Discover your unique personality profile through science-based assessments</p>
                 
                 <div class="disclaimer-ultra-compact">
                     <div class="features-pricing-row">
@@ -132,7 +322,7 @@
                         </label>
                         <label class="consent-checkbox compact">
                             <input type="checkbox" id="age-check" />
-                            <span>I am 13+ years old</span>
+                            <span>I am 16+ years old or have parent/guardian permission</span>
                         </label>
                         <button id="accept-disclaimer" class="btn btn-primary compact" disabled>
                             Start Free Assessment
