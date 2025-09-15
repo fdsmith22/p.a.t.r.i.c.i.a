@@ -51,6 +51,7 @@ module.exports = {
         { from: 'js/report-generator.js', to: 'js/report-generator.js' },
         { from: 'js/modules', to: 'js/modules' },
         { from: 'js/tasks', to: 'js/tasks' },
+        { from: 'js/questions', to: 'js/questions' },
         { from: 'manifest.json', to: 'manifest.json' },
         { from: 'sw.js', to: 'sw.js' },
         { from: 'backend.js', to: 'backend.js' }
