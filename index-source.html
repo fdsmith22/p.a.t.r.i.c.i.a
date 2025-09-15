@@ -34,7 +34,7 @@
     
     <!-- Neurlyn Stylesheets -->
     <link rel="stylesheet" href="styles/neurlyn.css">
-    <link rel="stylesheet" href="styles/neurlyn-dark.css">
+    <!-- Dark mode removed -->
     <link rel="stylesheet" href="styles/neurlyn-enhancements.css">
     <link rel="stylesheet" href="styles/neurlyn-navigation.css">
     <link rel="stylesheet" href="styles/neurlyn-gamified.css">
@@ -63,10 +63,6 @@
                     <a href="index.html" class="nav-link active">Assessment</a>
                     <a href="support.html" class="nav-link">Support</a>
                     <a href="about.html" class="nav-link">About</a>
-                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" style="background: transparent; border: none; color: #6C9E83;">
-                        <svg class="theme-icon-light" width="20" height="20"><use href="assets/icons/icons.svg#icon-sun"></use></svg>
-                        <svg class="theme-icon-dark" width="20" height="20"><use href="assets/icons/icons.svg#icon-moon"></use></svg>
-                    </button>
                 </div>
             </div>
         </div>
@@ -299,15 +295,18 @@
     
     <!-- Footer -->
     <footer class="footer compact">
-        <p>&copy; 2024 Neurlyn. All rights reserved.</p>
-        <nav class="footer-links">
+        <div class="footer-content">
+            <span>&copy; 2024 Neurlyn. All rights reserved.</span>
+            <span class="footer-separator">|</span>
             <a href="#privacy">Privacy</a>
+            <span class="footer-separator">|</span>
             <a href="#terms">Terms</a>
+            <span class="footer-separator">|</span>
             <a href="#contact">Contact</a>
-        </nav>
+        </div>
     </footer>
     
-    <!-- Neurlyn Integrated JavaScript -->
-    <script type="module" src="js/neurlyn-integrated.js?v=1757966617"></script>
+    <!-- Neurlyn Simple JavaScript -->
+    <script src="js/neurlyn-simple.js"></script>
 </body>
 </html>
