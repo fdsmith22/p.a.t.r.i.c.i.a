@@ -8,6 +8,7 @@ import { taskController } from './modules/task-controller.js';
 import { behavioralTracker } from './modules/behavioral-tracker.js';
 import { getLateralQuestions, lateralScoringMatrix } from './questions/lateral-questions.js';
 import { emergencyProtocols } from './modules/emergency-protocols.js';
+import { getBalancedQuestions } from './questions/improved-questions.js';
 
 class NeurlynIntegratedApp {
     constructor() {
@@ -457,11 +458,16 @@ class NeurlynIntegratedApp {
     
     // Generate Traditional Likert Questions
     generateLikertQuestions(count) {
-        const questions = [];
-        for (let i = 0; i < count; i++) {
-            questions.push(this.createLikertQuestion(i));
-        }
-        return questions;
+        // Get a balanced set of improved questions
+        const improvedQuestions = getBalancedQuestions(count);
+        
+        return improvedQuestions.map((q, index) => ({
+            type: 'likert',
+            question: q.text,
+            category: q.category,
+            reversed: q.reversed || false,
+            scale: 5
+        }));
     }
     
     // Check for saved progress
@@ -588,24 +594,15 @@ class NeurlynIntegratedApp {
     
     // Create Likert Question
     createLikertQuestion(index) {
-        const categories = ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'];
-        const sampleQuestions = [
-            'I enjoy exploring new ideas and concepts',
-            'I prefer to have a detailed plan before starting tasks',
-            'I feel energized when spending time with others',
-            'I often put others\' needs before my own',
-            'I tend to worry about future events',
-            'I appreciate art and beauty in everyday life',
-            'I keep my workspace organized and tidy',
-            'I enjoy being the center of attention',
-            'I trust others easily',
-            'Small problems can upset me for a long time'
-        ];
+        // Get improved questions instead of boring ones
+        const improvedQuestions = getBalancedQuestions(30);
+        const question = improvedQuestions[index % improvedQuestions.length];
         
         return {
             type: 'likert',
-            question: sampleQuestions[index % sampleQuestions.length],
-            category: categories[index % categories.length],
+            question: question.text,
+            category: question.category,
+            reversed: question.reversed || false,
             scale: 5
         };
     }
@@ -658,11 +655,17 @@ class NeurlynIntegratedApp {
         
         // Load and render appropriate task
         try {
-            this.currentTask = await this.taskController.loadTask(question.type, question);
+            // Handle lateral questions specially
+            if (question.type === 'lateral') {
+                this.currentTask = await this.taskController.loadTask('lateral', question);
+            } else {
+                this.currentTask = await this.taskController.loadTask(question.type, question);
+            }
+            
             await this.taskController.renderTask(container);
             
             // For gamified tasks, handle completion differently
-            if (question.type !== 'likert') {
+            if (question.type !== 'likert' && question.type !== 'lateral') {
                 this.setupGamifiedTaskCompletion();
             }
         } catch (error) {
