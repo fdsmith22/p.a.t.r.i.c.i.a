@@ -4,7 +4,16 @@
  */
 
 import { ReportGenerator } from './report-generator.js';
-import { taskController } from './modules/task-controller.js';
+// Dynamic import for task controller with cache busting
+let taskController;
+const initTaskController = async () => {
+    if (!taskController) {
+        const timestamp = new Date().getTime();
+        const module = await import(`./modules/task-controller.js?v=${timestamp}`);
+        taskController = module.taskController;
+    }
+    return taskController;
+};
 import { behavioralTracker } from './modules/behavioral-tracker.js';
 import { getLateralQuestions, lateralScoringMatrix } from './questions/lateral-questions.js';
 import { emergencyProtocols } from './modules/emergency-protocols.js';
@@ -37,7 +46,7 @@ class NeurlynIntegratedApp {
         this.currentTask = null;
         this.autoSaveInterval = null;
         this.reportGenerator = new ReportGenerator();
-        this.taskController = taskController;
+        this.taskController = null; // Will be initialized dynamically
         this.behavioralTracker = behavioralTracker;
         this.emergencyProtocols = emergencyProtocols;
         
@@ -638,6 +647,11 @@ class NeurlynIntegratedApp {
         
         if (!container) return;
         
+        // Initialize task controller with cache busting
+        if (!this.taskController) {
+            this.taskController = await initTaskController();
+        }
+        
         // Debug logging
         console.log('📋 Displaying question:', {
             index: this.state.currentQuestionIndex,
@@ -698,6 +712,11 @@ class NeurlynIntegratedApp {
             if (this.currentTask && this.currentTask.response !== null) {
                 clearInterval(checkCompletion);
                 
+                // Ensure task controller is initialized
+                if (!this.taskController) {
+                    this.taskController = await initTaskController();
+                }
+                
                 // Get task results including behavioral data
                 const results = await this.taskController.getTaskResults();
                 
@@ -725,6 +744,11 @@ class NeurlynIntegratedApp {
     
     // Navigate Questions
     async navigateQuestion(direction) {
+        // Ensure task controller is initialized
+        if (!this.taskController) {
+            this.taskController = await initTaskController();
+        }
+        
         // Save current response if moving forward
         if (direction > 0 && this.currentTask) {
             if (this.currentTask.type === 'likert' && !this.currentTask.response) {
@@ -766,6 +790,11 @@ class NeurlynIntegratedApp {
     
     // Complete Assessment with Enhanced Analysis
     async completeAssessment() {
+        // Ensure task controller is initialized
+        if (!this.taskController) {
+            this.taskController = await initTaskController();
+        }
+        
         // Stop behavioral tracking
         this.behavioralTracker.stop();
         const behavioralData = this.behavioralTracker.getData();
