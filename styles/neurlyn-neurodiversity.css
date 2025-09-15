@@ -1,0 +1,451 @@
+/**
+ * Neurlyn Neurodiversity Styles
+ * Styles for neurodiversity assessment features and accessibility
+ */
+
+/* Disclaimer Screen */
+.disclaimer-card {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.disclaimer-content {
+    line-height: 1.6;
+}
+
+.disclaimer-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(108, 158, 131, 0.05);
+    border-radius: 12px;
+}
+
+.disclaimer-section h3 {
+    color: #6C9E83;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.disclaimer-warning {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%);
+    border: 2px solid rgba(255, 193, 7, 0.3);
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.warning-icon {
+    fill: #FFA000;
+    flex-shrink: 0;
+}
+
+.disclaimer-warning strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #F57C00;
+}
+
+.assessment-features {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.75rem;
+}
+
+.assessment-features li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.assessment-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #6C9E83;
+    font-weight: bold;
+}
+
+.emergency-notice {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.1) 0%, rgba(233, 30, 99, 0.05) 100%);
+    border: 2px solid rgba(244, 67, 54, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.emergency-notice h3 {
+    color: #D32F2F;
+    margin-bottom: 1rem;
+}
+
+.crisis-resources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.crisis-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: white;
+    border: 2px solid #D32F2F;
+    border-radius: 8px;
+    color: #D32F2F;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.crisis-link:hover {
+    background: #D32F2F;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+}
+
+.consent-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+}
+
+.consent-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin: 1rem 0;
+    cursor: pointer;
+}
+
+.consent-checkbox input[type="checkbox"] {
+    margin-top: 0.25rem;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.consent-checkbox span {
+    flex: 1;
+    line-height: 1.5;
+}
+
+#accept-disclaimer {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+}
+
+#accept-disclaimer:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Track Selection */
+.track-selection {
+    margin: 2rem 0;
+}
+
+.track-selection h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.track-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.track-option {
+    background: white;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.track-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(108, 158, 131, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.track-option:hover {
+    border-color: #6C9E83;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(108, 158, 131, 0.2);
+}
+
+.track-option:hover::before {
+    left: 100%;
+}
+
+.track-option.selected {
+    background: linear-gradient(135deg, rgba(108, 158, 131, 0.1) 0%, rgba(108, 158, 131, 0.05) 100%);
+    border-color: #6C9E83;
+    box-shadow: 0 4px 20px rgba(108, 158, 131, 0.3);
+}
+
+.track-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #6C9E83 0%, #5A8A70 100%);
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    color: white;
+}
+
+.track-option h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.track-option p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Intervention Modal */
+.intervention-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+.intervention-content {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.intervention-content h3 {
+    color: #6C9E83;
+    margin-bottom: 1rem;
+}
+
+.resource-list {
+    margin: 1.5rem 0;
+}
+
+.crisis-resource,
+.support-resource {
+    padding: 1rem;
+    background: rgba(108, 158, 131, 0.05);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.crisis-phone {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #6C9E83;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.intervention-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.intervention-actions button {
+    flex: 1;
+}
+
+/* Follow-up Banner */
+.follow-up-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, #6C9E83 0%, #5A8A70 100%);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    z-index: 1000;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.follow-up-banner button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    background: white;
+    color: #6C9E83;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Sensory-Friendly Mode */
+.sensory-friendly {
+    --primary-color: #4A7C59;
+    --background: #F5F5F0;
+    --text-color: #2C2C2C;
+    --border-color: #D0D0C8;
+}
+
+.sensory-friendly * {
+    animation: none !important;
+    transition: none !important;
+}
+
+.sensory-friendly .card {
+    box-shadow: none;
+    border: 2px solid var(--border-color);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .disclaimer-warning {
+        border-width: 3px;
+    }
+    
+    .crisis-link {
+        border-width: 3px;
+        font-weight: 700;
+    }
+    
+    .track-option {
+        border-width: 3px;
+    }
+}
+
+/* Dark Mode Adjustments */
+.dark-mode .disclaimer-card {
+    background: rgba(30, 30, 50, 0.9);
+}
+
+.dark-mode .disclaimer-section {
+    background: rgba(108, 158, 131, 0.1);
+}
+
+.dark-mode .disclaimer-warning {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(255, 152, 0, 0.1) 100%);
+    border-color: rgba(255, 193, 7, 0.5);
+}
+
+.dark-mode .emergency-notice {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.2) 0%, rgba(233, 30, 99, 0.1) 100%);
+    border-color: rgba(244, 67, 54, 0.4);
+}
+
+.dark-mode .crisis-link {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #FF5252;
+    color: #FF8A80;
+}
+
+.dark-mode .crisis-link:hover {
+    background: #FF5252;
+    color: white;
+}
+
+.dark-mode .track-option {
+    background: rgba(30, 30, 50, 0.5);
+    color: #E0E0E0;
+}
+
+.dark-mode .intervention-content {
+    background: #1A1A2E;
+    color: #E0E0E0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .disclaimer-card {
+        padding: 1.5rem;
+    }
+    
+    .track-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .assessment-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .crisis-resources {
+        flex-direction: column;
+    }
+    
+    .crisis-link {
+        width: 100%;
+        text-align: center;
+    }
+}

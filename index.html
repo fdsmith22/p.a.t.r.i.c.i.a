@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="styles/neurlyn-navigation.css">
     <link rel="stylesheet" href="styles/neurlyn-gamified.css">
     <link rel="stylesheet" href="styles/neurlyn-interactive.css">
+    <link rel="stylesheet" href="styles/neurlyn-neurodiversity.css">
     <link rel="stylesheet" href="styles/neurlyn-print.css" media="print">
 </head>
 <body>
@@ -66,14 +67,111 @@
             <p class="tagline">Intelligent Personality Assessment</p>
         </header>
         
+        <!-- Disclaimer Screen -->
+        <section id="disclaimer-screen" class="screen active">
+            <div class="card disclaimer-card">
+                <h2>Important Information</h2>
+                <div class="disclaimer-content">
+                    <div class="disclaimer-section">
+                        <h3>Assessment Purpose</h3>
+                        <p>This assessment provides insights into neurodivergent traits, cognitive patterns, and personality characteristics. It is designed for self-discovery and understanding.</p>
+                    </div>
+                    
+                    <div class="disclaimer-warning">
+                        <svg width="24" height="24" class="warning-icon">
+                            <use href="assets/icons/icons.svg#icon-alert-triangle"></use>
+                        </svg>
+                        <div>
+                            <strong>Medical Disclaimer</strong>
+                            <p>This assessment provides insights into neurodivergent traits and cognitive patterns but does not constitute a medical diagnosis. For official diagnosis, please consult with qualified healthcare professionals specializing in neurodevelopmental conditions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="disclaimer-section">
+                        <h3>What We Assess</h3>
+                        <ul class="assessment-features">
+                            <li>Neurodivergent traits (ADHD, Autism, Dyslexia)</li>
+                            <li>Cognitive processing patterns</li>
+                            <li>Executive function</li>
+                            <li>Sensory processing preferences</li>
+                            <li>Social communication styles</li>
+                            <li>Emotional regulation patterns</li>
+                            <li>Learning differences</li>
+                            <li>Mental health indicators</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="disclaimer-section">
+                        <h3>Your Privacy & Safety</h3>
+                        <p>• All responses are confidential and encrypted</p>
+                        <p>• You can skip any question or task</p>
+                        <p>• Take breaks whenever needed</p>
+                        <p>• Results are for your personal use only</p>
+                    </div>
+                    
+                    <div class="emergency-notice">
+                        <h3>Emergency Support</h3>
+                        <p>If you're experiencing a mental health crisis, please reach out for immediate help:</p>
+                        <div class="crisis-resources">
+                            <a href="tel:988" class="crisis-link">988 Suicide & Crisis Lifeline (US)</a>
+                            <a href="tel:116123" class="crisis-link">116 123 Samaritans (UK)</a>
+                            <a href="https://www.crisistextline.org" target="_blank" class="crisis-link">Crisis Text Line</a>
+                        </div>
+                    </div>
+                    
+                    <div class="consent-section">
+                        <label class="consent-checkbox">
+                            <input type="checkbox" id="consent-check" />
+                            <span>I understand this is a screening tool, not a diagnostic assessment</span>
+                        </label>
+                        <label class="consent-checkbox">
+                            <input type="checkbox" id="age-check" />
+                            <span>I confirm I am 13 years or older (or have parental consent)</span>
+                        </label>
+                    </div>
+                    
+                    <button id="accept-disclaimer" class="btn btn-primary" disabled>
+                        Continue to Assessment
+                    </button>
+                </div>
+            </div>
+        </section>
+        
         <!-- Welcome Screen -->
-        <section id="welcome-screen" class="screen active">
+        <section id="welcome-screen" class="screen hidden">
             <div class="card">
-                <h2>Welcome to Your Assessment</h2>
+                <h2>Welcome to Neurlyn</h2>
                 <p class="description">
-                    Discover your unique personality profile through our scientifically-validated assessment. 
-                    This comprehensive evaluation takes approximately 15-20 minutes to complete.
+                    Discover your unique cognitive profile, personality traits, and neurodivergent characteristics through our comprehensive, science-based assessment platform.
                 </p>
+                
+                <!-- Assessment Track Selection -->
+                <div class="track-selection">
+                    <h3>Choose Your Assessment Track</h3>
+                    <div class="track-options">
+                        <button class="track-option" data-track="personality">
+                            <div class="track-icon">
+                                <svg width="40" height="40"><use href="assets/icons/icons.svg#icon-user"></use></svg>
+                            </div>
+                            <h4>Personality Profile</h4>
+                            <p>Big Five traits, emotional patterns, and behavioral tendencies</p>
+                        </button>
+                        <button class="track-option" data-track="neurodiversity">
+                            <div class="track-icon">
+                                <svg width="40" height="40"><use href="assets/icons/icons.svg#icon-brain"></use></svg>
+                            </div>
+                            <h4>Neurodiversity Assessment</h4>
+                            <p>ADHD, Autism, Dyslexia, and cognitive processing patterns</p>
+                        </button>
+                        <button class="track-option" data-track="comprehensive">
+                            <div class="track-icon">
+                                <svg width="40" height="40"><use href="assets/icons/icons.svg#icon-layers"></use></svg>
+                            </div>
+                            <h4>Comprehensive Analysis</h4>
+                            <p>Complete personality and neurodiversity profile</p>
+                        </button>
+                    </div>
+                </div>
                 
                 <!-- Assessment Modes -->
                 <div class="mode-selection">
@@ -216,6 +314,6 @@
     </footer>
     
     <!-- Neurlyn Integrated JavaScript -->
-    <script type="module" src="js/neurlyn-integrated.js?v=1757957070"></script>
+    <script type="module" src="js/neurlyn-integrated.js?v=1757958602"></script>
 </body>
 </html>

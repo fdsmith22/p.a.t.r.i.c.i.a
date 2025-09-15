@@ -7,19 +7,29 @@ import { ReportGenerator } from './report-generator.js';
 import { taskController } from './modules/task-controller.js';
 import { behavioralTracker } from './modules/behavioral-tracker.js';
 import { getLateralQuestions, lateralScoringMatrix } from './questions/lateral-questions.js';
+import { emergencyProtocols } from './modules/emergency-protocols.js';
 
 class NeurlynIntegratedApp {
     constructor() {
         this.state = {
             currentMode: null,
-            currentScreen: 'welcome',
+            currentScreen: 'disclaimer', // Start with disclaimer
+            assessmentTrack: null, // 'personality', 'neurodiversity', 'comprehensive'
             currentQuestionIndex: 0,
             responses: [],
             startTime: null,
             sessionId: this.generateSessionId(),
             isPaused: false,
             theme: 'system',
-            taskMode: 'hybrid' // 'traditional', 'gamified', 'hybrid'
+            taskMode: 'hybrid', // 'traditional', 'gamified', 'hybrid', 'lateral'
+            consentGiven: false,
+            neurodiversityData: {
+                adhd_indicators: [],
+                autism_indicators: [],
+                dyslexia_indicators: [],
+                sensory_profile: {},
+                executive_function: {}
+            }
         };
         
         this.questions = [];
@@ -28,6 +38,7 @@ class NeurlynIntegratedApp {
         this.reportGenerator = new ReportGenerator();
         this.taskController = taskController;
         this.behavioralTracker = behavioralTracker;
+        this.emergencyProtocols = emergencyProtocols;
         
         this.init();
     }
@@ -35,11 +46,33 @@ class NeurlynIntegratedApp {
     init() {
         this.initTheme();
         this.loadSavedState();
+        this.setupDisclaimerListeners();
         this.setupEventListeners();
         this.setupKeyboardShortcuts();
         this.loadQuestions();
         this.checkForSavedProgress();
         this.initServiceWorker();
+    }
+    
+    // Setup disclaimer screen listeners
+    setupDisclaimerListeners() {
+        const consentCheck = document.getElementById('consent-check');
+        const ageCheck = document.getElementById('age-check');
+        const acceptBtn = document.getElementById('accept-disclaimer');
+        
+        if (consentCheck && ageCheck && acceptBtn) {
+            const checkConsent = () => {
+                acceptBtn.disabled = !(consentCheck.checked && ageCheck.checked);
+            };
+            
+            consentCheck.addEventListener('change', checkConsent);
+            ageCheck.addEventListener('change', checkConsent);
+            
+            acceptBtn.addEventListener('click', () => {
+                this.state.consentGiven = true;
+                this.showScreen('welcome');
+            });
+        }
     }
     
     // Theme Management (unchanged)
@@ -75,6 +108,13 @@ class NeurlynIntegratedApp {
     
     // Enhanced Event Listeners
     setupEventListeners() {
+        // Track selection (personality, neurodiversity, comprehensive)
+        document.querySelectorAll('.track-option').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.selectTrack(btn.dataset.track);
+            });
+        });
+        
         // Mode selection with new options
         document.querySelectorAll('.mode-option').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -105,6 +145,54 @@ class NeurlynIntegratedApp {
         if (downloadBtn) downloadBtn.addEventListener('click', () => this.downloadResults());
         if (shareBtn) shareBtn.addEventListener('click', () => this.shareResults());
         if (retakeBtn) retakeBtn.addEventListener('click', () => this.retakeAssessment());
+    }
+    
+    // Select assessment track
+    selectTrack(track) {
+        this.state.assessmentTrack = track;
+        
+        // Update UI
+        document.querySelectorAll('.track-option').forEach(btn => {
+            btn.classList.remove('selected');
+            if (btn.dataset.track === track) {
+                btn.classList.add('selected');
+            }
+        });
+        
+        // Update mode selection based on track
+        const modeSelection = document.querySelector('.mode-selection');
+        if (modeSelection) {
+            const modeTitle = modeSelection.querySelector('h3');
+            if (track === 'neurodiversity') {
+                modeTitle.textContent = 'Select Assessment Depth';
+                // Update mode descriptions for neurodiversity
+                this.updateModeDescriptionsForNeurodiversity();
+            } else if (track === 'comprehensive') {
+                modeTitle.textContent = 'Select Comprehensive Assessment';
+            } else {
+                modeTitle.textContent = 'Select Assessment Type';
+            }
+        }
+        
+        this.showToast(`Selected: ${track.charAt(0).toUpperCase() + track.slice(1)} Assessment`, 'info');
+    }
+    
+    // Update mode descriptions for neurodiversity track
+    updateModeDescriptionsForNeurodiversity() {
+        const modeOptions = document.querySelectorAll('.mode-option');
+        const descriptions = {
+            quick: 'Rapid screening<br>5-7 minutes',
+            standard: 'Comprehensive evaluation<br>15-20 minutes',
+            deep: 'Complete analysis<br>25-30 minutes'
+        };
+        
+        modeOptions.forEach(option => {
+            const mode = option.dataset.mode;
+            const p = option.querySelector('p');
+            if (p && descriptions[mode]) {
+                p.innerHTML = descriptions[mode];
+            }
+        });
     }
     
     // Enhanced Mode Selection with Task Types
