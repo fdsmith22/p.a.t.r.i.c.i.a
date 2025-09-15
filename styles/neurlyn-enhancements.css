@@ -209,6 +209,11 @@
   color: white;
 }
 
+.likert-option.selected .likert-label {
+  color: white;
+  font-weight: 600;
+}
+
 /* Animation Classes */
 .fade-in {
   animation: fadeIn 300ms ease;

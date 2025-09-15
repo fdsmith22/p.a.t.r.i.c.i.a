@@ -631,10 +631,14 @@ select:focus {
 
 .likert-option.selected {
   background: linear-gradient(135deg, var(--sage-500) 0%, var(--sage-600) 100%);
-  color: var(--white);
+  color: var(--white) !important;
   border-color: var(--sage-600);
   box-shadow: var(--shadow-lg);
   transform: scale(1.05);
+}
+
+.likert-option.selected * {
+  color: var(--white) !important;
 }
 
 .likert-label {
