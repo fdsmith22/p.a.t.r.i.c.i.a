@@ -638,6 +638,16 @@ class NeurlynIntegratedApp {
         
         if (!container) return;
         
+        // Debug logging
+        console.log('📋 Displaying question:', {
+            index: this.state.currentQuestionIndex,
+            type: question.type,
+            category: question.category,
+            hasOptions: !!question.options,
+            optionsCount: question.options?.length,
+            questionText: question.question?.substring(0, 50) + '...'
+        });
+        
         // Clean up previous task
         if (this.currentTask) {
             this.taskController.destroy();
@@ -657,8 +667,10 @@ class NeurlynIntegratedApp {
         try {
             // Handle lateral questions specially
             if (question.type === 'lateral') {
+                console.log('✅ Loading lateral task for question');
                 this.currentTask = await this.taskController.loadTask('lateral', question);
             } else {
+                console.log(`Loading ${question.type} task for question`);
                 this.currentTask = await this.taskController.loadTask(question.type, question);
             }
             

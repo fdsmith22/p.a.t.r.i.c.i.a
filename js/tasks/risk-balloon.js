@@ -233,8 +233,12 @@ export class RiskBalloonTask extends BaseTask {
         const pumpButton = document.getElementById('pump-button');
         const collectButton = document.getElementById('collect-button');
         
-        pumpButton.addEventListener('click', () => this.pumpBalloon());
-        collectButton.addEventListener('click', () => this.collectMoney());
+        if (pumpButton) {
+            pumpButton.addEventListener('click', () => this.pumpBalloon());
+        }
+        if (collectButton) {
+            collectButton.addEventListener('click', () => this.collectMoney());
+        }
         
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
@@ -270,14 +274,24 @@ export class RiskBalloonTask extends BaseTask {
         this.balloon.particles = [];
         
         // Update display
-        document.getElementById('balloon-number').textContent = 
-            `${this.currentBalloon} / ${this.balloons}`;
-        document.getElementById('current-value').textContent = this.formatCurrency(0);
-        document.getElementById('risk-fill').style.width = '0%';
+        const balloonNumberEl = document.getElementById('balloon-number');
+        if (balloonNumberEl) {
+            balloonNumberEl.textContent = `${this.currentBalloon} / ${this.balloons}`;
+        }
+        const currentValueEl = document.getElementById('current-value');
+        if (currentValueEl) {
+            currentValueEl.textContent = this.formatCurrency(0);
+        }
+        const riskFillEl = document.getElementById('risk-fill');
+        if (riskFillEl) {
+            riskFillEl.style.width = '0%';
+        }
         
         // Enable buttons
-        document.getElementById('pump-button').disabled = false;
-        document.getElementById('collect-button').disabled = false;
+        const pumpBtn = document.getElementById('pump-button');
+        if (pumpBtn) pumpBtn.disabled = false;
+        const collectBtn = document.getElementById('collect-button');
+        if (collectBtn) collectBtn.disabled = false;
         
         this.logEvent('new_balloon', {
             number: this.currentBalloon,
@@ -305,20 +319,25 @@ export class RiskBalloonTask extends BaseTask {
             this.balloon.targetRadius = this.balloon.baseRadius + (this.currentPumps * 2);
             
             // Update display
-            document.getElementById('current-value').textContent = this.formatCurrency(currentValue);
+            const currentValueEl = document.getElementById('current-value');
+            if (currentValueEl) {
+                currentValueEl.textContent = this.formatCurrency(currentValue);
+            }
             
             // Update risk indicator
             const riskPercent = (this.currentPumps / this.maxPumps) * 100;
             const riskFill = document.getElementById('risk-fill');
-            riskFill.style.width = `${riskPercent}%`;
-            
-            // Change color based on risk
-            if (riskPercent < 30) {
-                riskFill.style.background = '#96E6B3';
-            } else if (riskPercent < 60) {
-                riskFill.style.background = '#F7DC6F';
-            } else {
-                riskFill.style.background = '#FF6B6B';
+            if (riskFill) {
+                riskFill.style.width = `${riskPercent}%`;
+                
+                // Change color based on risk
+                if (riskPercent < 30) {
+                    riskFill.style.background = '#96E6B3';
+                } else if (riskPercent < 60) {
+                    riskFill.style.background = '#F7DC6F';
+                } else {
+                    riskFill.style.background = '#FF6B6B';
+                }
             }
             
             // Haptic feedback (if available)
@@ -355,8 +374,10 @@ export class RiskBalloonTask extends BaseTask {
         }
         
         // Disable buttons
-        document.getElementById('pump-button').disabled = true;
-        document.getElementById('collect-button').disabled = true;
+        const pumpBtn = document.getElementById('pump-button');
+        if (pumpBtn) pumpBtn.disabled = true;
+        const collectBtn = document.getElementById('collect-button');
+        if (collectBtn) collectBtn.disabled = true;
         
         // Record data
         this.balloonHistory.push({
@@ -401,7 +422,10 @@ export class RiskBalloonTask extends BaseTask {
         this.totalScore += earned;
         
         // Update display
-        document.getElementById('total-score').textContent = `$${this.totalScore.toFixed(2)}`;
+        const totalScoreEl = document.getElementById('total-score');
+        if (totalScoreEl) {
+            totalScoreEl.textContent = `$${this.totalScore.toFixed(2)}`;
+        }
         
         // Record data
         this.balloonHistory.push({
@@ -426,8 +450,10 @@ export class RiskBalloonTask extends BaseTask {
         });
         
         // Disable buttons during animation
-        document.getElementById('pump-button').disabled = true;
-        document.getElementById('collect-button').disabled = true;
+        const pumpBtn = document.getElementById('pump-button');
+        if (pumpBtn) pumpBtn.disabled = true;
+        const collectBtn = document.getElementById('collect-button');
+        if (collectBtn) collectBtn.disabled = true;
         
         // Next balloon after animation
         setTimeout(() => {
