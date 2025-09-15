@@ -167,6 +167,8 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Subtle background pattern */
@@ -263,6 +265,7 @@ a:hover::after {
   padding: var(--space-6) var(--space-4);
   position: relative;
   z-index: 1;
+  flex: 1 0 auto;
 }
 
 /* Polished Header */
@@ -740,12 +743,16 @@ select:focus {
 
 /* Footer - Minimal */
 .footer {
-  margin-top: var(--space-16);
+  margin-top: auto;
   padding: var(--space-8) 0;
   border-top: 1px solid var(--gray-100);
   text-align: center;
   color: var(--gray-500);
   font-size: var(--text-sm);
+  flex-shrink: 0;
+  background: var(--white);
+  position: relative;
+  z-index: 1;
 }
 
 .footer-links {
