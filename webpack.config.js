@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
-  entry: './js/neurlyn-enhanced.js',
+  entry: './js/neurlyn-integrated.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/bundle.[contenthash].js',
@@ -47,9 +47,12 @@ module.exports = {
       patterns: [
         { from: 'styles', to: 'styles' },
         { from: 'assets', to: 'assets' },
+        { from: 'js/neurlyn-integrated.js', to: 'js/neurlyn-integrated.js' },
         { from: 'js/neurlyn-enhanced.js', to: 'js/neurlyn-enhanced.js' },
         { from: 'js/neurlyn.js', to: 'js/neurlyn.js' },
         { from: 'js/report-generator.js', to: 'js/report-generator.js' },
+        { from: 'js/modules', to: 'js/modules' },
+        { from: 'js/tasks', to: 'js/tasks' },
         { from: 'manifest.json', to: 'manifest.json' },
         { from: 'sw.js', to: 'sw.js' },
         { from: 'backend.js', to: 'backend.js' },
