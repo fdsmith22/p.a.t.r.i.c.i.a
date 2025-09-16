@@ -1045,31 +1045,91 @@
         }
     }, 100);
 
-    // Override updateProgress to update vertical progress bar
-    setTimeout(() => {
-        if (window.neurlynApp && window.neurlynApp.updateProgress) {
-            const originalUpdateProgress = window.neurlynApp.updateProgress.bind(window.neurlynApp);
-            window.neurlynApp.updateProgress = function() {
-                originalUpdateProgress();
+    // Function to update vertical progress bar
+    function updateVerticalProgress() {
+        if (!window.neurlynApp || !window.neurlynApp.state) return;
 
-                // Update vertical progress bar - use the correct element class
-                const progressFill = document.querySelector('.progress-fill-vertical');
-                if (progressFill) {
-                    const percent = ((this.state.currentQuestionIndex + 1) / this.questions.length) * 100;
-                    progressFill.style.height = percent + '%';
-                    console.log('Progress updated:', percent + '%'); // Debug log
-                }
+        const progressFill = document.querySelector('.progress-fill-vertical');
+        const percentSpan = document.getElementById('progress-percent');
+        const questionNum = document.getElementById('question-num');
 
-                // Initialize on first call
-                if (this.state.currentQuestionIndex === 0) {
-                    const initialFill = document.querySelector('.progress-fill-vertical');
-                    if (initialFill) {
-                        initialFill.style.height = '2%'; // Start with small visible amount
-                    }
-                }
-            };
+        if (progressFill && window.neurlynApp.questions) {
+            const currentIndex = window.neurlynApp.state.currentQuestionIndex || 0;
+            const totalQuestions = window.neurlynApp.questions.length || 50;
+            const percent = Math.min(100, ((currentIndex + 1) / totalQuestions) * 100);
+
+            // Update visual bar
+            progressFill.style.height = percent + '%';
+
+            // Update text displays
+            if (percentSpan) {
+                percentSpan.textContent = Math.round(percent) + '%';
+            }
+            if (questionNum) {
+                questionNum.textContent = currentIndex + 1;
+            }
+
+            console.log('Vertical progress updated:', percent + '%', 'Question:', currentIndex + 1);
         }
-    }, 100);
+    }
+
+    // Override multiple methods to catch progress updates
+    setTimeout(() => {
+        if (window.neurlynApp) {
+            // Override updateProgress if it exists
+            if (window.neurlynApp.updateProgress) {
+                const originalUpdateProgress = window.neurlynApp.updateProgress.bind(window.neurlynApp);
+                window.neurlynApp.updateProgress = function() {
+                    originalUpdateProgress();
+                    updateVerticalProgress();
+                };
+            }
+
+            // Override showQuestion to catch question changes
+            if (window.neurlynApp.showQuestion) {
+                const originalShowQuestion = window.neurlynApp.showQuestion.bind(window.neurlynApp);
+                window.neurlynApp.showQuestion = function() {
+                    const result = originalShowQuestion.apply(this, arguments);
+                    setTimeout(updateVerticalProgress, 100);
+                    return result;
+                };
+            }
+
+            // Override nextQuestion to catch navigation
+            if (window.neurlynApp.nextQuestion) {
+                const originalNextQuestion = window.neurlynApp.nextQuestion.bind(window.neurlynApp);
+                window.neurlynApp.nextQuestion = function() {
+                    const result = originalNextQuestion.apply(this, arguments);
+                    setTimeout(updateVerticalProgress, 100);
+                    return result;
+                };
+            }
+
+            // Also monitor for DOM changes in the question content area
+            const questionContent = document.getElementById('question-content');
+            if (questionContent) {
+                const observer = new MutationObserver(() => {
+                    updateVerticalProgress();
+                });
+                observer.observe(questionContent, { childList: true, subtree: true });
+            }
+
+            // Initial update on page load or resume
+            updateVerticalProgress();
+
+            // Also update when screen changes to question screen
+            const screenObserver = new MutationObserver(() => {
+                const questionScreen = document.getElementById('question-screen');
+                if (questionScreen && !questionScreen.classList.contains('hidden')) {
+                    setTimeout(updateVerticalProgress, 200);
+                }
+            });
+
+            document.querySelectorAll('.screen').forEach(screen => {
+                screenObserver.observe(screen, { attributes: true, attributeFilter: ['class'] });
+            });
+        }
+    }, 500);
     </script>
 
     <!-- Enhanced assessment flow styles -->
@@ -1532,6 +1592,7 @@
             background: linear-gradient(180deg, #7C9885 0%, #6A8A73 100%);
             border-radius: 4px;
             transition: height 0.5s ease;
+            height: 2%; /* Initial small height */
         }
 
         /* Hide old progress container */
