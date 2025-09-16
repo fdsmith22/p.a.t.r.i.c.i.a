@@ -1428,15 +1428,15 @@
         .question-screen-layout {
             display: flex;
             gap: 1.5rem;
-            height: calc(100vh - 60px); /* Account for navbar height */
+            height: 100vh;
             padding: 0.5rem 1rem;
             padding-top: 0;
             overflow: hidden;
         }
 
-        /* Ensure question screen starts below navbar */
+        /* Remove extra padding from question screen */
         #question-screen {
-            padding-top: 60px; /* Space for navbar */
+            padding-top: 0 !important;
         }
 
         .question-main {
@@ -1445,18 +1445,20 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            padding-top: 0;
         }
 
         #question-screen .card {
             padding: 0.5rem 0.75rem !important;
             padding-top: 0.3rem !important;
             height: fit-content;
-            max-height: 85vh;
+            max-height: 90vh;
             width: 100%;
             max-width: 900px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            margin-top: 0 !important;
         }
 
         /* Vertical progress bar on right */
