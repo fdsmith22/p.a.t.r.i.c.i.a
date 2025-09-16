@@ -1446,15 +1446,15 @@
             align-items: flex-start; /* Changed from center to flex-start */
             justify-content: center;
             overflow: hidden;
-            padding-top: 0.5rem; /* Minimal padding from top */
-            margin-top: -1rem; /* Pull content up slightly */
+            padding-top: 1.5rem; /* Slightly more padding from top */
+            margin-top: 0; /* Remove negative margin */
         }
 
         #question-screen .card {
             padding: 0.5rem 0.75rem !important;
             padding-top: 0.3rem !important;
             height: fit-content;
-            max-height: calc(100vh - 80px); /* Adjust for header */
+            max-height: calc(100vh - 100px); /* Adjust for header */
             width: 100%;
             max-width: 900px;
             overflow: hidden;
@@ -1462,7 +1462,7 @@
             flex-direction: column;
             margin-top: 0 !important;
             position: relative;
-            top: -0.5rem; /* Pull card up slightly */
+            top: 0; /* Remove negative positioning */
         }
 
         /* Vertical progress bar on right */
@@ -1472,9 +1472,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: calc(100vh - 80px); /* Match question card height adjustment */
-            align-self: flex-start; /* Align to top instead of center */
-            margin-top: 0.5rem; /* Small top margin */
+            height: auto; /* Auto height to match card */
+            align-self: stretch; /* Stretch to match parent height */
+            padding: 1.5rem 0; /* Match question-main padding */
         }
 
         .progress-info-vertical {
@@ -1505,7 +1505,7 @@
         }
 
         .progress-bar-vertical {
-            height: 60%;
+            flex: 1; /* Take remaining space */
             max-height: 400px;
             width: 8px;
             background: #E8E8E8;
@@ -1530,8 +1530,9 @@
         }
 
         .question-header {
-            padding: 0.4rem 0.6rem !important;
-            margin-bottom: 0.5rem !important;
+            padding: 0.6rem 0.8rem !important;
+            margin-bottom: 0.8rem !important;
+            text-align: center;
         }
 
         .question-content {
@@ -1545,8 +1546,10 @@
 
         /* Reduce category badge spacing */
         .category-badge {
-            padding: 0.3rem 0.6rem !important;
-            font-size: 0.8rem !important;
+            padding: 0.4rem 0.8rem !important;
+            font-size: 0.85rem !important;
+            margin-bottom: 0.3rem !important;
+            display: inline-block !important;
         }
 
         /* Reduce likert scale size */
