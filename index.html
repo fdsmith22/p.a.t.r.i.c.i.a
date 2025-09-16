@@ -728,7 +728,7 @@
                 <div class="steps-container">
                     <!-- Assessment Track Selection -->
                     <div class="track-selection compact assessment-step active" id="step-1-content">
-                        <h3>Step 1: Select Assessment Type</h3>
+                        <h3 style="text-align: center; margin: 0 auto 1.5rem; padding: 0;">Step 1: Select Assessment Type</h3>
                         <div class="track-options compact">
                         <button class="track-option compact" data-track="personality">
                             <div class="track-icon compact">
@@ -765,7 +765,7 @@
                             <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
                             Back
                         </button>
-                        <h3>Step 2: Select Assessment Length</h3>
+                        <h3 style="text-align: center; margin: 0 auto 1.5rem; padding: 0;">Step 2: Select Assessment Length</h3>
                     <div class="mode-grid compact">
                         <button class="mode-option compact" data-mode="quick">
                             <div class="mode-icon compact">
@@ -1087,11 +1087,11 @@
             justify-content: center;
         }
 
-        /* Back button styling */
+        /* Back button styling - moved to bottom left */
         .step-back-btn {
             position: absolute;
-            top: 0;
-            left: 0;
+            bottom: 1rem;
+            left: 1rem;
             padding: 0.5rem 1rem;
             background: white;
             border: 1px solid rgba(124, 152, 133, 0.2);
@@ -1292,7 +1292,24 @@
 
         .track-option {
             flex: 1;
-            max-width: 300px;
+            max-width: 350px;
+            min-height: 200px;
+            padding: 1.5rem;
+        }
+
+        .track-option h4 {
+            font-size: 1.3rem;
+            margin: 0.75rem 0;
+        }
+
+        .track-option p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .track-option .icon-circle {
+            width: 56px;
+            height: 56px;
         }
 
         .mode-selection .mode-grid {
@@ -1332,6 +1349,19 @@
         #welcome-screen .container,
         #assessment-screen .container {
             max-width: 95vw !important;
+        }
+
+        /* Center toast notifications */
+        .toast {
+            position: fixed !important;
+            bottom: 2rem !important;
+            left: 50% !important;
+            transform: translateX(-50%) translateY(100px) !important;
+            right: auto !important;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0) !important;
         }
 
         .step-label {
@@ -1519,7 +1549,7 @@
                     selector.id = 'task-type-selector';
                     selector.className = 'task-type-selector';
                     selector.innerHTML = `
-                        <h3>Step 3: Select Assessment Style</h3>
+                        <h3 style="text-align: center; margin: 0 auto 1.5rem; padding: 0;">Step 3: Select Assessment Style</h3>
                         <div class="task-type-options">
                             <label class="task-type-option">
                                 <input type="radio" name="taskType" value="traditional" />
