@@ -1428,9 +1428,15 @@
         .question-screen-layout {
             display: flex;
             gap: 1.5rem;
-            height: 100vh;
-            padding: 1rem;
+            height: calc(100vh - 60px); /* Account for navbar height */
+            padding: 0.5rem 1rem;
+            padding-top: 0;
             overflow: hidden;
+        }
+
+        /* Ensure question screen starts below navbar */
+        #question-screen {
+            padding-top: 60px; /* Space for navbar */
         }
 
         .question-main {
@@ -1517,13 +1523,13 @@
         }
 
         .question-header {
-            padding: 0.2rem 0.4rem !important;
-            margin-bottom: 0 !important;
+            padding: 0.4rem 0.6rem !important;
+            margin-bottom: 0.5rem !important;
         }
 
         .question-content {
-            padding: 0.2rem !important;
-            padding-top: 0 !important;
+            padding: 0.4rem !important;
+            padding-top: 0.2rem !important;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -1532,8 +1538,8 @@
 
         /* Reduce category badge spacing */
         .category-badge {
-            padding: 0.2rem 0.5rem !important;
-            font-size: 0.75rem !important;
+            padding: 0.3rem 0.6rem !important;
+            font-size: 0.8rem !important;
         }
 
         /* Reduce likert scale size */
