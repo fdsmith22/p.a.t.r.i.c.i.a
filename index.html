@@ -1037,6 +1037,18 @@
     <!-- Load Neurlyn Integrated App -->
     <script type="module" src="js/neurlyn-integrated.js"></script>
 
+    <!-- Override service worker initialization to prevent errors -->
+    <script>
+    // Wait for app to be initialized then override initServiceWorker
+    setTimeout(() => {
+        if (window.neurlynApp && window.neurlynApp.initServiceWorker) {
+            window.neurlynApp.initServiceWorker = function() {
+                console.log('Service Worker disabled - sw.js file not available');
+            };
+        }
+    }, 100);
+    </script>
+
     <!-- Enhanced assessment flow styles -->
     <style>
         /* Smooth step transitions */
@@ -1308,6 +1320,18 @@
             width: 98% !important;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        /* Override container width from neurlyn.css */
+        .container {
+            max-width: 95vw !important;
+            width: 100% !important;
+        }
+
+        /* Ensure welcome and assessment containers use full width */
+        #welcome-screen .container,
+        #assessment-screen .container {
+            max-width: 95vw !important;
         }
 
         .step-label {
