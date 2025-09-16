@@ -995,5 +995,74 @@
 
     <!-- Load Neurlyn Integrated App -->
     <script type="module" src="js/neurlyn-integrated.js"></script>
+
+    <!-- Fix for duplicate assessment style options -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Override the showTaskTypeSelector function after a short delay
+        setTimeout(function() {
+            if (window.neurlynApp && window.neurlynApp.showTaskTypeSelector) {
+                window.neurlynApp.showTaskTypeSelector = function() {
+                    const existingSelector = document.getElementById('task-type-selector');
+                    if (existingSelector) {
+                        existingSelector.remove();
+                    }
+
+                    const selector = document.createElement('div');
+                    selector.id = 'task-type-selector';
+                    selector.className = 'task-type-selector';
+                    selector.innerHTML = `
+                        <h4>Assessment Style</h4>
+                        <div class="task-type-options">
+                            <label class="task-type-option">
+                                <input type="radio" name="taskType" value="traditional" />
+                                <span class="option-content">
+                                    <span class="option-title">Traditional</span>
+                                    <span class="option-desc">Standard questionnaire</span>
+                                </span>
+                            </label>
+                            <label class="task-type-option">
+                                <input type="radio" name="taskType" value="gamified" />
+                                <span class="option-content">
+                                    <span class="option-title">Interactive</span>
+                                    <span class="option-desc">Games & activities</span>
+                                </span>
+                            </label>
+                            <label class="task-type-option">
+                                <input type="radio" name="taskType" value="lateral" />
+                                <span class="option-content">
+                                    <span class="option-title">Lateral</span>
+                                    <span class="option-desc">Creative scenarios</span>
+                                </span>
+                            </label>
+                            <label class="task-type-option">
+                                <input type="radio" name="taskType" value="hybrid" checked />
+                                <span class="option-content">
+                                    <span class="option-title">Hybrid</span>
+                                    <span class="option-desc">Mixed approach</span>
+                                </span>
+                            </label>
+                        </div>
+                    `;
+
+                    const modeSelection = document.querySelector('.mode-selection');
+                    if (modeSelection) {
+                        modeSelection.appendChild(selector);
+                    }
+
+                    // Add event listeners for task type selection
+                    selector.querySelectorAll('input[name="taskType"]').forEach(input => {
+                        input.addEventListener('change', (e) => {
+                            if (window.neurlynApp) {
+                                window.neurlynApp.state.taskMode = e.target.value;
+                                window.neurlynApp.showToast(`Assessment style: ${e.target.value}`, 'info');
+                            }
+                        });
+                    });
+                };
+            }
+        }, 1000);
+    });
+    </script>
 </body>
 </html>
