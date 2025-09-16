@@ -56,23 +56,28 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(180deg, #FFFFFF 0%, #F8FAF9 100%);
+            background:
+                radial-gradient(ellipse at top left, rgba(124, 152, 133, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(124, 152, 133, 0.03) 0%, transparent 50%),
+                linear-gradient(180deg, #FFFFFF 0%, #F8FAF9 100%);
             min-height: 100vh;
             color: var(--nordic-charcoal);
             display: flex;
             flex-direction: column;
+            margin: 0;
+            position: relative;
         }
         
         #disclaimer-screen {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: calc(100vh - 100px);
-            padding: 0.5rem 0;
+            min-height: calc(100vh - 60px);
+            padding: 0.5rem 0 60px;
             position: relative;
         }
 
-        /* Subtle Nordic geometric background */
+        /* Decorative elements */
         #disclaimer-screen::before {
             content: '';
             position: absolute;
@@ -80,24 +85,47 @@
             right: 5%;
             width: 300px;
             height: 300px;
-            background: linear-gradient(45deg, rgba(124, 152, 133, 0.03) 0%, transparent 70%);
-            border-radius: 0;
+            background:
+                radial-gradient(circle at center, rgba(124, 152, 133, 0.08) 0%, transparent 40%),
+                linear-gradient(45deg, rgba(124, 152, 133, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
             transform: rotate(45deg);
+            z-index: 0;
+        }
+
+        #disclaimer-screen::after {
+            content: '';
+            position: absolute;
+            bottom: 15%;
+            left: 8%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle at center, rgba(106, 138, 115, 0.06) 0%, transparent 50%);
+            border-radius: 50%;
+            filter: blur(50px);
             z-index: 0;
         }
         
         .disclaimer-card {
-            background: linear-gradient(135deg, #FFFFFF 0%, #FAFFFE 100%);
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(124, 152, 133, 0.08);
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 255, 254, 0.98) 100%),
+                linear-gradient(135deg, #FFFFFF 0%, #FAFFFE 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow:
+                0 1px 2px rgba(124, 152, 133, 0.05),
+                0 4px 8px rgba(124, 152, 133, 0.05),
+                0 8px 24px rgba(124, 152, 133, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
             padding: 1.75rem 2rem 1.25rem;
             max-width: 1800px;
             width: 100%;
             margin: 0 auto;
-            border: 1px solid rgba(124, 152, 133, 0.15);
+            border: 1px solid rgba(124, 152, 133, 0.12);
             position: relative;
             z-index: 1;
-            transition: border-color 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Removed hover effect for cleaner Scandinavian style */
@@ -126,11 +154,14 @@
             border-radius: 0;
             box-shadow: none;
             border: none;
-            transition: opacity 0.2s ease;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 12px;
         }
 
         .feature-item:hover {
-            opacity: 0.7;
+            background: rgba(124, 152, 133, 0.05);
+            transform: translateX(4px);
         }
         
         .feature-icon {
@@ -139,6 +170,11 @@
             fill: #7C9885;
             flex-shrink: 0;
             opacity: 0.9;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.1);
         }
         
         .feature-item strong {
@@ -169,11 +205,11 @@
         }
 
         .pricing-card {
-            background: white;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
             border-radius: 16px;
             padding: 1rem 1.5rem;
-            border: 1px solid rgba(124, 152, 133, 0.2);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(124, 152, 133, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -181,6 +217,9 @@
             max-width: 650px;
             display: flex;
             flex-direction: column;
+            box-shadow:
+                0 1px 3px rgba(124, 152, 133, 0.05),
+                0 4px 12px rgba(124, 152, 133, 0.05);
         }
 
         .pricing-card::before {
@@ -189,18 +228,23 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
+            height: 3px;
             background: transparent;
-            transition: background 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .pricing-card.free.active {
-            border-color: #7C9885;
+            border-color: rgba(124, 152, 133, 0.3);
             background: linear-gradient(135deg, #FFFFFF 0%, #F8FBF9 100%);
+            box-shadow:
+                0 1px 3px rgba(124, 152, 133, 0.08),
+                0 4px 12px rgba(124, 152, 133, 0.1),
+                0 0 0 1px rgba(124, 152, 133, 0.1) inset;
         }
 
         .pricing-card.free.active::before {
-            background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
+            background: linear-gradient(90deg, #7C9885 0%, #6A8A73 50%, #7C9885 100%);
+            height: 3px;
         }
 
         .pricing-card.premium {
@@ -232,16 +276,17 @@
         }
 
         .pricing-card-badge {
-            background: rgba(124, 152, 133, 0.1);
+            background: linear-gradient(135deg, rgba(124, 152, 133, 0.1) 0%, rgba(124, 152, 133, 0.15) 100%);
             color: #6A8A73;
-            padding: 0.15rem 0.5rem;
-            border: 1px solid rgba(124, 152, 133, 0.3);
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: 400;
+            padding: 0.2rem 0.6rem;
+            border: 1px solid rgba(124, 152, 133, 0.25);
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             margin-left: auto;
+            box-shadow: 0 2px 4px rgba(124, 152, 133, 0.1);
         }
 
         .pricing-card.premium .pricing-card-badge {
@@ -419,29 +464,33 @@
             background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
             color: white;
             border: 1px solid transparent;
-            padding: 0.75rem 2rem;
-            border-radius: 10px;
+            padding: 0.8rem 2.2rem;
+            border-radius: 12px;
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.9rem;
-            font-weight: 400;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             margin-left: auto;
-            box-shadow: 0 4px 12px rgba(124, 152, 133, 0.2);
+            box-shadow:
+                0 2px 4px rgba(124, 152, 133, 0.2),
+                0 4px 12px rgba(124, 152, 133, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
         }
 
         /* Clean hover state */
 
         #accept-disclaimer:not(:disabled):hover {
-            background: white;
-            color: #6A8A73;
-            border-color: #7C9885;
-            box-shadow: 0 6px 20px rgba(124, 152, 133, 0.3);
-            transform: translateY(-2px);
+            background: linear-gradient(135deg, #8CA595 0%, #7C9885 100%);
+            box-shadow:
+                0 4px 8px rgba(124, 152, 133, 0.25),
+                0 8px 20px rgba(124, 152, 133, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px) scale(1.02);
         }
 
         #accept-disclaimer:disabled {
@@ -460,17 +509,34 @@
         }
 
         .disclaimer-card:hover {
-            border-color: rgba(124, 152, 133, 0.3);
-            box-shadow: 0 8px 30px rgba(124, 152, 133, 0.12);
+            border-color: rgba(124, 152, 133, 0.2);
+            box-shadow:
+                0 2px 4px rgba(124, 152, 133, 0.06),
+                0 8px 16px rgba(124, 152, 133, 0.08),
+                0 16px 32px rgba(124, 152, 133, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            transform: translateY(-1px);
         }
 
         .pricing-card:hover {
-            border-color: rgba(124, 152, 133, 0.4);
-            box-shadow: 0 6px 20px rgba(124, 152, 133, 0.1);
-            transform: translateY(-2px);
+            border-color: rgba(124, 152, 133, 0.25);
+            box-shadow:
+                0 2px 4px rgba(124, 152, 133, 0.08),
+                0 8px 20px rgba(124, 152, 133, 0.12),
+                0 0 0 1px rgba(124, 152, 133, 0.05) inset;
+            transform: translateY(-3px) scale(1.01);
+        }
+
+        /* Smooth transitions for all interactive elements */
+        * {
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         @media (max-width: 768px) {
+            #disclaimer-screen {
+                padding-bottom: 80px;
+            }
+
             .feature-row {
                 grid-template-columns: 1fr;
                 gap: 0.75rem;
@@ -527,7 +593,7 @@
         <!-- Disclaimer Screen -->
         <section id="disclaimer-screen" class="screen active">
             <div class="disclaimer-card">
-                <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; margin-bottom: 0.3rem; background: linear-gradient(135deg, #2C2C2C 0%, #4A6B56 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 500; letter-spacing: -0.02em; line-height: 1;">Welcome to Neurlyn</h1>
+                <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; margin-bottom: 0.3rem; background: linear-gradient(135deg, #2C2C2C 0%, #4A6B56 50%, #6A8A73 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 500; letter-spacing: -0.02em; line-height: 1; position: relative;">Welcome to Neurlyn</h1>
                 <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #5A7A6A; margin-bottom: 1.25rem; line-height: 1.3; font-weight: 300;">Discover your unique personality profile through science-based assessments</p>
                 
                 <div class="disclaimer-ultra-compact">
@@ -790,7 +856,7 @@
     </div>
     
     <!-- Footer -->
-    <footer class="footer compact" style="margin-top: auto; background: linear-gradient(90deg, #F8FAF9 0%, #F3F7F5 100%); border-top: 1px solid rgba(124, 152, 133, 0.15); padding: 1rem 0;">
+    <footer class="footer compact" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(90deg, rgba(248, 250, 249, 0.95) 0%, rgba(243, 247, 245, 0.95) 100%); backdrop-filter: blur(10px); border-top: 1px solid rgba(124, 152, 133, 0.15); padding: 0.75rem 0; z-index: 100; box-shadow: 0 -2px 10px rgba(124, 152, 133, 0.05);">
         <div class="footer-content">
             <span>&copy; 2024 Neurlyn. All rights reserved.</span>
             <span class="footer-separator">|</span>
