@@ -724,10 +724,12 @@
                     </div>
                 </div>
 
-                <!-- Assessment Track Selection -->
-                <div class="track-selection compact">
-                    <h3>Step 1: Select Assessment Type</h3>
-                    <div class="track-options compact">
+                <!-- Steps Container -->
+                <div class="steps-container">
+                    <!-- Assessment Track Selection -->
+                    <div class="track-selection compact assessment-step active" id="step-1-content">
+                        <h3>Step 1: Select Assessment Type</h3>
+                        <div class="track-options compact">
                         <button class="track-option compact" data-track="personality">
                             <div class="track-icon compact">
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="#7C9885">
@@ -754,12 +756,16 @@
                             <h4>Comprehensive</h4>
                             <p>Complete profile</p>
                         </button>
+                        </div>
                     </div>
-                </div>
                 
-                <!-- Assessment Modes -->
-                <div class="mode-selection compact" id="mode-selection">
-                    <h3>Step 2: Select Assessment Length</h3>
+                    <!-- Assessment Modes -->
+                    <div class="mode-selection compact assessment-step" id="step-2-content">
+                        <button class="step-back-btn" onclick="window.goBackToStep(1)">
+                            <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                            Back
+                        </button>
+                        <h3>Step 2: Select Assessment Length</h3>
                     <div class="mode-grid compact">
                         <button class="mode-option compact" data-mode="quick">
                             <div class="mode-icon compact">
@@ -782,6 +788,16 @@
                             <h4>Deep</h4>
                             <p>25-30 min</p>
                         </button>
+                        </div>
+                    </div>
+
+                    <!-- Assessment Style (Step 3) -->
+                    <div id="step-3-content" class="assessment-step">
+                        <button class="step-back-btn" onclick="window.goBackToStep(2)">
+                            <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                            Back
+                        </button>
+                        <div id="task-type-selector-container"></div>
                     </div>
                 </div>
                 
@@ -1023,16 +1039,79 @@
 
     <!-- Enhanced assessment flow styles -->
     <style>
-        /* Hide steps initially */
-        .mode-selection {
-            display: none;
-            animation: fadeInUp 0.4s ease-out;
+        /* Smooth step transitions */
+        .assessment-step {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+            left: 0;
         }
 
+        .assessment-step.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            position: relative;
+        }
+
+        .assessment-step.completed {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+            position: absolute;
+            height: 0;
+            overflow: hidden;
+        }
+
+        /* Steps container */
+        .steps-container {
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Back button styling */
+        .step-back-btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 1px solid rgba(124, 152, 133, 0.2);
+            border-radius: 8px;
+            color: #6A8A73;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.5s forwards;
+        }
+
+        .step-back-btn:hover {
+            background: #F0F8F4;
+            border-color: #7C9885;
+            transform: translateX(-4px);
+        }
+
+        .step-back-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Hide initially */
+        .mode-selection,
         #task-type-selector {
             display: none;
-            animation: fadeInUp 0.4s ease-out;
-            margin-top: 2rem;
         }
 
         .mode-selection.visible,
@@ -1240,6 +1319,33 @@
             }
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Smooth selection animations */
+        .track-option,
+        .mode-option {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .track-option.selecting,
+        .mode-option.selecting {
+            animation: pulse 0.5s ease-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         @media (max-width: 1024px) {
             .task-type-options {
                 grid-template-columns: repeat(2, 1fr);
@@ -1264,39 +1370,111 @@
         // Override the showTaskTypeSelector function after a short delay
         setTimeout(function() {
             if (window.neurlynApp && window.neurlynApp.showTaskTypeSelector) {
-                // Override selectTrack to show mode selection after track selection
+                // Smooth step transitions
+                window.transitionToStep = function(stepNum) {
+                    // Hide all steps first
+                    document.querySelectorAll('.assessment-step').forEach(step => {
+                        step.classList.remove('active');
+                        step.classList.add('completed');
+                    });
+
+                    // Show the target step
+                    setTimeout(() => {
+                        const targetStep = document.getElementById(`step-${stepNum}-content`);
+                        if (targetStep) {
+                            targetStep.classList.remove('completed');
+                            targetStep.classList.add('active');
+                        }
+
+                        // Update step indicators
+                        document.querySelectorAll('.step').forEach((indicator, index) => {
+                            if (index < stepNum - 1) {
+                                indicator.classList.add('completed');
+                                indicator.classList.remove('active');
+                            } else if (index === stepNum - 1) {
+                                indicator.classList.add('active');
+                                indicator.classList.remove('completed');
+                            } else {
+                                indicator.classList.remove('active', 'completed');
+                            }
+                        });
+                    }, 300);
+                };
+
+                // Go back function
+                window.goBackToStep = function(stepNum) {
+                    window.transitionToStep(stepNum);
+
+                    // Reset selections for steps after the target
+                    if (stepNum === 1) {
+                        // Reset track selection
+                        document.querySelectorAll('.track-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        window.neurlynApp.state.assessmentTrack = null;
+                        window.neurlynApp.state.currentMode = null;
+                        window.neurlynApp.state.taskMode = null;
+                    } else if (stepNum === 2) {
+                        // Reset mode selection
+                        document.querySelectorAll('.mode-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        window.neurlynApp.state.currentMode = null;
+                        window.neurlynApp.state.taskMode = null;
+                    }
+                };
+
+                // Override selectTrack to use smooth transition
                 const originalSelectTrack = window.neurlynApp.selectTrack;
                 window.neurlynApp.selectTrack = function(track) {
                     originalSelectTrack.call(this, track);
 
-                    // Update step indicator
-                    document.getElementById('step-1').classList.add('completed');
-                    document.getElementById('step-2').classList.add('active');
+                    // Add selecting animation
+                    document.querySelectorAll('.track-option').forEach(opt => {
+                        if (opt.dataset.track === track) {
+                            opt.classList.add('selecting');
+                            setTimeout(() => opt.classList.remove('selecting'), 500);
+                        }
+                    });
 
-                    // Show mode selection
-                    const modeSelection = document.getElementById('mode-selection');
-                    if (modeSelection) {
-                        modeSelection.classList.add('visible');
-                    }
+                    // Transition to step 2
+                    setTimeout(() => {
+                        window.transitionToStep(2);
+
+                        // Make mode selection visible
+                        const modeSelection = document.getElementById('step-2-content');
+                        if (modeSelection) {
+                            modeSelection.classList.add('visible');
+                        }
+                    }, 600);
                 };
 
-                // Override selectMode to show style selection after mode selection
+                // Override selectMode to use smooth transition
                 const originalSelectMode = window.neurlynApp.selectMode;
                 window.neurlynApp.selectMode = function(mode) {
                     originalSelectMode.call(this, mode);
 
-                    // Update step indicator
-                    document.getElementById('step-2').classList.add('completed');
-                    document.getElementById('step-3').classList.add('active');
-
-                    // Show task type selector
-                    setTimeout(() => {
-                        this.showTaskTypeSelector();
-                        const selector = document.getElementById('task-type-selector');
-                        if (selector) {
-                            selector.classList.add('visible');
+                    // Add selecting animation
+                    document.querySelectorAll('.mode-option').forEach(opt => {
+                        if (opt.dataset.mode === mode) {
+                            opt.classList.add('selecting');
+                            setTimeout(() => opt.classList.remove('selecting'), 500);
                         }
-                    }, 100);
+                    });
+
+                    // Transition to step 3
+                    setTimeout(() => {
+                        window.transitionToStep(3);
+
+                        // Show task type selector
+                        setTimeout(() => {
+                            this.showTaskTypeSelector();
+                            const selector = document.getElementById('task-type-selector');
+                            if (selector) {
+                                selector.classList.add('visible');
+                            }
+                        }, 300);
+                    }, 600);
                 };
 
                 window.neurlynApp.showTaskTypeSelector = function() {
@@ -1346,9 +1524,9 @@
                         </div>
                     `;
 
-                    const modeSelection = document.querySelector('.mode-selection');
-                    if (modeSelection) {
-                        modeSelection.appendChild(selector);
+                    const container = document.getElementById('task-type-selector-container');
+                    if (container) {
+                        container.appendChild(selector);
                     }
 
                     // Add event listeners for task type selection
