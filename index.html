@@ -838,7 +838,7 @@
                         <span><span id="question-num">1</span>/<span id="total-questions">50</span></span>
                     </div>
                     <div class="progress-bar-vertical">
-                        <div id="progress-fill" class="progress-fill-vertical"></div>
+                        <div id="progress-fill-vertical" class="progress-fill-vertical"></div>
                     </div>
                 </div>
             </div>
@@ -1057,6 +1057,15 @@
                 if (progressFill) {
                     const percent = ((this.state.currentQuestionIndex + 1) / this.questions.length) * 100;
                     progressFill.style.height = percent + '%';
+                    console.log('Progress updated:', percent + '%'); // Debug log
+                }
+
+                // Initialize on first call
+                if (this.state.currentQuestionIndex === 0) {
+                    const initialFill = document.querySelector('.progress-fill-vertical');
+                    if (initialFill) {
+                        initialFill.style.height = '2%'; // Start with small visible amount
+                    }
                 }
             };
         }
@@ -1428,7 +1437,7 @@
         .question-screen-layout {
             display: flex;
             gap: 1.5rem;
-            height: calc(100vh - 60px); /* Account for header height */
+            height: calc(100vh - 100px); /* Account for header and footer height */
             padding: 0.5rem 1rem;
             padding-top: 0;
             overflow: hidden;
@@ -1455,7 +1464,7 @@
             padding: 0.5rem 0.75rem !important;
             padding-top: 0.3rem !important;
             height: fit-content;
-            max-height: calc(100vh - 100px); /* Adjust for header */
+            max-height: calc(100vh - 140px); /* Adjust for header and footer */
             width: 100%;
             max-width: 900px;
             overflow: hidden;
@@ -1476,7 +1485,7 @@
             height: fit-content; /* Only as tall as content */
             align-self: flex-start; /* Align to top of parent */
             padding-top: 1.5rem; /* Match question-main padding */
-            max-height: calc(100vh - 100px); /* Match card max-height */
+            max-height: calc(100vh - 140px); /* Match card max-height */
         }
 
         .progress-info-vertical {
