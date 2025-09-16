@@ -31,7 +31,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Neurlyn Stylesheets -->
     <link rel="stylesheet" href="styles/neurlyn.css">
@@ -46,71 +46,59 @@
     <style>
         /* Enhanced Landing Page Styles */
         :root {
-            --primary-gradient: linear-gradient(135deg, #6C9E83 0%, #5A8A70 100%);
-            --soft-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --primary-gradient: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
+            --soft-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+            --hover-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --nordic-white: #FAFAFA;
+            --nordic-gray: #E8E8E8;
+            --nordic-charcoal: #2C2C2C;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(180deg, #fafbfc 0%, #f3f5f7 50%, #ffffff 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
             min-height: 100vh;
+            color: var(--nordic-charcoal);
         }
         
         #disclaimer-screen {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: calc(100vh - 120px);
-            padding: 1rem 0;
+            min-height: calc(100vh - 100px);
+            padding: 0.5rem 0;
             position: relative;
         }
 
+        /* Subtle Nordic geometric background */
         #disclaimer-screen::before {
             content: '';
             position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 40%;
-            height: 40%;
-            background: radial-gradient(circle, rgba(108, 158, 131, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: 0;
-        }
-
-        #disclaimer-screen::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            left: -10%;
-            width: 35%;
-            height: 35%;
-            background: radial-gradient(circle, rgba(108, 158, 131, 0.04) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(80px);
+            top: 10%;
+            right: 5%;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, rgba(124, 152, 133, 0.03) 0%, transparent 70%);
+            border-radius: 0;
+            transform: rotate(45deg);
             z-index: 0;
         }
         
         .disclaimer-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 32px;
-            box-shadow: var(--soft-shadow);
-            padding: 2rem 2.5rem 1.5rem;
-            max-width: 1600px;
-            width: 98%;
+            background: var(--nordic-white);
+            border-radius: 0;
+            box-shadow: none;
+            padding: 1.75rem 2rem 1.25rem;
+            max-width: 1800px;
+            width: 100%;
             margin: 0 auto;
-            border: 1px solid rgba(229, 231, 235, 0.5);
+            border: 1px solid var(--nordic-gray);
             position: relative;
             z-index: 1;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: none;
         }
 
-        .disclaimer-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--hover-shadow);
-        }
+        /* Removed hover effect for cleaner Scandinavian style */
         
         .disclaimer-ultra-compact {
             width: 100%;
@@ -122,79 +110,75 @@
         }
 
         .feature-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 1.25rem;
         }
         
         .feature-item {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
-            border-radius: 14px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(108, 158, 131, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            transition: opacity 0.2s ease;
         }
 
         .feature-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(108, 158, 131, 0.15);
-            border-color: rgba(108, 158, 131, 0.25);
+            opacity: 0.7;
         }
         
         .feature-icon {
-            width: 24px;
-            height: 24px;
-            fill: #6C9E83;
+            width: 20px;
+            height: 20px;
+            fill: #7C9885;
             flex-shrink: 0;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            opacity: 0.8;
         }
         
         .feature-item strong {
             display: block;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.95rem;
-            color: #1E293B;
-            margin-bottom: 0.2rem;
-            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            color: var(--nordic-charcoal);
+            margin-bottom: 0.1rem;
+            font-weight: 500;
         }
 
         .feature-item p {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.85rem;
-            color: #64748B;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #8B8B8B;
             margin: 0;
-            font-weight: 400;
+            font-weight: 300;
         }
         
-        /* Pricing Cards Section */
+        /* Pricing Cards Section - Horizontal Layout */
         .pricing-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            justify-content: center;
             gap: 2rem;
             margin: 1rem auto;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
         }
 
         .pricing-card {
             background: white;
-            border-radius: 18px;
-            padding: 1.25rem 1.5rem;
-            border: 2px solid transparent;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--nordic-gray);
+            transition: border-color 0.2s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            flex: 1;
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
         }
 
         .pricing-card::before {
@@ -203,150 +187,141 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 2px;
             background: transparent;
-            transition: background 0.3s ease;
+            transition: background 0.2s ease;
         }
 
-        .pricing-card.free {
-            border-color: rgba(108, 158, 131, 0.2);
-        }
-
-        .pricing-card.free:hover,
         .pricing-card.free.active {
-            border-color: #6C9E83;
-            box-shadow: 0 10px 30px rgba(108, 158, 131, 0.15);
-            transform: translateY(-4px);
+            border-color: #7C9885;
         }
 
         .pricing-card.free.active::before {
-            background: var(--primary-gradient);
+            background: #7C9885;
         }
 
         .pricing-card.premium {
-            border-color: rgba(147, 51, 234, 0.2);
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.02) 0%, rgba(147, 51, 234, 0.05) 100%);
+            background: #FAFAFA;
         }
 
-        .pricing-card.premium:hover,
         .pricing-card.premium.active {
-            border-color: #9333EA;
-            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.15);
-            transform: translateY(-4px);
+            border-color: var(--nordic-charcoal);
         }
 
         .pricing-card.premium.active::before {
-            background: linear-gradient(135deg, #9333EA 0%, #7C3AED 100%);
+            background: var(--nordic-charcoal);
         }
 
         .pricing-card-header {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.75rem;
-            padding-right: 2rem; /* Space for selection tick */
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .pricing-card-title {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #1E293B;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--nordic-charcoal);
             margin: 0;
-            padding-right: 1rem;
         }
 
         .pricing-card-badge {
-            background: rgba(108, 158, 131, 0.1);
-            color: #6C9E83;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            background: transparent;
+            color: #7C9885;
+            padding: 0.15rem 0.5rem;
+            border: 1px solid currentColor;
+            border-radius: 0;
+            font-size: 0.7rem;
+            font-weight: 400;
             text-transform: uppercase;
-            margin-right: auto;
+            letter-spacing: 0.05em;
+            margin-left: auto;
         }
 
         .pricing-card.premium .pricing-card-badge {
-            background: rgba(147, 51, 234, 0.1);
-            color: #9333EA;
+            color: var(--nordic-charcoal);
         }
 
         .pricing-card-price {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #0F172A;
-            margin: 0 0 0.3rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--nordic-charcoal);
+            margin: 0 0 0.25rem 0;
         }
 
         .pricing-card-description {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.85rem;
-            color: #64748B;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #6B6B6B;
             line-height: 1.3;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
         }
 
         .pricing-card-features {
             list-style: none;
             padding: 0;
             margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
         }
 
         .pricing-card-features li {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 0.4rem;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.8rem;
-            color: #475569;
-            line-height: 1.2;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: #6B6B6B;
+            line-height: 1.1;
         }
 
         .pricing-card-features svg {
-            width: 16px;
-            height: 16px;
-            fill: #6C9E83;
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: #7C9885;
+            stroke-width: 2;
             flex-shrink: 0;
         }
 
         .pricing-card.premium .pricing-card-features svg {
-            fill: #9333EA;
+            stroke: var(--nordic-charcoal);
         }
 
         .pricing-card-select {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            border: 2px solid #CBD5E1;
-            position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            transition: all 0.3s ease;
-            z-index: 2;
+            width: 18px;
+            height: 18px;
+            border-radius: 0;
+            border: 1px solid #CBD5E1;
+            margin-left: 0.5rem;
+            transition: all 0.2s ease;
+            position: relative;
+            flex-shrink: 0;
         }
 
         .pricing-card.active .pricing-card-select {
-            border-color: #6C9E83;
-            background: #6C9E83;
+            border-color: #7C9885;
+            background: #7C9885;
         }
 
         .pricing-card.premium.active .pricing-card-select {
-            border-color: #9333EA;
-            background: #9333EA;
+            border-color: var(--nordic-charcoal);
+            background: var(--nordic-charcoal);
         }
 
         .pricing-card.active .pricing-card-select::after {
             content: '';
-            width: 8px;
-            height: 12px;
+            width: 6px;
+            height: 10px;
             border: solid white;
-            border-width: 0 2px 2px 0;
+            border-width: 0 1.5px 1.5px 0;
             transform: rotate(45deg);
             margin-bottom: 2px;
         }
@@ -403,113 +378,76 @@
         
         .consent-row {
             display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(229, 231, 235, 0.5);
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--nordic-gray);
         }
         
         .consent-checkbox {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             cursor: pointer;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.9rem;
-            color: #475569;
-            transition: color 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #6B6B6B;
+            transition: opacity 0.2s ease;
         }
 
         .consent-checkbox:hover {
-            color: #1E293B;
+            opacity: 0.7;
         }
         
         .consent-checkbox input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             cursor: pointer;
-            accent-color: #6C9E83;
-            border-radius: 6px;
+            accent-color: #7C9885;
+            border-radius: 0;
         }
         
         #accept-disclaimer {
-            background: var(--primary-gradient);
+            background: var(--nordic-charcoal);
             color: white;
-            border: none;
-            padding: 0.9rem 2.25rem;
-            border-radius: 12px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
+            border: 1px solid var(--nordic-charcoal);
+            padding: 0.75rem 2rem;
+            border-radius: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-top: 0.5rem;
-            box-shadow: 0 4px 14px rgba(108, 158, 131, 0.25);
+            transition: all 0.2s ease;
+            margin-left: auto;
+            box-shadow: none;
             position: relative;
             overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        #accept-disclaimer::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        #accept-disclaimer:not(:disabled):hover::before {
-            width: 300px;
-            height: 300px;
-        }
+        /* Clean hover state */
 
         #accept-disclaimer:not(:disabled):hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(108, 158, 131, 0.35);
+            background: white;
+            color: var(--nordic-charcoal);
         }
 
         #accept-disclaimer:disabled {
-            opacity: 0.4;
+            opacity: 0.3;
             cursor: not-allowed;
-            box-shadow: none;
-            background: #94A3B8;
         }
         
-        /* Subtle entrance animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Minimal Nordic animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        .disclaimer-card h1 {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .disclaimer-card > p {
-            animation: fadeInUp 0.6s ease-out 0.1s both;
-        }
-
-        .feature-row {
-            animation: fadeInUp 0.6s ease-out 0.2s both;
-        }
-
-        .pricing-section {
-            animation: fadeInUp 0.6s ease-out 0.3s both;
-        }
-
-        .consent-row {
-            animation: fadeInUp 0.6s ease-out 0.4s both;
+        .disclaimer-card {
+            animation: fadeIn 0.4s ease-out;
         }
 
         @media (max-width: 768px) {
@@ -569,8 +507,8 @@
         <!-- Disclaimer Screen -->
         <section id="disclaimer-screen" class="screen active">
             <div class="disclaimer-card">
-                <h1 style="font-family: 'DM Sans', sans-serif; font-size: 2.5rem; margin-bottom: 0.4rem; color: #0F172A; font-weight: 700; letter-spacing: -0.03em; line-height: 1;">Welcome to Neurlyn</h1>
-                <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; color: #64748B; margin-bottom: 1.5rem; line-height: 1.4; font-weight: 400;">Discover your unique personality profile through science-based assessments</p>
+                <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; margin-bottom: 0.3rem; color: var(--nordic-charcoal); font-weight: 500; letter-spacing: -0.02em; line-height: 1;">Welcome to Neurlyn</h1>
+                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6B6B6B; margin-bottom: 1.25rem; line-height: 1.3; font-weight: 300;">Discover your unique personality profile through science-based assessments</p>
                 
                 <div class="disclaimer-ultra-compact">
                     <!-- Features Row -->
@@ -609,52 +547,52 @@
                     <!-- Pricing Cards -->
                     <div class="pricing-section">
                             <div class="pricing-card free active" data-plan="free">
-                                <div class="pricing-card-select"></div>
                                 <div class="pricing-card-header">
                                     <h3 class="pricing-card-title">Free Assessment</h3>
+                                    <div class="pricing-card-select"></div>
                                     <span class="pricing-card-badge">Popular</span>
                                 </div>
                                 <p class="pricing-card-price">£0</p>
                                 <p class="pricing-card-description">Perfect for getting started with personality insights</p>
                                 <ul class="pricing-card-features">
                                     <li>
-                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                         5-minute quick assessment
                                     </li>
                                     <li>
-                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                         Basic Big Five traits
                                     </li>
                                     <li>
-                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                         Instant results
                                     </li>
                                 </ul>
                             </div>
 
                             <div class="pricing-card premium" data-plan="premium">
-                                <div class="pricing-card-select"></div>
                                 <div class="pricing-card-header">
                                     <h3 class="pricing-card-title">In-Depth Analysis</h3>
+                                    <div class="pricing-card-select"></div>
                                     <span class="pricing-card-badge">Complete</span>
                                 </div>
                                 <p class="pricing-card-price">£1.99</p>
                                 <p class="pricing-card-description">Comprehensive neurodiversity screening with detailed insights</p>
                                 <ul class="pricing-card-features">
                                     <li>
-                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                         25-minute deep assessment
                                     </li>
                                     <li>
-                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                         ADHD & Autism screening
                                     </li>
                                     <li>
-                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                         Downloadable PDF report
                                     </li>
                                     <li>
-                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                         Personalized recommendations
                                     </li>
                                 </ul>
