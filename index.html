@@ -708,8 +708,25 @@
             <div class="card compact">
                 <h2 class="compact-title">Select Your Assessment</h2>
                 
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step active" id="step-1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Type</div>
+                    </div>
+                    <div class="step" id="step-2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Length</div>
+                    </div>
+                    <div class="step" id="step-3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Style</div>
+                    </div>
+                </div>
+
                 <!-- Assessment Track Selection -->
                 <div class="track-selection compact">
+                    <h3>Step 1: Select Assessment Type</h3>
                     <div class="track-options compact">
                         <button class="track-option compact" data-track="personality">
                             <div class="track-icon compact">
@@ -736,7 +753,8 @@
                 </div>
                 
                 <!-- Assessment Modes -->
-                <div class="mode-selection compact">
+                <div class="mode-selection compact" id="mode-selection">
+                    <h3>Step 2: Select Assessment Length</h3>
                     <div class="mode-grid compact">
                         <button class="mode-option compact" data-mode="quick">
                             <div class="mode-icon compact">
@@ -762,9 +780,11 @@
                     </div>
                 </div>
                 
-                <button id="start-assessment" class="btn btn-primary compact" disabled>
-                    Begin Assessment
-                </button>
+                <div id="start-button-container" style="margin-top: 2rem; display: none;">
+                    <button id="start-assessment" class="btn btn-primary compact" disabled>
+                        Begin Assessment
+                    </button>
+                </div>
             </div>
         </section>
         
@@ -996,12 +1016,229 @@
     <!-- Load Neurlyn Integrated App -->
     <script type="module" src="js/neurlyn-integrated.js"></script>
 
+    <!-- Enhanced assessment flow styles -->
+    <style>
+        /* Hide steps initially */
+        .mode-selection {
+            display: none;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        #task-type-selector {
+            display: none;
+            animation: fadeInUp 0.4s ease-out;
+            margin-top: 2rem;
+        }
+
+        .mode-selection.visible,
+        #task-type-selector.visible {
+            display: block;
+        }
+
+        /* Track options styling */
+        .track-option.selected {
+            background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
+            color: white;
+            border-color: #7C9885;
+            transform: scale(1.05);
+        }
+
+        .mode-option.selected {
+            background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
+            color: white;
+            border-color: #7C9885;
+            transform: scale(1.05);
+        }
+
+        /* Assessment style cards */
+        .task-type-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .task-type-option {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem;
+            background: white;
+            border: 2px solid rgba(124, 152, 133, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .task-type-option:hover {
+            border-color: rgba(124, 152, 133, 0.4);
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FBF9 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 152, 133, 0.15);
+        }
+
+        .task-type-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .task-type-option input[type="radio"]:checked + .option-content {
+            color: #6A8A73;
+        }
+
+        .task-type-option input[type="radio"]:checked ~ .option-check {
+            display: block;
+        }
+
+        .option-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            flex: 1;
+        }
+
+        .option-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--nordic-charcoal);
+        }
+
+        .option-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #6B6B6B;
+        }
+
+        .option-check {
+            display: none;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
+            border-radius: 50%;
+            color: white;
+        }
+
+        .option-check::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+        }
+
+        .task-type-option.selected {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FBF9 100%);
+            border-color: #7C9885;
+        }
+
+        /* Step indicators */
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+        }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--nordic-gray);
+            color: #6B6B6B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-number {
+            background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
+            color: white;
+        }
+
+        .step.completed .step-number {
+            background: #7C9885;
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            color: #6B6B6B;
+            font-family: 'Inter', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
     <!-- Fix for duplicate assessment style options -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Override the showTaskTypeSelector function after a short delay
         setTimeout(function() {
             if (window.neurlynApp && window.neurlynApp.showTaskTypeSelector) {
+                // Override selectTrack to show mode selection after track selection
+                const originalSelectTrack = window.neurlynApp.selectTrack;
+                window.neurlynApp.selectTrack = function(track) {
+                    originalSelectTrack.call(this, track);
+
+                    // Update step indicator
+                    document.getElementById('step-1').classList.add('completed');
+                    document.getElementById('step-2').classList.add('active');
+
+                    // Show mode selection
+                    const modeSelection = document.getElementById('mode-selection');
+                    if (modeSelection) {
+                        modeSelection.classList.add('visible');
+                    }
+                };
+
+                // Override selectMode to show style selection after mode selection
+                const originalSelectMode = window.neurlynApp.selectMode;
+                window.neurlynApp.selectMode = function(mode) {
+                    originalSelectMode.call(this, mode);
+
+                    // Update step indicator
+                    document.getElementById('step-2').classList.add('completed');
+                    document.getElementById('step-3').classList.add('active');
+
+                    // Show task type selector
+                    setTimeout(() => {
+                        this.showTaskTypeSelector();
+                        const selector = document.getElementById('task-type-selector');
+                        if (selector) {
+                            selector.classList.add('visible');
+                        }
+                    }, 100);
+                };
+
                 window.neurlynApp.showTaskTypeSelector = function() {
                     const existingSelector = document.getElementById('task-type-selector');
                     if (existingSelector) {
@@ -1012,35 +1249,39 @@
                     selector.id = 'task-type-selector';
                     selector.className = 'task-type-selector';
                     selector.innerHTML = `
-                        <h4>Assessment Style</h4>
+                        <h3>Step 3: Select Assessment Style</h3>
                         <div class="task-type-options">
                             <label class="task-type-option">
                                 <input type="radio" name="taskType" value="traditional" />
                                 <span class="option-content">
                                     <span class="option-title">Traditional</span>
-                                    <span class="option-desc">Standard questionnaire</span>
+                                    <span class="option-desc">Standard questionnaire format</span>
                                 </span>
+                                <span class="option-check"></span>
                             </label>
                             <label class="task-type-option">
                                 <input type="radio" name="taskType" value="gamified" />
                                 <span class="option-content">
                                     <span class="option-title">Interactive</span>
-                                    <span class="option-desc">Games & activities</span>
+                                    <span class="option-desc">Engaging games & activities</span>
                                 </span>
+                                <span class="option-check"></span>
                             </label>
                             <label class="task-type-option">
                                 <input type="radio" name="taskType" value="lateral" />
                                 <span class="option-content">
                                     <span class="option-title">Lateral</span>
-                                    <span class="option-desc">Creative scenarios</span>
+                                    <span class="option-desc">Creative problem-solving</span>
                                 </span>
+                                <span class="option-check"></span>
                             </label>
                             <label class="task-type-option">
                                 <input type="radio" name="taskType" value="hybrid" checked />
                                 <span class="option-content">
                                     <span class="option-title">Hybrid</span>
-                                    <span class="option-desc">Mixed approach</span>
+                                    <span class="option-desc">Best of all approaches</span>
                                 </span>
+                                <span class="option-check"></span>
                             </label>
                         </div>
                     `;
@@ -1053,12 +1294,43 @@
                     // Add event listeners for task type selection
                     selector.querySelectorAll('input[name="taskType"]').forEach(input => {
                         input.addEventListener('change', (e) => {
+                            // Remove selected class from all options
+                            selector.querySelectorAll('.task-type-option').forEach(opt => {
+                                opt.classList.remove('selected');
+                            });
+
+                            // Add selected class to parent label
+                            e.target.closest('.task-type-option').classList.add('selected');
+
+                            // Update step indicator
+                            document.getElementById('step-3').classList.add('completed');
+
                             if (window.neurlynApp) {
                                 window.neurlynApp.state.taskMode = e.target.value;
                                 window.neurlynApp.showToast(`Assessment style: ${e.target.value}`, 'info');
+
+                                // Show and enable start button
+                                const startContainer = document.getElementById('start-button-container');
+                                const startBtn = document.getElementById('start-assessment');
+
+                                if (startContainer) {
+                                    startContainer.style.display = 'block';
+                                }
+
+                                if (startBtn) {
+                                    startBtn.disabled = false;
+                                    startBtn.classList.add('pulse');
+                                    setTimeout(() => startBtn.classList.remove('pulse'), 600);
+                                }
                             }
                         });
                     });
+
+                    // Set default selection
+                    const hybridOption = selector.querySelector('input[value="hybrid"]');
+                    if (hybridOption) {
+                        hybridOption.closest('.task-type-option').classList.add('selected');
+                    }
                 };
             }
         }, 1000);
