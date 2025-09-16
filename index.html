@@ -1432,6 +1432,7 @@
             padding: 0.5rem 1rem;
             padding-top: 0;
             overflow: hidden;
+            align-items: flex-start; /* Align items to top */
         }
 
         /* Remove extra padding from question screen */
@@ -1471,10 +1472,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: auto; /* Auto height to match card */
-            align-self: stretch; /* Stretch to match parent height */
-            padding: 1.5rem 0; /* Match question-main padding */
+            justify-content: flex-start; /* Align to top */
+            height: fit-content; /* Only as tall as content */
+            align-self: flex-start; /* Align to top of parent */
+            padding-top: 1.5rem; /* Match question-main padding */
+            max-height: calc(100vh - 100px); /* Match card max-height */
         }
 
         .progress-info-vertical {
@@ -1505,8 +1507,7 @@
         }
 
         .progress-bar-vertical {
-            flex: 1; /* Take remaining space */
-            max-height: 400px;
+            height: 300px; /* Fixed height */
             width: 8px;
             background: #E8E8E8;
             border-radius: 4px;
