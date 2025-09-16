@@ -766,22 +766,22 @@
                             <div class="mode-icon compact">
                                 <svg width="24" height="24"><use href="assets/icons/icons.svg#icon-lightning"></use></svg>
                             </div>
-                            <h4>Quick</h4>
-                            <p>5-7 min</p>
+                            <h4 style="font-size: 1.5rem; margin: 0.5rem 0;">Quick</h4>
+                            <p style="font-size: 1.1rem;">5-7 min</p>
                         </button>
                         <button class="mode-option compact" data-mode="standard">
                             <div class="mode-icon compact">
                                 <svg width="24" height="24"><use href="assets/icons/icons.svg#icon-chart"></use></svg>
                             </div>
-                            <h4>Standard</h4>
-                            <p>15-20 min</p>
+                            <h4 style="font-size: 1.5rem; margin: 0.5rem 0;">Standard</h4>
+                            <p style="font-size: 1.1rem;">15-20 min</p>
                         </button>
                         <button class="mode-option compact" data-mode="deep">
                             <div class="mode-icon compact">
                                 <svg width="24" height="24"><use href="assets/icons/icons.svg#icon-microscope"></use></svg>
                             </div>
-                            <h4>Deep</h4>
-                            <p>25-30 min</p>
+                            <h4 style="font-size: 1.5rem; margin: 0.5rem 0;">Deep</h4>
+                            <p style="font-size: 1.1rem;">25-30 min</p>
                         </button>
                         </div>
                     </div>
@@ -1358,6 +1358,8 @@
         .mode-option {
             flex: 1;
             max-width: 250px;
+            min-height: 180px;
+            padding: 1.5rem;
         }
 
         /* Make the welcome card wider */
@@ -1617,7 +1619,7 @@
                                 <span class="option-check"></span>
                             </label>
                             <label class="task-type-option">
-                                <input type="radio" name="taskType" value="hybrid" checked />
+                                <input type="radio" name="taskType" value="hybrid" />
                                 <span class="option-content">
                                     <span class="option-title">Hybrid</span>
                                     <span class="option-desc">Best of all approaches</span>
