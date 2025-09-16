@@ -710,15 +710,15 @@
                 
                 <!-- Step Indicator -->
                 <div class="step-indicator">
-                    <div class="step active" id="step-1">
+                    <div class="step active" id="step-1" onclick="window.goToStep(1)" style="cursor: pointer;">
                         <div class="step-number">1</div>
                         <div class="step-label">Type</div>
                     </div>
-                    <div class="step" id="step-2">
+                    <div class="step" id="step-2" onclick="window.goToStep(2)" style="cursor: pointer;">
                         <div class="step-number">2</div>
                         <div class="step-label">Length</div>
                     </div>
-                    <div class="step" id="step-3">
+                    <div class="step" id="step-3" onclick="window.goToStep(3)" style="cursor: pointer;">
                         <div class="step-number">3</div>
                         <div class="step-label">Style</div>
                     </div>
@@ -732,39 +732,34 @@
                         <div class="track-options compact">
                         <button class="track-option compact" data-track="personality">
                             <div class="track-icon compact">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="#7C9885">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
                                     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                                 </svg>
                             </div>
-                            <h4>Personality</h4>
-                            <p>Big Five traits</p>
+                            <h4 style="font-size: 1.4rem;">Personality</h4>
+                            <p style="font-size: 1.1rem;">Big Five traits</p>
                         </button>
                         <button class="track-option compact" data-track="neurodiversity">
                             <div class="track-icon compact">
                                 <svg width="32" height="32"><use href="assets/icons/icons.svg#icon-brain"></use></svg>
                             </div>
-                            <h4>Neurodiversity</h4>
-                            <p>ADHD, Autism, Dyslexia</p>
+                            <h4 style="font-size: 1.4rem;">Neurodiversity</h4>
+                            <p style="font-size: 1.1rem;">ADHD, Autism, Dyslexia</p>
                         </button>
                         <button class="track-option compact" data-track="comprehensive">
                             <div class="track-icon compact">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="#7C9885">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
                                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    <path d="M12 2v15.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" opacity="0.3"/>
                                 </svg>
                             </div>
-                            <h4>Comprehensive</h4>
-                            <p>Complete profile</p>
+                            <h4 style="font-size: 1.4rem;">Comprehensive</h4>
+                            <p style="font-size: 1.1rem;">Complete profile</p>
                         </button>
                         </div>
                     </div>
                 
                     <!-- Assessment Modes -->
                     <div class="mode-selection compact assessment-step" id="step-2-content">
-                        <button class="step-back-btn" onclick="window.goBackToStep(1)">
-                            <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                            Back
-                        </button>
                         <h3 style="text-align: center; margin: 0 auto 1.5rem; padding: 0; font-size: 1.6rem;">Step 2: Select Assessment Length</h3>
                     <div class="mode-grid compact">
                         <button class="mode-option compact" data-mode="quick">
@@ -793,16 +788,12 @@
 
                     <!-- Assessment Style (Step 3) -->
                     <div id="step-3-content" class="assessment-step">
-                        <button class="step-back-btn" onclick="window.goBackToStep(2)">
-                            <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                            Back
-                        </button>
                         <div id="task-type-selector-container"></div>
                     </div>
                 </div>
                 
-                <div id="start-button-container" style="margin-top: 2rem; display: none;">
-                    <button id="start-assessment" class="btn btn-primary compact" disabled>
+                <div id="start-button-container" style="position: absolute; bottom: 50%; left: 50%; transform: translateX(-50%) translateY(50%); display: none;">
+                    <button id="start-assessment" class="btn btn-primary" style="font-size: 1.3rem; padding: 1rem 3rem;" disabled>
                         Begin Assessment
                     </button>
                 </div>
@@ -1260,16 +1251,23 @@
         }
 
         .step-number {
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: var(--nordic-gray);
             color: #6B6B6B;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(124, 152, 133, 0.3);
         }
 
         .step.active .step-number {
@@ -1309,9 +1307,25 @@
             line-height: 1.6;
         }
 
-        .track-option .icon-circle {
+        /* Track icon styling - ensure white icons on green background */
+        .track-icon {
             width: 64px;
             height: 64px;
+            background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .track-icon svg {
+            fill: white !important;
+        }
+
+        .track-icon.compact {
+            width: 56px;
+            height: 56px;
         }
 
         /* Increase mode option text sizes */
@@ -1484,11 +1498,16 @@
                     }, 300);
                 };
 
-                // Go back function
-                window.goBackToStep = function(stepNum) {
-                    window.transitionToStep(stepNum);
+                // Navigation function for step circles
+                window.goToStep = function(stepNum) {
+                    // Only allow navigation to completed steps or current step
+                    const currentStep = document.querySelector('.step.active');
+                    const targetStep = document.getElementById(`step-${stepNum}`);
 
-                    // Reset selections for steps after the target
+                    if (targetStep && (targetStep.classList.contains('completed') || targetStep.classList.contains('active'))) {
+                        window.transitionToStep(stepNum);
+
+                        // Reset selections for steps after the target
                     if (stepNum === 1) {
                         // Reset track selection
                         document.querySelectorAll('.track-option').forEach(opt => {
@@ -1504,6 +1523,7 @@
                         });
                         window.neurlynApp.state.currentMode = null;
                         window.neurlynApp.state.taskMode = null;
+                    }
                     }
                 };
 
