@@ -802,19 +802,11 @@
         
         <!-- Question Screen -->
         <section id="question-screen" class="screen hidden">
-            <!-- Progress Bar -->
-            <div class="progress-container compact">
-                <div class="progress-bar">
-                    <div id="progress-fill" class="progress-fill"></div>
-                </div>
-                <div class="progress-info compact">
-                    <span>Question <span id="question-num">1</span> of <span id="total-questions">50</span></span>
-                    <span id="progress-percent">0%</span>
-                </div>
-            </div>
-            
-            <!-- Question Card -->
-            <div class="card question-card compact">
+            <div class="question-screen-layout">
+                <!-- Main Question Area -->
+                <div class="question-main">
+                    <!-- Question Card -->
+                    <div class="card question-card compact">
                 <div class="question-header compact">
                     <span id="question-category" class="category-badge">Personality</span>
                 </div>
@@ -834,6 +826,20 @@
                         Next
                         <svg width="14" height="14"><use href="assets/icons/icons.svg#icon-arrow-right"></use></svg>
                     </button>
+                </div>
+            </div>
+                </div>
+
+                <!-- Vertical Progress Bar on Right -->
+                <div class="progress-sidebar">
+                    <div class="progress-info-vertical">
+                        <span id="progress-percent">0%</span>
+                        <span class="progress-text">Question</span>
+                        <span><span id="question-num">1</span>/<span id="total-questions">50</span></span>
+                    </div>
+                    <div class="progress-bar-vertical">
+                        <div id="progress-fill" class="progress-fill-vertical"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1035,6 +1041,23 @@
         if (window.neurlynApp && window.neurlynApp.initServiceWorker) {
             window.neurlynApp.initServiceWorker = function() {
                 console.log('Service Worker disabled - sw.js file not available');
+            };
+        }
+    }, 100);
+
+    // Override updateProgress to update vertical progress bar
+    setTimeout(() => {
+        if (window.neurlynApp && window.neurlynApp.updateProgress) {
+            const originalUpdateProgress = window.neurlynApp.updateProgress.bind(window.neurlynApp);
+            window.neurlynApp.updateProgress = function() {
+                originalUpdateProgress();
+
+                // Update vertical progress bar
+                const progressFill = document.getElementById('progress-fill');
+                if (progressFill) {
+                    const percent = ((this.state.currentQuestionIndex + 1) / this.questions.length) * 100;
+                    progressFill.style.height = percent + '%';
+                }
             };
         }
     }, 100);
@@ -1401,16 +1424,87 @@
             transform: translateX(-50%) translateY(0) !important;
         }
 
-        /* Optimize question screen for viewport fit */
+        /* Optimize question screen for viewport fit with vertical progress */
+        .question-screen-layout {
+            display: flex;
+            gap: 1.5rem;
+            height: 100vh;
+            padding: 1rem;
+        }
+
+        .question-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         #question-screen .card {
             padding: 1rem !important;
-            max-height: 85vh;
+            max-height: 90vh;
+            width: 100%;
+            max-width: 900px;
             overflow-y: auto;
         }
 
+        /* Vertical progress bar on right */
+        .progress-sidebar {
+            width: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .progress-info-vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .progress-info-vertical #progress-percent {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #6C9E83;
+        }
+
+        .progress-info-vertical .progress-text {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .progress-info-vertical span:last-child {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .progress-bar-vertical {
+            flex: 1;
+            width: 8px;
+            background: #E8E8E8;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill-vertical {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(180deg, #7C9885 0%, #6A8A73 100%);
+            border-radius: 4px;
+            transition: height 0.5s ease;
+        }
+
+        /* Hide old progress container */
         .progress-container.compact {
-            padding: 0.5rem 0.75rem !important;
-            margin-bottom: 0.5rem !important;
+            display: none !important;
         }
 
         .question-header {
