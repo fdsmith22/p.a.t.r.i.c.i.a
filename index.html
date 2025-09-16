@@ -31,7 +31,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Neurlyn Stylesheets -->
     <link rel="stylesheet" href="styles/neurlyn.css">
@@ -45,8 +45,15 @@
     
     <style>
         /* Enhanced Landing Page Styles */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6C9E83 0%, #5A8A70 100%);
+            --soft-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
         body {
-            background: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #fafbfc 0%, #f3f5f7 50%, #ffffff 100%);
             min-height: 100vh;
         }
         
@@ -56,63 +63,283 @@
             justify-content: center;
             min-height: calc(100vh - 140px);
             padding: 3rem 0;
+            position: relative;
+        }
+
+        #disclaimer-screen::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(108, 158, 131, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        #disclaimer-screen::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 35%;
+            height: 35%;
+            background: radial-gradient(circle, rgba(108, 158, 131, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
         }
         
         .disclaimer-card {
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
-            padding: 4rem;
-            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            box-shadow: var(--soft-shadow);
+            padding: 5rem 4rem 4rem;
+            max-width: 1100px;
             margin: 0 auto;
-            border: 1px solid #e5e7eb;
+            border: 1px solid rgba(229, 231, 235, 0.5);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .disclaimer-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--hover-shadow);
         }
         
         .features-pricing-row {
-            margin: 2rem 0;
+            margin: 3rem 0;
         }
-        
+
         .feature-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
         }
         
         .feature-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(108, 158, 131, 0.15);
+            gap: 1rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(108, 158, 131, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(108, 158, 131, 0.15);
+            border-color: rgba(108, 158, 131, 0.25);
         }
         
         .feature-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             fill: #6C9E83;
+            flex-shrink: 0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
         
         .feature-item strong {
             display: block;
-            font-size: 1rem;
-            color: #1F2937;
-            margin-bottom: 0.25rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.05rem;
+            color: #1E293B;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            color: #64748B;
+            margin: 0;
+            font-weight: 400;
         }
         
-        .feature-item p {
-            font-size: 0.875rem;
-            color: #6B7280;
+        /* Pricing Cards Section */
+        .pricing-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid transparent;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .pricing-card.free {
+            border-color: rgba(108, 158, 131, 0.2);
+        }
+
+        .pricing-card.free:hover,
+        .pricing-card.free.active {
+            border-color: #6C9E83;
+            box-shadow: 0 10px 30px rgba(108, 158, 131, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.free.active::before {
+            background: var(--primary-gradient);
+        }
+
+        .pricing-card.premium {
+            border-color: rgba(147, 51, 234, 0.2);
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.02) 0%, rgba(147, 51, 234, 0.05) 100%);
+        }
+
+        .pricing-card.premium:hover,
+        .pricing-card.premium.active {
+            border-color: #9333EA;
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.premium.active::before {
+            background: linear-gradient(135deg, #9333EA 0%, #7C3AED 100%);
+        }
+
+        .pricing-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1E293B;
             margin: 0;
         }
-        
-        .assessment-selector {
+
+        .pricing-card-badge {
+            background: rgba(108, 158, 131, 0.1);
+            color: #6C9E83;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .pricing-card.premium .pricing-card-badge {
+            background: rgba(147, 51, 234, 0.1);
+            color: #9333EA;
+        }
+
+        .pricing-card-price {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0F172A;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .pricing-card-description {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            color: #64748B;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pricing-card-features li {
             display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        .pricing-card-features svg {
+            width: 20px;
+            height: 20px;
+            fill: #6C9E83;
+            flex-shrink: 0;
+        }
+
+        .pricing-card.premium .pricing-card-features svg {
+            fill: #9333EA;
+        }
+
+        .pricing-card-select {
+            display: flex;
+            align-items: center;
             justify-content: center;
-            margin-top: 2rem;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #CBD5E1;
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.active .pricing-card-select {
+            border-color: #6C9E83;
+            background: #6C9E83;
+        }
+
+        .pricing-card.premium.active .pricing-card-select {
+            border-color: #9333EA;
+            background: #9333EA;
+        }
+
+        .pricing-card.active .pricing-card-select::after {
+            content: '';
+            width: 8px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            margin-bottom: 2px;
+        }
+
+        .assessment-selector {
+            display: none;
         }
         
         .selector-tabs {
@@ -164,68 +391,134 @@
         .consent-row {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #e5e7eb;
+            gap: 1.25rem;
+            margin-top: 3rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(229, 231, 235, 0.5);
         }
         
         .consent-checkbox {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
             cursor: pointer;
-            font-size: 0.95rem;
-            color: #4B5563;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            color: #475569;
+            transition: color 0.2s ease;
+        }
+
+        .consent-checkbox:hover {
+            color: #1E293B;
         }
         
         .consent-checkbox input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             cursor: pointer;
             accent-color: #6C9E83;
+            border-radius: 6px;
         }
         
         #accept-disclaimer {
-            background: linear-gradient(135deg, #6C9E83 0%, #5A8A70 100%);
+            background: var(--primary-gradient);
             color: white;
             border: none;
-            padding: 1rem 2.5rem;
-            border-radius: 10px;
-            font-size: 1.1rem;
+            padding: 1.25rem 3rem;
+            border-radius: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.15rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            box-shadow: 0 4px 12px rgba(108, 158, 131, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 14px rgba(108, 158, 131, 0.25);
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        #accept-disclaimer::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        #accept-disclaimer:not(:disabled):hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
         #accept-disclaimer:not(:disabled):hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(108, 158, 131, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(108, 158, 131, 0.35);
         }
-        
+
         #accept-disclaimer:disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
             box-shadow: none;
+            background: #94A3B8;
         }
         
+        /* Subtle entrance animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .disclaimer-card h1 {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .disclaimer-card > p {
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .feature-row {
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .pricing-section {
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .consent-row {
+            animation: fadeInUp 0.6s ease-out 0.4s both;
+        }
+
         @media (max-width: 768px) {
             .feature-row {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
-            
+
             .disclaimer-card {
-                padding: 2rem 1.5rem;
+                padding: 3rem 2rem;
             }
-            
+
+            .pricing-section {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
             .selector-tabs {
                 flex-direction: column;
                 width: 100%;
             }
-            
+
             .selector-tab {
                 width: 100%;
             }
@@ -263,22 +556,22 @@
         <!-- Disclaimer Screen -->
         <section id="disclaimer-screen" class="screen active">
             <div class="card disclaimer-card ultra-wide">
-                <h1 style="font-size: 3rem; margin-bottom: 0.75rem; color: #1F2937; font-weight: 700; letter-spacing: -0.02em;">Welcome to Neurlyn</h1>
-                <p style="font-size: 1.25rem; color: #6B7280; margin-bottom: 3rem; line-height: 1.6;">Discover your unique personality profile through science-based assessments</p>
+                <h1 style="font-family: 'DM Sans', sans-serif; font-size: 3.5rem; margin-bottom: 1rem; color: #0F172A; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;">Welcome to Neurlyn</h1>
+                <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.35rem; color: #64748B; margin-bottom: 3.5rem; line-height: 1.7; font-weight: 400;">Discover your unique personality profile through science-based assessments</p>
                 
                 <div class="disclaimer-ultra-compact">
                     <div class="features-pricing-row">
                         <div class="feature-row compact">
                             <div class="feature-item">
                                 <svg class="feature-icon" viewBox="0 0 24 24">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/>
+                                    <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" fill="currentColor"/>
                                 </svg>
                                 <div>
                                     <strong>Smart Analysis</strong>
                                     <p>Big Five, ADHD, Autism</p>
                                 </div>
                             </div>
-                            
+
                             <div class="feature-item">
                                 <svg class="feature-icon" viewBox="0 0 24 24">
                                     <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" fill="currentColor"/>
@@ -288,7 +581,7 @@
                                     <p>No data stored</p>
                                 </div>
                             </div>
-                            
+
                             <div class="feature-item">
                                 <svg class="feature-icon" viewBox="0 0 24 24">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
@@ -299,7 +592,62 @@
                                 </div>
                             </div>
                         </div>
-                        
+
+                        <!-- Pricing Cards -->
+                        <div class="pricing-section">
+                            <div class="pricing-card free active" data-plan="free">
+                                <div class="pricing-card-select"></div>
+                                <div class="pricing-card-header">
+                                    <h3 class="pricing-card-title">Free Assessment</h3>
+                                    <span class="pricing-card-badge">Popular</span>
+                                </div>
+                                <p class="pricing-card-price">£0</p>
+                                <p class="pricing-card-description">Perfect for getting started with personality insights</p>
+                                <ul class="pricing-card-features">
+                                    <li>
+                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        5-minute quick assessment
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        Basic Big Five traits
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        Instant results
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="pricing-card premium" data-plan="premium">
+                                <div class="pricing-card-select"></div>
+                                <div class="pricing-card-header">
+                                    <h3 class="pricing-card-title">In-Depth Analysis</h3>
+                                    <span class="pricing-card-badge">Complete</span>
+                                </div>
+                                <p class="pricing-card-price">£1.99</p>
+                                <p class="pricing-card-description">Comprehensive neurodiversity screening with detailed insights</p>
+                                <ul class="pricing-card-features">
+                                    <li>
+                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        25-minute deep assessment
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        ADHD & Autism screening
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        Downloadable PDF report
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                                        Personalized recommendations
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <div class="assessment-selector compact">
                             <div class="selector-tabs compact">
                                 <button class="selector-tab compact active" data-plan="free">
@@ -525,10 +873,45 @@
         const ageCheck = document.getElementById('age-check');
         const acceptBtn = document.getElementById('accept-disclaimer');
         
-        // Setup pricing tab selection
+        // Setup pricing card selection
+        const pricingCards = document.querySelectorAll('.pricing-card');
         const pricingTabs = document.querySelectorAll('.selector-tab');
         const selectedDescription = document.getElementById('selected-description');
         
+        // Handle pricing card clicks
+        if (pricingCards.length > 0) {
+            pricingCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Remove active from all cards
+                    pricingCards.forEach(c => c.classList.remove('active'));
+                    // Add active to clicked card
+                    card.classList.add('active');
+
+                    // Update button text based on selection
+                    const plan = card.dataset.plan;
+                    if (plan === 'free') {
+                        if (acceptBtn) {
+                            acceptBtn.textContent = 'Start Free Assessment';
+                        }
+                    } else if (plan === 'premium') {
+                        if (acceptBtn) {
+                            acceptBtn.textContent = 'Start In-Depth Analysis - £1.99';
+                        }
+                    }
+
+                    // Also update legacy tabs if they exist
+                    pricingTabs.forEach(tab => {
+                        if (tab.dataset.plan === plan) {
+                            tab.classList.add('active');
+                        } else {
+                            tab.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        }
+
+        // Legacy tab support
         if (pricingTabs.length > 0) {
             pricingTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
@@ -536,7 +919,7 @@
                     pricingTabs.forEach(t => t.classList.remove('active'));
                     // Add active to clicked tab
                     tab.classList.add('active');
-                    
+
                     // Update description and button text based on selection
                     const plan = tab.dataset.plan;
                     if (plan === 'free') {
