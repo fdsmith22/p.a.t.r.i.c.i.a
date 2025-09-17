@@ -844,6 +844,13 @@
             </div>
         </section>
         
+        <!-- Adaptive Assessment Container -->
+        <section id="adaptive-assessment-screen" class="screen hidden">
+            <div id="assessment-container">
+                <!-- Adaptive assessment will be rendered here -->
+            </div>
+        </section>
+
         <!-- Results Screen -->
         <section id="results-screen" class="screen hidden">
             <div class="card compact">
@@ -1032,7 +1039,16 @@
     </script>
 
     <!-- Load Neurlyn Integrated App -->
-    <script type="module" src="js/neurlyn-integrated.js"></script>
+    <!-- Use API-integrated version for backend connection -->
+    <script type="module" src="js/neurlyn-api-integrated.js"></script>
+
+    <!-- Load Adaptive Assessment Integration -->
+    <script src="js/neurlyn-adaptive-integration.js"></script>
+
+    <!-- Load Report Components -->
+    <script src="js/comprehensive-report-generator.js"></script>
+    <script src="js/report-display-component.js"></script>
+    <link rel="stylesheet" href="styles/neurlyn-report.css">
 
     <!-- Override service worker initialization to prevent errors -->
     <script>
@@ -1042,6 +1058,58 @@
             window.neurlynApp.initServiceWorker = function() {
                 console.log('Service Worker disabled - sw.js file not available');
             };
+        }
+
+        // Override the start assessment button to use adaptive assessment
+        const startBtn = document.getElementById('start-assessment');
+        if (startBtn) {
+            startBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Get selected mode and tier
+                const selectedMode = window.neurlynApp?.state?.currentMode || 'standard';
+                const selectedTrack = window.neurlynApp?.state?.assessmentTrack || 'comprehensive';
+
+                // Map mode to tier for adaptive system
+                const tierMap = {
+                    'quick': 'quick',
+                    'standard': 'standard',
+                    'deep': 'deep'
+                };
+
+                const tier = tierMap[selectedMode] || 'standard';
+
+                // Hide welcome screen
+                document.getElementById('welcome-screen').classList.add('hidden');
+
+                // Show adaptive assessment screen
+                document.getElementById('adaptive-assessment-screen').classList.remove('hidden');
+
+                // Start adaptive assessment
+                if (window.assessment) {
+                    // Map track to concerns
+                    const concernsMap = {
+                        'personality': [],
+                        'neurodiversity': ['attention', 'social', 'sensory'],
+                        'comprehensive': ['attention', 'social', 'sensory', 'emotional']
+                    };
+
+                    const concerns = concernsMap[selectedTrack] || [];
+
+                    // Start the assessment
+                    window.assessment.startAssessment({
+                        tier: tier,
+                        concerns: concerns
+                    });
+                } else {
+                    console.error('Adaptive assessment not loaded');
+                    // Fallback to regular assessment
+                    if (window.neurlynApp && window.neurlynApp.startAssessment) {
+                        window.neurlynApp.startAssessment();
+                    }
+                }
+            });
         }
     }, 100);
 
@@ -1752,6 +1820,315 @@
             .mode-selection .mode-grid {
                 flex-direction: column;
             }
+        }
+
+        /* Adaptive Assessment Styles */
+        #adaptive-assessment-screen {
+            min-height: calc(100vh - 120px);
+            padding: 1rem;
+        }
+
+        #assessment-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .neurlyn-assessment {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(124, 152, 133, 0.1);
+        }
+
+        .assessment-header {
+            margin-bottom: 2rem;
+        }
+
+        .progress-container {
+            background: rgba(124, 152, 133, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(124, 152, 133, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #7C9885 0%, #6A8A73 100%);
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #6A8A73;
+            font-size: 0.9rem;
+        }
+
+        .pathway-indicators {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .pathway-indicator {
+            background: rgba(124, 152, 133, 0.1);
+            color: #6A8A73;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .pathway-indicator.active {
+            background: #7C9885;
+            color: white;
+        }
+
+        .question-card {
+            background: white;
+            padding: 2rem;
+            min-height: 300px;
+            display: none;
+        }
+
+        .question-card.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .question-category,
+        .question-subcategory {
+            display: inline-block;
+            background: rgba(124, 152, 133, 0.1);
+            color: #6A8A73;
+            padding: 0.25rem 0.75rem;
+            border-radius: 8px;
+            margin-right: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            margin: 1.5rem 0;
+            color: var(--nordic-charcoal);
+        }
+
+        .response-options {
+            margin: 2rem 0;
+        }
+
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .likert-option {
+            flex: 1;
+            text-align: center;
+            cursor: pointer;
+            padding: 1rem;
+            border: 2px solid rgba(124, 152, 133, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .likert-option:hover {
+            border-color: #7C9885;
+            background: rgba(124, 152, 133, 0.05);
+        }
+
+        .likert-option input {
+            display: none;
+        }
+
+        .likert-option input:checked ~ .likert-label {
+            font-weight: 600;
+        }
+
+        .likert-option input:checked ~ .likert-label::after {
+            content: '✓';
+            display: block;
+            color: #7C9885;
+            margin-top: 0.25rem;
+        }
+
+        .navigation-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(124, 152, 133, 0.1);
+        }
+
+        .navigation-controls button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary {
+            background: white;
+            border: 1px solid rgba(124, 152, 133, 0.3);
+            color: #6A8A73;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: rgba(124, 152, 133, 0.05);
+            border-color: #7C9885;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
+            border: none;
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(135deg, #8CA595 0%, #7C9885 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 152, 133, 0.3);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .assessment-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(124, 152, 133, 0.1);
+        }
+
+        .tier-badge {
+            background: rgba(124, 152, 133, 0.1);
+            color: #6A8A73;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .time-estimate {
+            color: #888;
+            font-size: 0.85rem;
+            align-self: center;
+        }
+
+        .loading-state,
+        .error-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(124, 152, 133, 0.2);
+            border-top-color: #7C9885;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .toast-message {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--nordic-charcoal);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .assessment-complete {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .complete-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 1rem;
+        }
+
+        .summary-card {
+            background: rgba(124, 152, 133, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .confidence-meter {
+            margin: 1rem 0;
+        }
+
+        .confidence-bar {
+            height: 12px;
+            background: rgba(124, 152, 133, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #7C9885 0%, #6A8A73 100%);
+        }
+
+        .pathways-activated,
+        .quick-recommendations {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        .pathway-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .pathway-badge {
+            background: #7C9885;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
         }
     </style>
 

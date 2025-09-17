@@ -1,0 +1,52 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-var": "error",
+    "prefer-const": "error",
+    "prefer-arrow-callback": "error",
+    "prefer-template": "error",
+    "object-shorthand": "error",
+    "no-duplicate-imports": "error",
+    "no-useless-constructor": "error",
+    "no-useless-return": "error",
+    "no-else-return": "error",
+    "no-lonely-if": "error",
+    "no-nested-ternary": "error",
+    "max-depth": ["error", 3],
+    "max-lines": ["warn", 500],
+    "max-params": ["warn", 4],
+    "complexity": ["warn", 15]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+      }
+    }
+  ]
+}

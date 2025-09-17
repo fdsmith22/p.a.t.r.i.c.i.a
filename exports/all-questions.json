@@ -1,0 +1,6320 @@
+[
+  {
+    "_id": "68ca96e3f0a3af7ffb1e3fec",
+    "questionId": "STD_OPENNESS_1",
+    "text": "When I discover a hidden path while walking, I usually take it to see where it leads",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e3fed"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e3fee"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e3fef"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e3ff0"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e3ff1"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "When I discover a hidden path while walking, I usually take it to see where it leads",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e3ff2"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.921Z",
+    "updatedAt": "2025-09-17T11:09:23.921Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e3ff3",
+    "questionId": "STD_OPENNESS_2",
+    "text": "I get excited when someone recommends music from a genre I've never explored",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e3ff4"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e3ff5"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e3ff6"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e3ff7"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e3ff8"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I get excited when someone recommends music from a genre I've never explored",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e3ff9"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e3ffa",
+    "questionId": "STD_OPENNESS_3",
+    "text": "I prefer restaurants where I can order the same dish I love every time",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e3ffb"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e3ffc"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e3ffd"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e3ffe"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e3fff"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I prefer restaurants where I can order the same dish I love every time",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4000"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4001",
+    "questionId": "STD_OPENNESS_4",
+    "text": "Abstract art often speaks to me in ways I can't quite explain",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4002"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4003"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4004"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4005"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4006"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Abstract art often speaks to me in ways I can't quite explain",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4007"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4008",
+    "questionId": "STD_OPENNESS_5",
+    "text": "I enjoy conversations that challenge my fundamental beliefs",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4009"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e400a"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e400b"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e400c"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e400d"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I enjoy conversations that challenge my fundamental beliefs",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e400e"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e400f",
+    "questionId": "STD_OPENNESS_6",
+    "text": "When traveling, I prefer having every detail planned in advance",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4010"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4011"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4012"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4013"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4014"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "When traveling, I prefer having every detail planned in advance",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4015"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4016",
+    "questionId": "STD_OPENNESS_7",
+    "text": "I often find myself lost in Wikipedia rabbit holes for hours",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4017"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4018"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4019"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e401a"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e401b"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I often find myself lost in Wikipedia rabbit holes for hours",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e401c"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e401d",
+    "questionId": "STD_OPENNESS_8",
+    "text": "I'd rather watch a documentary about quantum physics than a romantic comedy",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e401e"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e401f"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4020"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4021"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4022"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I'd rather watch a documentary about quantum physics than a romantic comedy",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4023"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4024",
+    "questionId": "STD_CONSCIENTIOUSNESS_1",
+    "text": "My workspace naturally stays organized without much effort",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4025"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4026"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4027"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4028"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4029"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "My workspace naturally stays organized without much effort",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e402a"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e402b",
+    "questionId": "STD_CONSCIENTIOUSNESS_2",
+    "text": "I often start projects with enthusiasm but struggle to finish them",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e402c"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e402d"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e402e"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e402f"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4030"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I often start projects with enthusiasm but struggle to finish them",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4031"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4032",
+    "questionId": "STD_CONSCIENTIOUSNESS_3",
+    "text": "I arrive at least 10 minutes early to appointments",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4033"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4034"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4035"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4036"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4037"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I arrive at least 10 minutes early to appointments",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4038"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4039",
+    "questionId": "STD_CONSCIENTIOUSNESS_4",
+    "text": "My to-do lists have sub-lists with their own sub-lists",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e403a"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e403b"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e403c"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e403d"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e403e"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "My to-do lists have sub-lists with their own sub-lists",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e403f"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4040",
+    "questionId": "STD_CONSCIENTIOUSNESS_5",
+    "text": "I can work effectively even when my environment is chaotic",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4041"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4042"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4043"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4044"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4045"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I can work effectively even when my environment is chaotic",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4046"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4047",
+    "questionId": "STD_CONSCIENTIOUSNESS_6",
+    "text": "I review my work multiple times before considering it complete",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4048"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4049"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e404a"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e404b"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e404c"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I review my work multiple times before considering it complete",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e404d"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.922Z",
+    "updatedAt": "2025-09-17T11:09:23.922Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e404e",
+    "questionId": "STD_CONSCIENTIOUSNESS_7",
+    "text": "Deadlines motivate me - I work best under pressure",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e404f"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4050"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4051"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4052"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4053"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Deadlines motivate me - I work best under pressure",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4054"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4055",
+    "questionId": "STD_CONSCIENTIOUSNESS_8",
+    "text": "I keep track of my expenses down to the penny",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4056"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4057"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4058"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4059"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e405a"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I keep track of my expenses down to the penny",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e405b"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e405c",
+    "questionId": "STD_EXTRAVERSION_1",
+    "text": "After a long week, a crowded party sounds perfect",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e405d"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e405e"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e405f"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4060"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4061"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "After a long week, a crowded party sounds perfect",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4062"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4063",
+    "questionId": "STD_EXTRAVERSION_2",
+    "text": "I need alone time to recharge after social events",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4064"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4065"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4066"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4067"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4068"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I need alone time to recharge after social events",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4069"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e406a",
+    "questionId": "STD_EXTRAVERSION_3",
+    "text": "I naturally take charge when working in groups",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e406b"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e406c"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e406d"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e406e"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e406f"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I naturally take charge when working in groups",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4070"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4071",
+    "questionId": "STD_EXTRAVERSION_4",
+    "text": "Small talk with strangers energizes me",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4072"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4073"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4074"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4075"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4076"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Small talk with strangers energizes me",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4077"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4078",
+    "questionId": "STD_EXTRAVERSION_5",
+    "text": "I prefer texting over phone calls",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4079"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e407a"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e407b"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e407c"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e407d"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I prefer texting over phone calls",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e407e"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e407f",
+    "questionId": "STD_EXTRAVERSION_6",
+    "text": "Being the center of attention feels natural to me",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4080"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4081"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4082"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4083"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4084"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Being the center of attention feels natural to me",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4085"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4086",
+    "questionId": "STD_EXTRAVERSION_7",
+    "text": "I do my best thinking when talking ideas through with others",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4087"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4088"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4089"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e408a"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e408b"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I do my best thinking when talking ideas through with others",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e408c"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e408d",
+    "questionId": "STD_EXTRAVERSION_8",
+    "text": "I'd choose a quiet coffee shop over a bustling café",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e408e"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e408f"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4090"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4091"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4092"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I'd choose a quiet coffee shop over a bustling café",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4093"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4094",
+    "questionId": "STD_AGREEABLENESS_1",
+    "text": "I instinctively trust people until they prove otherwise",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "agreeableness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4095"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4096"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4097"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4098"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4099"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I instinctively trust people until they prove otherwise",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e409a"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e409b",
+    "questionId": "STD_AGREEABLENESS_2",
+    "text": "I find it satisfying when someone who wronged me faces consequences",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "agreeableness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e409c"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e409d"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e409e"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e409f"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40a0"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I find it satisfying when someone who wronged me faces consequences",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40a1"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40a2",
+    "questionId": "STD_AGREEABLENESS_3",
+    "text": "I often go out of my way to help strangers",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "agreeableness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40a3"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40a4"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40a5"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40a6"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40a7"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I often go out of my way to help strangers",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40a8"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40a9",
+    "questionId": "STD_AGREEABLENESS_4",
+    "text": "In negotiations, I focus on what I can gain rather than mutual benefit",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "agreeableness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40aa"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40ab"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40ac"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40ad"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40ae"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "In negotiations, I focus on what I can gain rather than mutual benefit",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40af"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40b0",
+    "questionId": "STD_AGREEABLENESS_5",
+    "text": "Seeing others succeed genuinely makes me happy",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "agreeableness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40b1"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40b2"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40b3"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40b4"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40b5"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Seeing others succeed genuinely makes me happy",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40b6"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40b7",
+    "questionId": "STD_AGREEABLENESS_6",
+    "text": "I believe most people would take advantage if given the chance",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "agreeableness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40b8"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40b9"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40ba"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40bb"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40bc"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I believe most people would take advantage if given the chance",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40bd"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40be",
+    "questionId": "STD_AGREEABLENESS_7",
+    "text": "I tend to forgive easily and rarely hold grudges",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "agreeableness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40bf"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40c0"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40c1"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40c2"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40c3"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I tend to forgive easily and rarely hold grudges",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40c4"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40c5",
+    "questionId": "STD_AGREEABLENESS_8",
+    "text": "I enjoy debates where I can prove my point",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "agreeableness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40c6"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40c7"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40c8"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40c9"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40ca"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I enjoy debates where I can prove my point",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40cb"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40cc",
+    "questionId": "STD_NEUROTICISM_1",
+    "text": "Minor setbacks can affect my mood for the entire day",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "neuroticism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40cd"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40ce"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40cf"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40d0"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40d1"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Minor setbacks can affect my mood for the entire day",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40d2"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40d3",
+    "questionId": "STD_NEUROTICISM_2",
+    "text": "I remain calm even when everything seems to go wrong",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "neuroticism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40d4"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40d5"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40d6"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40d7"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40d8"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I remain calm even when everything seems to go wrong",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40d9"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40da",
+    "questionId": "STD_NEUROTICISM_3",
+    "text": "I often replay embarrassing moments from years ago",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "neuroticism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40db"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40dc"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40dd"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40de"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40df"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I often replay embarrassing moments from years ago",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40e0"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40e1",
+    "questionId": "STD_NEUROTICISM_4",
+    "text": "Uncertainty excites me rather than worries me",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "neuroticism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40e2"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40e3"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40e4"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40e5"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40e6"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Uncertainty excites me rather than worries me",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40e7"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40e8",
+    "questionId": "STD_NEUROTICISM_5",
+    "text": "I check my sent emails multiple times to ensure they were okay",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "neuroticism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40e9"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40ea"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40eb"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40ec"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40ed"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I check my sent emails multiple times to ensure they were okay",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40ee"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40ef",
+    "questionId": "STD_NEUROTICISM_6",
+    "text": "I sleep soundly even before important events",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "neuroticism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40f0"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40f1"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40f2"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40f3"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40f4"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I sleep soundly even before important events",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40f5"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40f6",
+    "questionId": "STD_NEUROTICISM_7",
+    "text": "Small changes in routine make me anxious",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "neuroticism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e40f7"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e40f8"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e40f9"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40fa"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40fb"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Small changes in routine make me anxious",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e40fc"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e40fd",
+    "questionId": "STD_NEUROTICISM_8",
+    "text": "I can laugh at myself when I make mistakes",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "neuroticism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e40fe"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e40ff"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4100"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4101"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4102"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I can laugh at myself when I make mistakes",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4103"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4104",
+    "questionId": "STD_BEHAVIORAL_1",
+    "text": "I keep my phone on silent to avoid distractions",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4105"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4106"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4107"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4108"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4109"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I keep my phone on silent to avoid distractions",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e410a"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e410b",
+    "questionId": "STD_BEHAVIORAL_2",
+    "text": "I've stayed up all night pursuing a fascinating topic",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e410c"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e410d"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e410e"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e410f"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4110"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I've stayed up all night pursuing a fascinating topic",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4111"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4112",
+    "questionId": "STD_BEHAVIORAL_3",
+    "text": "I prefer working alone on important projects",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4113"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4114"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4115"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4116"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4117"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I prefer working alone on important projects",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4118"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.923Z",
+    "updatedAt": "2025-09-17T11:09:23.923Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4119",
+    "questionId": "STD_BEHAVIORAL_4",
+    "text": "I double-check locks and appliances before leaving home",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "neuroticism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e411a"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e411b"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e411c"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e411d"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e411e"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I double-check locks and appliances before leaving home",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e411f"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4120",
+    "questionId": "STD_BEHAVIORAL_5",
+    "text": "I share my food without being asked",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "agreeableness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4121"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4122"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4123"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4124"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4125"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I share my food without being asked",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4126"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4127",
+    "questionId": "STD_BEHAVIORAL_6",
+    "text": "I color-code my calendar and notes",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4128"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4129"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e412a"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e412b"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e412c"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I color-code my calendar and notes",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e412d"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e412e",
+    "questionId": "STD_BEHAVIORAL_7",
+    "text": "I enjoy movies that leave the ending open to interpretation",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e412f"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4130"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4131"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4132"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4133"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I enjoy movies that leave the ending open to interpretation",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4134"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4135",
+    "questionId": "STD_BEHAVIORAL_8",
+    "text": "I feel drained after video calls, even with friends",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4136"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4137"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4138"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4139"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e413a"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I feel drained after video calls, even with friends",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e413b"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e413c",
+    "questionId": "STD_SITUATIONAL_1",
+    "text": "If I won the lottery, I'd invest most of it rather than spend it",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e413d"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e413e"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e413f"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4140"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4141"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "If I won the lottery, I'd invest most of it rather than spend it",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4142"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4143",
+    "questionId": "STD_SITUATIONAL_2",
+    "text": "At a museum, I read every placard thoroughly",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4144"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4145"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4146"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4147"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4148"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "At a museum, I read every placard thoroughly",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4149"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e414a",
+    "questionId": "STD_SITUATIONAL_3",
+    "text": "In group photos, I naturally position myself in the center",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e414b"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e414c"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e414d"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e414e"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e414f"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "In group photos, I naturally position myself in the center",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4150"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4151",
+    "questionId": "STD_SITUATIONAL_4",
+    "text": "When someone cuts in line, I speak up immediately",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "agreeableness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4152"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4153"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4154"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4155"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4156"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "When someone cuts in line, I speak up immediately",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4157"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4158",
+    "questionId": "STD_SITUATIONAL_5",
+    "text": "Before a trip, I research everything that could go wrong",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "neuroticism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4159"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e415a"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e415b"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e415c"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e415d"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Before a trip, I research everything that could go wrong",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e415e"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e415f",
+    "questionId": "STD_SITUATIONAL_6",
+    "text": "I notice when picture frames are slightly crooked",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4160"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4161"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4162"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4163"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4164"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I notice when picture frames are slightly crooked",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4165"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4166",
+    "questionId": "STD_SITUATIONAL_7",
+    "text": "I'd rather explore a new city without a map or guide",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4167"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4168"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4169"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e416a"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e416b"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I'd rather explore a new city without a map or guide",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e416c"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e416d",
+    "questionId": "STD_SITUATIONAL_8",
+    "text": "At parties, I'm usually the last to leave",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e416e"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e416f"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4170"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4171"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4172"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "At parties, I'm usually the last to leave",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4173"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4174",
+    "questionId": "STD_PREFERENCES_1",
+    "text": "I prefer fiction that explores impossible worlds over realistic stories",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "openness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4175"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4176"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4177"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4178"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4179"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I prefer fiction that explores impossible worlds over realistic stories",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e417a"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e417b",
+    "questionId": "STD_PREFERENCES_2",
+    "text": "My ideal vacation involves a detailed itinerary",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "conscientiousness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e417c"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e417d"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e417e"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e417f"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4180"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "My ideal vacation involves a detailed itinerary",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4181"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4182",
+    "questionId": "STD_PREFERENCES_3",
+    "text": "I'd choose dinner with one close friend over a party with twenty acquaintances",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "extraversion",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4183"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4184"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4185"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4186"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4187"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I'd choose dinner with one close friend over a party with twenty acquaintances",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4188"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4189",
+    "questionId": "STD_PREFERENCES_4",
+    "text": "I enjoy competitive activities more than cooperative ones",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "agreeableness",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e418a"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e418b"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e418c"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e418d"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e418e"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I enjoy competitive activities more than cooperative ones",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e418f"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4190",
+    "questionId": "STD_PREFERENCES_5",
+    "text": "I prefer predictable routines over spontaneous adventures",
+    "category": "personality",
+    "instrument": "BFI-2-Extended",
+    "trait": "neuroticism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Strongly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4191"
+      },
+      {
+        "value": 2,
+        "label": "Disagree",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4192"
+      },
+      {
+        "value": 3,
+        "label": "Neutral",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4193"
+      },
+      {
+        "value": 4,
+        "label": "Agree",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4194"
+      },
+      {
+        "value": 5,
+        "label": "Strongly Agree",
+        "score": 5,
+        "_id": "68ca96e3f0a3af7ffb1e4195"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "free",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "I prefer predictable routines over spontaneous adventures",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4196"
+      }
+    ],
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "2.0",
+      "scientificSource": "Big Five Inventory",
+      "validationStudy": "Internal validation pending"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4197",
+    "questionId": "O1",
+    "text": "You discover a door in your home you've never noticed before. What do you do?",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "openness",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Immediately open it to explore",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4198"
+      },
+      {
+        "value": 1,
+        "label": "Research the house's history first",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4199"
+      },
+      {
+        "value": 2,
+        "label": "Ask others if they've seen it",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e419a"
+      },
+      {
+        "value": 3,
+        "label": "Leave it alone - it was hidden for a reason",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e419b"
+      },
+      {
+        "value": 4,
+        "label": "Test if it's real or imagined",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e419c"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You discover a door in your home you've never noticed before. What do you do?",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e419d"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e419e",
+    "questionId": "O2",
+    "text": "If colors had personalities, which would be the leader?",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "openness",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Red - bold and commanding",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e419f"
+      },
+      {
+        "value": 1,
+        "label": "Blue - calm and strategic",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41a0"
+      },
+      {
+        "value": 2,
+        "label": "Gold - prestigious and traditional",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41a1"
+      },
+      {
+        "value": 3,
+        "label": "Purple - mysterious and wise",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41a2"
+      },
+      {
+        "value": 4,
+        "label": "Green - balanced and growth-oriented",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41a3"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "If colors had personalities, which would be the leader?",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41a4"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41a5",
+    "questionId": "O3",
+    "text": "You can speak to one type of animal for a day. Which provides the most valuable insights?",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "openness",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Birds - they see everything from above",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41a6"
+      },
+      {
+        "value": 1,
+        "label": "Cats - they know secrets of independence",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41a7"
+      },
+      {
+        "value": 2,
+        "label": "Dogs - they understand loyalty",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41a8"
+      },
+      {
+        "value": 3,
+        "label": "Ants - they've mastered cooperation",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41a9"
+      },
+      {
+        "value": 4,
+        "label": "Dolphins - they play while being intelligent",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41aa"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You can speak to one type of animal for a day. Which provides the most valuable insights?",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41ab"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41ac",
+    "questionId": "C1",
+    "text": "You're given a magic notebook that makes written plans happen. What's your first concern?",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "conscientiousness",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "My handwriting might cause misinterpretations",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41ad"
+      },
+      {
+        "value": 1,
+        "label": "I need to plan the perfect first entry",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41ae"
+      },
+      {
+        "value": 2,
+        "label": "What if I change my mind later?",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41af"
+      },
+      {
+        "value": 3,
+        "label": "Testing with something small first",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41b0"
+      },
+      {
+        "value": 4,
+        "label": "Whether I deserve this power",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41b1"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You're given a magic notebook that makes written plans happen. What's your first concern?",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41b2"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41b3",
+    "questionId": "C2",
+    "text": "Your life is a video game. What's your biggest achievement?",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "conscientiousness",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "100% completion rate",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41b4"
+      },
+      {
+        "value": 1,
+        "label": "Speedrun record holder",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41b5"
+      },
+      {
+        "value": 2,
+        "label": "Most creative solutions",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41b6"
+      },
+      {
+        "value": 3,
+        "label": "Helping most other players",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41b7"
+      },
+      {
+        "value": 4,
+        "label": "Finding all easter eggs",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41b8"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Your life is a video game. What's your biggest achievement?",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41b9"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41ba",
+    "questionId": "C3",
+    "text": "You must organize a library where books arrange themselves by...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "conscientiousness",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "How much they've changed someone's life",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41bb"
+      },
+      {
+        "value": 1,
+        "label": "The emotions they evoke",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41bc"
+      },
+      {
+        "value": 2,
+        "label": "Their hidden connections to each other",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41bd"
+      },
+      {
+        "value": 3,
+        "label": "The questions they answer",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41be"
+      },
+      {
+        "value": 4,
+        "label": "The worlds they create",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41bf"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You must organize a library where books arrange themselves by...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41c0"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41c1",
+    "questionId": "E1",
+    "text": "You're a battery. What charges you most efficiently?",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "extraversion",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Being plugged into a group celebration",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41c2"
+      },
+      {
+        "value": 1,
+        "label": "Solar power from quiet contemplation",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41c3"
+      },
+      {
+        "value": 2,
+        "label": "Quick bursts from brief interactions",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41c4"
+      },
+      {
+        "value": 3,
+        "label": "Slow steady charge from one deep connection",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41c5"
+      },
+      {
+        "value": 4,
+        "label": "Wireless charging from being near others",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41c6"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You're a battery. What charges you most efficiently?",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41c7"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41c8",
+    "questionId": "E2",
+    "text": "In a world where thoughts are visible as colors above heads, you prefer...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "extraversion",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Vibrant rainbow crowds - so much to see",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41c9"
+      },
+      {
+        "value": 1,
+        "label": "Subtle pastels - gentle and non-intrusive",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41ca"
+      },
+      {
+        "value": 2,
+        "label": "Bold primaries - clear and direct",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41cb"
+      },
+      {
+        "value": 3,
+        "label": "Invisible option - privacy matters",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41cc"
+      },
+      {
+        "value": 4,
+        "label": "Selective visibility - control who sees",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41cd"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "In a world where thoughts are visible as colors above heads, you prefer...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41ce"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41cf",
+    "questionId": "E3",
+    "text": "You're designing a personal workspace. The walls are...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "extraversion",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Glass - see and be seen",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41d0"
+      },
+      {
+        "value": 1,
+        "label": "One-way mirrors - observe but private",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41d1"
+      },
+      {
+        "value": 2,
+        "label": "Convertible - walls that appear/disappear",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41d2"
+      },
+      {
+        "value": 3,
+        "label": "Covered in interaction points",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41d3"
+      },
+      {
+        "value": 4,
+        "label": "Soundproof but with windows",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41d4"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You're designing a personal workspace. The walls are...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41d5"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41d6",
+    "questionId": "A1",
+    "text": "You find a wallet with $1000. The ID shows someone wealthy. Your first thought?",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "agreeableness",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Return it immediately - it's theirs",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41d7"
+      },
+      {
+        "value": 1,
+        "label": "Donate the cash, return the wallet",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41d8"
+      },
+      {
+        "value": 2,
+        "label": "Check if there's a reward first",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41d9"
+      },
+      {
+        "value": 3,
+        "label": "They won't miss it as much as I need it",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41da"
+      },
+      {
+        "value": 4,
+        "label": "Post online to find them publicly",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41db"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You find a wallet with $1000. The ID shows someone wealthy. Your first thought?",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41dc"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41dd",
+    "questionId": "A2",
+    "text": "In a game where you can only win if others lose, you...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "agreeableness",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Find a way for everyone to win instead",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41de"
+      },
+      {
+        "value": 1,
+        "label": "Win efficiently to minimize their loss",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41df"
+      },
+      {
+        "value": 2,
+        "label": "Play your best - that's the game",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41e0"
+      },
+      {
+        "value": 3,
+        "label": "Let others win sometimes",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41e1"
+      },
+      {
+        "value": 4,
+        "label": "Refuse to play",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41e2"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "In a game where you can only win if others lose, you...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41e3"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41e4",
+    "questionId": "A3",
+    "text": "You can read emotions as weather patterns around people. You focus on...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "agreeableness",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Storm warnings to offer help",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41e5"
+      },
+      {
+        "value": 1,
+        "label": "Sunny people to enjoy their energy",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41e6"
+      },
+      {
+        "value": 2,
+        "label": "Your own forecast first",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41e7"
+      },
+      {
+        "value": 3,
+        "label": "Overall climate of the room",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41e8"
+      },
+      {
+        "value": 4,
+        "label": "Interesting unusual patterns",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41e9"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You can read emotions as weather patterns around people. You focus on...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41ea"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41eb",
+    "questionId": "N1",
+    "text": "Your emotions are playlist. What's on repeat most often?",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "neuroticism",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Carefully curated mix - balanced",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41ec"
+      },
+      {
+        "value": 1,
+        "label": "Whatever's trending - goes with flow",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41ed"
+      },
+      {
+        "value": 2,
+        "label": "Same comfort songs - predictable",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41ee"
+      },
+      {
+        "value": 3,
+        "label": "Wildly varies - emotional DJ",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41ef"
+      },
+      {
+        "value": 4,
+        "label": "Trying to find the off button",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41f0"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Your emotions are playlist. What's on repeat most often?",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41f1"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.924Z",
+    "updatedAt": "2025-09-17T11:09:23.924Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41f2",
+    "questionId": "N2",
+    "text": "You're sailing a boat. A storm approaches. Your instinct?",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "neuroticism",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Sail straight through - fastest route",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41f3"
+      },
+      {
+        "value": 1,
+        "label": "Find shelter immediately",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41f4"
+      },
+      {
+        "value": 2,
+        "label": "Enjoy the thrill of the challenge",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41f5"
+      },
+      {
+        "value": 3,
+        "label": "Calculate optimal path around it",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41f6"
+      },
+      {
+        "value": 4,
+        "label": "Prepare for worst while hoping for best",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41f7"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You're sailing a boat. A storm approaches. Your instinct?",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41f8"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e41f9",
+    "questionId": "N3",
+    "text": "Your mind is a house. The basement contains...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "neuroticism",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Organized archive of experiences",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e41fa"
+      },
+      {
+        "value": 1,
+        "label": "Things I'm not ready to sort yet",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e41fb"
+      },
+      {
+        "value": 2,
+        "label": "I don't go down there",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e41fc"
+      },
+      {
+        "value": 3,
+        "label": "Hidden treasures and old fears",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e41fd"
+      },
+      {
+        "value": 4,
+        "label": "Workshop where I process things",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e41fe"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "Your mind is a house. The basement contains...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e41ff"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4200",
+    "questionId": "M1",
+    "text": "You wake up with the ability to freeze time for everyone but you. First hour?",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "mixed",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Fix things people are struggling with",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4201"
+      },
+      {
+        "value": 1,
+        "label": "Explore places I couldn't normally",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4202"
+      },
+      {
+        "value": 2,
+        "label": "Catch up on everything I'm behind on",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4203"
+      },
+      {
+        "value": 3,
+        "label": "Study frozen moments like art",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4204"
+      },
+      {
+        "value": 4,
+        "label": "Plan how to use this responsibly",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4205"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You wake up with the ability to freeze time for everyone but you. First hour?",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4206"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4207",
+    "questionId": "M2",
+    "text": "You're writing your autobiography but each chapter must be a different genre. Chapter 1 is...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "mixed",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Mystery - understanding myself",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4208"
+      },
+      {
+        "value": 1,
+        "label": "Adventure - all the risks I took",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4209"
+      },
+      {
+        "value": 2,
+        "label": "Comedy - laughing at my mistakes",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e420a"
+      },
+      {
+        "value": 3,
+        "label": "Drama - the relationships that shaped me",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e420b"
+      },
+      {
+        "value": 4,
+        "label": "Science fiction - who I'm becoming",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e420c"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You're writing your autobiography but each chapter must be a different genre. Chapter 1 is...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e420d"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e420e",
+    "questionId": "M3",
+    "text": "You discover your reflection sometimes does things differently than you. This means...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "mixed",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "I'm seeing my potential self",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e420f"
+      },
+      {
+        "value": 1,
+        "label": "My subconscious is communicating",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4210"
+      },
+      {
+        "value": 2,
+        "label": "Parallel universe crossing over",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4211"
+      },
+      {
+        "value": 3,
+        "label": "I need to pay attention to what I'm suppressing",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4212"
+      },
+      {
+        "value": 4,
+        "label": "Time to experiment with the mirror",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4213"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You discover your reflection sometimes does things differently than you. This means...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4214"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4215",
+    "questionId": "M4",
+    "text": "In dreams, you always return to the same mysterious place. It's...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "mixed",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "A library with books I've never read",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4216"
+      },
+      {
+        "value": 1,
+        "label": "A garden where each plant is a memory",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4217"
+      },
+      {
+        "value": 2,
+        "label": "An empty theater waiting for performance",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4218"
+      },
+      {
+        "value": 3,
+        "label": "A workshop full of unfinished projects",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4219"
+      },
+      {
+        "value": 4,
+        "label": "A crossroads with infinite paths",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e421a"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "In dreams, you always return to the same mysterious place. It's...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e421b"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e421c",
+    "questionId": "P1",
+    "text": "You're tasked with designing a new emotion. It feels like...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "mixed",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "The moment before a first kiss",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e421d"
+      },
+      {
+        "value": 1,
+        "label": "Solving a puzzle after hours of trying",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e421e"
+      },
+      {
+        "value": 2,
+        "label": "Finding something you didn't know you lost",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e421f"
+      },
+      {
+        "value": 3,
+        "label": "The silence after perfect music ends",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4220"
+      },
+      {
+        "value": 4,
+        "label": "Watching someone become who they're meant to be",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4221"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You're tasked with designing a new emotion. It feels like...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4222"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4223",
+    "questionId": "P2",
+    "text": "If your personality was a recipe, the main ingredient would be...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "mixed",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Curiosity with a dash of chaos",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4224"
+      },
+      {
+        "value": 1,
+        "label": "Reliability slow-cooked to perfection",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4225"
+      },
+      {
+        "value": 2,
+        "label": "Enthusiasm with surprise spices",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4226"
+      },
+      {
+        "value": 3,
+        "label": "Carefully measured empathy",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4227"
+      },
+      {
+        "value": 4,
+        "label": "Adaptability with seasonal variations",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4228"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "If your personality was a recipe, the main ingredient would be...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4229"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e422a",
+    "questionId": "P3",
+    "text": "You're an architect of realities. Your signature style includes...",
+    "category": "lateral",
+    "instrument": "LATERAL_THINKING",
+    "trait": "mixed",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": 0,
+        "label": "Hidden doors to everywhere",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e422b"
+      },
+      {
+        "value": 1,
+        "label": "Rooms that adapt to occupants' needs",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e422c"
+      },
+      {
+        "value": 2,
+        "label": "Windows showing different times",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e422d"
+      },
+      {
+        "value": 3,
+        "label": "Spaces that connect distant people",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e422e"
+      },
+      {
+        "value": 4,
+        "label": "Structures that grow and evolve",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e422f"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.2,
+    "tier": "comprehensive",
+    "variations": [
+      {
+        "language": "en-US",
+        "text": "You're an architect of realities. Your signature style includes...",
+        "culturalAdaptation": "original",
+        "_id": "68ca96e3f0a3af7ffb1e4230"
+      }
+    ],
+    "interactiveElements": {
+      "hasTimer": false,
+      "hasVisual": false,
+      "gamificationPoints": 15
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "Lateral Thinking Assessment",
+      "validationStudy": "Experimental"
+    },
+    "active": true,
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4231",
+    "questionId": "ASRS_1",
+    "text": "How often do you have difficulty concentrating on what people say to you, even when they are speaking to you directly?",
+    "category": "neurodiversity",
+    "instrument": "ASRS-5",
+    "trait": "adhd",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 0,
+        "label": "Never",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4232"
+      },
+      {
+        "value": 1,
+        "label": "Rarely",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4233"
+      },
+      {
+        "value": 2,
+        "label": "Sometimes",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4234"
+      },
+      {
+        "value": 3,
+        "label": "Often",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4235"
+      },
+      {
+        "value": 4,
+        "label": "Very Often",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4236"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.851Z",
+      "version": "1.0",
+      "scientificSource": "ASRS-5",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4237",
+    "questionId": "ASRS_2",
+    "text": "How often do you leave your seat in meetings or other situations in which you are expected to remain seated?",
+    "category": "neurodiversity",
+    "instrument": "ASRS-5",
+    "trait": "adhd",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 0,
+        "label": "Never",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4238"
+      },
+      {
+        "value": 1,
+        "label": "Rarely",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4239"
+      },
+      {
+        "value": 2,
+        "label": "Sometimes",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e423a"
+      },
+      {
+        "value": 3,
+        "label": "Often",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e423b"
+      },
+      {
+        "value": 4,
+        "label": "Very Often",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e423c"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "ASRS-5",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e423d",
+    "questionId": "ASRS_3",
+    "text": "How often do you have difficulty unwinding and relaxing when you have time to yourself?",
+    "category": "neurodiversity",
+    "instrument": "ASRS-5",
+    "trait": "adhd",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 0,
+        "label": "Never",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e423e"
+      },
+      {
+        "value": 1,
+        "label": "Rarely",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e423f"
+      },
+      {
+        "value": 2,
+        "label": "Sometimes",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4240"
+      },
+      {
+        "value": 3,
+        "label": "Often",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4241"
+      },
+      {
+        "value": 4,
+        "label": "Very Often",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4242"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "ASRS-5",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4243",
+    "questionId": "ASRS_4",
+    "text": "How often do you find yourself talking too much when you are in social situations?",
+    "category": "neurodiversity",
+    "instrument": "ASRS-5",
+    "trait": "adhd",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 0,
+        "label": "Never",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4244"
+      },
+      {
+        "value": 1,
+        "label": "Rarely",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4245"
+      },
+      {
+        "value": 2,
+        "label": "Sometimes",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4246"
+      },
+      {
+        "value": 3,
+        "label": "Often",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4247"
+      },
+      {
+        "value": 4,
+        "label": "Very Often",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4248"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "ASRS-5",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4249",
+    "questionId": "ASRS_5",
+    "text": "How often do you find yourself finishing the sentences of the people you are talking to, before they can finish them themselves?",
+    "category": "neurodiversity",
+    "instrument": "ASRS-5",
+    "trait": "adhd",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 0,
+        "label": "Never",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e424a"
+      },
+      {
+        "value": 1,
+        "label": "Rarely",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e424b"
+      },
+      {
+        "value": 2,
+        "label": "Sometimes",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e424c"
+      },
+      {
+        "value": 3,
+        "label": "Often",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e424d"
+      },
+      {
+        "value": 4,
+        "label": "Very Often",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e424e"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "ASRS-5",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e424f",
+    "questionId": "AQ_1",
+    "text": "I often notice small sounds when others do not",
+    "category": "neurodiversity",
+    "instrument": "AQ-10",
+    "trait": "autism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Definitely Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4250"
+      },
+      {
+        "value": 2,
+        "label": "Slightly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4251"
+      },
+      {
+        "value": 3,
+        "label": "Slightly Agree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4252"
+      },
+      {
+        "value": 4,
+        "label": "Definitely Agree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4253"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "AQ-10",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4254",
+    "questionId": "AQ_2",
+    "text": "I usually concentrate more on the whole picture, rather than the small details",
+    "category": "neurodiversity",
+    "instrument": "AQ-10",
+    "trait": "autism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Definitely Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4255"
+      },
+      {
+        "value": 2,
+        "label": "Slightly Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4256"
+      },
+      {
+        "value": 3,
+        "label": "Slightly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4257"
+      },
+      {
+        "value": 4,
+        "label": "Definitely Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4258"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "AQ-10",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4259",
+    "questionId": "AQ_3",
+    "text": "I find it easy to do more than one thing at once",
+    "category": "neurodiversity",
+    "instrument": "AQ-10",
+    "trait": "autism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Definitely Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e425a"
+      },
+      {
+        "value": 2,
+        "label": "Slightly Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e425b"
+      },
+      {
+        "value": 3,
+        "label": "Slightly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e425c"
+      },
+      {
+        "value": 4,
+        "label": "Definitely Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e425d"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "AQ-10",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e425e",
+    "questionId": "AQ_4",
+    "text": "If there is an interruption, I can switch back to what I was doing very quickly",
+    "category": "neurodiversity",
+    "instrument": "AQ-10",
+    "trait": "autism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Definitely Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e425f"
+      },
+      {
+        "value": 2,
+        "label": "Slightly Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4260"
+      },
+      {
+        "value": 3,
+        "label": "Slightly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4261"
+      },
+      {
+        "value": 4,
+        "label": "Definitely Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4262"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "AQ-10",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4263",
+    "questionId": "AQ_5",
+    "text": "I find it easy to \"read between the lines\" when someone is talking to me",
+    "category": "neurodiversity",
+    "instrument": "AQ-10",
+    "trait": "autism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Definitely Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4264"
+      },
+      {
+        "value": 2,
+        "label": "Slightly Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4265"
+      },
+      {
+        "value": 3,
+        "label": "Slightly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4266"
+      },
+      {
+        "value": 4,
+        "label": "Definitely Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4267"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "AQ-10",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4268",
+    "questionId": "AQ_6",
+    "text": "I know how to tell if someone listening to me is getting bored",
+    "category": "neurodiversity",
+    "instrument": "AQ-10",
+    "trait": "autism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Definitely Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4269"
+      },
+      {
+        "value": 2,
+        "label": "Slightly Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e426a"
+      },
+      {
+        "value": 3,
+        "label": "Slightly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e426b"
+      },
+      {
+        "value": 4,
+        "label": "Definitely Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e426c"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "AQ-10",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e426d",
+    "questionId": "AQ_7",
+    "text": "When I'm reading a story, I find it difficult to work out the characters' intentions",
+    "category": "neurodiversity",
+    "instrument": "AQ-10",
+    "trait": "autism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Definitely Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e426e"
+      },
+      {
+        "value": 2,
+        "label": "Slightly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e426f"
+      },
+      {
+        "value": 3,
+        "label": "Slightly Agree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4270"
+      },
+      {
+        "value": 4,
+        "label": "Definitely Agree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4271"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "AQ-10",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4272",
+    "questionId": "AQ_8",
+    "text": "I like to collect information about categories of things",
+    "category": "neurodiversity",
+    "instrument": "AQ-10",
+    "trait": "autism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Definitely Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4273"
+      },
+      {
+        "value": 2,
+        "label": "Slightly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4274"
+      },
+      {
+        "value": 3,
+        "label": "Slightly Agree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4275"
+      },
+      {
+        "value": 4,
+        "label": "Definitely Agree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4276"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "AQ-10",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4277",
+    "questionId": "AQ_9",
+    "text": "I find it easy to work out what someone is thinking or feeling just by looking at their face",
+    "category": "neurodiversity",
+    "instrument": "AQ-10",
+    "trait": "autism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Definitely Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4278"
+      },
+      {
+        "value": 2,
+        "label": "Slightly Disagree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4279"
+      },
+      {
+        "value": 3,
+        "label": "Slightly Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e427a"
+      },
+      {
+        "value": 4,
+        "label": "Definitely Agree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e427b"
+      }
+    ],
+    "reverseScored": true,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "AQ-10",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e427c",
+    "questionId": "AQ_10",
+    "text": "I find it difficult to work out people's intentions",
+    "category": "neurodiversity",
+    "instrument": "AQ-10",
+    "trait": "autism",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 1,
+        "label": "Definitely Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e427d"
+      },
+      {
+        "value": 2,
+        "label": "Slightly Disagree",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e427e"
+      },
+      {
+        "value": 3,
+        "label": "Slightly Agree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e427f"
+      },
+      {
+        "value": 4,
+        "label": "Definitely Agree",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4280"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "AQ-10",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4281",
+    "questionId": "PHQ_1",
+    "text": "Over the last 2 weeks, how often have you been bothered by feeling down, depressed, or hopeless?",
+    "category": "neurodiversity",
+    "instrument": "PHQ-2",
+    "trait": "depression",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 0,
+        "label": "Never",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4282"
+      },
+      {
+        "value": 1,
+        "label": "Rarely",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4283"
+      },
+      {
+        "value": 2,
+        "label": "Sometimes",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4284"
+      },
+      {
+        "value": 3,
+        "label": "Often",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4285"
+      },
+      {
+        "value": 4,
+        "label": "Very Often",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4286"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "PHQ-2",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4287",
+    "questionId": "PHQ_2",
+    "text": "Over the last 2 weeks, how often have you been bothered by little interest or pleasure in doing things?",
+    "category": "neurodiversity",
+    "instrument": "PHQ-2",
+    "trait": "depression",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 0,
+        "label": "Never",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4288"
+      },
+      {
+        "value": 1,
+        "label": "Rarely",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4289"
+      },
+      {
+        "value": 2,
+        "label": "Sometimes",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e428a"
+      },
+      {
+        "value": 3,
+        "label": "Often",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e428b"
+      },
+      {
+        "value": 4,
+        "label": "Very Often",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e428c"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "PHQ-2",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e428d",
+    "questionId": "GAD_1",
+    "text": "Over the last 2 weeks, how often have you been bothered by feeling nervous, anxious, or on edge?",
+    "category": "neurodiversity",
+    "instrument": "GAD-2",
+    "trait": "anxiety",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 0,
+        "label": "Never",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e428e"
+      },
+      {
+        "value": 1,
+        "label": "Rarely",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e428f"
+      },
+      {
+        "value": 2,
+        "label": "Sometimes",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4290"
+      },
+      {
+        "value": 3,
+        "label": "Often",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4291"
+      },
+      {
+        "value": 4,
+        "label": "Very Often",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4292"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "GAD-2",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4293",
+    "questionId": "GAD_2",
+    "text": "Over the last 2 weeks, how often have you been bothered by not being able to stop or control worrying?",
+    "category": "neurodiversity",
+    "instrument": "GAD-2",
+    "trait": "anxiety",
+    "responseType": "likert",
+    "options": [
+      {
+        "value": 0,
+        "label": "Never",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e4294"
+      },
+      {
+        "value": 1,
+        "label": "Rarely",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e4295"
+      },
+      {
+        "value": 2,
+        "label": "Sometimes",
+        "score": 2,
+        "_id": "68ca96e3f0a3af7ffb1e4296"
+      },
+      {
+        "value": 3,
+        "label": "Often",
+        "score": 3,
+        "_id": "68ca96e3f0a3af7ffb1e4297"
+      },
+      {
+        "value": 4,
+        "label": "Very Often",
+        "score": 4,
+        "_id": "68ca96e3f0a3af7ffb1e4298"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1.5,
+    "tier": "core",
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.852Z",
+      "version": "1.0",
+      "scientificSource": "GAD-2",
+      "validationStudy": "Clinically validated instrument"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e4299",
+    "questionId": "GAME_1",
+    "text": "Complete the pattern: 🔵 🔴 🔵 🔴 ?",
+    "category": "cognitive",
+    "instrument": "PATTERN_RECOGNITION",
+    "responseType": "multiple-choice",
+    "options": [
+      {
+        "value": "blue",
+        "label": "🔵",
+        "score": 1,
+        "_id": "68ca96e3f0a3af7ffb1e429a"
+      },
+      {
+        "value": "red",
+        "label": "🔴",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e429b"
+      },
+      {
+        "value": "green",
+        "label": "🟢",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e429c"
+      },
+      {
+        "value": "yellow",
+        "label": "🟡",
+        "score": 0,
+        "_id": "68ca96e3f0a3af7ffb1e429d"
+      }
+    ],
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "comprehensive",
+    "interactiveElements": {
+      "hasTimer": true,
+      "timeLimit": 10,
+      "hasVisual": true,
+      "visualType": "emoji",
+      "gamificationPoints": 20
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.893Z"
+    },
+    "active": true,
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  },
+  {
+    "_id": "68ca96e3f0a3af7ffb1e429e",
+    "questionId": "GAME_2",
+    "text": "Quick! Type the first word that comes to mind when you see: OCEAN",
+    "category": "cognitive",
+    "instrument": "WORD_ASSOCIATION",
+    "responseType": "word-association",
+    "reverseScored": false,
+    "weight": 1,
+    "tier": "comprehensive",
+    "interactiveElements": {
+      "hasTimer": true,
+      "timeLimit": 5,
+      "gamificationPoints": 10
+    },
+    "metadata": {
+      "addedDate": "2025-09-17T11:09:23.894Z"
+    },
+    "active": true,
+    "options": [],
+    "variations": [],
+    "__v": 0,
+    "createdAt": "2025-09-17T11:09:23.925Z",
+    "updatedAt": "2025-09-17T11:09:23.925Z"
+  }
+]

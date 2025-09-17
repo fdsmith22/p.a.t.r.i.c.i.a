@@ -1,0 +1,1048 @@
+{
+  "personality": [
+    {
+      "id": "STD_OPENNESS_1",
+      "text": "When I discover a hidden path while walking, I usually take it to see where it leads",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_OPENNESS_2",
+      "text": "I get excited when someone recommends music from a genre I've never explored",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_OPENNESS_3",
+      "text": "I prefer restaurants where I can order the same dish I love every time",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_OPENNESS_4",
+      "text": "Abstract art often speaks to me in ways I can't quite explain",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_OPENNESS_5",
+      "text": "I enjoy conversations that challenge my fundamental beliefs",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_OPENNESS_6",
+      "text": "When traveling, I prefer having every detail planned in advance",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_OPENNESS_7",
+      "text": "I often find myself lost in Wikipedia rabbit holes for hours",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_OPENNESS_8",
+      "text": "I'd rather watch a documentary about quantum physics than a romantic comedy",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_CONSCIENTIOUSNESS_1",
+      "text": "My workspace naturally stays organized without much effort",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_CONSCIENTIOUSNESS_2",
+      "text": "I often start projects with enthusiasm but struggle to finish them",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_CONSCIENTIOUSNESS_3",
+      "text": "I arrive at least 10 minutes early to appointments",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_CONSCIENTIOUSNESS_4",
+      "text": "My to-do lists have sub-lists with their own sub-lists",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_CONSCIENTIOUSNESS_5",
+      "text": "I can work effectively even when my environment is chaotic",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_CONSCIENTIOUSNESS_6",
+      "text": "I review my work multiple times before considering it complete",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_CONSCIENTIOUSNESS_7",
+      "text": "Deadlines motivate me - I work best under pressure",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_CONSCIENTIOUSNESS_8",
+      "text": "I keep track of my expenses down to the penny",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_EXTRAVERSION_1",
+      "text": "After a long week, a crowded party sounds perfect",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_EXTRAVERSION_2",
+      "text": "I need alone time to recharge after social events",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_EXTRAVERSION_3",
+      "text": "I naturally take charge when working in groups",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_EXTRAVERSION_4",
+      "text": "Small talk with strangers energizes me",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_EXTRAVERSION_5",
+      "text": "I prefer texting over phone calls",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_EXTRAVERSION_6",
+      "text": "Being the center of attention feels natural to me",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_EXTRAVERSION_7",
+      "text": "I do my best thinking when talking ideas through with others",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_EXTRAVERSION_8",
+      "text": "I'd choose a quiet coffee shop over a bustling café",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_AGREEABLENESS_1",
+      "text": "I instinctively trust people until they prove otherwise",
+      "instrument": "BFI-2-Extended",
+      "trait": "agreeableness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_AGREEABLENESS_2",
+      "text": "I find it satisfying when someone who wronged me faces consequences",
+      "instrument": "BFI-2-Extended",
+      "trait": "agreeableness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_AGREEABLENESS_3",
+      "text": "I often go out of my way to help strangers",
+      "instrument": "BFI-2-Extended",
+      "trait": "agreeableness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_AGREEABLENESS_4",
+      "text": "In negotiations, I focus on what I can gain rather than mutual benefit",
+      "instrument": "BFI-2-Extended",
+      "trait": "agreeableness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_AGREEABLENESS_5",
+      "text": "Seeing others succeed genuinely makes me happy",
+      "instrument": "BFI-2-Extended",
+      "trait": "agreeableness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_AGREEABLENESS_6",
+      "text": "I believe most people would take advantage if given the chance",
+      "instrument": "BFI-2-Extended",
+      "trait": "agreeableness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_AGREEABLENESS_7",
+      "text": "I tend to forgive easily and rarely hold grudges",
+      "instrument": "BFI-2-Extended",
+      "trait": "agreeableness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_AGREEABLENESS_8",
+      "text": "I enjoy debates where I can prove my point",
+      "instrument": "BFI-2-Extended",
+      "trait": "agreeableness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_NEUROTICISM_1",
+      "text": "Minor setbacks can affect my mood for the entire day",
+      "instrument": "BFI-2-Extended",
+      "trait": "neuroticism",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_NEUROTICISM_2",
+      "text": "I remain calm even when everything seems to go wrong",
+      "instrument": "BFI-2-Extended",
+      "trait": "neuroticism",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_NEUROTICISM_3",
+      "text": "I often replay embarrassing moments from years ago",
+      "instrument": "BFI-2-Extended",
+      "trait": "neuroticism",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_NEUROTICISM_4",
+      "text": "Uncertainty excites me rather than worries me",
+      "instrument": "BFI-2-Extended",
+      "trait": "neuroticism",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_NEUROTICISM_5",
+      "text": "I check my sent emails multiple times to ensure they were okay",
+      "instrument": "BFI-2-Extended",
+      "trait": "neuroticism",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_NEUROTICISM_6",
+      "text": "I sleep soundly even before important events",
+      "instrument": "BFI-2-Extended",
+      "trait": "neuroticism",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_NEUROTICISM_7",
+      "text": "Small changes in routine make me anxious",
+      "instrument": "BFI-2-Extended",
+      "trait": "neuroticism",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_NEUROTICISM_8",
+      "text": "I can laugh at myself when I make mistakes",
+      "instrument": "BFI-2-Extended",
+      "trait": "neuroticism",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_BEHAVIORAL_1",
+      "text": "I keep my phone on silent to avoid distractions",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_BEHAVIORAL_2",
+      "text": "I've stayed up all night pursuing a fascinating topic",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_BEHAVIORAL_3",
+      "text": "I prefer working alone on important projects",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_BEHAVIORAL_4",
+      "text": "I double-check locks and appliances before leaving home",
+      "instrument": "BFI-2-Extended",
+      "trait": "neuroticism",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_BEHAVIORAL_5",
+      "text": "I share my food without being asked",
+      "instrument": "BFI-2-Extended",
+      "trait": "agreeableness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_BEHAVIORAL_6",
+      "text": "I color-code my calendar and notes",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_BEHAVIORAL_7",
+      "text": "I enjoy movies that leave the ending open to interpretation",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_BEHAVIORAL_8",
+      "text": "I feel drained after video calls, even with friends",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_SITUATIONAL_1",
+      "text": "If I won the lottery, I'd invest most of it rather than spend it",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_SITUATIONAL_2",
+      "text": "At a museum, I read every placard thoroughly",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_SITUATIONAL_3",
+      "text": "In group photos, I naturally position myself in the center",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_SITUATIONAL_4",
+      "text": "When someone cuts in line, I speak up immediately",
+      "instrument": "BFI-2-Extended",
+      "trait": "agreeableness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_SITUATIONAL_5",
+      "text": "Before a trip, I research everything that could go wrong",
+      "instrument": "BFI-2-Extended",
+      "trait": "neuroticism",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_SITUATIONAL_6",
+      "text": "I notice when picture frames are slightly crooked",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_SITUATIONAL_7",
+      "text": "I'd rather explore a new city without a map or guide",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_SITUATIONAL_8",
+      "text": "At parties, I'm usually the last to leave",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_PREFERENCES_1",
+      "text": "I prefer fiction that explores impossible worlds over realistic stories",
+      "instrument": "BFI-2-Extended",
+      "trait": "openness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_PREFERENCES_2",
+      "text": "My ideal vacation involves a detailed itinerary",
+      "instrument": "BFI-2-Extended",
+      "trait": "conscientiousness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    },
+    {
+      "id": "STD_PREFERENCES_3",
+      "text": "I'd choose dinner with one close friend over a party with twenty acquaintances",
+      "instrument": "BFI-2-Extended",
+      "trait": "extraversion",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_PREFERENCES_4",
+      "text": "I enjoy competitive activities more than cooperative ones",
+      "instrument": "BFI-2-Extended",
+      "trait": "agreeableness",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": true
+    },
+    {
+      "id": "STD_PREFERENCES_5",
+      "text": "I prefer predictable routines over spontaneous adventures",
+      "instrument": "BFI-2-Extended",
+      "trait": "neuroticism",
+      "responseType": "likert",
+      "tier": "free",
+      "options": "Strongly Disagree | Disagree | Neutral | Agree | Strongly Agree",
+      "reversed": false
+    }
+  ],
+  "neurodiversity": [
+    {
+      "id": "ASRS_1",
+      "text": "How often do you have difficulty concentrating on what people say to you, even when they are speaking to you directly?",
+      "instrument": "ASRS-5",
+      "trait": "adhd",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Never | Rarely | Sometimes | Often | Very Often",
+      "reversed": false
+    },
+    {
+      "id": "ASRS_2",
+      "text": "How often do you leave your seat in meetings or other situations in which you are expected to remain seated?",
+      "instrument": "ASRS-5",
+      "trait": "adhd",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Never | Rarely | Sometimes | Often | Very Often",
+      "reversed": false
+    },
+    {
+      "id": "ASRS_3",
+      "text": "How often do you have difficulty unwinding and relaxing when you have time to yourself?",
+      "instrument": "ASRS-5",
+      "trait": "adhd",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Never | Rarely | Sometimes | Often | Very Often",
+      "reversed": false
+    },
+    {
+      "id": "ASRS_4",
+      "text": "How often do you find yourself talking too much when you are in social situations?",
+      "instrument": "ASRS-5",
+      "trait": "adhd",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Never | Rarely | Sometimes | Often | Very Often",
+      "reversed": false
+    },
+    {
+      "id": "ASRS_5",
+      "text": "How often do you find yourself finishing the sentences of the people you are talking to, before they can finish them themselves?",
+      "instrument": "ASRS-5",
+      "trait": "adhd",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Never | Rarely | Sometimes | Often | Very Often",
+      "reversed": false
+    },
+    {
+      "id": "AQ_1",
+      "text": "I often notice small sounds when others do not",
+      "instrument": "AQ-10",
+      "trait": "autism",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Definitely Disagree | Slightly Disagree | Slightly Agree | Definitely Agree",
+      "reversed": false
+    },
+    {
+      "id": "AQ_2",
+      "text": "I usually concentrate more on the whole picture, rather than the small details",
+      "instrument": "AQ-10",
+      "trait": "autism",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Definitely Disagree | Slightly Disagree | Slightly Agree | Definitely Agree",
+      "reversed": true
+    },
+    {
+      "id": "AQ_3",
+      "text": "I find it easy to do more than one thing at once",
+      "instrument": "AQ-10",
+      "trait": "autism",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Definitely Disagree | Slightly Disagree | Slightly Agree | Definitely Agree",
+      "reversed": true
+    },
+    {
+      "id": "AQ_4",
+      "text": "If there is an interruption, I can switch back to what I was doing very quickly",
+      "instrument": "AQ-10",
+      "trait": "autism",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Definitely Disagree | Slightly Disagree | Slightly Agree | Definitely Agree",
+      "reversed": true
+    },
+    {
+      "id": "AQ_5",
+      "text": "I find it easy to \"read between the lines\" when someone is talking to me",
+      "instrument": "AQ-10",
+      "trait": "autism",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Definitely Disagree | Slightly Disagree | Slightly Agree | Definitely Agree",
+      "reversed": true
+    },
+    {
+      "id": "AQ_6",
+      "text": "I know how to tell if someone listening to me is getting bored",
+      "instrument": "AQ-10",
+      "trait": "autism",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Definitely Disagree | Slightly Disagree | Slightly Agree | Definitely Agree",
+      "reversed": true
+    },
+    {
+      "id": "AQ_7",
+      "text": "When I'm reading a story, I find it difficult to work out the characters' intentions",
+      "instrument": "AQ-10",
+      "trait": "autism",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Definitely Disagree | Slightly Disagree | Slightly Agree | Definitely Agree",
+      "reversed": false
+    },
+    {
+      "id": "AQ_8",
+      "text": "I like to collect information about categories of things",
+      "instrument": "AQ-10",
+      "trait": "autism",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Definitely Disagree | Slightly Disagree | Slightly Agree | Definitely Agree",
+      "reversed": false
+    },
+    {
+      "id": "AQ_9",
+      "text": "I find it easy to work out what someone is thinking or feeling just by looking at their face",
+      "instrument": "AQ-10",
+      "trait": "autism",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Definitely Disagree | Slightly Disagree | Slightly Agree | Definitely Agree",
+      "reversed": true
+    },
+    {
+      "id": "AQ_10",
+      "text": "I find it difficult to work out people's intentions",
+      "instrument": "AQ-10",
+      "trait": "autism",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Definitely Disagree | Slightly Disagree | Slightly Agree | Definitely Agree",
+      "reversed": false
+    },
+    {
+      "id": "PHQ_1",
+      "text": "Over the last 2 weeks, how often have you been bothered by feeling down, depressed, or hopeless?",
+      "instrument": "PHQ-2",
+      "trait": "depression",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Never | Rarely | Sometimes | Often | Very Often",
+      "reversed": false
+    },
+    {
+      "id": "PHQ_2",
+      "text": "Over the last 2 weeks, how often have you been bothered by little interest or pleasure in doing things?",
+      "instrument": "PHQ-2",
+      "trait": "depression",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Never | Rarely | Sometimes | Often | Very Often",
+      "reversed": false
+    },
+    {
+      "id": "GAD_1",
+      "text": "Over the last 2 weeks, how often have you been bothered by feeling nervous, anxious, or on edge?",
+      "instrument": "GAD-2",
+      "trait": "anxiety",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Never | Rarely | Sometimes | Often | Very Often",
+      "reversed": false
+    },
+    {
+      "id": "GAD_2",
+      "text": "Over the last 2 weeks, how often have you been bothered by not being able to stop or control worrying?",
+      "instrument": "GAD-2",
+      "trait": "anxiety",
+      "responseType": "likert",
+      "tier": "core",
+      "options": "Never | Rarely | Sometimes | Often | Very Often",
+      "reversed": false
+    }
+  ],
+  "lateral": [
+    {
+      "id": "O1",
+      "text": "You discover a door in your home you've never noticed before. What do you do?",
+      "instrument": "LATERAL_THINKING",
+      "trait": "openness",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Immediately open it to explore | Research the house's history first | Ask others if they've seen it | Leave it alone - it was hidden for a reason | Test if it's real or imagined",
+      "reversed": false
+    },
+    {
+      "id": "O2",
+      "text": "If colors had personalities, which would be the leader?",
+      "instrument": "LATERAL_THINKING",
+      "trait": "openness",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Red - bold and commanding | Blue - calm and strategic | Gold - prestigious and traditional | Purple - mysterious and wise | Green - balanced and growth-oriented",
+      "reversed": false
+    },
+    {
+      "id": "O3",
+      "text": "You can speak to one type of animal for a day. Which provides the most valuable insights?",
+      "instrument": "LATERAL_THINKING",
+      "trait": "openness",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Birds - they see everything from above | Cats - they know secrets of independence | Dogs - they understand loyalty | Ants - they've mastered cooperation | Dolphins - they play while being intelligent",
+      "reversed": false
+    },
+    {
+      "id": "C1",
+      "text": "You're given a magic notebook that makes written plans happen. What's your first concern?",
+      "instrument": "LATERAL_THINKING",
+      "trait": "conscientiousness",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "My handwriting might cause misinterpretations | I need to plan the perfect first entry | What if I change my mind later? | Testing with something small first | Whether I deserve this power",
+      "reversed": false
+    },
+    {
+      "id": "C2",
+      "text": "Your life is a video game. What's your biggest achievement?",
+      "instrument": "LATERAL_THINKING",
+      "trait": "conscientiousness",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "100% completion rate | Speedrun record holder | Most creative solutions | Helping most other players | Finding all easter eggs",
+      "reversed": false
+    },
+    {
+      "id": "C3",
+      "text": "You must organize a library where books arrange themselves by...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "conscientiousness",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "How much they've changed someone's life | The emotions they evoke | Their hidden connections to each other | The questions they answer | The worlds they create",
+      "reversed": false
+    },
+    {
+      "id": "E1",
+      "text": "You're a battery. What charges you most efficiently?",
+      "instrument": "LATERAL_THINKING",
+      "trait": "extraversion",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Being plugged into a group celebration | Solar power from quiet contemplation | Quick bursts from brief interactions | Slow steady charge from one deep connection | Wireless charging from being near others",
+      "reversed": false
+    },
+    {
+      "id": "E2",
+      "text": "In a world where thoughts are visible as colors above heads, you prefer...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "extraversion",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Vibrant rainbow crowds - so much to see | Subtle pastels - gentle and non-intrusive | Bold primaries - clear and direct | Invisible option - privacy matters | Selective visibility - control who sees",
+      "reversed": false
+    },
+    {
+      "id": "E3",
+      "text": "You're designing a personal workspace. The walls are...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "extraversion",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Glass - see and be seen | One-way mirrors - observe but private | Convertible - walls that appear/disappear | Covered in interaction points | Soundproof but with windows",
+      "reversed": false
+    },
+    {
+      "id": "A1",
+      "text": "You find a wallet with $1000. The ID shows someone wealthy. Your first thought?",
+      "instrument": "LATERAL_THINKING",
+      "trait": "agreeableness",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Return it immediately - it's theirs | Donate the cash, return the wallet | Check if there's a reward first | They won't miss it as much as I need it | Post online to find them publicly",
+      "reversed": false
+    },
+    {
+      "id": "A2",
+      "text": "In a game where you can only win if others lose, you...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "agreeableness",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Find a way for everyone to win instead | Win efficiently to minimize their loss | Play your best - that's the game | Let others win sometimes | Refuse to play",
+      "reversed": false
+    },
+    {
+      "id": "A3",
+      "text": "You can read emotions as weather patterns around people. You focus on...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "agreeableness",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Storm warnings to offer help | Sunny people to enjoy their energy | Your own forecast first | Overall climate of the room | Interesting unusual patterns",
+      "reversed": false
+    },
+    {
+      "id": "N1",
+      "text": "Your emotions are playlist. What's on repeat most often?",
+      "instrument": "LATERAL_THINKING",
+      "trait": "neuroticism",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Carefully curated mix - balanced | Whatever's trending - goes with flow | Same comfort songs - predictable | Wildly varies - emotional DJ | Trying to find the off button",
+      "reversed": false
+    },
+    {
+      "id": "N2",
+      "text": "You're sailing a boat. A storm approaches. Your instinct?",
+      "instrument": "LATERAL_THINKING",
+      "trait": "neuroticism",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Sail straight through - fastest route | Find shelter immediately | Enjoy the thrill of the challenge | Calculate optimal path around it | Prepare for worst while hoping for best",
+      "reversed": false
+    },
+    {
+      "id": "N3",
+      "text": "Your mind is a house. The basement contains...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "neuroticism",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Organized archive of experiences | Things I'm not ready to sort yet | I don't go down there | Hidden treasures and old fears | Workshop where I process things",
+      "reversed": false
+    },
+    {
+      "id": "M1",
+      "text": "You wake up with the ability to freeze time for everyone but you. First hour?",
+      "instrument": "LATERAL_THINKING",
+      "trait": "mixed",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Fix things people are struggling with | Explore places I couldn't normally | Catch up on everything I'm behind on | Study frozen moments like art | Plan how to use this responsibly",
+      "reversed": false
+    },
+    {
+      "id": "M2",
+      "text": "You're writing your autobiography but each chapter must be a different genre. Chapter 1 is...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "mixed",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Mystery - understanding myself | Adventure - all the risks I took | Comedy - laughing at my mistakes | Drama - the relationships that shaped me | Science fiction - who I'm becoming",
+      "reversed": false
+    },
+    {
+      "id": "M3",
+      "text": "You discover your reflection sometimes does things differently than you. This means...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "mixed",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "I'm seeing my potential self | My subconscious is communicating | Parallel universe crossing over | I need to pay attention to what I'm suppressing | Time to experiment with the mirror",
+      "reversed": false
+    },
+    {
+      "id": "M4",
+      "text": "In dreams, you always return to the same mysterious place. It's...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "mixed",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "A library with books I've never read | A garden where each plant is a memory | An empty theater waiting for performance | A workshop full of unfinished projects | A crossroads with infinite paths",
+      "reversed": false
+    },
+    {
+      "id": "P1",
+      "text": "You're tasked with designing a new emotion. It feels like...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "mixed",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "The moment before a first kiss | Solving a puzzle after hours of trying | Finding something you didn't know you lost | The silence after perfect music ends | Watching someone become who they're meant to be",
+      "reversed": false
+    },
+    {
+      "id": "P2",
+      "text": "If your personality was a recipe, the main ingredient would be...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "mixed",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Curiosity with a dash of chaos | Reliability slow-cooked to perfection | Enthusiasm with surprise spices | Carefully measured empathy | Adaptability with seasonal variations",
+      "reversed": false
+    },
+    {
+      "id": "P3",
+      "text": "You're an architect of realities. Your signature style includes...",
+      "instrument": "LATERAL_THINKING",
+      "trait": "mixed",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "Hidden doors to everywhere | Rooms that adapt to occupants' needs | Windows showing different times | Spaces that connect distant people | Structures that grow and evolve",
+      "reversed": false
+    }
+  ],
+  "cognitive": [
+    {
+      "id": "GAME_1",
+      "text": "Complete the pattern: 🔵 🔴 🔵 🔴 ?",
+      "instrument": "PATTERN_RECOGNITION",
+      "responseType": "multiple-choice",
+      "tier": "comprehensive",
+      "options": "🔵 | 🔴 | 🟢 | 🟡",
+      "reversed": false
+    },
+    {
+      "id": "GAME_2",
+      "text": "Quick! Type the first word that comes to mind when you see: OCEAN",
+      "instrument": "WORD_ASSOCIATION",
+      "responseType": "word-association",
+      "tier": "comprehensive",
+      "options": "",
+      "reversed": false
+    }
+  ]
+}
