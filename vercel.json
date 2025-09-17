@@ -2,7 +2,7 @@
   "framework": null,
   "rewrites": [
     {
-      "source": "/((?!api|js|css|assets|images|styles|favicon|.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|html)).*)",
+      "source": "/((?!js/)(?!css/)(?!styles/)(?!assets/)(?!images/)(?!api/)(?!favicon)(?!.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|html)).*)",
       "destination": "/index.html"
     }
   ]
