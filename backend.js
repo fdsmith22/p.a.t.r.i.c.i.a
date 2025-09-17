@@ -648,18 +648,19 @@ database.connect().catch(err => {
   // Adaptive Assessment Route
   app.post('/api/assessments/adaptive', async (e, t) => {
     try {
-      const AdaptiveEngine = require('./services/adaptive-assessment-engine');
-      const engine = new AdaptiveEngine();
+      const EnhancedAdaptiveEngine = require('./services/enhanced-adaptive-engine');
+      const engine = new EnhancedAdaptiveEngine();
 
       const { tier = 'standard', concerns = [], demographics = {} } = e.body;
-      const questions = await engine.generateAdaptiveAssessment(tier, { concerns, demographics });
+      const result = await engine.generatePersonalizedAssessment(tier, { concerns, demographics });
 
       t.json({
         success: true,
-        questions,
-        totalQuestions: questions.length,
+        questions: result.questions,
+        totalQuestions: result.totalQuestions,
         tier,
-        concerns
+        concerns,
+        adaptiveMetadata: result.adaptiveMetadata
       });
     } catch (error) {
       logger.error('Adaptive assessment error:', error);

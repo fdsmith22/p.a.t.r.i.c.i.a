@@ -27,7 +27,7 @@ class NeurlynAdaptiveAssessment {
             // Show loading state
             this.showLoading('Initializing your personalized assessment...');
 
-            const response = await fetch(`${this.apiBase}/adaptive/start`, {
+            const response = await fetch(`${this.apiBase}/assessments/adaptive`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ tier, concerns, demographics })
@@ -39,10 +39,10 @@ class NeurlynAdaptiveAssessment {
                 throw new Error(data.error || 'Failed to start assessment');
             }
 
-            // Store session data
-            this.currentSession = data.sessionId;
-            this.progress = data.progress;
-            this.currentQuestions = data.currentBatch;
+            // Store session data from the correct response format
+            this.currentSession = `adaptive_${Date.now()}`;
+            this.progress = { current: 0, total: data.totalQuestions || data.questions?.length || 45 };
+            this.currentQuestions = data.questions || [];
 
             // Initialize UI
             this.initializeAssessmentUI();
@@ -138,20 +138,21 @@ class NeurlynAdaptiveAssessment {
      * Render response options based on question type
      */
     renderResponseOptions(question) {
-        const { type = 'likert', options = [] } = question;
+        const { responseType = 'likert', options = [] } = question;
 
-        if (type === 'likert') {
+        if (responseType === 'likert') {
             return `
                 <div class="likert-scale" data-question-id="${question._id}">
                     ${options.map((opt, i) => `
                         <label class="likert-option">
-                            <input type="radio" name="q-${question._id}" value="${opt}" data-index="${i}">
-                            <span class="likert-label">${opt}</span>
+                            <input type="radio" name="q-${question._id}" value="${opt.value}" data-index="${i}" data-score="${opt.score}">
+                            <span class="likert-value">${opt.value}</span>
+                            <span class="likert-label">${opt.label}</span>
                         </label>
                     `).join('')}
                 </div>
             `;
-        } else if (type === 'multiple_choice') {
+        } else if (responseType === 'multiple_choice') {
             return `
                 <div class="multiple-choice" data-question-id="${question._id}">
                     ${options.map((opt, i) => `
@@ -162,7 +163,7 @@ class NeurlynAdaptiveAssessment {
                     `).join('')}
                 </div>
             `;
-        } else if (type === 'slider') {
+        } else if (responseType === 'slider') {
             return `
                 <div class="slider-container" data-question-id="${question._id}">
                     <input type="range" min="0" max="100" value="50" class="slider" id="slider-${question._id}">
@@ -583,6 +584,7 @@ class NeurlynAdaptiveAssessment {
 
 // Initialize global instance
 const assessment = new NeurlynAdaptiveAssessment();
+window.assessment = assessment;
 
 // Auto-resume on page load
 document.addEventListener('DOMContentLoaded', async () => {
