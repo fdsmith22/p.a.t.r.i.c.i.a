@@ -1,9 +1,15 @@
 {
   "framework": null,
-  "rewrites": [
-    {
-      "source": "/((?!js/)(?!css/)(?!styles/)(?!assets/)(?!images/)(?!api/)(?!favicon)(?!.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|html)).*)",
-      "destination": "/index.html"
-    }
+  "routes": [
+    { "src": "/js/(.*)", "dest": "/js/$1" },
+    { "src": "/css/(.*)", "dest": "/css/$1" },
+    { "src": "/styles/(.*)", "dest": "/styles/$1" },
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/images/(.*)", "dest": "/images/$1" },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/favicon.ico", "dest": "/favicon.ico" },
+    { "src": "/about.html", "dest": "/about.html" },
+    { "src": "/support.html", "dest": "/support.html" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
