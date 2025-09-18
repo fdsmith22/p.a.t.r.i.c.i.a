@@ -1,3 +1,5 @@
+import { ComprehensiveReportGenerator } from './comprehensive-report-generator.js';
+
 class ReportDisplayComponent {
     constructor() {
         this.reportGenerator = new ComprehensiveReportGenerator();
