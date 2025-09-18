@@ -47,6 +47,64 @@
   position: relative;
 }
 
+/* Fix interactive questions to fit in viewport */
+.task-container,
+.interactive-task {
+  max-height: calc(100vh - 250px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-content {
+  flex: 1;
+  overflow-y: auto;
+  max-height: calc(100vh - 300px);
+}
+
+/* Ensure gamified tasks fit properly */
+.balloon-game-container,
+.card-sorting-container,
+.iowa-gambling-container,
+.visual-attention-container {
+  max-height: calc(100vh - 280px);
+  overflow-y: auto;
+}
+
+/* Fix game areas to be contained */
+.game-area,
+.task-area {
+  max-height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure navigation stays visible */
+#question-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+#question-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px; /* Space for navigation */
+}
+
+.question-navigation,
+.assessment-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
 /* Responsive fixes */
 @media (max-width: 768px) {
   .question-card {
@@ -55,5 +113,14 @@
 
   .navigation-container {
     padding: 15px;
+  }
+
+  .task-content {
+    max-height: calc(100vh - 250px);
+  }
+
+  .game-area,
+  .task-area {
+    max-height: 300px;
   }
 }

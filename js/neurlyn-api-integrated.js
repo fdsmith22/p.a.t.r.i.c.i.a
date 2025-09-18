@@ -201,7 +201,7 @@ class NeurlynAPIIntegratedApp {
 
     // Navigate to mode selection screen
     setTimeout(() => {
-      this.navigateToScreen('mode-selection');
+      this.showScreen('mode-selection');
     }, 500);
   }
 
@@ -557,15 +557,12 @@ class NeurlynAPIIntegratedApp {
 
     const integratedData = this.integrateAssessmentData(traits, gamifiedMetrics, behavioralPatterns);
 
-    const reportData = await this.reportGenerator.generateReport({
-      mode: this.state.currentMode,
-      traits: integratedData.traits,
-      responses: this.state.responses,
-      gamifiedMetrics: gamifiedMetrics,
-      behavioralMetrics: behavioralData.metrics,
-      behavioralPatterns: behavioralPatterns,
-      duration: Date.now() - this.state.startTime
-    });
+    const reportData = await this.reportGenerator.generateComprehensiveReport(
+      integratedData.traits,
+      this.state.responses,
+      this.state.currentMode,
+      Date.now() - this.state.startTime
+    );
 
     return {
       ...reportData,

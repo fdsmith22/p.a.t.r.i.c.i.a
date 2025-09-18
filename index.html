@@ -1114,9 +1114,15 @@
         }
     }, 100);
 
-    // Function to update vertical progress bar
+    // Function to update vertical progress bar with debouncing
+    let lastProgressUpdate = 0;
     function updateVerticalProgress() {
         if (!window.neurlynApp || !window.neurlynApp.state) return;
+
+        // Debounce updates to prevent infinite loops
+        const now = Date.now();
+        if (now - lastProgressUpdate < 100) return;
+        lastProgressUpdate = now;
 
         const progressFill = document.querySelector('.progress-fill-vertical');
         const percentSpan = document.getElementById('progress-percent');
@@ -1137,8 +1143,6 @@
             if (questionNum) {
                 questionNum.textContent = currentIndex + 1;
             }
-
-            console.log('Vertical progress updated:', percent + '%', 'Question:', currentIndex + 1);
         }
     }
 
