@@ -12,9 +12,20 @@ let taskController;
 
 const initTaskController = async () => {
   if (!taskController) {
-    const timestamp = new Date().getTime();
-    const module = await import(`./modules/task-controller.js?v=${timestamp}`);
-    taskController = module.taskController;
+    try {
+      // Try to load task-controller module
+      const module = await import('./modules/task-controller.js');
+      taskController = module.taskController;
+    } catch (error) {
+      console.warn('Task controller module not found, using fallback');
+      // Create a simple fallback task controller
+      taskController = {
+        loadTask: async (taskType) => {
+          console.log(`Loading task: ${taskType}`);
+          return null;
+        }
+      };
+    }
   }
   return taskController;
 };

@@ -128,7 +128,7 @@ class APIClient {
    */
   async checkHealth() {
     try {
-      const response = await fetch(`${this.baseURL.replace('/api', '/health')}`);
+      const response = await fetch(`${this.baseURL}/health`);
       const data = await response.json();
       return data.status === 'healthy';
     } catch (error) {
