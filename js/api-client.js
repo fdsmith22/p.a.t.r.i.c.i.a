@@ -110,12 +110,12 @@ class APIClient {
   async getQuestionStats() {
     try {
       const response = await fetch(`${this.baseURL}/questions/stats`);
-      const data = await response.json();
 
-      if (!data.success) {
+      if (!response.ok) {
         throw new Error('Failed to fetch statistics');
       }
 
+      const data = await response.json();
       return data;
     } catch (error) {
       console.error('Failed to fetch stats:', error);
