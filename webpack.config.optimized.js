@@ -108,7 +108,8 @@ module.exports = {
         { from: 'manifest.json', to: 'manifest.json' },
         { from: 'about.html', to: 'about.html' },
         { from: 'support.html', to: 'support.html' },
-        { from: 'js', to: 'js' }
+        { from: 'js', to: 'js' },
+        { from: 'sw.js', to: 'sw.js' }
       ]
     }),
 
