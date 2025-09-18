@@ -18,7 +18,14 @@
       "destination": "/$1.html"
     },
     {
-      "source": "/((?!api|js|css|styles|assets|images|favicon.ico|.*\\.|about|support).*)",
+      "source": "/(.+)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "text/html"
+        }
+      ],
       "destination": "/index.html"
     }
   ]
