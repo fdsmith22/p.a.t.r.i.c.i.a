@@ -1,32 +1,4 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "headers": [
-    {
-      "source": "/js/(.*)\\.js",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/javascript"
-        }
-      ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(about|support)",
-      "destination": "/$1.html"
-    },
-    {
-      "source": "/(.+)",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "text/html"
-        }
-      ],
-      "destination": "/index.html"
-    }
-  ]
+  "trailingSlash": false
 }
