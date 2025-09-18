@@ -107,7 +107,8 @@ module.exports = {
         { from: 'assets', to: 'assets' },
         { from: 'manifest.json', to: 'manifest.json' },
         { from: 'about.html', to: 'about.html' },
-        { from: 'support.html', to: 'support.html' }
+        { from: 'support.html', to: 'support.html' },
+        { from: 'js', to: 'js' }
       ]
     }),
 
