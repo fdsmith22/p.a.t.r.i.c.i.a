@@ -7,7 +7,7 @@
       "destination": "/$1.html"
     },
     {
-      "source": "/((?!api/|js/|css/|styles/|assets/|images/|favicon.ico|.*\\.).*)",
+      "source": "/((?!api|js|css|styles|assets|images|favicon.ico|.*\\.|about|support).*)",
       "destination": "/index.html"
     }
   ]
