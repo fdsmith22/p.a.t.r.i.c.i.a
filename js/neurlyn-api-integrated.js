@@ -198,6 +198,11 @@ class NeurlynAPIIntegratedApp {
     }
 
     this.showToast(`Selected: ${track.charAt(0).toUpperCase() + track.slice(1)} Assessment`, 'info');
+
+    // Navigate to mode selection screen
+    setTimeout(() => {
+      this.navigateToScreen('mode-selection');
+    }, 500);
   }
 
   selectMode(mode) {
