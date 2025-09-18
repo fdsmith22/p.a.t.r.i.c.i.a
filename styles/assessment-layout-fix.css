@@ -1,0 +1,59 @@
+/* Fix assessment layout to prevent buttons from being off-screen */
+.assessment-container,
+.question-container {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.question-card {
+  flex: 1;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  padding: 20px;
+}
+
+.navigation-container {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.assessment-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Fix visual attention task errors */
+#score-display,
+#time-display,
+#task-score,
+#task-timer {
+  min-width: 50px;
+}
+
+/* Ensure progress bar doesn't loop */
+.progress-container {
+  position: relative;
+  height: 40px;
+}
+
+.vertical-progress-container {
+  position: relative;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .question-card {
+    max-height: calc(100vh - 180px);
+  }
+
+  .navigation-container {
+    padding: 15px;
+  }
+}
