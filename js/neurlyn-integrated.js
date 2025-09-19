@@ -1,1 +1,243 @@
-import{ReportGenerator}from"./report-generator.js";let taskController;const initTaskController=async()=>{if(!taskController){const e=(new Date).getTime(),t=await import(`./modules/task-controller.js?v=${e}`);taskController=t.taskController}return taskController};import{behavioralTracker}from"./modules/behavioral-tracker.js";import{getLateralQuestions,lateralScoringMatrix}from"./questions/lateral-questions.js";import{emergencyProtocols}from"./modules/emergency-protocols.js";import{getBalancedQuestions}from"./questions/improved-questions.js";class NeurlynIntegratedApp{constructor(){this.state={currentMode:null,currentScreen:"disclaimer",assessmentTrack:null,currentQuestionIndex:0,responses:[],startTime:null,sessionId:this.generateSessionId(),isPaused:!1,theme:"system",taskMode:"hybrid",consentGiven:!1,neurodiversityData:{adhd_indicators:[],autism_indicators:[],dyslexia_indicators:[],sensory_profile:{},executive_function:{}}},this.questions=[],this.currentTask=null,this.autoSaveInterval=null,this.reportGenerator=new ReportGenerator,this.taskController=null,this.behavioralTracker=behavioralTracker,this.emergencyProtocols=emergencyProtocols,this.init()}init(){this.initTheme(),this.loadSavedState(),this.setupDisclaimerListeners(),this.setupEventListeners(),this.setupKeyboardShortcuts(),this.loadQuestions(),this.checkForSavedProgress(),this.initServiceWorker()}setupDisclaimerListeners(){const e=document.getElementById("consent-check"),t=document.getElementById("age-check"),s=document.getElementById("accept-disclaimer"),n=document.querySelectorAll(".selector-tab"),i=document.getElementById("selected-description");if(n.length>0&&(n.forEach(e=>{e.addEventListener("click",()=>{n.forEach(e=>e.classList.remove("active")),e.classList.add("active");const t=e.dataset.plan;"free"===t?(i.textContent="Get your basic personality profile with key traits - completely free",s.textContent="Start Free Assessment",this.state.assessmentPlan="free"):"premium"===t&&(i.textContent="Complete neurodiversity screening with detailed analysis and downloadable report",s.textContent="Start In-Depth Analysis - £1.99",this.state.assessmentPlan="premium")})}),this.state.assessmentPlan="free"),e&&t&&s){const n=()=>{s.disabled=!(e.checked&&t.checked)};e.addEventListener("change",n),t.addEventListener("change",n),s.addEventListener("click",()=>{this.state.consentGiven=!0,"premium"===this.state.assessmentPlan&&console.log("Premium assessment selected - would trigger payment flow"),this.showScreen("welcome")})}}initTheme(){const e=localStorage.getItem("neurlyn-theme")||"system";this.state.theme=e,"system"===e?document.documentElement.removeAttribute("data-theme"):document.documentElement.setAttribute("data-theme",e);const t=document.getElementById("theme-toggle");t&&t.addEventListener("click",()=>this.toggleTheme())}toggleTheme(){const e="dark"===document.documentElement.getAttribute("data-theme")?"light":"dark";document.documentElement.setAttribute("data-theme",e),localStorage.setItem("neurlyn-theme",e),this.state.theme=e,document.body.style.transition="background-color 0.3s ease",setTimeout(()=>{document.body.style.transition=""},300)}setupEventListeners(){document.querySelectorAll(".track-option").forEach(e=>{e.addEventListener("click",()=>{this.selectTrack(e.dataset.track)})}),document.querySelectorAll(".mode-option").forEach(e=>{e.addEventListener("click",()=>{this.selectMode(e.dataset.mode)})});const e=document.getElementById("start-assessment");e&&e.addEventListener("click",()=>this.startAssessment());const t=document.getElementById("prev-button"),s=document.getElementById("next-button"),n=document.getElementById("skip-button");t&&t.addEventListener("click",()=>this.navigateQuestion(-1)),s&&s.addEventListener("click",()=>this.navigateQuestion(1)),n&&n.addEventListener("click",()=>this.skipQuestion());const i=document.getElementById("download-results"),a=document.getElementById("share-results"),o=document.getElementById("retake-assessment");i&&i.addEventListener("click",()=>this.downloadResults()),a&&a.addEventListener("click",()=>this.shareResults()),o&&o.addEventListener("click",()=>this.retakeAssessment())}selectTrack(e){this.state.assessmentTrack=e,document.querySelectorAll(".track-option").forEach(t=>{t.classList.remove("selected"),t.dataset.track===e&&t.classList.add("selected")});const t=document.querySelector(".mode-selection");if(t){const s=t.querySelector("h3");"neurodiversity"===e?(s.textContent="Select Assessment Depth",this.updateModeDescriptionsForNeurodiversity()):s.textContent="comprehensive"===e?"Select Comprehensive Assessment":"Select Assessment Type"}this.showToast(`Selected: ${e.charAt(0).toUpperCase()+e.slice(1)} Assessment`,"info")}updateModeDescriptionsForNeurodiversity(){const e=document.querySelectorAll(".mode-option"),t={quick:"Rapid screening<br>5-7 minutes",standard:"Comprehensive evaluation<br>15-20 minutes",deep:"Complete analysis<br>25-30 minutes"};e.forEach(e=>{const s=e.dataset.mode,n=e.querySelector("p");n&&t[s]&&(n.innerHTML=t[s])})}updateExpectedDuration(e){const t={quick:"5-7 minutes",standard:"15-20 minutes",deep:"25-30 minutes"},s=document.querySelector(".description");if(s&&t[e]){const n=this.state.assessmentTrack?` (${this.state.assessmentTrack} track)`:"";s.innerHTML=`\n                This assessment will take approximately <strong>${t[e]}</strong>${n}.\n            `}}loadQuestions(){this.questions=[]}selectMode(e){this.state.currentMode=e,document.querySelectorAll(".mode-option").forEach(t=>{t.classList.remove("selected","selecting"),t.dataset.mode===e&&(t.classList.add("selecting"),setTimeout(()=>{t.classList.remove("selecting"),t.classList.add("selected")},150))}),this.showTaskTypeSelector();const t=document.getElementById("start-assessment");if(t){t.disabled=!1,t.classList.add("pulse");const s=e.charAt(0).toUpperCase()+e.slice(1);t.textContent=`Begin ${s} Assessment`,setTimeout(()=>t.classList.remove("pulse"),600)}this.updateExpectedDuration(e)}showTaskTypeSelector(){const e=document.getElementById("task-type-selector");e&&e.remove();const t=document.createElement("div");t.id="task-type-selector",t.className="task-type-selector",t.innerHTML=`\n            <h4>Assessment Style</h4>\n            <div class="task-type-options">\n                <label class="task-type-option">\n                    <input type="radio" name="taskType" value="traditional" />\n                    <span class="option-content">\n                        <span class="option-title">Traditional</span>\n                        <span class="option-desc">Standard questionnaire</span>\n                    </span>\n                </label>\n                <label class="task-type-option">\n                    <input type="radio" name="taskType" value="gamified" />\n                    <span class="option-content">\n                        <span class="option-title">Interactive</span>\n                        <span class="option-desc">Games & activities</span>\n                    </span>\n                </label>\n                <label class="task-type-option">\n                    <input type="radio" name="taskType" value="lateral" />\n                    <span class="option-content">\n                        <span class="option-title">Lateral</span>\n                        <span class="option-desc">Creative scenarios</span>\n                    </span>\n                </label>\n                <label class="task-type-option">\n                    <input type="radio" name="taskType" value="hybrid" checked />\n                    <span class="option-content">\n                        <span class="option-title">Hybrid</span>\n                        <span class="option-desc">Mixed approach</span>\n                    </span>\n                </label>\n            </div>\n                <label class="task-type-option">\n                    <input type="radio" name="taskMode" value="traditional" ${"traditional"===this.state.taskMode?"checked":""}>\n                    <span class="option-label">\n                        <strong>Traditional</strong>\n                        <small>Classic questionnaire format</small>\n                    </span>\n                </label>\n                <label class="task-type-option">\n                    <input type="radio" name="taskMode" value="gamified" ${"gamified"===this.state.taskMode?"checked":""}>\n                    <span class="option-label">\n                        <strong>Gamified</strong>\n                        <small>Interactive games & tasks</small>\n                    </span>\n                </label>\n                <label class="task-type-option">\n                    <input type="radio" name="taskMode" value="hybrid" ${"hybrid"===this.state.taskMode?"checked":""}>\n                    <span class="option-label">\n                        <strong>Hybrid</strong>\n                        <small>Mix of questions & games</small>\n                    </span>\n                </label>\n            </div>\n        `;const s=document.querySelector(".mode-selection");s&&s.appendChild(t),t.querySelectorAll('input[name="taskType"]').forEach(e=>{e.addEventListener("change",e=>{this.state.taskMode=e.target.value,this.showToast(`Assessment style: ${e.target.value}`,"info")})})}generateEnhancedQuestions(){const e={quick:{questionCount:7,gamifiedTasks:["risk-balloon"],traditionalCount:6},standard:{questionCount:15,gamifiedTasks:["risk-balloon","word-association","visual-attention"],traditionalCount:12},deep:{questionCount:30,gamifiedTasks:["risk-balloon","word-association","visual-attention","microexpression","iowa-gambling","card-sorting"],traditionalCount:24}},t=e[this.state.currentMode]||e.standard,s=[];if("traditional"===this.state.taskMode)s.push(...this.generateLikertQuestions(t.questionCount));else if("gamified"===this.state.taskMode)s.push(...this.generateGamifiedTasks(t.gamifiedTasks)),s.length<t.questionCount&&s.push(...this.generateLikertQuestions(t.questionCount-s.length));else if("lateral"===this.state.taskMode){const e=getLateralQuestions(t.questionCount);s.push(...e.map(e=>this.createLateralQuestion(e)))}else{const e=t.questionCount,n=t.gamifiedTasks.length,i=Math.floor(.3*e),a=e-n-i;s.push(...this.generateGamifiedTasks(t.gamifiedTasks));const o=getLateralQuestions(i);s.push(...o.map(e=>this.createLateralQuestion(e))),a>0&&s.push(...this.generateLikertQuestions(a)),s.sort(()=>Math.random()-.5)}return s}generateGamifiedTasks(e){return e.map(e=>this.createGamifiedTask(e))}createGamifiedTask(e){return{"risk-balloon":{type:"risk-balloon",question:"Balloon Risk Game",instructions:"Pump the balloon to earn money, but be careful - it might pop! Press SPACE to pump, ENTER to collect.",category:"Risk Taking",timeLimit:12e4,balloons:5},"word-association":{type:"word-association",question:"Word Association",instructions:"Type the first word that comes to mind for each prompt. Be spontaneous!",category:"Cognitive Processing",timeLimit:9e4,words:["home","mother","success","fear","love","work","future","past"]},"visual-attention":{type:"visual-attention",question:"Visual Attention Task",instructions:"Track the moving dots and click on them as they appear.",category:"Attention",timeLimit:12e4},microexpression:{type:"microexpression",question:"Emotion Recognition",instructions:"Identify the emotion shown in each brief facial expression.",category:"Emotional Intelligence",timeLimit:9e4},"iowa-gambling":{type:"iowa-gambling",question:"Card Selection Game",instructions:"Select cards from different decks to maximize your winnings.",category:"Decision Making",timeLimit:24e4},"card-sorting":{type:"card-sorting",question:"Pattern Matching",instructions:"Sort cards according to changing rules. Figure out the pattern!",category:"Cognitive Flexibility",timeLimit:18e4}}[e]||this.createLikertQuestion(0)}generateLikertQuestions(e){return getBalancedQuestions(e).map((e,t)=>({type:"likert",question:e.text,category:e.category,reversed:e.reversed||!1,scale:5}))}checkForSavedProgress(){const e=localStorage.getItem("neurlyn-progress");if(e){const t=JSON.parse(e);t.sessionId===this.state.sessionId&&(this.state={...this.state,...t},this.showToast("Progress restored","info"))}}initServiceWorker(){"serviceWorker"in navigator&&navigator.serviceWorker.register("/sw.js").then(e=>console.log("Service Worker registered")).catch(e=>console.log("Service Worker registration failed"))}loadSavedState(){const e=localStorage.getItem("neurlyn-state");if(e)try{const t=JSON.parse(e);this.state.theme=t.theme||"system",this.state.taskMode=t.taskMode||"hybrid"}catch(e){console.error("Failed to load saved state:",e)}}setupKeyboardShortcuts(){document.addEventListener("keydown",e=>{(e.ctrlKey||e.metaKey)&&"s"===e.key&&(e.preventDefault(),this.saveProgress()),"Escape"===e.key&&"question"===this.state.currentScreen&&this.togglePause()})}saveProgress(){const e={sessionId:this.state.sessionId,currentQuestionIndex:this.state.currentQuestionIndex,responses:this.state.responses,timestamp:Date.now()};localStorage.setItem("neurlyn-progress",JSON.stringify(e)),this.showToast("Progress saved","success")}togglePause(){this.state.isPaused=!this.state.isPaused,this.state.isPaused?this.showToast("Assessment paused","info"):this.showToast("Assessment resumed","info")}showToast(e,t="info"){const s=document.createElement("div");s.className=`toast toast-${t}`,s.textContent=e,document.body.appendChild(s),setTimeout(()=>{s.classList.add("show")},100),setTimeout(()=>{s.classList.remove("show"),setTimeout(()=>s.remove(),300)},3e3)}showScreen(e){document.querySelectorAll(".screen").forEach(e=>{e.classList.add("hidden")});const t=document.getElementById(`${e}-screen`);t&&(t.classList.remove("hidden"),t.classList.add("active"),this.state.currentScreen=e)}generateSessionId(){return"session_"+Date.now()+"_"+Math.random().toString(36).substr(2,9)}createLateralQuestion(e){return{type:"lateral",id:e.id,question:e.text,options:e.options,category:"Lateral Thinking",measures:e.measures}}createLikertQuestion(e){const t=getBalancedQuestions(30),s=t[e%t.length];return{type:"likert",question:s.text,category:s.category,reversed:s.reversed||!1,scale:5}}async startAssessment(){this.state.currentMode?(this.state.startTime=Date.now(),this.state.currentQuestionIndex=0,this.state.responses=[],this.questions=this.generateEnhancedQuestions(),this.behavioralTracker.start(),this.transitionToScreen("question"),await this.displayQuestion(),this.startAutoSave(),this.showToast("Assessment started","success")):this.showToast("Please select an assessment mode","error")}async displayQuestion(){const e=this.questions[this.state.currentQuestionIndex],t=document.getElementById("question-content");if(!t)return;this.taskController||(this.taskController=await initTaskController()),console.log("📋 Displaying question:",{index:this.state.currentQuestionIndex,type:e.type,category:e.category,hasOptions:!!e.options,optionsCount:e.options?.length,questionText:e.question?.substring(0,50)+"..."}),this.currentTask&&(this.taskController.destroy(),this.currentTask=null),this.updateProgress();const s=document.getElementById("question-category");s&&(s.textContent=e.category);try{"lateral"===e.type?(console.log("✅ Loading lateral task for question"),this.currentTask=await this.taskController.loadTask("lateral",e)):(console.log(`Loading ${e.type} task for question`),this.currentTask=await this.taskController.loadTask(e.type,e)),await this.taskController.renderTask(t),"likert"!==e.type&&"lateral"!==e.type&&this.setupGamifiedTaskCompletion()}catch(s){console.error("Failed to load task:",s),this.currentTask=await this.taskController.loadTask("likert",e),await this.taskController.renderTask(t)}this.updateNavigationButtons()}setupGamifiedTaskCompletion(){const e=setInterval(async()=>{if(this.currentTask&&null!==this.currentTask.response){clearInterval(e),this.taskController||(this.taskController=await initTaskController());const t=await this.taskController.getTaskResults();this.state.responses.push({questionIndex:this.state.currentQuestionIndex,question:this.questions[this.state.currentQuestionIndex].question,category:this.questions[this.state.currentQuestionIndex].category,response:t,timestamp:Date.now(),taskType:this.questions[this.state.currentQuestionIndex].type}),setTimeout(()=>{this.state.currentQuestionIndex<this.questions.length-1?this.navigateQuestion(1):this.completeAssessment()},1500)}},100)}async navigateQuestion(e){if(this.taskController||(this.taskController=await initTaskController()),e>0&&this.currentTask){if("likert"===this.currentTask.type&&!this.currentTask.response)return void this.showToast("Please select an answer","error");const e=await this.taskController.getTaskResults();this.state.responses.push({questionIndex:this.state.currentQuestionIndex,question:this.questions[this.state.currentQuestionIndex].question,category:this.questions[this.state.currentQuestionIndex].category,response:e,timestamp:Date.now(),taskType:this.questions[this.state.currentQuestionIndex].type})}if(this.state.currentQuestionIndex+=e,this.state.currentQuestionIndex<0)this.state.currentQuestionIndex=0;else if(this.state.currentQuestionIndex>=this.questions.length)return void this.completeAssessment();await this.displayQuestion(),this.saveState()}async completeAssessment(){this.taskController||(this.taskController=await initTaskController()),this.behavioralTracker.stop();const e=this.behavioralTracker.getData();this.currentTask&&this.taskController.destroy(),this.stopAutoSave(),this.state.currentScreen="results";const t=await this.calculateEnhancedResults(e);this.transitionToScreen("results"),this.displayResults(t),this.clearSavedState(),this.saveResultsToHistory(t)}async calculateEnhancedResults(e){const t=this.state.responses.filter(e=>"likert"===e.taskType),s=this.state.responses.filter(e=>"likert"!==e.taskType),n=this.calculateTraits(t),i=this.analyzeGamifiedTasks(s),a=e.patterns,o=this.integrateAssessmentData(n,i,a);return{...await this.reportGenerator.generateReport({mode:this.state.currentMode,traits:o.traits,responses:this.state.responses,gamifiedMetrics:i,behavioralMetrics:e.metrics,behavioralPatterns:a,duration:Date.now()-this.state.startTime}),behavioralInsights:this.generateBehavioralInsights(e),gamifiedInsights:this.generateGamifiedInsights(s)}}analyzeGamifiedTasks(e){const t={};return e.forEach(e=>{"risk-balloon"===e.response.taskType&&(t.riskTolerance=e.response.riskMetrics?.riskTolerance||0,t.learningAbility=e.response.riskMetrics?.learningCurve||0,t.consistency=e.response.riskMetrics?.consistency||0)}),t}integrateAssessmentData(e,t,s){const n={traditional:.4,gamified:.35,behavioral:.25},i={...e};return s.engagement&&(i.openness=e.openness*n.traditional+100*s.engagement.score*n.behavioral+100*(t.learningAbility||0)*n.gamified),s.precision&&(i.conscientiousness=e.conscientiousness*n.traditional+100*s.precision.score*n.behavioral+100*(t.consistency||0)*n.gamified),s.anxiety&&(i.neuroticism=e.neuroticism*n.traditional+100*s.anxiety.score*n.behavioral),{traits:i,confidence:this.calculateConfidence(n)}}generateBehavioralInsights(e){const t=[],s=e.patterns;return s.impulsivity?.score>.6&&t.push({type:"impulsivity",title:"Quick Decision Maker",description:"Your interaction patterns suggest you make decisions quickly and spontaneously.",score:s.impulsivity.score}),s.precision?.score>.7&&t.push({type:"precision",title:"Detail Oriented",description:"Your careful movements and low error rate indicate strong attention to detail.",score:s.precision.score}),s.anxiety?.score>.5&&t.push({type:"anxiety",title:"Thoughtful Consideration",description:"You take time to consider your responses carefully before committing.",score:s.anxiety.score}),t}generateGamifiedInsights(e){const t=[];return e.forEach(e=>{if("risk-balloon"===e.response.taskType&&e.response.riskMetrics){const s=e.response.riskMetrics;s.riskTolerance>.6&&t.push({type:"risk-taking",title:"Calculated Risk Taker",description:`You demonstrated a ${(100*s.riskTolerance).toFixed(0)}% risk tolerance level.`,metrics:s}),s.learningCurve>0&&t.push({type:"adaptive-learning",title:"Quick Learner",description:"You showed improvement throughout the task, adapting your strategy.",metrics:s})}}),t}calculateConfidence(e){let t=this.state.responses.length/this.questions.length*.5;return this.state.responses.some(e=>"likert"!==e.taskType)&&(t+=.25),this.behavioralTracker.getData().metrics.totalDuration>0&&(t+=.25),Math.min(t,1)}displayResults(e){const t=document.getElementById("results-content");t&&(t.innerHTML=`\n            <div class="results-summary">\n                <h3>Your Personality Profile</h3>\n                <div class="confidence-indicator">\n                    <span>Assessment Confidence: ${(100*e.confidence).toFixed(0)}%</span>\n                    <div class="confidence-bar">\n                        <div class="confidence-fill" style="width: ${100*e.confidence}%"></div>\n                    </div>\n                </div>\n            </div>\n            \n            <div class="trait-results">\n                ${this.renderTraitResults(e.traits)}\n            </div>\n            \n            ${e.behavioralInsights?.length>0?`\n                <div class="behavioral-insights">\n                    <h4>Behavioral Insights</h4>\n                    ${e.behavioralInsights.map(e=>`\n                        <div class="insight-card">\n                            <h5>${e.title}</h5>\n                            <p>${e.description}</p>\n                        </div>\n                    `).join("")}\n                </div>\n            `:""}\n            \n            ${e.gamifiedInsights?.length>0?`\n                <div class="gamified-insights">\n                    <h4>Task Performance Insights</h4>\n                    ${e.gamifiedInsights.map(e=>`\n                        <div class="insight-card">\n                            <h5>${e.title}</h5>\n                            <p>${e.description}</p>\n                        </div>\n                    `).join("")}\n                </div>\n            `:""}\n            \n            <div class="archetype-section">\n                <h4>Your Personality Archetype</h4>\n                <div class="archetype-card">\n                    <h5>${e.archetype.name}</h5>\n                    <p>${e.archetype.description}</p>\n                </div>\n            </div>\n            \n            <div class="recommendations-section">\n                <h4>Personalized Recommendations</h4>\n                ${e.recommendations.map(e=>`\n                    <div class="recommendation-card">\n                        <strong>${e.area}:</strong> ${e.suggestion}\n                    </div>\n                `).join("")}\n            </div>\n        `,this.addResultsInteractivity(e))}renderTraitResults(e){return Object.entries(e).map(([e,t])=>`\n            <div class="trait-item">\n                <div class="trait-header">\n                    <span class="trait-name">${e.charAt(0).toUpperCase()+e.slice(1)}</span>\n                    <span class="trait-score">${t.toFixed(0)}%</span>\n                </div>\n                <div class="trait-bar">\n                    <div class="trait-fill" style="width: ${t}%; background: ${this.getTraitColor(e)};"></div>\n                </div>\n            </div>\n        `).join("")}getTraitColor(e){return{openness:"#4ECDC4",conscientiousness:"#96E6B3",extraversion:"#F7DC6F",agreeableness:"#45B7D1",neuroticism:"#FF6B6B"}[e]||"#6C9E83"}addResultsInteractivity(e){document.querySelectorAll(".insight-card").forEach(e=>{e.addEventListener("mouseenter",()=>{e.style.transform="translateY(-2px)",e.style.boxShadow="var(--shadow-lg)"}),e.addEventListener("mouseleave",()=>{e.style.transform="translateY(0)",e.style.boxShadow="var(--shadow-md)"})}),document.querySelectorAll(".recommendation-card").forEach(e=>{e.style.cursor="pointer",e.addEventListener("click",()=>{e.classList.toggle("expanded")})})}calculateTraits(e){const t={openness:50,conscientiousness:50,extraversion:50,agreeableness:50,neuroticism:50};return 0===e.length||e.forEach(e=>{const s=((e.response?.response?.value||3)-1)/4*100,n=e.category.toLowerCase();void 0!==t[n]&&(t[n]=(t[n]+s)/2)}),t}updateProgress(){const e=(this.state.currentQuestionIndex+1)/this.questions.length*100,t=document.getElementById("progress-fill"),s=document.getElementById("progress-percent"),n=document.getElementById("question-num"),i=document.getElementById("total-questions"),a=document.getElementById("breadcrumb-question");t&&(t.style.width=`${e}%`),s&&(s.textContent=`${Math.round(e)}%`),n&&(n.textContent=this.state.currentQuestionIndex+1),i&&(i.textContent=this.questions.length),a&&(a.textContent=this.state.currentQuestionIndex+1)}updateNavigationButtons(){const e=document.getElementById("prev-button"),t=document.getElementById("next-button");if(e&&(e.disabled=0===this.state.currentQuestionIndex),t){const e=this.state.currentQuestionIndex===this.questions.length-1;t.textContent=e?"Complete":"Next",this.currentTask&&"likert"!==this.currentTask.type?t.disabled=!0:t.disabled=!1}}generateSessionId(){return`session_${Date.now()}_${Math.random().toString(36).substr(2,9)}`}showToast(e,t="info"){const s=document.createElement("div");s.className=`toast toast-${t}`,s.textContent=e,document.body.appendChild(s),setTimeout(()=>{s.classList.add("show")},10),setTimeout(()=>{s.classList.remove("show"),setTimeout(()=>s.remove(),300)},3e3)}transitionToScreen(e){document.querySelectorAll(".screen").forEach(e=>{e.classList.add("hidden")});const t=document.getElementById(`${e}-screen`);t&&t.classList.remove("hidden"),this.state.currentScreen=e}saveState(){const e={...this.state,questions:this.questions,timestamp:Date.now()};try{localStorage.setItem("neurlyn-assessment",JSON.stringify(e)),this.showToast("Progress saved","success")}catch(e){console.error("Failed to save state:",e)}}loadSavedState(){try{const e=localStorage.getItem("neurlyn-assessment");if(e){const t=JSON.parse(e);if(Date.now()-t.timestamp<864e5)return t}}catch(e){console.error("Failed to load saved state:",e)}return null}clearSavedState(){localStorage.removeItem("neurlyn-assessment")}checkForSavedProgress(){const e=this.loadSavedState();e&&"question"===e.currentScreen&&this.showResumeDialog(e)}showResumeDialog(e){const t=document.createElement("div");t.className="resume-dialog",t.innerHTML=`\n            <div class="dialog-content">\n                <h3>Resume Assessment?</h3>\n                <p>You have an assessment in progress.</p>\n                <p>Progress: Question ${e.currentQuestionIndex+1}</p>\n                <div class="dialog-actions">\n                    <button class="btn btn-primary" id="resume-yes">Resume</button>\n                    <button class="btn btn-secondary" id="resume-no">Start New</button>\n                </div>\n            </div>\n        `,document.body.appendChild(t),document.getElementById("resume-yes").addEventListener("click",()=>{this.resumeAssessment(e),t.remove()}),document.getElementById("resume-no").addEventListener("click",()=>{this.clearSavedState(),t.remove()})}resumeAssessment(e){this.state=e,this.questions=e.questions,this.transitionToScreen("question"),this.displayQuestion(),this.startAutoSave(),this.showToast("Assessment resumed","info")}startAutoSave(){this.autoSaveInterval=setInterval(()=>{"question"===this.state.currentScreen&&this.saveState()},3e4)}stopAutoSave(){this.autoSaveInterval&&(clearInterval(this.autoSaveInterval),this.autoSaveInterval=null)}updateExpectedDuration(e){const t=document.getElementById("expected-duration");t&&(t.textContent={quick:"5-7 minutes",standard:"15-20 minutes",deep:"25-30 minutes"}[e])}setupKeyboardShortcuts(){document.addEventListener("keydown",e=>{if("question"===this.state.currentScreen)switch(e.key){case"ArrowLeft":this.navigateQuestion(-1);break;case"ArrowRight":case"Enter":document.getElementById("next-button").disabled||this.navigateQuestion(1);break;case"1":case"2":case"3":case"4":case"5":const t=document.querySelectorAll(".likert-option"),s=parseInt(e.key)-1;t[s]&&t[s].click()}})}skipQuestion(){this.state.responses.push({questionIndex:this.state.currentQuestionIndex,question:this.questions[this.state.currentQuestionIndex].question,category:this.questions[this.state.currentQuestionIndex].category,response:{skipped:!0},timestamp:Date.now(),taskType:this.questions[this.state.currentQuestionIndex].type}),this.navigateQuestion(1)}saveResultsToHistory(e){try{const t=JSON.parse(localStorage.getItem("neurlyn-history")||"[]");t.push({date:Date.now(),mode:this.state.currentMode,results:e}),t.length>10&&t.shift(),localStorage.setItem("neurlyn-history",JSON.stringify(t))}catch(e){console.error("Failed to save results:",e)}}downloadResults(){this.showToast("Preparing download...","info")}shareResults(){navigator.share?navigator.share({title:"My Neurlyn Assessment Results",text:"Check out my personality profile!",url:window.location.href}):this.showToast("Sharing not available on this device","error")}retakeAssessment(){location.reload()}initServiceWorker(){"serviceWorker"in navigator&&navigator.serviceWorker.register("sw.js").then(()=>console.log("Service Worker registered")).catch(e=>console.error("Service Worker registration failed:",e))}}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",()=>{window.neurlynApp=new NeurlynIntegratedApp}):window.neurlynApp=new NeurlynIntegratedApp;export default NeurlynIntegratedApp;
+/**
+ * Neurlyn Integrated Core Module
+ * Central initialization and coordination for the Neurlyn assessment platform
+ */
+
+(function() {
+  'use strict';
+
+  // Core Neurlyn namespace
+  window.Neurlyn = window.Neurlyn || {};
+
+  // Service Worker Registration
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('Service Worker registered');
+        })
+        .catch(err => {
+          console.log('Service Worker registration skipped:', err.message);
+        });
+    });
+  }
+
+  // Load Environment Configuration
+  async function loadEnvironmentConfig() {
+    try {
+      const script = document.createElement('script');
+      script.src = '/config/environment.js';
+      document.head.appendChild(script);
+
+      return new Promise((resolve) => {
+        script.onload = () => {
+          if (window.EnvironmentConfig) {
+            window.envConfig = window.EnvironmentConfig();
+            console.log('Environment:', window.envConfig.getEnvironment());
+            resolve();
+          }
+        };
+      });
+    } catch (error) {
+      console.warn('Environment config not loaded:', error);
+    }
+  }
+
+  // Initialize Core Services
+  async function initializeCoreServices() {
+    // Storage Service
+    if (window.storageService) {
+      console.log('Storage service initialized');
+    }
+
+    // Error Handler
+    if (window.errorHandler) {
+      console.log('Error handler initialized');
+    }
+
+    // Performance Monitor
+    if (window.performanceUtils) {
+      window.performanceUtils.initializeMonitoring();
+      console.log('Performance monitoring initialized');
+    }
+  }
+
+  // Assessment State Manager
+  class AssessmentStateManager {
+    constructor() {
+      this.currentState = 'idle';
+      this.assessmentType = null;
+      this.responses = [];
+      this.startTime = null;
+    }
+
+    startAssessment(type, options = {}) {
+      this.currentState = 'active';
+      this.assessmentType = type;
+      this.responses = [];
+      this.startTime = Date.now();
+
+      console.log(`Assessment started: ${type}`, options);
+
+      // Emit custom event
+      window.dispatchEvent(new CustomEvent('assessmentStarted', {
+        detail: { type, options }
+      }));
+    }
+
+    recordResponse(questionId, answer, metadata = {}) {
+      this.responses.push({
+        questionId,
+        answer,
+        timestamp: Date.now(),
+        metadata
+      });
+    }
+
+    completeAssessment() {
+      const duration = Date.now() - this.startTime;
+      this.currentState = 'completed';
+
+      const results = {
+        type: this.assessmentType,
+        responses: this.responses,
+        duration,
+        completedAt: new Date().toISOString()
+      };
+
+      console.log('Assessment completed', results);
+
+      // Emit custom event
+      window.dispatchEvent(new CustomEvent('assessmentCompleted', {
+        detail: results
+      }));
+
+      return results;
+    }
+
+    reset() {
+      this.currentState = 'idle';
+      this.assessmentType = null;
+      this.responses = [];
+      this.startTime = null;
+    }
+  }
+
+  // API Integration Helper
+  class APIHelper {
+    constructor() {
+      this.baseUrl = window.envConfig?.getApiUrl() || 'http://localhost:3002';
+    }
+
+    async request(endpoint, options = {}) {
+      const url = `${this.baseUrl}${endpoint}`;
+
+      try {
+        const response = await fetch(url, {
+          ...options,
+          headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`API Error: ${response.status} ${response.statusText}`);
+        }
+
+        return await response.json();
+      } catch (error) {
+        console.error('API Request failed:', error);
+        throw error;
+      }
+    }
+  }
+
+  // UI State Manager
+  class UIStateManager {
+    constructor() {
+      this.currentScreen = 'landing';
+      this.previousScreen = null;
+    }
+
+    navigateTo(screen, data = {}) {
+      this.previousScreen = this.currentScreen;
+      this.currentScreen = screen;
+
+      console.log(`Navigating: ${this.previousScreen} -> ${this.currentScreen}`);
+
+      // Emit navigation event
+      window.dispatchEvent(new CustomEvent('navigationChange', {
+        detail: {
+          from: this.previousScreen,
+          to: this.currentScreen,
+          data
+        }
+      }));
+    }
+
+    goBack() {
+      if (this.previousScreen) {
+        const temp = this.currentScreen;
+        this.currentScreen = this.previousScreen;
+        this.previousScreen = temp;
+      }
+    }
+  }
+
+  // Initialize on DOM ready
+  async function initialize() {
+    console.log('Neurlyn Core Initializing...');
+
+    // Load environment config
+    await loadEnvironmentConfig();
+
+    // Initialize core services
+    await initializeCoreServices();
+
+    // Create global instances
+    window.Neurlyn = {
+      ...window.Neurlyn,
+      assessmentState: new AssessmentStateManager(),
+      api: new APIHelper(),
+      ui: new UIStateManager(),
+
+      // Public API methods
+      startAssessment(type, options) {
+        return this.assessmentState.startAssessment(type, options);
+      },
+
+      recordResponse(questionId, answer, metadata) {
+        return this.assessmentState.recordResponse(questionId, answer, metadata);
+      },
+
+      completeAssessment() {
+        return this.assessmentState.completeAssessment();
+      },
+
+      resetAssessment() {
+        return this.assessmentState.reset();
+      },
+
+      navigateTo(screen, data) {
+        return this.ui.navigateTo(screen, data);
+      },
+
+      async fetchAPI(endpoint, options) {
+        return this.api.request(endpoint, options);
+      }
+    };
+
+    console.log('Neurlyn Core Initialized');
+
+    // Emit ready event
+    window.dispatchEvent(new Event('neurlynReady'));
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+  } else {
+    initialize();
+  }
+})();
