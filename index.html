@@ -1098,13 +1098,17 @@
         // Override the start assessment button to use adaptive assessment
         const startBtn = document.getElementById('start-assessment');
         if (startBtn) {
-            startBtn.addEventListener('click', function(e) {
+            startBtn.addEventListener('click', async function(e) {
                 e.preventDefault();
                 e.stopPropagation();
+
+                console.log('Start Assessment button clicked');
 
                 // Get selected mode and tier
                 const selectedMode = window.neurlynApp?.state?.currentMode || 'standard';
                 const selectedTrack = window.neurlynApp?.state?.assessmentTrack || 'comprehensive';
+
+                console.log('Selected mode:', selectedMode, 'Selected track:', selectedTrack);
 
                 // Map mode to tier for adaptive system
                 const tierMap = {
@@ -1120,39 +1124,78 @@
                     screen.classList.add('hidden');
                 });
 
-                // Show adaptive assessment screen
+                // Show adaptive assessment screen first
                 const adaptiveScreen = document.getElementById('adaptive-assessment-screen');
                 const questionScreen = document.getElementById('question-screen');
 
-                // Check if we should use adaptive or regular question screen
+                console.log('Assessment system available:', !!window.assessment);
+                console.log('Adaptive screen found:', !!adaptiveScreen);
+                console.log('Question screen found:', !!questionScreen);
+
+                // Try adaptive assessment first
                 if (window.assessment && adaptiveScreen) {
                     adaptiveScreen.classList.remove('hidden');
-                } else if (questionScreen) {
-                    // Fallback to question screen if adaptive not available
-                    questionScreen.classList.remove('hidden');
-                }
 
-                // Start adaptive assessment
-                if (window.assessment) {
-                    // Map track to concerns
-                    const concernsMap = {
-                        'personality': [],
-                        'neurodiversity': ['attention', 'social', 'sensory'],
-                        'comprehensive': ['attention', 'social', 'sensory', 'emotional']
-                    };
+                    try {
+                        // Map track to concerns
+                        const concernsMap = {
+                            'personality': [],
+                            'neurodiversity': ['attention', 'social', 'sensory'],
+                            'comprehensive': ['attention', 'social', 'sensory', 'emotional']
+                        };
 
-                    const concerns = concernsMap[selectedTrack] || [];
+                        const concerns = concernsMap[selectedTrack] || [];
 
-                    // Start the assessment
-                    window.assessment.startAssessment({
-                        tier: tier,
-                        concerns: concerns
-                    });
+                        console.log('Starting adaptive assessment with tier:', tier, 'concerns:', concerns);
+
+                        // Start the assessment
+                        await window.assessment.startAssessment({
+                            tier: tier,
+                            concerns: concerns
+                        });
+
+                        console.log('Adaptive assessment started successfully');
+                    } catch (error) {
+                        console.error('Adaptive assessment failed:', error);
+
+                        // Hide adaptive screen and show question screen instead
+                        adaptiveScreen.classList.add('hidden');
+
+                        if (questionScreen) {
+                            questionScreen.classList.remove('hidden');
+                            console.log('Falling back to regular question screen');
+
+                            // Start regular assessment
+                            if (window.neurlynApp && window.neurlynApp.startAssessment) {
+                                window.neurlynApp.startAssessment();
+                            }
+                        } else {
+                            // Show error message if no fallback available
+                            const container = document.getElementById('assessment-container');
+                            if (container) {
+                                container.innerHTML = `
+                                    <div class="error-state" style="text-align: center; padding: 2rem;">
+                                        <div class="error-icon" style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+                                        <h3 style="color: #dc2626; margin-bottom: 1rem;">Assessment Unavailable</h3>
+                                        <p style="margin-bottom: 1.5rem;">Unable to start the assessment. Please check your internet connection and try again.</p>
+                                        <button onclick="location.reload()" class="btn btn-primary">Reload Page</button>
+                                    </div>
+                                `;
+                            }
+                        }
+                    }
                 } else {
-                    console.error('Adaptive assessment not loaded');
+                    console.log('Using fallback to regular assessment');
+
                     // Fallback to regular assessment
-                    if (window.neurlynApp && window.neurlynApp.startAssessment) {
-                        window.neurlynApp.startAssessment();
+                    if (questionScreen) {
+                        questionScreen.classList.remove('hidden');
+
+                        if (window.neurlynApp && window.neurlynApp.startAssessment) {
+                            window.neurlynApp.startAssessment();
+                        }
+                    } else {
+                        console.error('No assessment system available');
                     }
                 }
             });
