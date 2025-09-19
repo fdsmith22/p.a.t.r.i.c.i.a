@@ -1,0 +1,150 @@
+/**
+ * Z-Index Architecture for Neurlyn
+ * Standardized layering system to prevent conflicts
+ */
+
+:root {
+  /* Base Layer: 0-99 */
+  --z-base: 0;
+  --z-below: -1;
+  --z-content: 1;
+
+  /* Cards & Overlays: 100-499 */
+  --z-card: 100;
+  --z-card-hover: 150;
+  --z-overlay: 200;
+  --z-dropdown: 300;
+  --z-sticky: 400;
+
+  /* Navigation: 500-999 */
+  --z-nav: 500;
+  --z-nav-dropdown: 600;
+  --z-progress: 700;
+  --z-header: 800;
+  --z-mobile-nav: 900;
+
+  /* Modals: 1000-1999 */
+  --z-modal-backdrop: 1000;
+  --z-modal: 1100;
+  --z-modal-content: 1200;
+
+  /* Tooltips & Popovers: 2000-2999 */
+  --z-tooltip: 2000;
+  --z-popover: 2100;
+  --z-toast: 2500;
+
+  /* Critical & Alerts: 9000+ */
+  --z-alert: 9000;
+  --z-critical: 9999;
+  --z-maximum: 10000;
+}
+
+/* Apply standardized z-index values */
+
+/* Base content */
+.content,
+.question-content {
+  z-index: var(--z-content);
+}
+
+/* Cards and interactive elements */
+.card,
+.question-card,
+.track-option,
+.mode-option {
+  z-index: var(--z-card);
+}
+
+.card:hover,
+.track-option:hover,
+.mode-option:hover {
+  z-index: var(--z-card-hover);
+}
+
+/* Navigation elements */
+.main-nav {
+  z-index: var(--z-header);
+}
+
+.nav-dropdown {
+  z-index: var(--z-nav-dropdown);
+}
+
+.question-nav {
+  z-index: var(--z-nav);
+}
+
+/* Progress indicators */
+.progress-container,
+.vertical-progress-sidebar {
+  z-index: var(--z-progress);
+}
+
+/* Overlays and backdrops */
+.overlay,
+.modal-backdrop {
+  z-index: var(--z-modal-backdrop);
+}
+
+.modal {
+  z-index: var(--z-modal);
+}
+
+.modal-content {
+  z-index: var(--z-modal-content);
+}
+
+/* Tooltips and notifications */
+.tooltip {
+  z-index: var(--z-tooltip);
+}
+
+.toast,
+.notification {
+  z-index: var(--z-toast);
+}
+
+/* Skip links and accessibility */
+.skip-link:focus {
+  z-index: var(--z-maximum);
+}
+
+/* Alert and error messages */
+.alert,
+.error-banner {
+  z-index: var(--z-alert);
+}
+
+/* Offline banner */
+.offline-banner {
+  z-index: var(--z-critical);
+}
+
+/* Loading states */
+.loading-overlay {
+  z-index: var(--z-critical);
+}
+
+/* Mobile specific */
+@media (max-width: 768px) {
+  .mobile-menu {
+    z-index: var(--z-mobile-nav);
+  }
+
+  .mobile-overlay {
+    z-index: calc(var(--z-mobile-nav) - 1);
+  }
+}
+
+/* Utility classes for quick z-index adjustments */
+.z-below { z-index: var(--z-below) !important; }
+.z-base { z-index: var(--z-base) !important; }
+.z-content { z-index: var(--z-content) !important; }
+.z-card { z-index: var(--z-card) !important; }
+.z-overlay { z-index: var(--z-overlay) !important; }
+.z-nav { z-index: var(--z-nav) !important; }
+.z-modal { z-index: var(--z-modal) !important; }
+.z-tooltip { z-index: var(--z-tooltip) !important; }
+.z-alert { z-index: var(--z-alert) !important; }
+.z-critical { z-index: var(--z-critical) !important; }
+.z-max { z-index: var(--z-maximum) !important; }

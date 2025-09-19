@@ -423,20 +423,6 @@
     }
 }
 
-/* Dark mode adjustments */
-.dark-mode .task-intro-card {
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 100%);
-    border-color: rgba(108, 158, 131, 0.3);
-}
-
-.dark-mode .lateral-option {
-    background: rgba(30, 30, 50, 0.5);
-    color: #e0e0e0;
-}
-
-.dark-mode .stimulus-word {
-    text-shadow: 0 4px 30px rgba(108, 158, 131, 0.5);
-}
 
 /* Responsive design */
 @media (max-width: 768px) {

@@ -1,4 +1,4 @@
-# P.A.T.R.I.C.I.A Deployment & Monetization Strategy
+# Neurlyn Deployment & Monetization Strategy
 
 ## 🚀 Deployment Options
 
@@ -7,7 +7,7 @@
 # Frontend only deployment
 git init
 git add .
-git commit -m "Initial P.A.T.R.I.C.I.A deployment"
+git commit -m "Initial Neurlyn deployment"
 vercel --prod
 # or
 netlify deploy --prod
@@ -177,8 +177,8 @@ const handlePayment = async () => {
 ```json
 // manifest.json
 {
-  "name": "P.A.T.R.I.C.I.A Assessment",
-  "short_name": "PATRICIA",
+  "name": "Neurlyn Assessment",
+  "short_name": "Neurlyn",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#6B9BD1",
@@ -354,4 +354,4 @@ const calculateRevenue = (
 // = £2,689 yearly (after churn)
 ```
 
-This comprehensive strategy positions P.A.T.R.I.C.I.A for successful deployment and sustainable monetization!
+This comprehensive strategy positions Neurlyn for successful deployment and sustainable monetization!

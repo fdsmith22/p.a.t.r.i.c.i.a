@@ -391,35 +391,6 @@
     position: relative;
 }
 
-/* Dark mode adjustments */
-[data-theme="dark"] .task-type-option .option-label {
-    background: var(--gray-50);
-    border-color: var(--gray-300);
-}
-
-[data-theme="dark"] .task-type-option input:checked + .option-label {
-    background: linear-gradient(135deg, var(--sage-800) 0%, var(--sage-900) 100%);
-    border-color: var(--sage-500);
-}
-
-[data-theme="dark"] .task-instructions {
-    background: var(--sage-900);
-    border-color: var(--sage-500);
-}
-
-[data-theme="dark"] .insight-card {
-    background: var(--gray-50);
-    border-color: var(--gray-300);
-}
-
-[data-theme="dark"] .recommendation-card {
-    background: var(--gray-100);
-}
-
-[data-theme="dark"] .archetype-card {
-    background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
-    border-color: var(--sage-600);
-}
 
 /* Loading states */
 .task-loading {

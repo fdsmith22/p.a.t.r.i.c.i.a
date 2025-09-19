@@ -37,7 +37,6 @@
     <!-- Neurlyn Stylesheets -->
     <link rel="stylesheet" href="styles/neurlyn.css">
     <!-- Dark mode removed -->
-    <link rel="stylesheet" href="styles/neurlyn-enhancements.css">
     <link rel="stylesheet" href="styles/neurlyn-navigation.css">
     <link rel="stylesheet" href="styles/neurlyn-gamified.css">
     <link rel="stylesheet" href="styles/neurlyn-interactive.css">
@@ -45,6 +44,7 @@
     <link rel="stylesheet" href="styles/assessment-layout-fix.css">
     <link rel="stylesheet" href="styles/neurlyn-mobile.css">
     <link rel="stylesheet" href="styles/neurlyn-refinements.css">
+    <link rel="stylesheet" href="styles/z-index-architecture.css">
     <link rel="stylesheet" href="styles/neurlyn-print.css" media="print">
     
     <style>
@@ -1070,6 +1070,11 @@
     <!-- Use API-integrated version for backend connection -->
     <!-- Performance optimizations (load first for early initialization) -->
     <script src="js/performance-optimizations.js" defer></script>
+
+    <!-- Core Services -->
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/error-handler.js"></script>
+
     <script type="module" src="js/neurlyn-api-integrated.js" defer></script>
 
     <!-- Load Adaptive Assessment Integration -->
@@ -2410,6 +2415,17 @@
             }
         }, 1000);
     });
+
+    // Register Service Worker for offline functionality
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                // Registration was successful
+            }, function(err) {
+                // registration failed :(
+            });
+        });
+    }
     </script>
 </body>
 </html>

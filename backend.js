@@ -604,9 +604,9 @@ database.connect().catch(err => {
             price_data: {
               currency: 'gbp',
               product_data: {
-                name: 'P.A.T.R.I.C.I.A Complete Assessment Report',
+                name: 'Neurlyn Complete Assessment Report',
                 description: `Comprehensive ${s.mode} personality assessment results`,
-                images: ['https://patricia.ai/logo.png'],
+                images: ['https://neurlyn.com/logo.png'],
               },
               unit_amount: 100,
             },

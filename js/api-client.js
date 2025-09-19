@@ -34,7 +34,7 @@ class APIClient {
     if (this.cache.has(cacheKey)) {
       const cached = this.cache.get(cacheKey);
       if (Date.now() - cached.timestamp < this.cacheTimeout) {
-        console.log('📦 Using cached questions');
+        // console.log('📦 Using cached questions');
         return cached.data;
       }
     }
@@ -58,7 +58,7 @@ class APIClient {
         timestamp: Date.now()
       });
 
-      console.log(`✅ Fetched ${data.totalQuestions} questions for ${assessmentType}`);
+      // console.log(`✅ Fetched ${data.totalQuestions} questions for ${assessmentType}`);
 
       return data.questions;
 
@@ -366,7 +366,7 @@ class APIClient {
    */
   clearCache() {
     this.cache.clear();
-    console.log('API cache cleared');
+    // console.log('API cache cleared');
   }
 }
 

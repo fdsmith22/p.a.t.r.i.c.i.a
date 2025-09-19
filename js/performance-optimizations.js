@@ -316,7 +316,7 @@
       document.body.classList.add('android');
     }
 
-    console.log('Performance optimizations loaded');
+    // Performance optimizations loaded
   }
 
   // Start initialization

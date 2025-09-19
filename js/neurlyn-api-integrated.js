@@ -17,11 +17,11 @@ const initTaskController = async () => {
       const module = await import('./modules/task-controller.js');
       taskController = module.taskController;
     } catch (error) {
-      console.warn('Task controller module not found, using fallback');
+      // console.warn('Task controller module not found, using fallback');
       // Create a simple fallback task controller
       taskController = {
         loadTask: async (taskType) => {
-          console.log(`Loading task: ${taskType}`);
+          // console.log(`Loading task: ${taskType}`);
           return null;
         }
       };
@@ -74,10 +74,9 @@ class NeurlynAPIIntegratedApp {
       console.warn('⚠️ API not connected, running in offline mode');
       this.showToast('Running in offline mode', 'warning');
     } else {
-      console.log('✅ API connected successfully');
+      // API connected successfully
       // Preload stats
       const stats = await apiClient.getQuestionStats();
-      console.log('📊 Available questions:', stats.totalQuestions);
     }
 
     this.initTheme();
@@ -127,7 +126,7 @@ class NeurlynAPIIntegratedApp {
       acceptButton.addEventListener('click', () => {
         this.state.consentGiven = true;
         if (this.state.assessmentPlan === 'premium') {
-          console.log('Premium assessment selected - would trigger payment flow');
+          // console.log('Premium assessment selected - would trigger payment flow');
         }
         this.showScreen('welcome');
       });
@@ -312,7 +311,7 @@ class NeurlynAPIIntegratedApp {
         throw new Error('No questions available for this assessment');
       }
 
-      console.log(`✅ Loaded ${this.questions.length} questions from API`);
+      // console.log(`✅ Loaded ${this.questions.length} questions from API`);
 
       this.behavioralTracker.start();
       this.transitionToScreen('question');
@@ -336,12 +335,12 @@ class NeurlynAPIIntegratedApp {
       this.taskController = await initTaskController();
     }
 
-    console.log('📋 Displaying question:', {
-      index: this.state.currentQuestionIndex,
-      type: question.type,
-      category: question.category,
-      questionId: question.questionId
-    });
+    // console.log('📋 Displaying question:', {
+    //   index: this.state.currentQuestionIndex,
+    //   type: question.type,
+    //   category: question.category,
+    //   questionId: question.questionId
+    // });
 
     if (this.currentTask) {
       this.taskController.destroy();
@@ -357,10 +356,10 @@ class NeurlynAPIIntegratedApp {
 
     try {
       if (question.type === 'lateral') {
-        console.log('✅ Loading lateral task');
+        // console.log('✅ Loading lateral task');
         this.currentTask = await this.taskController.loadTask('lateral', question);
       } else {
-        console.log(`Loading ${question.type} task`);
+        // console.log(`Loading ${question.type} task`);
         this.currentTask = await this.taskController.loadTask(question.type, question);
       }
 

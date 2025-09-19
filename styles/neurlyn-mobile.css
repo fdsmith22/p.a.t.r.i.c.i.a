@@ -488,27 +488,6 @@ h3 {
   }
 }
 
-/* Dark Mode Support for Mobile */
-@media (prefers-color-scheme: dark) {
-  @media (max-width: 768px) {
-    .main-nav,
-    .question-card,
-    .question-nav {
-      background: #1a1a1a;
-      color: #f0f0f0;
-    }
-
-    .likert-option {
-      background: #2a2a2a;
-      border-color: #444;
-    }
-
-    .likert-option.selected {
-      background: var(--sage-800);
-      border-color: var(--sage-600);
-    }
-  }
-}
 
 /* Print Styles for Mobile */
 @media print {

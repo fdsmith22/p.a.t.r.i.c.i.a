@@ -782,28 +782,3 @@
   border-top: 4px solid var(--gray-900);
 }
 
-/* Dark Mode Adjustments */
-[data-theme="dark"] .breadcrumb {
-  background: var(--gray-50);
-  border-color: var(--gray-200);
-}
-
-[data-theme="dark"] .review-modal {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-[data-theme="dark"] .review-content {
-  background: var(--gray-50);
-}
-
-[data-theme="dark"] .history-panel {
-  background: var(--gray-50);
-}
-
-[data-theme="dark"] .tutorial-tooltip {
-  background: var(--gray-100);
-}
-
-[data-theme="dark"] .stats-bar {
-  background: var(--gray-50);
-}

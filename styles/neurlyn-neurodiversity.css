@@ -795,45 +795,6 @@
     }
 }
 
-/* Dark Mode Adjustments */
-.dark-mode .disclaimer-card {
-    background: rgba(30, 30, 50, 0.9);
-}
-
-.dark-mode .disclaimer-section {
-    background: rgba(108, 158, 131, 0.1);
-}
-
-.dark-mode .disclaimer-warning {
-    background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(255, 152, 0, 0.1) 100%);
-    border-color: rgba(255, 193, 7, 0.5);
-}
-
-.dark-mode .emergency-notice {
-    background: linear-gradient(135deg, rgba(244, 67, 54, 0.2) 0%, rgba(233, 30, 99, 0.1) 100%);
-    border-color: rgba(244, 67, 54, 0.4);
-}
-
-.dark-mode .crisis-link {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #FF5252;
-    color: #FF8A80;
-}
-
-.dark-mode .crisis-link:hover {
-    background: #FF5252;
-    color: white;
-}
-
-.dark-mode .track-option {
-    background: rgba(30, 30, 50, 0.5);
-    color: #E0E0E0;
-}
-
-.dark-mode .intervention-content {
-    background: #1A1A2E;
-    color: #E0E0E0;
-}
 
 /* Toast Notifications */
 .toast {

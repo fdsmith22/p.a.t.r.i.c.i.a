@@ -345,47 +345,6 @@ input:not(:placeholder-shown) ~ .form-label {
   }
 }
 
-/* ========================================
-   9. Dark Mode Refinements
-   ======================================== */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --sage-500: #8fa998;
-    --sage-600: #7c9885;
-    --gray-100: #2a2a2a;
-    --gray-200: #3a3a3a;
-    --gray-300: #4a4a4a;
-    --gray-900: #f0f0f0;
-  }
-
-  body {
-    background: #1a1a1a;
-    color: #f0f0f0;
-  }
-
-  .card {
-    background: #2a2a2a;
-    border-color: #3a3a3a;
-  }
-
-  input,
-  textarea,
-  select {
-    background: #2a2a2a;
-    color: #f0f0f0;
-    border-color: #4a4a4a;
-  }
-
-  .skeleton {
-    background: linear-gradient(
-      90deg,
-      #2a2a2a 25%,
-      #3a3a3a 50%,
-      #2a2a2a 75%
-    );
-  }
-}
 
 /* ========================================
    10. Landscape Specific Refinements
