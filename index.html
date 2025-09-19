@@ -2437,8 +2437,24 @@
                             const parentOption = e.target.closest('.task-type-option');
                             if (e.target.checked) {
                                 parentOption.classList.add('selected');
+                                // Also add inline styles to ensure visibility
+                                parentOption.style.background = 'linear-gradient(135deg, #7C9885 0%, #6A8A73 100%)';
+                                parentOption.style.borderColor = '#6C9E83';
+                                parentOption.style.boxShadow = '0 0 0 3px rgba(108, 158, 131, 0.2)';
+                                // Make text white
+                                parentOption.querySelectorAll('.option-title, .option-desc').forEach(el => {
+                                    el.style.color = 'white';
+                                });
                             } else {
                                 parentOption.classList.remove('selected');
+                                // Remove inline styles
+                                parentOption.style.background = '';
+                                parentOption.style.borderColor = '';
+                                parentOption.style.boxShadow = '';
+                                // Reset text color
+                                parentOption.querySelectorAll('.option-title, .option-desc').forEach(el => {
+                                    el.style.color = '';
+                                });
                             }
 
                             // Update step indicator
@@ -2469,7 +2485,15 @@
                     const hybridOption = selector.querySelector('input[value="hybrid"]');
                     if (hybridOption) {
                         hybridOption.checked = true;
-                        hybridOption.closest('.task-type-option').classList.add('selected');
+                        const parentOption = hybridOption.closest('.task-type-option');
+                        parentOption.classList.add('selected');
+                        // Add inline styles for default selection
+                        parentOption.style.background = 'linear-gradient(135deg, #7C9885 0%, #6A8A73 100%)';
+                        parentOption.style.borderColor = '#6C9E83';
+                        parentOption.style.boxShadow = '0 0 0 3px rgba(108, 158, 131, 0.2)';
+                        parentOption.querySelectorAll('.option-title, .option-desc').forEach(el => {
+                            el.style.color = 'white';
+                        });
                     }
                 };
             }
