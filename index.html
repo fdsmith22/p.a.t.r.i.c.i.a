@@ -1116,11 +1116,22 @@
 
                 const tier = tierMap[selectedMode] || 'standard';
 
-                // Hide welcome screen
-                document.getElementById('welcome-screen').classList.add('hidden');
+                // Hide all screens first
+                document.querySelectorAll('.screen').forEach(screen => {
+                    screen.classList.add('hidden');
+                });
 
                 // Show adaptive assessment screen
-                document.getElementById('adaptive-assessment-screen').classList.remove('hidden');
+                const adaptiveScreen = document.getElementById('adaptive-assessment-screen');
+                const questionScreen = document.getElementById('question-screen');
+
+                // Check if we should use adaptive or regular question screen
+                if (window.assessment && adaptiveScreen) {
+                    adaptiveScreen.classList.remove('hidden');
+                } else if (questionScreen) {
+                    // Fallback to question screen if adaptive not available
+                    questionScreen.classList.remove('hidden');
+                }
 
                 // Start adaptive assessment
                 if (window.assessment) {

@@ -44,11 +44,7 @@
     display: none;
 }
 
-@media (min-width: 768px) {
-    .nav-tagline {
-        display: inline;
-    }
-}
+/* Desktop tagline display - handled in neurlyn-mobile.css */
 
 .nav-links {
     display: flex;
@@ -90,34 +86,8 @@
     background: #5A8A70;
 }
 
-/* Mobile Navigation */
-@media (max-width: 768px) {
-    .nav-links {
-        gap: 1rem;
-    }
-    
-    .nav-link {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
-    }
-    
-    .nav-brand {
-        font-size: 1.3rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-content {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .nav-links {
-        gap: 0.5rem;
-    }
-    
-    .nav-link {
-        padding: 0.3rem 0.6rem;
+/* Mobile navigation styles moved to neurlyn-mobile.css */
+/* Responsive breakpoints handled centrally */
         font-size: 0.85rem;
     }
 }

@@ -1,14 +1,33 @@
-/* Neurlyn Mobile-First Responsive Styles */
+/* Neurlyn Unified Responsive Design System */
 
-/* Base Mobile Styles - 320px and up */
+/* ============================================
+   RESPONSIVE BREAKPOINT SYSTEM
+   ============================================ */
 :root {
+  /* Breakpoints */
+  --bp-xs: 320px;
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+
+  /* Mobile Specific */
   --mobile-padding: 1rem;
   --mobile-margin: 0.75rem;
   --touch-target: 44px;
+
+  /* Safe Areas */
   --safe-area-inset-top: env(safe-area-inset-top);
   --safe-area-inset-bottom: env(safe-area-inset-bottom);
   --safe-area-inset-left: env(safe-area-inset-left);
   --safe-area-inset-right: env(safe-area-inset-right);
+
+  /* Dynamic Viewport Units */
+  --vh: 1vh;
+  --dvh: 100dvh;
+  --svh: 100svh;
+  --lvh: 100lvh;
 }
 
 /* Fluid Typography */
@@ -28,25 +47,60 @@ h3 {
   font-size: clamp(1.1rem, 3.5vw, 1.5rem);
 }
 
-/* Small Mobile - 320px to 480px */
-@media (max-width: 480px) {
-  /* Safe area padding for notched devices */
+/* ============================================
+   BASE MOBILE STYLES (320px - 768px)
+   ============================================ */
+@media (max-width: 768px) {
+  /* Body and Main Container Fix */
   body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100vw;
     padding-top: var(--safe-area-inset-top);
     padding-bottom: var(--safe-area-inset-bottom);
     padding-left: var(--safe-area-inset-left);
     padding-right: var(--safe-area-inset-right);
   }
 
-  /* Main Navigation Mobile Menu */
+  main {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .container {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
+  /* Screen sections proper positioning */
+  .screen {
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+
+  /* Card global mobile styles */
+  .card {
+    margin: 0;
+    border-radius: 0;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  /* ============================================
+     NAVIGATION - MOBILE
+     ============================================ */
   .main-nav {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 1000;
     background: white;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 100%;
   }
 
   .nav-content {
@@ -87,10 +141,16 @@ h3 {
     justify-content: center;
   }
 
-  /* Disclaimer Screen */
+  /* ============================================
+     LANDING PAGE - MOBILE
+     ============================================ */
+  #welcome-screen {
+    padding-top: 70px !important;
+  }
+
   #disclaimer-screen {
-    padding: var(--mobile-padding);
-    padding-top: calc(60px + var(--safe-area-inset-top));
+    padding: 1rem !important;
+    padding-top: calc(70px + env(safe-area-inset-top)) !important;
   }
 
   .disclaimer-card {
@@ -111,87 +171,116 @@ h3 {
   }
 
   .feature-row {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
   }
 
   .feature-item {
-    padding: 0.75rem;
+    padding: 0.75rem !important;
   }
 
-  /* Welcome Screen - Track Selection */
+  /* ============================================
+     TRACK SELECTION - MOBILE
+     ============================================ */
   .track-selection .track-options {
-    flex-direction: column;
-    gap: 0.75rem;
-    max-width: 100%;
-    padding: 0 var(--mobile-padding);
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    padding: 0 1rem !important;
   }
 
   .track-option {
-    width: 100%;
-    max-width: none;
-    min-height: auto;
-    padding: 1rem;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: auto !important;
+    padding: 1rem !important;
   }
 
   .track-option h4 {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
+    font-size: 1.2rem !important;
+    margin: 0.5rem 0 !important;
   }
 
   .track-option p {
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
   }
 
   .track-icon {
-    width: 48px;
-    height: 48px;
+    width: 48px !important;
+    height: 48px !important;
   }
 
-  /* Mode Selection */
+  /* ============================================
+     MODE SELECTION - MOBILE
+     ============================================ */
   .mode-selection .mode-grid {
-    flex-direction: column;
-    gap: 0.75rem;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
   }
 
   .mode-option {
-    width: 100%;
-    padding: 1rem;
-    min-height: auto;
+    width: 100% !important;
+    padding: 1rem !important;
+    min-height: auto !important;
   }
 
   .mode-option h4 {
-    font-size: 1.1rem;
+    font-size: 1.1rem !important;
   }
 
-  /* Steps Indicator */
+  /* ============================================
+     TASK TYPE OPTIONS - MOBILE
+     ============================================ */
+  .task-type-options {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .task-type-option {
+    width: 100% !important;
+    min-width: unset !important;
+    padding: 1rem !important;
+  }
+
+  .task-type-option .option-title {
+    font-size: 1rem !important;
+  }
+
+  .task-type-option .option-desc {
+    font-size: 0.85rem !important;
+  }
+
+  /* ============================================
+     STEPS INDICATOR - MOBILE
+     ============================================ */
   .steps-container {
-    flex-direction: row;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    overflow-x: auto;
-    padding: 0.5rem;
+    flex-direction: row !important;
+    gap: 0.5rem !important;
+    margin-bottom: 1rem !important;
+    overflow-x: auto !important;
+    padding: 0.5rem !important;
   }
 
   .step {
-    min-width: 60px;
+    min-width: 60px !important;
   }
 
   .step-number {
-    width: 32px;
-    height: 32px;
-    font-size: 0.9rem;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.9rem !important;
   }
 
   .step-label {
-    font-size: 0.7rem;
-    display: none;
+    font-size: 0.7rem !important;
+    display: none !important;
   }
 
-  /* Question Screen */
+  /* ============================================
+     QUESTION SCREEN - MOBILE
+     ============================================ */
   #question-screen {
-    padding-top: calc(60px + var(--safe-area-inset-top));
+    padding-top: calc(70px + var(--safe-area-inset-top)) !important;
   }
 
   .question-screen-layout {
@@ -328,26 +417,184 @@ h3 {
     min-height: var(--touch-target);
   }
 
-  /* Buttons Touch Targets */
+  /* ============================================
+     BUTTONS - MOBILE
+     ============================================ */
   .btn {
-    min-height: var(--touch-target);
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
+    min-height: 44px !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9rem !important;
   }
 
   .btn-primary,
   .btn-secondary {
-    width: 100%;
+    width: 100% !important;
   }
 
-  /* Typography Adjustments */
+  /* ============================================
+     TYPOGRAPHY - MOBILE
+     ============================================ */
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 4vw, 2rem) !important;
+  }
+
+  h3 {
+    font-size: clamp(1.1rem, 3.5vw, 1.5rem) !important;
+  }
+
+  p {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+  }
+
   .category-badge {
     font-size: 0.75rem !important;
     padding: 0.3rem 0.6rem !important;
   }
+
+  /* ============================================
+     FORM ELEMENTS - MOBILE
+     ============================================ */
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 0.75rem !important;
+  }
+
+  /* ============================================
+     CONSENT CHECKBOXES - MOBILE
+     ============================================ */
+  .consent-section {
+    margin: 1rem 0 !important;
+  }
+
+  .consent-checkbox {
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+
+  .consent-checkbox input[type="checkbox"] {
+    margin-top: 0.25rem !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+  }
+
+  .consent-checkbox label {
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+  }
 }
 
-/* Medium Mobile - 481px to 768px */
+/* ============================================
+   ABOUT PAGE - MOBILE STYLES
+   ============================================ */
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 2rem 1rem !important;
+  }
+
+  .about-hero h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.3;
+  }
+
+  .about-hero p {
+    font-size: 1rem !important;
+    padding: 0 1rem;
+  }
+
+  .about-section {
+    padding: 2rem 1rem !important;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    margin: 1.5rem 0 !important;
+  }
+
+  .about-card {
+    padding: 1.5rem !important;
+    margin: 0 0.5rem;
+  }
+}
+
+/* ============================================
+   SUPPORT PAGE - MOBILE STYLES
+   ============================================ */
+@media (max-width: 768px) {
+  .support-hero {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .support-hero h1 {
+    font-size: 1.5rem !important;
+    line-height: 1.3;
+  }
+
+  .support-hero p {
+    font-size: 0.95rem !important;
+    padding: 0 1rem;
+  }
+
+  .crisis-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    margin: 1.5rem 0.5rem !important;
+  }
+
+  .crisis-card {
+    padding: 1rem !important;
+    margin: 0 0.5rem;
+  }
+
+  .crisis-card h3 {
+    font-size: 1rem !important;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE (320px - 480px)
+   ============================================ */
+@media (max-width: 480px) {
+  .about-hero h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .support-hero h1 {
+    font-size: 1.3rem !important;
+  }
+
+  .crisis-grid,
+  .about-grid {
+    margin: 1rem 0 !important;
+  }
+
+  .crisis-card,
+  .about-card {
+    margin: 0 !important;
+    border-radius: 8px !important;
+  }
+
+  /* Even smaller text for very small screens */
+  p, li {
+    font-size: 0.85rem !important;
+  }
+
+  .nav-links {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ============================================
+   MEDIUM MOBILE/TABLET (481px - 768px)
+   ============================================ */
 @media (min-width: 481px) and (max-width: 768px) {
   /* Navigation */
   .nav-content {
@@ -361,18 +608,24 @@ h3 {
     opacity: 0.7;
   }
 
-  /* Track Options - 2 column grid */
+  /* Track Options - 2 column grid on tablets */
   .track-selection .track-options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  /* Task Type Options - 2 column grid */
+  .task-type-options {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
   }
 
   /* Mode Options - Keep vertical */
   .mode-selection .mode-grid {
-    flex-direction: column;
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 500px !important;
+    margin: 0 auto !important;
   }
 
   /* Likert Scale - Horizontal with wrap */
@@ -402,14 +655,17 @@ h3 {
   }
 }
 
-/* Touch and Interaction Improvements */
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================ */
 @media (hover: none) and (pointer: coarse) {
   /* Disable hover effects on touch devices */
   .track-option:hover,
   .mode-option:hover,
+  .task-type-option:hover,
   .likert-option:hover {
-    transform: none;
-    box-shadow: none;
+    transform: none !important;
+    box-shadow: none !important;
   }
 
   /* Larger touch targets */
@@ -425,17 +681,30 @@ h3 {
   /* Active states for touch feedback */
   button:active,
   .btn:active,
+  .task-type-option:active,
   .likert-option:active {
-    transform: scale(0.98);
-    opacity: 0.9;
+    transform: scale(0.98) !important;
+    opacity: 0.9 !important;
   }
 }
 
-/* Landscape Orientation Adjustments */
+/* ============================================
+   LANDSCAPE ORIENTATION
+   ============================================ */
 @media (max-height: 500px) and (orientation: landscape) {
   /* Reduce vertical spacing in landscape */
   .main-nav {
-    padding: 0.25rem 1rem;
+    padding: 0.25rem 1rem !important;
+  }
+
+  .about-hero,
+  .support-hero {
+    padding: 1rem !important;
+  }
+
+  .about-hero h1,
+  .support-hero h1 {
+    font-size: 1.3rem !important;
   }
 
   .question-card {
@@ -448,7 +717,7 @@ h3 {
   }
 
   .steps-container {
-    display: none;
+    display: none !important;
   }
 
   .question-text {
@@ -460,26 +729,38 @@ h3 {
   }
 }
 
-/* iOS Specific Fixes */
+/* ============================================
+   IOS SPECIFIC FIXES
+   ============================================ */
 @supports (-webkit-touch-callout: none) {
   /* Prevent zoom on input focus */
   input, textarea, select {
-    font-size: 16px;
+    font-size: 16px !important;
   }
 
   /* Fix sticky positioning on iOS */
+  .main-nav {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+  }
+
   .question-nav {
-    position: -webkit-sticky;
-    position: sticky;
+    position: -webkit-sticky !important;
+    position: sticky !important;
   }
 
   /* Smooth scrolling */
+  .container,
+  .about-section,
+  .support-section,
   .question-card {
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch !important;
   }
 }
 
-/* Accessibility Improvements for Mobile */
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -488,10 +769,14 @@ h3 {
   }
 }
 
-
-/* Print Styles for Mobile */
+/* ============================================
+   PRINT STYLES
+   ============================================ */
 @media print {
   .main-nav,
+  .nav-links,
+  .btn-primary,
+  .btn-secondary,
   .question-nav,
   .vertical-progress-sidebar,
   .progress-container {

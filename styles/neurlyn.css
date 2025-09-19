@@ -9,6 +9,14 @@
    1. DESIGN TOKENS
    ============================================ */
 :root {
+  /* ========== RESPONSIVE BREAKPOINTS ========== */
+  --bp-xs: 320px;
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+
   /* Enhanced Color Palette */
   --white: #FFFFFF;
   --off-white: #FAFBFC;
@@ -155,6 +163,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -165,6 +175,7 @@ body {
   color: var(--gray-800);
   background: linear-gradient(180deg, var(--white) 0%, var(--canvas) 100%);
   min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height */
   position: relative;
   overflow-x: hidden;
   display: flex;
@@ -806,31 +817,6 @@ select:focus {
   top: var(--space-2);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  :root {
-    --text-4xl: 3rem;
-    --text-3xl: 2rem;
-    --text-2xl: 1.5rem;
-  }
-  
-  .container {
-    padding: var(--space-4) var(--space-3);
-  }
-  
-  .card {
-    padding: var(--space-6);
-  }
-  
-  .mode-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .likert-scale {
-    flex-direction: column;
-  }
-  
-  .likert-option {
-    width: 100%;
-  }
-}
+/* ========== RESPONSIVE FOUNDATION ========== */
+/* All mobile and responsive styles are handled in neurlyn-mobile.css */
+/* This ensures a single source of truth for responsive behavior */

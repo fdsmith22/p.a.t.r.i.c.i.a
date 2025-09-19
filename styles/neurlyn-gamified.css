@@ -65,23 +65,48 @@
     color: var(--gray-600);
 }
 
-.task-type-option input:checked ~ .option-content {
+.task-type-option input:checked ~ .option-content,
+.task-type-option.selected .option-content {
+    color: white !important;
+}
+
+.task-type-option input:checked ~ .option-content .option-title,
+.task-type-option.selected .option-title {
+    color: white !important;
+    font-weight: var(--font-bold) !important;
+}
+
+.task-type-option input:checked ~ .option-content .option-desc,
+.task-type-option.selected .option-desc {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Add checkmark for selected state */
+.task-type-option input:checked ~ .option-check::after,
+.task-type-option.selected .option-check::after {
+    content: '✓';
     color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.task-type-option input:checked ~ .option-content .option-title {
-    color: white;
-    font-weight: var(--font-bold);
+/* Fallback for browsers that don't support :has */
+.task-type-option.selected {
+    background: var(--sage-500) !important;
+    border-color: var(--sage-700) !important;
+    box-shadow: 0 0 0 3px rgba(108, 158, 131, 0.2) !important;
+    transform: translateY(-2px);
 }
 
-.task-type-option input:checked ~ .option-content .option-desc {
-    color: rgba(255, 255, 255, 0.9);
-}
-
+/* Modern browsers with :has support */
 .task-type-option:has(input:checked) {
-    background: linear-gradient(135deg, var(--sage-500) 0%, var(--sage-600) 100%);
-    border-color: var(--sage-700);
-    box-shadow: 0 0 0 3px rgba(108, 158, 131, 0.2);
+    background: var(--sage-500) !important;
+    border-color: var(--sage-700) !important;
+    box-shadow: 0 0 0 3px rgba(108, 158, 131, 0.2) !important;
     transform: translateY(-2px);
 }
 
@@ -442,22 +467,7 @@
     font-size: var(--text-sm);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .task-type-options {
-        flex-direction: column;
-    }
-    
-    .task-type-option {
-        width: 100%;
-    }
-    
-    .task-timer {
-        position: static;
-        margin-bottom: var(--space-4);
-        justify-content: center;
-    }
-}
+/* Responsive styles moved to neurlyn-mobile.css */
 
 /* Print styles */
 @media print {
