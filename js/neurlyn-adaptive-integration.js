@@ -27,6 +27,9 @@ class NeurlynAdaptiveAssessment {
             // Show loading state
             this.showLoading('Initializing your personalized assessment...');
 
+            console.log('Starting assessment with API:', `${this.apiBase}/assessments/adaptive`);
+            console.log('Request body:', { tier, concerns, demographics });
+
             const response = await fetch(`${this.apiBase}/assessments/adaptive`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -34,6 +37,7 @@ class NeurlynAdaptiveAssessment {
             });
 
             const data = await response.json();
+            console.log('API Response:', data);
 
             if (!response.ok) {
                 throw new Error(data.error || 'Failed to start assessment');
@@ -44,9 +48,19 @@ class NeurlynAdaptiveAssessment {
             this.progress = { current: 0, total: data.totalQuestions || data.questions?.length || 45 };
             this.currentQuestions = data.questions || [];
 
+            console.log('Questions received:', this.currentQuestions.length);
+
             // Initialize UI
             this.initializeAssessmentUI();
-            this.displayQuestions(this.currentQuestions);
+
+            // Check if questions exist before displaying
+            if (this.currentQuestions.length > 0) {
+                this.displayQuestions(this.currentQuestions);
+                console.log('Questions displayed successfully');
+            } else {
+                console.error('No questions received from API');
+                this.showError('No questions available. Please try again.');
+            }
 
             // Store in localStorage for recovery
             localStorage.setItem('activeAssessment', JSON.stringify({
@@ -60,9 +74,15 @@ class NeurlynAdaptiveAssessment {
             console.error('Failed to start assessment:', error);
             console.error('API URL:', `${this.apiBase}/assessments/adaptive`);
             console.error('Request payload:', { tier, concerns, demographics });
-            console.error('Response status:', error.status || 'unknown');
-            this.showError(`Unable to start assessment: ${error.message || 'Connection failed'}`, error);
-            throw error;
+            console.error('Error details:', error);
+
+            // Show actual error to help debug
+            const errorMessage = error.message || 'Connection failed';
+            console.error('Showing error to user:', errorMessage);
+            this.showError(`Unable to start assessment: ${errorMessage}`);
+
+            // Don't throw the error, just return null
+            return null;
         }
     }
 

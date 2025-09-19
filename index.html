@@ -1191,14 +1191,31 @@
                             concerns: concerns
                         });
 
-                        console.log('Adaptive assessment started successfully:', result);
+                        if (result) {
+                            console.log('Adaptive assessment started successfully:', result);
+                        } else {
+                            console.error('Assessment failed to start - result was null');
+                            // The error is already shown in the UI by showError method
+                        }
                     } catch (error) {
-                        console.error('Adaptive assessment failed:', error);
+                        console.error('Adaptive assessment failed with exception:', error);
 
-                        // Hide adaptive screen and show question screen instead
-                        adaptiveScreen.classList.add('hidden');
+                        // Show error message in the adaptive screen
+                        const assessmentContainer = document.getElementById('assessment-container');
+                        if (assessmentContainer) {
+                            assessmentContainer.innerHTML = `
+                                <div class="error-message" style="padding: 20px; color: red;">
+                                    <h3>Unable to start assessment</h3>
+                                    <p>${error.message || 'Please check your connection and try again.'}</p>
+                                    <button onclick="location.reload()" class="btn-primary">Refresh Page</button>
+                                </div>
+                            `;
+                        }
 
-                        if (questionScreen) {
+                        // Don't hide the adaptive screen - keep it visible with error
+                        // adaptiveScreen.classList.add('hidden');
+
+                        if (false && questionScreen) { // Disabled fallback temporarily
                             questionScreen.classList.remove('hidden');
                             console.log('Falling back to regular question screen');
 
