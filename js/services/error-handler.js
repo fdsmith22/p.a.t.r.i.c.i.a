@@ -203,7 +203,12 @@ class ErrorHandler {
   async reportError(errorInfo) {
     // In production, send to error tracking service like Sentry
     try {
-      await fetch('/api/errors', {
+      // Determine API base URL based on environment
+      const apiBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:3002'
+        : 'https://www.neurlyn.com';
+
+      await fetch(`${apiBase}/api/errors`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

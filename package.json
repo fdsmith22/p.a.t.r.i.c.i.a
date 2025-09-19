@@ -6,6 +6,12 @@
   "scripts": {
     "start": "node backend.js",
     "dev": "nodemon backend.js",
+    "dev:clean": "./dev.sh clean",
+    "dev:backend": "./dev.sh start backend",
+    "dev:frontend": "./dev.sh start frontend",
+    "dev:full": "./dev.sh start full",
+    "dev:status": "./dev.sh status",
+    "check:ports": "lsof -i :3000,3001,3002,8000,8080 | grep LISTEN || echo 'All ports are free'",
     "build": "webpack --config webpack.config.optimized.js --mode production",
     "build:dev": "webpack --config webpack.config.optimized.js --mode development",
     "build:analyze": "ANALYZE=true webpack --config webpack.config.optimized.js --mode production",
