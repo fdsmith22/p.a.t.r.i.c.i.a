@@ -457,11 +457,43 @@
         }
         
         .consent-checkbox input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             cursor: pointer;
             accent-color: #7C9885;
             border-radius: 4px;
+            appearance: none;
+            -webkit-appearance: none;
+            border: 2px solid #7C9885;
+            background: white;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .consent-checkbox input[type="checkbox"]:checked {
+            background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
+            border-color: #6C9E83;
+        }
+
+        .consent-checkbox input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .consent-checkbox input[type="checkbox"]:hover {
+            border-color: #6C9E83;
+            box-shadow: 0 0 0 2px rgba(108, 158, 131, 0.2);
+        }
+
+        .consent-checkbox input[type="checkbox"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 158, 131, 0.3);
         }
         
         #accept-disclaimer {
