@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
     <title>Neurlyn - Intelligent Personality Assessment</title>
     <meta name="description" content="Professional personality assessment platform powered by advanced psychometric science">
     <meta name="theme-color" content="#6C9E83">
@@ -30,8 +30,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts with display swap for better loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
     <!-- Neurlyn Stylesheets -->
     <link rel="stylesheet" href="styles/neurlyn.css">
@@ -43,6 +44,7 @@
     <link rel="stylesheet" href="styles/neurlyn-neurodiversity.css">
     <link rel="stylesheet" href="styles/assessment-layout-fix.css">
     <link rel="stylesheet" href="styles/neurlyn-mobile.css">
+    <link rel="stylesheet" href="styles/neurlyn-refinements.css">
     <link rel="stylesheet" href="styles/neurlyn-print.css" media="print">
     
     <style>
@@ -1066,7 +1068,9 @@
 
     <!-- Load Neurlyn Integrated App -->
     <!-- Use API-integrated version for backend connection -->
-    <script type="module" src="js/neurlyn-api-integrated.js"></script>
+    <!-- Performance optimizations (load first for early initialization) -->
+    <script src="js/performance-optimizations.js" defer></script>
+    <script type="module" src="js/neurlyn-api-integrated.js" defer></script>
 
     <!-- Load Adaptive Assessment Integration -->
     <script type="module" src="js/neurlyn-adaptive-integration.js"></script>
