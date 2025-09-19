@@ -96,18 +96,24 @@
 
 /* Fallback for browsers that don't support :has */
 .task-type-option.selected {
-    background: var(--sage-500) !important;
-    border-color: var(--sage-700) !important;
+    background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%) !important;
+    border-color: #6C9E83 !important;
     box-shadow: 0 0 0 3px rgba(108, 158, 131, 0.2) !important;
     transform: translateY(-2px);
 }
 
 /* Modern browsers with :has support */
 .task-type-option:has(input:checked) {
-    background: var(--sage-500) !important;
-    border-color: var(--sage-700) !important;
+    background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%) !important;
+    border-color: #6C9E83 !important;
     box-shadow: 0 0 0 3px rgba(108, 158, 131, 0.2) !important;
     transform: translateY(-2px);
+}
+
+/* Specific styling for checkboxes to ensure proper background fill */
+.task-type-option:has(input[type="checkbox"]:checked) {
+    background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%) !important;
+    border-color: #6C9E83 !important;
 }
 
 .task-type-option:hover {
