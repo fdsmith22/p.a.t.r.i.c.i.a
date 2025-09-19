@@ -58,7 +58,10 @@ class NeurlynAdaptiveAssessment {
             return data;
         } catch (error) {
             console.error('Failed to start assessment:', error);
-            this.showError('Unable to start assessment. Please try again.');
+            console.error('API URL:', `${this.apiBase}/assessments/adaptive`);
+            console.error('Request payload:', { tier, concerns, demographics });
+            console.error('Response status:', error.status || 'unknown');
+            this.showError(`Unable to start assessment: ${error.message || 'Connection failed'}`, error);
             throw error;
         }
     }
@@ -522,16 +525,41 @@ class NeurlynAdaptiveAssessment {
         }
     }
 
-    showError(message) {
-        const container = document.getElementById('assessment-container');
+    showError(message, error = null) {
+        console.error('ShowError called:', message, error);
+
+        let container = document.getElementById('assessment-container');
+
+        // If no container, try to create one in the adaptive screen
+        if (!container) {
+            const adaptiveScreen = document.getElementById('adaptive-assessment-screen');
+            if (adaptiveScreen && !adaptiveScreen.classList.contains('hidden')) {
+                container = document.createElement('div');
+                container.id = 'assessment-container';
+                adaptiveScreen.innerHTML = '';
+                adaptiveScreen.appendChild(container);
+            }
+        }
+
         if (container) {
             container.innerHTML = `
-                <div class="error-state">
-                    <div class="error-icon">⚠️</div>
-                    <p>${message}</p>
-                    <button onclick="location.reload()">Retry</button>
+                <div class="error-state" style="text-align: center; padding: 2rem; background: white; border-radius: 0.5rem; margin: 2rem auto; max-width: 600px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                    <div class="error-icon" style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+                    <h3 style="color: #dc2626; margin-bottom: 1rem;">Assessment Error</h3>
+                    <p style="margin-bottom: 1rem; color: #374151;">${message}</p>
+                    ${error ? `<details style="margin: 1rem 0; text-align: left;">
+                        <summary style="cursor: pointer; color: #6B7280; margin-bottom: 0.5rem;">Technical Details</summary>
+                        <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.75rem; color: #374151; white-space: pre-wrap; word-break: break-word;">${error.toString()}\n${error.stack || ''}</pre>
+                    </details>` : ''}
+                    <div style="margin-top: 1.5rem;">
+                        <button onclick="location.reload()" style="padding: 0.75rem 1.5rem; background: #6C9E83; color: white; border: none; border-radius: 0.5rem; cursor: pointer; margin-right: 0.5rem;">Reload Page</button>
+                        <button onclick="window.history.back()" style="padding: 0.75rem 1.5rem; background: #E5E7EB; color: #374151; border: none; border-radius: 0.5rem; cursor: pointer;">Go Back</button>
+                    </div>
                 </div>
             `;
+        } else {
+            // Fallback alert
+            alert(`Error: ${message}\n\nPlease reload the page.`);
         }
     }
 

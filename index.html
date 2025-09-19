@@ -1148,13 +1148,16 @@
 
                         console.log('Starting adaptive assessment with tier:', tier, 'concerns:', concerns);
 
+                        // Add a small delay to ensure DOM is ready
+                        await new Promise(resolve => setTimeout(resolve, 100));
+
                         // Start the assessment
-                        await window.assessment.startAssessment({
+                        const result = await window.assessment.startAssessment({
                             tier: tier,
                             concerns: concerns
                         });
 
-                        console.log('Adaptive assessment started successfully');
+                        console.log('Adaptive assessment started successfully:', result);
                     } catch (error) {
                         console.error('Adaptive assessment failed:', error);
 
