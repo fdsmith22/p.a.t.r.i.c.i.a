@@ -182,44 +182,16 @@ class ErrorHandler {
    * Determine if error should be reported
    */
   shouldReportError(errorInfo) {
-    // Don't report in development or GitHub Pages
-    if (window.location.hostname === 'localhost' ||
-        window.location.hostname === '127.0.0.1' ||
-        window.location.hostname.includes('github.io')) {
-      return false;
-    }
-
-    // Don't report certain expected errors
-    const ignoredMessages = [
-      'ResizeObserver loop limit exceeded',
-      'Non-Error promise rejection captured'
-    ];
-
-    const message = errorInfo.message || '';
-    return !ignoredMessages.some(ignored => message.includes(ignored));
+    // Never report errors - disable error reporting entirely
+    return false;
   }
 
   /**
    * Report error to monitoring service
    */
   async reportError(errorInfo) {
-    // In production, send to error tracking service like Sentry
-    try {
-      // Determine API base URL based on environment
-      const apiBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://localhost:3002'
-        : 'https://www.neurlyn.com';
-
-      await fetch(`${apiBase}/api/errors`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(errorInfo)
-      });
-    } catch (e) {
-      // Silently fail if reporting fails
-    }
+    // Error reporting disabled - do nothing
+    return;
   }
 
   /**
