@@ -1112,7 +1112,7 @@
     <script type="module" src="js/neurlyn-api-integrated.js" defer></script>
 
     <!-- Load Adaptive Assessment Integration -->
-    <script type="module" src="js/neurlyn-adaptive-integration.js"></script>
+    <script src="js/neurlyn-adaptive-integration.js"></script>
 
     <!-- Load Report Components -->
     <script type="module" src="js/comprehensive-report-generator.js"></script>
@@ -1128,6 +1128,286 @@
                 console.log('Service Worker disabled - sw.js file not available');
             };
         }
+
+        // Function to show assessment style selection
+        function showAssessmentStyleSelection(assessmentType) {
+            console.log('=== Showing Style Selection ===');
+            console.log('Assessment type:', assessmentType);
+
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.add('hidden');
+            });
+
+            // Create or show style selection screen
+            let styleScreen = document.getElementById('style-selection-screen');
+            if (!styleScreen) {
+                // Create the style selection screen dynamically
+                styleScreen = document.createElement('div');
+                styleScreen.id = 'style-selection-screen';
+                styleScreen.className = 'screen';
+                styleScreen.innerHTML = `
+                    <div class="assessment-container">
+                        <div class="progress-header">
+                            <div class="step-indicator">
+                                <div class="step completed">1. Type</div>
+                                <div class="step active">2. Style</div>
+                                <div class="step">3. Begin</div>
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Choose Your Assessment Style</h2>
+                        <p class="section-description">Select how you'd like to experience the assessment</p>
+
+                        <div class="style-options">
+                            <div class="style-option" data-style="standard">
+                                <div class="option-icon">📝</div>
+                                <h3>Standard Questions</h3>
+                                <p>Traditional questionnaire format with clear, direct questions</p>
+                                <ul>
+                                    <li>45-60 questions</li>
+                                    <li>15-20 minutes</li>
+                                    <li>Most accurate results</li>
+                                </ul>
+                                <button class="btn-primary select-style-btn" data-style="standard">
+                                    Select Standard
+                                </button>
+                            </div>
+
+                            <div class="style-option" data-style="interactive">
+                                <div class="option-icon">🎮</div>
+                                <h3>Interactive</h3>
+                                <p>Engaging scenarios and situational questions</p>
+                                <ul>
+                                    <li>30-40 scenarios</li>
+                                    <li>20-25 minutes</li>
+                                    <li>More engaging experience</li>
+                                </ul>
+                                <button class="btn-primary select-style-btn" data-style="interactive">
+                                    Select Interactive
+                                </button>
+                            </div>
+
+                            <div class="style-option" data-style="hybrid">
+                                <div class="option-icon">⚡</div>
+                                <h3>Hybrid Adaptive</h3>
+                                <p>Mix of questions that adapt based on your responses</p>
+                                <ul>
+                                    <li>35-50 questions</li>
+                                    <li>18-22 minutes</li>
+                                    <li>Personalized experience</li>
+                                </ul>
+                                <button class="btn-primary select-style-btn" data-style="hybrid">
+                                    Select Hybrid
+                                </button>
+                            </div>
+                        </div>
+
+                        <style>
+                            .style-options {
+                                display: flex;
+                                gap: 20px;
+                                margin-top: 30px;
+                                flex-wrap: wrap;
+                                justify-content: center;
+                            }
+                            .style-option {
+                                flex: 1;
+                                min-width: 250px;
+                                max-width: 350px;
+                                padding: 20px;
+                                border: 2px solid var(--border-color);
+                                border-radius: 12px;
+                                text-align: center;
+                                transition: all 0.3s ease;
+                                background: white;
+                            }
+                            .style-option:hover {
+                                transform: translateY(-5px);
+                                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                                border-color: var(--sage-400);
+                            }
+                            .style-option .option-icon {
+                                font-size: 48px;
+                                margin-bottom: 15px;
+                            }
+                            .style-option h3 {
+                                color: var(--gray-800);
+                                margin-bottom: 10px;
+                                font-size: 1.4rem;
+                            }
+                            .style-option p {
+                                color: var(--gray-600);
+                                margin-bottom: 15px;
+                                font-size: 0.95rem;
+                            }
+                            .style-option ul {
+                                list-style: none;
+                                padding: 0;
+                                margin: 15px 0;
+                                text-align: left;
+                            }
+                            .style-option ul li {
+                                padding: 5px 0;
+                                color: var(--gray-700);
+                                font-size: 0.9rem;
+                            }
+                            .style-option ul li:before {
+                                content: "✓ ";
+                                color: var(--sage-500);
+                                font-weight: bold;
+                            }
+                            .select-style-btn {
+                                width: 100%;
+                                margin-top: 15px;
+                                padding: 12px 20px;
+                                background: linear-gradient(135deg, #7C9885 0%, #6A8A73 100%);
+                                color: white;
+                                border: none;
+                                border-radius: 8px;
+                                cursor: pointer;
+                                font-size: 1rem;
+                                font-weight: 600;
+                                transition: all 0.3s ease;
+                            }
+                            .select-style-btn:hover {
+                                transform: translateY(-2px);
+                                box-shadow: 0 5px 15px rgba(124, 152, 133, 0.3);
+                            }
+                            .step-indicator {
+                                display: flex;
+                                justify-content: center;
+                                gap: 20px;
+                                margin-bottom: 30px;
+                            }
+                            .step {
+                                padding: 8px 16px;
+                                border-radius: 20px;
+                                background: var(--gray-100);
+                                color: var(--gray-500);
+                                font-size: 0.9rem;
+                                font-weight: 600;
+                            }
+                            .step.completed {
+                                background: var(--sage-100);
+                                color: var(--sage-700);
+                            }
+                            .step.active {
+                                background: var(--sage-500);
+                                color: white;
+                            }
+                        </style>
+                    </div>
+                `;
+                document.querySelector('.app-container').appendChild(styleScreen);
+
+                // Add event listeners to style buttons
+                styleScreen.querySelectorAll('.select-style-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const selectedStyle = this.dataset.style;
+                        console.log('Style selected:', selectedStyle);
+                        window.selectedAssessmentStyle = selectedStyle;
+
+                        // Now start the assessment with both type and style
+                        startAdaptiveAssessment(window.selectedAssessmentType, selectedStyle);
+                    });
+                });
+            }
+
+            styleScreen.classList.remove('hidden');
+        }
+
+        // Make function globally available
+        window.showAssessmentStyleSelection = showAssessmentStyleSelection;
+
+        // Function to start adaptive assessment
+        async function startAdaptiveAssessment(assessmentType, assessmentStyle = 'standard') {
+            console.log('=== Starting Adaptive Assessment ===');
+            console.log('Assessment type:', assessmentType);
+            console.log('Assessment style:', assessmentStyle);
+            console.log('Window.assessment exists?', !!window.assessment);
+
+            // Check if adaptive assessment is available
+            if (!window.assessment) {
+                console.error('Assessment module not loaded - attempting to initialize');
+                alert('Assessment system is still loading. Please try again in a moment.');
+                return;
+            }
+
+            // Map assessment type to tier and concerns
+            const tierMap = {
+                'basic': 'standard',
+                'personality': 'standard',
+                'focus': 'standard',
+                'social': 'standard',
+                'emotional': 'standard',
+                'comprehensive': 'comprehensive',
+                'standard': 'standard',
+                'deep': 'comprehensive'
+            };
+
+            const concernsMap = {
+                'basic': [],
+                'personality': [],
+                'focus': ['adhd', 'attention'],
+                'social': ['autism', 'social'],
+                'emotional': ['trauma', 'emotional'],
+                'comprehensive': ['adhd', 'autism', 'trauma', 'giftedness']
+            };
+
+            const tier = tierMap[assessmentType] || 'standard';
+            const concerns = concernsMap[assessmentType] || [];
+
+            console.log('Tier:', tier, 'Concerns:', concerns);
+
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.add('hidden');
+            });
+
+            // Show adaptive assessment screen
+            const adaptiveScreen = document.getElementById('adaptive-assessment-screen');
+            if (adaptiveScreen) {
+                adaptiveScreen.classList.remove('hidden');
+                console.log('Adaptive screen shown');
+
+                try {
+                    // Add a small delay for DOM update
+                    await new Promise(resolve => setTimeout(resolve, 100));
+
+                    // Start the assessment
+                    const result = await window.assessment.startAssessment({
+                        tier: tier,
+                        concerns: concerns
+                    });
+
+                    if (result) {
+                        console.log('Assessment started successfully');
+                    } else {
+                        console.error('Failed to start assessment');
+                    }
+                } catch (error) {
+                    console.error('Error starting assessment:', error);
+                    // Show error in UI
+                    const container = document.getElementById('assessment-container');
+                    if (container) {
+                        container.innerHTML = `
+                            <div class="error-message" style="padding: 20px; text-align: center;">
+                                <h3>Unable to start assessment</h3>
+                                <p>${error.message || 'Please check your connection and try again.'}</p>
+                                <button onclick="location.reload()" class="btn-primary">Refresh Page</button>
+                            </div>
+                        `;
+                    }
+                }
+            } else {
+                console.error('Adaptive assessment screen not found');
+                alert('Assessment screen not found. Please refresh the page.');
+            }
+        }
+
+        // Make function globally available
+        window.startAdaptiveAssessment = startAdaptiveAssessment;
 
         // Override the start assessment button to use adaptive assessment
         const startBtn = document.getElementById('start-assessment');
@@ -1162,12 +1442,18 @@
                 const adaptiveScreen = document.getElementById('adaptive-assessment-screen');
                 const questionScreen = document.getElementById('question-screen');
 
+                console.log('=== ASSESSMENT TYPE CLICKED ===');
+                console.log('Selected mode:', selectedMode);
+                console.log('Selected track:', selectedTrack);
+                console.log('Tier:', tier);
                 console.log('Assessment system available:', !!window.assessment);
+                console.log('Window.assessment object:', window.assessment);
                 console.log('Adaptive screen found:', !!adaptiveScreen);
                 console.log('Question screen found:', !!questionScreen);
 
                 // Try adaptive assessment first
                 if (window.assessment && adaptiveScreen) {
+                    console.log('Starting adaptive assessment flow...');
                     adaptiveScreen.classList.remove('hidden');
 
                     try {
@@ -2482,6 +2768,8 @@
                     // Add event listeners for task type selection
                     selector.querySelectorAll('input[name="taskType"]').forEach(input => {
                         input.addEventListener('change', (e) => {
+                            console.log('Task type checkbox changed:', e.target.value, 'checked:', e.target.checked);
+
                             // Toggle selected class on the parent label based on checkbox state
                             const parentOption = e.target.closest('.task-type-option');
                             if (e.target.checked) {
@@ -2494,6 +2782,13 @@
                                 parentOption.querySelectorAll('.option-title, .option-desc').forEach(el => {
                                     el.style.color = 'white';
                                 });
+
+                                // Store the selected assessment type
+                                window.selectedAssessmentType = e.target.value;
+                                console.log('Assessment type selected:', e.target.value);
+
+                                // Show the style selection screen instead of starting immediately
+                                showAssessmentStyleSelection(e.target.value);
                             } else {
                                 parentOption.classList.remove('selected');
                                 // Remove inline styles

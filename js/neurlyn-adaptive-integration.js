@@ -633,15 +633,22 @@ class NeurlynAdaptiveAssessment {
 // Initialize global instance
 const assessment = new NeurlynAdaptiveAssessment();
 window.assessment = assessment;
+window.NeurlynAdaptiveAssessment = NeurlynAdaptiveAssessment;
+
+// Log that the module is loaded
+console.log('NeurlynAdaptiveAssessment loaded and initialized');
+console.log('window.assessment:', window.assessment);
 
 // Auto-resume on page load
 document.addEventListener('DOMContentLoaded', async () => {
+    console.log('DOMContentLoaded - checking for assessment resume');
     const resumed = await assessment.resumeAssessment();
     if (!resumed) {
         // Check if we should start a new assessment
         const urlParams = new URLSearchParams(window.location.search);
         const tier = urlParams.get('tier');
         if (tier) {
+            console.log('Starting assessment from URL parameter:', tier);
             assessment.startAssessment({ tier });
         }
     }
