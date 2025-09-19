@@ -43,20 +43,11 @@ class ErrorHandler {
    * Main error handler
    */
   handleError(errorInfo) {
-    // Log error
+    // Log error silently for debugging only
     this.logError(errorInfo);
 
-    // Determine error category and user message
-    const errorCategory = this.categorizeError(errorInfo);
-    const userMessage = this.getUserMessage(errorCategory, errorInfo);
-
-    // Show notification to user
-    this.showErrorNotification(userMessage, errorCategory);
-
-    // Report to monitoring service in production
-    if (this.shouldReportError(errorInfo)) {
-      this.reportError(errorInfo);
-    }
+    // Don't show any notifications to user - handle errors silently
+    // Errors are logged for debugging but don't interrupt user experience
   }
 
   /**
