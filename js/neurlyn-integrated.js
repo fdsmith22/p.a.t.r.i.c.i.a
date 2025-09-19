@@ -187,6 +187,12 @@
 
   // Initialize on DOM ready
   async function initialize() {
+    // Prevent double initialization
+    if (window.Neurlyn && window.Neurlyn.initialized) {
+      console.log('Neurlyn Core already initialized');
+      return;
+    }
+
     console.log('Neurlyn Core Initializing...');
 
     // Load environment config
@@ -198,6 +204,7 @@
     // Create global instances
     window.Neurlyn = {
       ...window.Neurlyn,
+      initialized: true,
       assessmentState: new AssessmentStateManager(),
       api: new APIHelper(),
       ui: new UIStateManager(),
@@ -236,7 +243,7 @@
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initialize);
+    document.addEventListener('DOMContentLoaded', initialize, { once: true });
   } else {
     initialize();
   }

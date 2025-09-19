@@ -182,8 +182,10 @@ class ErrorHandler {
    * Determine if error should be reported
    */
   shouldReportError(errorInfo) {
-    // Don't report in development
-    if (window.location.hostname === 'localhost') {
+    // Don't report in development or GitHub Pages
+    if (window.location.hostname === 'localhost' ||
+        window.location.hostname === '127.0.0.1' ||
+        window.location.hostname.includes('github.io')) {
       return false;
     }
 
