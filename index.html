@@ -2433,13 +2433,13 @@
                     // Add event listeners for task type selection
                     selector.querySelectorAll('input[name="taskType"]').forEach(input => {
                         input.addEventListener('change', (e) => {
-                            // Remove selected class from all options
-                            selector.querySelectorAll('.task-type-option').forEach(opt => {
-                                opt.classList.remove('selected');
-                            });
-
-                            // Add selected class to parent label
-                            e.target.closest('.task-type-option').classList.add('selected');
+                            // Toggle selected class on the parent label based on checkbox state
+                            const parentOption = e.target.closest('.task-type-option');
+                            if (e.target.checked) {
+                                parentOption.classList.add('selected');
+                            } else {
+                                parentOption.classList.remove('selected');
+                            }
 
                             // Update step indicator
                             document.getElementById('step-3').classList.add('completed');
@@ -2468,6 +2468,7 @@
                     // Set default selection
                     const hybridOption = selector.querySelector('input[value="hybrid"]');
                     if (hybridOption) {
+                        hybridOption.checked = true;
                         hybridOption.closest('.task-type-option').classList.add('selected');
                     }
                 };
