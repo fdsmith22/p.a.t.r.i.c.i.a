@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="styles/neurlyn-interactive.css">
     <link rel="stylesheet" href="styles/neurlyn-neurodiversity.css">
     <link rel="stylesheet" href="styles/assessment-layout-fix.css">
+    <link rel="stylesheet" href="styles/neurlyn-mobile.css">
     <link rel="stylesheet" href="styles/neurlyn-print.css" media="print">
     
     <style>
@@ -559,6 +560,30 @@
 
             .selector-tab {
                 width: 100%;
+                min-height: 44px;
+            }
+
+            /* Mobile button improvements */
+            .btn {
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Small mobile optimizations */
+            .disclaimer-card {
+                padding: 1.5rem 1rem;
+                margin: 0 0.5rem;
+            }
+
+            .feature-item {
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            h1 {
+                font-size: clamp(1.5rem, 5vw, 2rem);
             }
         }
     </style>
@@ -1649,7 +1674,7 @@
         }
 
         .progress-bar-vertical {
-            height: 300px; /* Fixed height */
+            height: clamp(200px, 40vh, 300px); /* Responsive height */
             width: 8px;
             background: #E8E8E8;
             border-radius: 4px;
@@ -1668,9 +1693,21 @@
             height: 2%; /* Initial small height */
         }
 
-        /* Hide old progress container */
-        .progress-container.compact {
-            display: none !important;
+        /* Show/hide progress bars based on screen size */
+        @media (min-width: 769px) {
+            .progress-container.compact {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .vertical-progress-sidebar {
+                display: none !important;
+            }
+
+            .progress-container.compact {
+                display: block !important;
+            }
         }
 
         .question-header {
@@ -1824,6 +1861,23 @@
             .track-selection .track-options,
             .mode-selection .mode-grid {
                 flex-direction: column;
+                padding: 0 1rem;
+            }
+
+            .track-option,
+            .mode-option {
+                width: 100%;
+                min-height: auto;
+                padding: 1rem;
+            }
+
+            .track-option h4,
+            .mode-option h4 {
+                font-size: 1.1rem;
+            }
+
+            .question-nav button {
+                min-height: 44px;
             }
         }
 
