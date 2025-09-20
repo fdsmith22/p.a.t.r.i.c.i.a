@@ -1,0 +1,151 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Pre-push hook for Neurlyn
+echo "🚀 Running pre-push checks..."
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# Track if any checks fail
+CHECKS_FAILED=0
+
+# 1. Run full test suite
+echo "🧪 Running full test suite..."
+npm test -- --passWithNoTests
+if [ $? -ne 0 ]; then
+    echo "❌ Tests failed!"
+    CHECKS_FAILED=1
+else
+    echo "✅ Tests passed"
+fi
+
+# 2. Check code formatting
+echo ""
+echo "💅 Checking code formatting..."
+npm run format:check > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "❌ Code formatting issues found!"
+    echo "   Run 'npm run format' to fix"
+    CHECKS_FAILED=1
+else
+    echo "✅ Code formatting OK"
+fi
+
+# 3. Run linter
+echo ""
+echo "🧹 Running ESLint..."
+npm run lint > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "❌ Linting errors found!"
+    echo "   Run 'npm run lint:fix' to fix auto-fixable issues"
+    CHECKS_FAILED=1
+else
+    echo "✅ No linting errors"
+fi
+
+# 4. Type checking
+echo ""
+echo "📝 Running type checks..."
+if [ -f "tsconfig.json" ]; then
+    npm run typecheck > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        echo "❌ Type errors found!"
+        CHECKS_FAILED=1
+    else
+        echo "✅ Type checks passed"
+    fi
+else
+    echo "⏭️  No TypeScript configuration found, skipping"
+fi
+
+# 5. Build test
+echo ""
+echo "🏗️  Testing build process..."
+npm run build > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "❌ Build failed!"
+    echo "   Please fix build errors before pushing"
+    CHECKS_FAILED=1
+else
+    echo "✅ Build successful"
+    # Clean up build artifacts
+    rm -rf dist/
+fi
+
+# 6. Security audit
+echo ""
+echo "🔒 Running security audit..."
+npm audit --audit-level=high > /dev/null 2>&1
+AUDIT_EXIT=$?
+if [ $AUDIT_EXIT -ne 0 ]; then
+    echo "⚠️  Security vulnerabilities found!"
+    echo "   Run 'npm audit' for details"
+    # Don't fail on audit issues, just warn
+else
+    echo "✅ No high severity vulnerabilities"
+fi
+
+# 7. Check for large files
+echo ""
+echo "📦 Checking for large files..."
+LARGE_FILES=$(find . -type f -size +1M -not -path "./node_modules/*" -not -path "./.git/*" -not -path "./dist/*" -not -path "./coverage/*" 2>/dev/null)
+if [ ! -z "$LARGE_FILES" ]; then
+    echo "⚠️  Large files detected (>1MB):"
+    echo "$LARGE_FILES" | while read file; do
+        SIZE=$(du -h "$file" | cut -f1)
+        echo "   - $file ($SIZE)"
+    done
+fi
+
+# 8. Check branch protection
+echo ""
+echo "🌿 Checking branch..."
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$CURRENT_BRANCH" = "main" ] || [ "$CURRENT_BRANCH" = "master" ]; then
+    echo "⚠️  Pushing directly to $CURRENT_BRANCH branch"
+    echo "   Consider creating a feature branch instead"
+fi
+
+# 9. Validate CSS
+echo ""
+echo "🎨 Validating CSS files..."
+CSS_ERRORS=0
+for file in $(find styles -name "*.css" 2>/dev/null); do
+    # Check for syntax errors (basic check)
+    if ! grep -q "^}" "$file" && grep -q "{" "$file"; then
+        echo "⚠️  Possible unclosed bracket in $file"
+        CSS_ERRORS=1
+    fi
+done
+if [ $CSS_ERRORS -eq 0 ]; then
+    echo "✅ CSS validation passed"
+fi
+
+# 10. Check commit messages
+echo ""
+echo "📝 Checking commit messages..."
+COMMITS=$(git log origin/main..HEAD --format="%s" 2>/dev/null)
+if [ ! -z "$COMMITS" ]; then
+    INVALID_COMMITS=$(echo "$COMMITS" | grep -v "^[A-Z]" || true)
+    if [ ! -z "$INVALID_COMMITS" ]; then
+        echo "⚠️  Some commits don't start with capital letter:"
+        echo "$INVALID_COMMITS" | head -3
+    fi
+fi
+
+# Summary
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+if [ $CHECKS_FAILED -eq 0 ]; then
+    echo "✅ All pre-push checks passed!"
+    echo "🚀 Pushing to remote..."
+else
+    echo "❌ Some checks failed!"
+    echo ""
+    read -p "Do you want to push anyway? (y/N): " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Push cancelled"
+        exit 1
+    fi
+    echo "⚠️  Pushing with failures..."
+fi
